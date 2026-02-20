@@ -289,54 +289,7 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     // -------------------------------------------------------------------------
     // STEP 2 + 3: Extract Text & Image Attributes (in parallel)
     // -------------------------------------------------------------------------
-    let mergedAttrs = {
-        "neckline_type": "sweetheart",
-        "neckline_depth": "shallow",
-        "neckline_width": "medium",
-        "sleeve_type": "puff",
-        "sleeve_width": "relaxed",
-        "silhouette_type": "a_line",
-        "waistline": "natural",
-        "waist_definition": "undefined",
-        "fit_category": "relaxed",
-        "color_primary": "cream",
-        "color_value": "light",
-        "color_temperature": "neutral",
-        "color_saturation": "muted",
-        "pattern_type": "floral_small",
-        "pattern_scale": "small",
-        "pattern_contrast": "medium",
-        "pattern_direction": "mixed",
-        "fabric_sheen": "subtle_sheen",
-        "fabric_opacity": "semi_opaque",
-        "fabric_drape": "fluid",
-        "fabric_texture": "woven",
-        "has_darts": false,
-        "has_seaming": true,
-        "has_ruching": true,
-        "has_draping": false,
-        "has_pleats": false,
-        "has_gathering": false,
-        "fabric_primary": "Rayon",
-        "fabric_secondary": "Linen",
-        "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
-        "stretch_percentage": 0,
-        "model_height_inches": 69,
-        "model_size_worn": "S",
-        "model_bust": 34,
-        "model_waist": 28,
-        "model_hips": 35,
-        "hemline_position": "mini",
-        "garment_length_inches": 24,
-        "fabric_weight": "medium",
-        "garment_type": "dress",
-        "title": "H&M Puff-Sleeved Dress",
-        "brand": "H&M",
-        "price": "$29.99",
-        "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
-        "image_confidence": "high",
-        "text_confidence": "high"
-    }
+    let mergedAttrs = product_profile2_merged_attrs;
 
     if(extract_user_text_and_image_attributes){
         console.log("\n--- STEP 2+3: EXTRACTING TEXT & IMAGE ATTRIBUTES (PARALLEL) ---\n");
@@ -578,6 +531,167 @@ let product_profile1 = {
 
     product_url: "https://www2.hm.com/en_us/productpage.1275471004.html"
 };
+
+let product_profile1_merged_attrs = {
+    "neckline_type": "sweetheart",
+    "neckline_depth": "shallow",
+    "neckline_width": "medium",
+    "sleeve_type": "puff",
+    "sleeve_width": "relaxed",
+    "silhouette_type": "a_line",
+    "waistline": "natural",
+    "waist_definition": "undefined",
+    "fit_category": "relaxed",
+    "color_primary": "cream",
+    "color_value": "light",
+    "color_temperature": "neutral",
+    "color_saturation": "muted",
+    "pattern_type": "floral_small",
+    "pattern_scale": "small",
+    "pattern_contrast": "medium",
+    "pattern_direction": "mixed",
+    "fabric_sheen": "subtle_sheen",
+    "fabric_opacity": "semi_opaque",
+    "fabric_drape": "fluid",
+    "fabric_texture": "woven",
+    "has_darts": false,
+    "has_seaming": true,
+    "has_ruching": true,
+    "has_draping": false,
+    "has_pleats": false,
+    "has_gathering": false,
+    "fabric_primary": "Rayon",
+    "fabric_secondary": "Linen",
+    "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
+    "stretch_percentage": 0,
+    "model_height_inches": 69,
+    "model_size_worn": "S",
+    "model_bust": 34,
+    "model_waist": 28,
+    "model_hips": 35,
+    "hemline_position": "mini",
+    "garment_length_inches": 24,
+    "fabric_weight": "medium",
+    "garment_type": "dress",
+    "title": "H&M Puff-Sleeved Dress",
+    "brand": "H&M",
+    "price": "$29.99",
+    "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+    "image_confidence": "high",
+    "text_confidence": "high"
+}
+
+let product_profile2 = {
+
+    product_text: `
+
+        Title:
+        H&M Puff-Sleeved Dress
+        $29.99
+
+        Color:
+        White/navy blue patterned
+
+        Product features
+        The model is 175cm/5'9" and wears a size S
+        Slim fit
+
+        Description & fit
+        Knee-length dress in woven fabric. Round neckline, buttons at front, and an extra-narrow, removable tie belt at waist. Elbow-length puff sleeves with elasticized cuffs. Unlined.
+
+        Art. No.: 1278378001
+
+        Description:
+        White/navy blue/dusty blue, Patterned
+
+        Size:
+        Sleeve: Length: 46 cm (size M)
+        Shoulder: Width: 33 cm (size M)
+        Back: Length: 95 cm (size M)
+
+        Length:             Short
+        Sleeve Length:      Short sleeve
+        Fit:                Regular fit
+        Neckline:           Round Neck      
+        Sleeve type:        Puff Sleeve
+        Imported:           Yes
+        Quantity:           Single
+
+        Materials
+
+        Composition
+        Rayon 100%
+
+        Additional material information
+        The total weight of this product contains at least:
+        100% Livaeco™ Viscose
+
+        We exclude the weight of minor components such as, but not exclusively: threads, buttons, zippers, embellishments and prints.
+        The total weight of the product is calculated by adding the weight of all layers and main components together. Based on that, we calculate how much of that weight is made out by each material. For sets and multipacks, all pieces are counted together as one product in calculations.
+
+        Materials in this product explained
+        
+        Livaeco™ Viscose
+        Livaeco™ is a branded viscose fiber. Its wood pulp raw material is sourced from certified forests according to standards regulating deforestation, wages and work environment, the protection of plant and animal species and community rights.
+        
+        Rayon
+        Viscose is a regenerated cellulose fibre commonly made from wood, but the raw material could also consist of other cellulosic materials.
+
+    `,
+
+    product_image_url: 'https://image.hm.com/assets/hm/58/40/5840c01a4c28574641d6b14de795a766adc63024.jpg?imwidth=1536',
+
+    product_url: "https://www2.hm.com/en_us/productpage.1278378001.html"
+};
+
+let product_profile2_merged_attrs = {
+    "neckline_type": "boat_neck",
+    "neckline_depth": "shallow",
+    "neckline_width": "medium",
+    "sleeve_type": "short",
+    "sleeve_width": "relaxed",
+    "silhouette_type": "a_line",
+    "waistline": "natural",
+    "waist_definition": "undefined",
+    "fit_category": "relaxed",
+    "color_primary": "white",
+    "color_value": "medium_light",
+    "color_temperature": "cool",
+    "color_saturation": "muted",
+    "pattern_type": "floral_large",
+    "pattern_scale": "large",
+    "pattern_contrast": "high",
+    "pattern_direction": "mixed",
+    "fabric_sheen": "subtle_sheen",
+    "fabric_opacity": "semi_opaque",
+    "fabric_drape": "fluid",
+    "fabric_texture": "smooth",
+    "has_darts": false,
+    "has_seaming": true,
+    "has_ruching": false,
+    "has_draping": false,
+    "has_pleats": false,
+    "has_gathering": false,
+    "fabric_primary": "rayon",
+    "fabric_secondary": "Livaeco™ Viscose",
+    "fabric_composition": "Rayon 100%",
+    "stretch_percentage": 0,
+    "model_height_inches": 68.9,
+    "model_size_worn": "S",
+    "model_bust": 35.43,
+    "model_waist": 30.31,
+    "model_hips": 37.4,
+    "hemline_position": "midi",
+    "garment_length_inches": 35.43,
+    "fabric_weight": "heavy",
+    "garment_type": "dress",
+    "title": "H&M Puff-Sleeved Dress",
+    "brand": "H&M",
+    "price": "$29.99",
+    "care_instructions": "Unlined.",
+    "image_confidence": "medium",
+    "text_confidence": "high"
+}
 
 
 
