@@ -221,6 +221,11 @@ export class BodyProfile {
         this.styling_goals = data.styling_goals ?? [];
         this.style_philosophy = data.style_philosophy ?? "balance";
 
+        // Body shape & proportions override (for communication layer)
+        // These override the computed getters when provided from external classification
+        this._body_shape_override = data.body_shape ?? null;
+        this._torso_leg_ratio_override = data.torso_leg_ratio ?? null;
+
         // Context
         this.climate = data.climate ?? Climate.TEMPERATE;
         this.wear_context = data.wear_context ?? WearContext.GENERAL;
@@ -253,6 +258,11 @@ export class BodyProfile {
     }
 
     get torso_leg_ratio() {
+        // If an override was provided (from external classification), use it
+        if (this._torso_leg_ratio_override !== null) {
+            return this._torso_leg_ratio_override;
+        }
+        // Compute from measurements
         return this.leg_length_visual > 0 ? this.torso_length / this.leg_length_visual : 0.37;
     }
 
@@ -269,6 +279,24 @@ export class BodyProfile {
     }
 
     get body_shape() {
+        // If an override was provided (from external classification), use it
+        if (this._body_shape_override) {
+            const override = this._body_shape_override;
+            // Handle both string and enum values
+            if (typeof override === 'string') {
+                const shapeMap = {
+                    hourglass: BodyShape.HOURGLASS,
+                    pear: BodyShape.PEAR,
+                    apple: BodyShape.APPLE,
+                    inverted_triangle: BodyShape.INVERTED_TRIANGLE,
+                    rectangle: BodyShape.RECTANGLE,
+                };
+                return shapeMap[override.toLowerCase()] ?? BodyShape.RECTANGLE;
+            }
+            return override;
+        }
+
+        // Compute from measurements
         const bwd = this.bust - this.waist;
         const hwd = this.hip - this.waist;
         const shr = this.hip > 0 ? this.shoulder_width / (this.hip / Math.PI) : 1.0;

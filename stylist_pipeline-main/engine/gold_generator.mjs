@@ -598,7 +598,8 @@ const PLURAL_GARMENTS = new Set(["pants", "shorts"]);
 function pick(items, seed) {
     if (!items || items.length === 0) return "";
     const hash = crypto.createHash('md5').update(seed).digest('hex');
-    const idx = parseInt(hash, 16) % items.length;
+    // Use only first 13 hex chars to stay within JS safe integer range (2^53)
+    const idx = parseInt(hash.slice(0, 13), 16) % items.length;
     return items[idx];
 }
 
@@ -623,11 +624,24 @@ function phrase(principleName, direction, bodyShape, seed, hemZone = "") {
 
     // Build candidate list: body-shape variants + hem-zone variants + defaults
     const candidates = [];
-    if (bank[bodyShape]) candidates.push(...bank[bodyShape]);
-    if (hemZone && bank[hemZone]) candidates.push(...bank[hemZone]);
-    if (bank._default) candidates.push(...bank._default);
+    if (bank[bodyShape]) {
+        candidates.push(...bank[bodyShape]);
+        console.log(`[JS phrase] Added ${bank[bodyShape].length} phrases for bodyShape=${bodyShape}`);
+    }
+    if (hemZone && bank[hemZone]) {
+        candidates.push(...bank[hemZone]);
+        console.log(`[JS phrase] Added ${bank[hemZone].length} phrases for hemZone=${hemZone}`);
+    }
+    if (bank._default) {
+        candidates.push(...bank._default);
+        console.log(`[JS phrase] Added ${bank._default.length} default phrases`);
+    }
 
-    return candidates.length > 0 ? pick(candidates, seed + key + direction + bodyShape) : "";
+    const pickSeed = seed + key + direction + bodyShape;
+    const result = candidates.length > 0 ? pick(candidates, pickSeed) : "";
+    console.log(`[JS phrase] key=${key}, direction=${direction}, bodyShape=${bodyShape}, hemZone=${hemZone}`);
+    console.log(`[JS phrase] candidates=${candidates.length}, seed=${pickSeed.slice(0, 30)}..., picked=${result.slice(0, 50)}...`);
+    return result;
 }
 
 function fix(principleName, seed) {
@@ -649,6 +663,11 @@ export function generateGoldOutput(scored) {
     const topPos = scored.top_positive_key;
     const topNeg = scored.top_negative_key;
 
+    // DEBUG LOGGING
+    console.log(`[JS gold_generator] scenario_id=${sid}`);
+    console.log(`[JS gold_generator] verdict=${verdict}, body_shape=${bodyShape}, garment_cat=${garmentCat}`);
+    console.log(`[JS gold_generator] top_pos=${topPos}, top_neg=${topNeg}`);
+
     const gWord = GARMENT_WORDS[garmentCat] || "piece";
 
     // Extract applicable principles sorted by |impact|
@@ -666,6 +685,9 @@ export function generateGoldOutput(scored) {
     // Hem zone from body_adjusted
     const ba = scored.score_result?.body_adjusted || {};
     const hemZone = ba.hem_zone || "";
+    console.log(`[JS gold_generator] hemZone=${hemZone}`);
+    console.log(`[JS gold_generator] positives=${positives.slice(0, 3).map(p => p.name)}`);
+    console.log(`[JS gold_generator] negatives=${negatives.slice(0, 3).map(p => p.name)}`);
 
     const headline = makeHeadline(verdict, garmentCat, gWord, topPos, topNeg, sid);
     const pinch = makePinch(verdict, bodyShape, gWord, positives, negatives, hemZone, sid);
@@ -697,7 +719,12 @@ function makeHeadline(verdict, garmentCat, gWord, topPos, topNeg, sid) {
 
     let tpl;
     if (verdict === "smart_pick") {
-        tpl = pick(SP_HEADLINES, sid + "h");
+        const seed = sid + "h";
+        const hash = crypto.createHash('md5').update(seed).digest('hex');
+        // Use only first 13 hex chars to stay within JS safe integer range
+        const idx = parseInt(hash.slice(0, 13), 16) % SP_HEADLINES.length;
+        tpl = SP_HEADLINES[idx];
+        console.log(`[JS headline] seed=${seed}, hash13=${hash.slice(0, 13)}, pool_len=${SP_HEADLINES.length}, idx=${idx}, tpl=${tpl.slice(0, 50)}...`);
     } else {
         tpl = pick(NTO_HEADLINES, sid + "h");
     }

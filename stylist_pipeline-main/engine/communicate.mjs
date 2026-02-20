@@ -51,16 +51,23 @@ function garmentCategoryStr(garmentProfile) {
 }
 
 function makeScenarioId(bodyProfile, garmentProfile) {
-    const seed = (
-        `${bodyProfile.height || 0}` +
-        `${bodyProfile.bust || 0}` +
-        `${bodyProfile.waist || 0}` +
-        `${bodyProfile.hip || 0}` +
-        `${bodyShapeStr(bodyProfile)}` +
-        `${garmentCategoryStr(garmentProfile)}` +
-        `${garmentProfile.color_lightness || 0.5}` +
-        `${garmentProfile.silhouette || 'fitted'}`
-    );
+    const height = bodyProfile.height || 0;
+    const bust = bodyProfile.bust || 0;
+    const waist = bodyProfile.waist || 0;
+    const hip = bodyProfile.hip || 0;
+    const bodyShape = bodyShapeStr(bodyProfile);
+    const garmentCat = garmentCategoryStr(garmentProfile);
+    const colorLightness = garmentProfile.color_lightness || 0.5;
+    const silhouette = garmentProfile.silhouette || 'fitted';
+
+    const seed = `${height}${bust}${waist}${hip}${bodyShape}${garmentCat}${colorLightness}${silhouette}`;
+
+    // DEBUG LOGGING
+    console.log(`[JS makeScenarioId] height=${height}, bust=${bust}, waist=${waist}, hip=${hip}`);
+    console.log(`[JS makeScenarioId] bodyShape=${bodyShape}, garmentCat=${garmentCat}`);
+    console.log(`[JS makeScenarioId] colorLightness=${colorLightness}, silhouette=${silhouette}`);
+    console.log(`[JS makeScenarioId] seed=${seed}`);
+
     return crypto.createHash('md5').update(seed).digest('hex').slice(0, 12);
 }
 

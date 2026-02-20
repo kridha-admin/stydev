@@ -227,13 +227,23 @@ def score_and_communicate(request: ScoreRequest):
     score_dict = dataclass_to_dict(result)
 
     # Generate communication — enrich with resolved profile data
+    # Must include all fields that communicate.py's makeScenarioId expects
     body_dict = dict(request.user_measurements)
     body_dict["body_shape"] = body.body_shape.value
     body_dict["height"] = body.height  # inches, for user_line display
     body_dict["name"] = request.user_measurements.get("name", "You")
+    # Add measurement fields that communicate.py expects (in inches)
+    body_dict["bust"] = body.bust
+    body_dict["waist"] = body.waist
+    body_dict["hip"] = body.hip
+    body_dict["torso_leg_ratio"] = body.torso_leg_ratio
+
     garment_dict = dict(request.garment_attributes)
     garment_dict["category"] = garment.category.value
     garment_dict["model_height_inches"] = getattr(garment, "model_estimated_size", 0)
+    # Add garment fields that communicate.py expects
+    garment_dict["color_lightness"] = garment.color_lightness
+    garment_dict["silhouette"] = garment.silhouette.value if hasattr(garment.silhouette, 'value') else garment.silhouette
 
     try:
         comm = generate_communication(

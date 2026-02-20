@@ -56,16 +56,27 @@ def _garment_category_str(garment_profile: dict) -> str:
 
 def _make_scenario_id(body_profile: dict, garment_profile: dict) -> str:
     """Generate a deterministic scenario ID for phrase bank seeding."""
-    seed = (
-        f"{body_profile.get('height', 0)}"
-        f"{body_profile.get('bust', 0)}"
-        f"{body_profile.get('waist', 0)}"
-        f"{body_profile.get('hip', 0)}"
-        f"{_body_shape_str(body_profile)}"
-        f"{_garment_category_str(garment_profile)}"
-        f"{garment_profile.get('color_lightness', 0.5)}"
-        f"{garment_profile.get('silhouette', 'fitted')}"
-    )
+    height = body_profile.get('height', 0)
+    bust = body_profile.get('bust', 0)
+    waist = body_profile.get('waist', 0)
+    hip = body_profile.get('hip', 0)
+    body_shape = _body_shape_str(body_profile)
+    garment_cat = _garment_category_str(garment_profile)
+    color_lightness = garment_profile.get('color_lightness', 0.5)
+    silhouette = garment_profile.get('silhouette', 'fitted')
+
+    # Format height as int if whole number to match JS behavior
+    # JS: `${68}` outputs "68", Python: f"{68.0}" outputs "68.0"
+    height_str = str(int(height)) if height == int(height) else str(height)
+
+    seed = f"{height_str}{bust}{waist}{hip}{body_shape}{garment_cat}{color_lightness}{silhouette}"
+
+    # DEBUG LOGGING
+    print(f"[PY make_scenario_id] height={height_str}, bust={bust}, waist={waist}, hip={hip}")
+    print(f"[PY make_scenario_id] body_shape={body_shape}, garment_cat={garment_cat}")
+    print(f"[PY make_scenario_id] color_lightness={color_lightness}, silhouette={silhouette}")
+    print(f"[PY make_scenario_id] seed={seed}")
+
     return hashlib.md5(seed.encode()).hexdigest()[:12]
 
 

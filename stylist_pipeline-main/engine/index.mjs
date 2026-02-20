@@ -256,10 +256,19 @@ function scoreResultToDict(result) {
         body_adjusted: result.body_adjusted ? {
             hem_from_floor: result.body_adjusted.hem_from_floor,
             hem_zone: result.body_adjusted.hem_zone,
-            sleeve_endpoint: result.body_adjusted.sleeve_endpoint,
+            hemline_danger_zones: result.body_adjusted.hemline_danger_zones,
+            hemline_safe_zone: result.body_adjusted.hemline_safe_zone,
+            fabric_rise_adjustment: result.body_adjusted.fabric_rise_adjustment,
+            sleeve_endpoint_position: result.body_adjusted.sleeve_endpoint_position,
+            perceived_arm_width: result.body_adjusted.perceived_arm_width,
             arm_width_delta: result.body_adjusted.arm_width_delta,
+            arm_prominence_severity: result.body_adjusted.arm_prominence_severity,
+            visual_waist_height: result.body_adjusted.visual_waist_height,
             visual_leg_ratio: result.body_adjusted.visual_leg_ratio,
-            proportion_score: result.body_adjusted.proportion_score,
+            proportion_improvement: result.body_adjusted.proportion_improvement,
+            total_stretch_pct: result.body_adjusted.total_stretch_pct,
+            effective_gsm: result.body_adjusted.effective_gsm,
+            sheen_score: result.body_adjusted.sheen_score,
             photo_reality_discount: result.body_adjusted.photo_reality_discount,
         } : null,
         reasoning_chain: result.reasoning_chain,
@@ -270,6 +279,17 @@ function scoreResultToDict(result) {
 
 function bodyProfileToDict(profile) {
     const dict = { ...profile };
+
+    // Explicitly copy getter values (spread doesn't copy getters)
+    dict.body_shape = profile.body_shape;
+    dict.torso_leg_ratio = profile.torso_leg_ratio;
+    dict.whr = profile.whr;
+    dict.bust_differential = profile.bust_differential;
+    dict.leg_ratio = profile.leg_ratio;
+    dict.is_petite = profile.is_petite;
+    dict.is_tall = profile.is_tall;
+    dict.is_plus_size = profile.is_plus_size;
+
     // Convert enums to values
     if (dict.body_shape?.value) dict.body_shape = dict.body_shape.value;
     if (dict.skin_undertone?.value) dict.skin_undertone = dict.skin_undertone.value;

@@ -603,7 +603,8 @@ def _pick(items: list, seed: str) -> str:
     """Deterministic choice from list using hash seed."""
     if not items:
         return ""
-    idx = int(hashlib.md5(seed.encode()).hexdigest(), 16) % len(items)
+    # Use only first 13 hex chars to match JS (stays within JS safe integer range)
+    idx = int(hashlib.md5(seed.encode()).hexdigest()[:13], 16) % len(items)
     return items[idx]
 
 
@@ -635,12 +636,19 @@ def _phrase(principle_name: str, direction: str, body_shape: str,
     candidates = []
     if body_shape in bank:
         candidates.extend(bank[body_shape])
+        print(f"[PY _phrase] Added {len(bank[body_shape])} phrases for body_shape={body_shape}")
     if hem_zone and hem_zone in bank:
         candidates.extend(bank[hem_zone])
+        print(f"[PY _phrase] Added {len(bank[hem_zone])} phrases for hem_zone={hem_zone}")
     if "_default" in bank:
         candidates.extend(bank["_default"])
+        print(f"[PY _phrase] Added {len(bank['_default'])} default phrases")
 
-    return _pick(candidates, seed + key + direction + body_shape) if candidates else ""
+    pick_seed = seed + key + direction + body_shape
+    result = _pick(candidates, pick_seed) if candidates else ""
+    print(f"[PY _phrase] key={key}, direction={direction}, body_shape={body_shape}, hem_zone={hem_zone}")
+    print(f"[PY _phrase] candidates={len(candidates)}, seed={pick_seed[:30]}..., picked={result[:50]}...")
+    return result
 
 
 def _fix(principle_name: str, seed: str) -> str:
@@ -664,6 +672,11 @@ def generate_gold_output(scored: dict) -> dict:
     top_pos = scored.get("top_positive_key")
     top_neg = scored.get("top_negative_key")
 
+    # DEBUG LOGGING
+    print(f"[PY gold_generator] scenario_id={sid}")
+    print(f"[PY gold_generator] verdict={verdict}, body_shape={body_shape}, garment_cat={garment_cat}")
+    print(f"[PY gold_generator] top_pos={top_pos}, top_neg={top_neg}")
+
     g_word = GARMENT_WORDS.get(garment_cat, "piece")
 
     # Extract applicable principles sorted by |impact|
@@ -683,6 +696,9 @@ def generate_gold_output(scored: dict) -> dict:
     # Hem zone from body_adjusted
     ba = scored["score_result"].get("body_adjusted", {}) or {}
     hem_zone = ba.get("hem_zone", "")
+    print(f"[PY gold_generator] hem_zone={hem_zone}")
+    print(f"[PY gold_generator] positives={[p.get('name') for p in positives[:3]]}")
+    print(f"[PY gold_generator] negatives={[p.get('name') for p in negatives[:3]]}")
 
     headline = _make_headline(verdict, garment_cat, g_word, top_pos, top_neg, sid)
     pinch = _make_pinch(verdict, body_shape, g_word, positives, negatives, hem_zone, sid)
@@ -712,7 +728,11 @@ def _make_headline(verdict, garment_cat, g_word, top_pos, top_neg, sid):
     }
 
     if verdict == "smart_pick":
-        tpl = _pick(SP_HEADLINES, sid + "h")
+        seed = sid + "h"
+        hash13 = hashlib.md5(seed.encode()).hexdigest()[:13]
+        idx = int(hash13, 16) % len(SP_HEADLINES)
+        tpl = SP_HEADLINES[idx]
+        print(f"[PY headline] seed={seed}, hash13={hash13}, pool_len={len(SP_HEADLINES)}, idx={idx}, tpl={tpl[:50]}...")
     else:
         tpl = _pick(NTO_HEADLINES, sid + "h")
 

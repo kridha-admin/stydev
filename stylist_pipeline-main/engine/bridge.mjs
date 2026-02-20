@@ -423,6 +423,11 @@ export function buildBodyProfile(userMeasurements, stylingGoals = null) {
         }
     }
 
+    // Body shape and torso/leg ratio (pass through from input)
+    const bodyShape = safeGet(u, "body_shape", "rectangle");
+    const torsoLegRatio = safeGet(u, "torso_leg_ratio", 0.50);
+    const skinUndertone = safeGet(u, "skin_undertone", null);
+
     return new BodyProfile({
         height,
         bust,
@@ -444,6 +449,9 @@ export function buildBodyProfile(userMeasurements, stylingGoals = null) {
         c_calf_max: cCalfMax,
         c_ankle: cAnkle,
         styling_goals: goals,
+        body_shape: bodyShape,
+        torso_leg_ratio: torsoLegRatio,
+        skin_undertone: skinUndertone,
     });
 }
 
