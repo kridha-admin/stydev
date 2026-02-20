@@ -7,23 +7,20 @@ import {
     getUserStylingProfile,
     saveScoringResult,
 } from './mongodb_helper.mjs';
-
-// ARCHIVED: JS goal scorers replaced by Python scoring engine (2025-02)
-// import {
-//     estimate_goal_look_taller,
-//     estimate_goal_look_slimmer,
-//     estimate_goal_highlight_waist,
-//     estimate_goal_hide_midsection,
-//     estimate_goal_minimize_hips,
-//     estimate_goal_balance_shoulders,
-//     estimate_goal_hide_upper_arms,
-//     estimate_goal_elongate_legs,
-//     estimate_goal_create_curves,
-//     estimate_goal_streamline_silhouette,
-//     estimate_goal_minimize_bust,
-//     estimate_goal_show_legs
-// } from './user_garment_judgements.mjs';
-
+import {
+    estimate_goal_look_taller,
+    estimate_goal_look_slimmer,
+    estimate_goal_highlight_waist,
+    estimate_goal_hide_midsection,
+    estimate_goal_minimize_hips,
+    estimate_goal_balance_shoulders,
+    estimate_goal_hide_upper_arms,
+    estimate_goal_elongate_legs,
+    estimate_goal_create_curves,
+    estimate_goal_streamline_silhouette,
+    estimate_goal_minimize_bust,
+    estimate_goal_show_legs
+} from './user_garment_judgements.mjs';
 
 let sample_user_body_derived_merged_attributes_result = {
     "chest_circumference": 112.7,
@@ -194,6 +191,25 @@ async function callScoringService(userMeasurements, garmentAttrs, userGoals = []
     return response.json();
 }
 
+async function callScoringAndCommunicateService(userMeasurements, garmentAttrs, userGoals = []) {
+    const response = await fetch('http://localhost:8000/score-and-communicate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_measurements: userMeasurements,
+            garment_attributes: garmentAttrs,
+            styling_goals: userGoals,
+        }),
+    });
+
+    if (!response.ok) {
+        const error = await response.text();
+        throw new Error(`Scoring service error (${response.status}): ${error}`);
+    }
+
+    return response.json();
+}
+
 // ============================================================================
 // MAIN PIPELINE
 // ============================================================================
@@ -278,16 +294,58 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     const mergedAttrs = mergeAttributes(flatImageAttrs, flatTextAttrs);
     console.log(JSON.stringify(mergedAttrs, null, 2));
 
+    if(false){
+
+        const goalInput = {
+            garment: mergedAttrs,
+            user: user_measurements
+        };
+    
+        const goalsAssessment = {
+            look_taller: estimate_goal_look_taller(goalInput),
+            look_slimmer: estimate_goal_look_slimmer(goalInput),
+            highlight_waist: estimate_goal_highlight_waist(goalInput),
+            hide_midsection: estimate_goal_hide_midsection(goalInput),
+            minimize_hips: estimate_goal_minimize_hips(goalInput),
+            balance_shoulders: estimate_goal_balance_shoulders(goalInput),
+            hide_upper_arms: estimate_goal_hide_upper_arms(goalInput),
+            elongate_legs: estimate_goal_elongate_legs(goalInput),
+            create_curves: estimate_goal_create_curves(goalInput),
+            streamline_silhouette: estimate_goal_streamline_silhouette(goalInput),
+            minimize_bust: estimate_goal_minimize_bust(goalInput),
+            show_legs: estimate_goal_show_legs(goalInput)
+        };
+    
+        console.log("Goals Assessment:");
+        console.log(JSON.stringify(goalsAssessment, null, 2));
+
+    }
+
     // -------------------------------------------------------------------------
-    // STEP 5: Score via Python Scoring Engine
+    // STEP 5: Score + Communicate via Python Scoring Engine
     // -------------------------------------------------------------------------
-    console.log("\n--- STEP 5: SCORING VIA PYTHON ENGINE ---\n");
+    console.log("\n--- STEP 5: SCORING + COMMUNICATION VIA PYTHON ENGINE ---\n");
 
     let scoringResult;
+    let communication;
     try {
-        scoringResult = await callScoringService(user_measurements, mergedAttrs, userGoals);
+        const result = await callScoringAndCommunicateService(user_measurements, mergedAttrs, userGoals);
+        scoringResult = result.score;
+        communication = result.communication;
+
         console.log("Scoring Result:");
         console.log(JSON.stringify(scoringResult, null, 2));
+
+        console.log("\n--- COMMUNICATION OUTPUT ---\n");
+        console.log(`Verdict: ${communication.verdict}`);
+        console.log(`Overall Score: ${communication.overall_score}`);
+        console.log(`\nHeadline: ${communication.headline}`);
+        console.log(`Pinch: ${communication.pinch}`);
+        if (communication.guardrail_flags?.length > 0) {
+            console.log(`\nGuardrail Flags: ${communication.guardrail_flags.join(', ')}`);
+        }
+        console.log("\nFull Communication:");
+        console.log(JSON.stringify(communication, null, 2));
     } catch (err) {
         console.error("Scoring service error:", err.message);
         console.error("Make sure the scoring service is running: bash start_scoring_service.sh");
@@ -295,9 +353,9 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     }
 
     // -------------------------------------------------------------------------
-    // STEP 6: Save scoring result to MongoDB (if username provided)
+    // STEP 6: Save scoring result to MongoDB (if username provided, disabled for now)
     // -------------------------------------------------------------------------
-    if (username) {
+    if (username && false) {
         console.log("\n--- STEP 6: SAVING RESULT TO MONGODB ---\n");
         try {
             const resultDoc = {
@@ -341,6 +399,7 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
         user: user_measurements,
         garment: mergedAttrs,
         scoring_result: scoringResult,
+        communication: communication,
         textAttrs: flatTextAttrs,
         imageAttrs: flatImageAttrs,
     };
