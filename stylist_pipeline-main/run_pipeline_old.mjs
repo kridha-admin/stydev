@@ -1,3 +1,5 @@
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { join } from 'path';
 import { calc_derived_measurements_and_ratios } from './calculate_derived_measurements.mjs';
 import { extractTextAttributes, flattenTextAttributes, mergeAttributes } from './product_text_extraction.mjs';
 import { extractGarmentAttributes, flattenAttributes } from './product_image_extraction.mjs';
@@ -209,7 +211,7 @@ async function callScoringAndCommunicateService(userMeasurements, garmentAttrs, 
 // MAIN PIPELINE
 // ============================================================================
 
-let extract_user_text_and_image_attributes = false;
+
 async function runPipeline(user_body_measurements, product_profile) {
     console.log("=== KRIDHA STYLING PIPELINE ===\n");
 
@@ -392,6 +394,7 @@ let user_body_measurements1 = {
     "styling_goals": ["look_taller", "look_slimmer", "highlight_waist", "hide_midsection", "minimize_hips", "balance_shoulders", "hide_upper_arms", "elongate_legs", "create_curves", "streamline_silhouette", "minimize_bust", "show_legs"],
 };
 
+// H&M Dress 1
 let product_profile1 = {
 
     product_text: `
@@ -516,6 +519,7 @@ let product_profile1 = {
     }
 };
 
+// H&M Dress 2
 let product_profile2 = {
 
     product_text: `
@@ -585,13 +589,13 @@ let product_profile2 = {
         "sleeve_type": "short",
         "sleeve_width": "relaxed",
         "silhouette_type": "a_line",
-        "waistline": "natural",
+        "waistline": "undefined",
         "waist_definition": "undefined",
         "fit_category": "relaxed",
-        "color_primary": "white",
-        "color_value": "medium_light",
+        "color_primary": "blue",
+        "color_value": "medium",
         "color_temperature": "cool",
-        "color_saturation": "muted",
+        "color_saturation": "vibrant",
         "pattern_type": "floral_large",
         "pattern_scale": "large",
         "pattern_contrast": "high",
@@ -599,13 +603,13 @@ let product_profile2 = {
         "fabric_sheen": "subtle_sheen",
         "fabric_opacity": "semi_opaque",
         "fabric_drape": "fluid",
-        "fabric_texture": "smooth",
-        "has_darts": false,
-        "has_seaming": true,
-        "has_ruching": false,
-        "has_draping": false,
-        "has_pleats": false,
-        "has_gathering": false,
+        "fabric_texture": "woven",
+        "has_darts": null,
+        "has_seaming": null,
+        "has_ruching": null,
+        "has_draping": null,
+        "has_pleats": null,
+        "has_gathering": null,
         "fabric_primary": "rayon",
         "fabric_secondary": "Livaeco™ Viscose",
         "fabric_composition": "Rayon 100%",
@@ -628,9 +632,134 @@ let product_profile2 = {
     }
 };
 
+// Amazon Dress 1
+let product_profile3 = {
+
+    product_text: `
+
+        Title:
+        Satin Prom Dress Corset Prom Long A Line Pleated Bridesmaid Backless Formal Spaghetti Strap for Gowns
+
+        About this item
+        Material:   High-quality satin material with a luxurious sheen perfect for formal events like proms weddings or evening galas
+        Style:      Flattering Corset & A-Line DesignSlimming corset bodice and A-line pleated skirt enhance curves while providing comfort and effortless movement Delicate spaghetti straps and a thigh-high slit add modern elegance balancing sophistication with subtle allure
+        Occasion:   Back to school dance party graduation ceremony cocktail party Quinceanera Evening parties bridesmaids beauty pageants engagements clubs banquets evening parties dances birthdays holidays and other special formal and semi formal occasions
+        Size:   Please purchase a suitable skirt according to the size chart
+        After Sales:If you have any questions please feel free to contact us we will do our best to solve for you
+
+    `,
+
+    product_image_url: 'https://m.media-amazon.com/images/I/51wp4djZ7BL._AC_SY879_.jpg',
+
+    product_url: "https://www.amazon.com/FUXINZHAN-Pleated-Bridesmaid-Backless-Spaghetti/dp/B0F5VW3C1Z/ref=sr_1_1_sspa?dib=eyJ2IjoiMSJ9.t_VX6_aa4-2KRdrsGMJpP_wYkQiuCC8Rn1DbWBEKY8YJpyMRw5k2xnmxA86n2VDrra5DJzw-n8yPK1xTPijWrdEvkK0sDfWxhiUyCzmKuI_jAtD6Z6AvJ2iUCbTYb9YojNpmVNRXG5j3ZkaOROw_U1KGUWV5u_NCrUb6SjZPogDTImMPjKrZ0TQOHi4AIthLfcAZ7nBNGFFJBy1mz6KsEThZMaTJQNhkMxR6LhiJiAdahwPhPKHoE9DiuGo6t_p5hbCnFvk8_Eu7F8aHZLM6Kaau293duf9Zf0zLwUIzO_o.C9inOBUE5MbGDa6WFbhV6Ha67YJ3x-tXrkT1HEfmud4&dib_tag=se&keywords=dresses&qid=1746704134&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1&psc=1",
+
+    merged_attrs : {
+        "neckline_type": "sweetheart",
+        "neckline_depth": "medium",
+        "neckline_width": "medium",
+        "sleeve_type": "sleeveless",
+        "sleeve_width": null,
+        "silhouette_type": "sheath",
+        "waistline": "natural",
+        "waist_definition": "undefined",
+        "fit_category": "fitted",
+        "color_primary": "olive",
+        "color_value": "medium_dark",
+        "color_temperature": "cool",
+        "color_saturation": "vibrant",
+        "pattern_type": "solid",
+        "pattern_scale": "null",
+        "pattern_contrast": "null",
+        "pattern_direction": "null",
+        "fabric_sheen": "moderate_sheen",
+        "fabric_opacity": "opaque",
+        "fabric_drape": "fluid",
+        "fabric_texture": "smooth",
+        "has_darts": null,
+        "has_seaming": null,
+        "has_ruching": true,
+        "has_draping": null,
+        "has_pleats": null,
+        "has_gathering": null,
+        "fabric_primary": "satin",
+        "fabric_secondary": null,
+        "fabric_composition": "High-quality satin material with a luxurious sheen perfect for formal events like proms weddings or evening galas",
+        "stretch_percentage": 0,
+        "model_height_inches": null,
+        "model_size_worn": null,
+        "model_bust": null,
+        "model_waist": null,
+        "model_hips": null,
+        "hemline_position": "maxi",
+        "garment_length_inches": null,
+        "fabric_weight": "medium",
+        "garment_type": "dress",
+        "title": "Satin Prom Dress Corset Prom Long A Line Pleated Bridesmaid Backless Formal Spaghetti Strap for Gowns",
+        "brand": null,
+        "price": null,
+        "care_instructions": null,
+        "image_confidence": "high",
+        "text_confidence": "medium"
+    }
+      
+};
+
+// ============================================================================
+// OUTPUT WRITING
+// ============================================================================
+
+function writeOutputFiles(result, userMeasurements, productProfile, outputFolder = 'output') {
+    // Create output folder if it doesn't exist
+    if (!existsSync(outputFolder)) {
+        mkdirSync(outputFolder, { recursive: true });
+    }
+
+    // Write user_profile.json
+    const userProfilePath = join(outputFolder, 'user_profile.json');
+    writeFileSync(userProfilePath, JSON.stringify(userMeasurements, null, 2));
+    console.log(`Written: ${userProfilePath}`);
+
+    // Write product_profile.json (full profile with URLs, text, etc.)
+    const productProfilePath = join(outputFolder, 'product_profile.json');
+    const productProfileOutput = {
+        product_url: productProfile.product_url,
+        product_image_url: productProfile.product_image_url,
+        merged_attrs: productProfile.merged_attrs,
+    };
+    writeFileSync(productProfilePath, JSON.stringify(productProfileOutput, null, 2));
+    console.log(`Written: ${productProfilePath}`);
+
+    // Write merged_attributes.json (just the merged garment attributes)
+    const mergedAttrsPath = join(outputFolder, 'merged_attributes.json');
+    writeFileSync(mergedAttrsPath, JSON.stringify(productProfile.merged_attrs, null, 2));
+    console.log(`Written: ${mergedAttrsPath}`);
+
+    // Write scoring_result.json
+    const scoringResultPath = join(outputFolder, 'scoring_result.json');
+    writeFileSync(scoringResultPath, JSON.stringify(result.scoring_result, null, 2));
+    console.log(`Written: ${scoringResultPath}`);
+
+    // Write communication.json
+    const communicationPath = join(outputFolder, 'communication.json');
+    writeFileSync(communicationPath, JSON.stringify(result.communication, null, 2));
+    console.log(`Written: ${communicationPath}`);
+}
+
+// ============================================================================
+// MAIN
+// ============================================================================
+
+// Parse command line argument for output folder
+const args = process.argv.slice(2);
+const outputFolder = args[0] || 'output';
+
 // Run the pipeline
-runPipeline(user_body_measurements1, product_profile1).then((result) => {
+let extract_user_text_and_image_attributes = false;
+let product_profile_input = product_profile1;
+runPipeline(user_body_measurements1, product_profile_input).then((result) => {
     if (result) {
+        console.log("\n=== WRITING OUTPUT FILES ===\n");
+        writeOutputFiles(result, user_body_measurements1, product_profile_input, outputFolder);
         console.log("\n=== PIPELINE COMPLETE ===\n");
     }
 }).catch((err) => {

@@ -322,6 +322,7 @@ export async function extractGarmentAttributes(imageSource) {
         const imageLabel = `image ${i + 1}/${imagesToTry.length}`;
 
         try {
+            console.log(`  [Image Fallback] Extracting from: ${imgUrl}`);
             const result = await extractFromSingleImage(imgUrl);
 
             // Accumulate token usage across attempts
