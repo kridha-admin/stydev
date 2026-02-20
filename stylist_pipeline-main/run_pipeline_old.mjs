@@ -1,12 +1,7 @@
 import { calc_derived_measurements_and_ratios } from './calculate_derived_measurements.mjs';
 import { extractTextAttributes, flattenTextAttributes, mergeAttributes } from './product_text_extraction.mjs';
 import { extractGarmentAttributes, flattenAttributes } from './product_image_extraction.mjs';
-import {
-    connectMongoDB,
-    disconnectMongoDB,
-    getUserStylingProfile,
-    saveScoringResult,
-} from './mongodb_helper.mjs';
+// MongoDB imports removed - not needed for local scoring
 import {
     estimate_goal_look_taller,
     estimate_goal_look_slimmer,
@@ -215,31 +210,11 @@ async function callScoringAndCommunicateService(userMeasurements, garmentAttrs, 
 // ============================================================================
 
 let extract_user_text_and_image_attributes = false;
-async function runPipeline(user_body_measurements, product_profile, options = {}) {
-    const { username = null, styling_goals = null } = options;
-
+async function runPipeline(user_body_measurements, product_profile) {
     console.log("=== KRIDHA STYLING PIPELINE ===\n");
 
-    // -------------------------------------------------------------------------
-    // STEP 0: Fetch user styling profile from MongoDB (if username provided)
-    // -------------------------------------------------------------------------
-    let userGoals = styling_goals || [];
-
-    if (username) {
-        console.log("--- STEP 0: FETCHING USER PROFILE ---\n");
-        try {
-            await connectMongoDB();
-            const profile = await getUserStylingProfile(username);
-            if (profile && profile.styling_goals) {
-                userGoals = profile.styling_goals;
-                console.log(`User goals from profile: ${JSON.stringify(userGoals)}`);
-            } else {
-                console.log(`No styling profile found for ${username}, using provided goals`);
-            }
-        } catch (err) {
-            console.warn("Could not fetch user profile:", err.message);
-        }
-    }
+    // Get styling goals directly from user measurements
+    const userGoals = user_body_measurements.styling_goals || [];
 
     // -------------------------------------------------------------------------
     // STEP 1: User Measurements (raw + derived)
@@ -289,7 +264,7 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     // -------------------------------------------------------------------------
     // STEP 2 + 3: Extract Text & Image Attributes (in parallel)
     // -------------------------------------------------------------------------
-    let mergedAttrs = product_profile1_merged_attrs;
+    let mergedAttrs = product_profile.merged_attrs;
 
     if(extract_user_text_and_image_attributes){
         console.log("\n--- STEP 2+3: EXTRACTING TEXT & IMAGE ATTRIBUTES (PARALLEL) ---\n");
@@ -389,50 +364,6 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
         return;
     }
 
-    // -------------------------------------------------------------------------
-    // STEP 6: Save scoring result to MongoDB (if username provided, disabled for now)
-    // -------------------------------------------------------------------------
-    if (username && false) {
-        console.log("\n--- STEP 6: SAVING RESULT TO MONGODB ---\n");
-        try {
-            const resultDoc = {
-                username,
-                product_url: product_profile.product_url || null,
-                product_title: mergedAttrs.title || null,
-                garment_type: mergedAttrs.garment_type || null,
-                overall_score: scoringResult.overall_score,
-                composite_raw: scoringResult.composite_raw,
-                confidence: scoringResult.confidence,
-                styling_goals: userGoals,
-                scoring_result: scoringResult,
-                garment_attributes: mergedAttrs,
-                user_measurements_summary: {
-                    height: user_measurements.height,
-                    body_shape: user_measurements.body_shape,
-                    size_category: user_measurements.size_category,
-                },
-            };
-            const docId = await saveScoringResult(resultDoc);
-            console.log(`Scoring result saved: ${docId}`);
-        } catch (err) {
-            console.warn("Could not save scoring result:", err.message);
-        }
-    }
-
-    // -------------------------------------------------------------------------
-    // STEP 7: Token Usage Summary
-    // -------------------------------------------------------------------------
-    if(false){
-        console.log("\n--- TOKEN USAGE SUMMARY ---\n");
-        console.log("Text Extraction:", {
-            inputTokens: textResult.usage?.inputTokens || 0,
-            outputTokens: textResult.usage?.outputTokens || 0,
-        });
-        console.log("Image Extraction:", {
-            inputTokens: imageResult.usage?.inputTokens || 0,
-            outputTokens: imageResult.usage?.outputTokens || 0,
-        });
-    }
     return {
         user: user_measurements,
         garment: mergedAttrs,
@@ -455,6 +386,10 @@ let user_body_measurements1 = {
     "arm_right_length": 75.9968,       // cm
     "inside_leg_height": 77.66,        // cm
     "height": 172.72,                  // cm
+
+
+    // <look_taller|look_slimmer|highlight_waist|hide_midsection|minimize_hips|balance_shoulders|hide_upper_arms|elongate_legs|create_curves|streamline_silhouette|minimize_bust|show_legs>
+    "styling_goals": ["look_taller", "look_slimmer", "highlight_waist", "hide_midsection", "minimize_hips", "balance_shoulders", "hide_upper_arms", "elongate_legs", "create_curves", "streamline_silhouette", "minimize_bust", "show_legs"],
 };
 
 let product_profile1 = {
@@ -529,57 +464,57 @@ let product_profile1 = {
 
     product_image_url: 'https://image.hm.com/assets/hm/3f/9d/3f9d33623815e9442d3af8801b1bdcc619a18f8c.jpg?imwidth=1536',
 
-    product_url: "https://www2.hm.com/en_us/productpage.1275471004.html"
-};
+    product_url: "https://www2.hm.com/en_us/productpage.1275471004.html",
 
-let product_profile1_merged_attrs = {
-    "neckline_type": "sweetheart",
-    "neckline_depth": "shallow",
-    "neckline_width": "medium",
-    "sleeve_type": "puff",
-    "sleeve_width": "relaxed",
-    "silhouette_type": "a_line",
-    "waistline": "natural",
-    "waist_definition": "undefined",
-    "fit_category": "relaxed",
-    "color_primary": "cream",
-    "color_value": "light",
-    "color_temperature": "neutral",
-    "color_saturation": "muted",
-    "pattern_type": "floral_small",
-    "pattern_scale": "small",
-    "pattern_contrast": "medium",
-    "pattern_direction": "mixed",
-    "fabric_sheen": "subtle_sheen",
-    "fabric_opacity": "semi_opaque",
-    "fabric_drape": "fluid",
-    "fabric_texture": "woven",
-    "has_darts": false,
-    "has_seaming": true,
-    "has_ruching": true,
-    "has_draping": false,
-    "has_pleats": false,
-    "has_gathering": false,
-    "fabric_primary": "Rayon",
-    "fabric_secondary": "Linen",
-    "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
-    "stretch_percentage": 0,
-    "model_height_inches": 69,
-    "model_size_worn": "S",
-    "model_bust": 34,
-    "model_waist": 28,
-    "model_hips": 35,
-    "hemline_position": "mini",
-    "garment_length_inches": 24,
-    "fabric_weight": "medium",
-    "garment_type": "dress",
-    "title": "H&M Puff-Sleeved Dress",
-    "brand": "H&M",
-    "price": "$29.99",
-    "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
-    "image_confidence": "high",
-    "text_confidence": "high"
-}
+    merged_attrs : {
+        "neckline_type": "sweetheart",
+        "neckline_depth": "shallow",
+        "neckline_width": "medium",
+        "sleeve_type": "puff",
+        "sleeve_width": "relaxed",
+        "silhouette_type": "a_line",
+        "waistline": "natural",
+        "waist_definition": "undefined",
+        "fit_category": "relaxed",
+        "color_primary": "cream",
+        "color_value": "light",
+        "color_temperature": "neutral",
+        "color_saturation": "muted",
+        "pattern_type": "floral_small",
+        "pattern_scale": "small",
+        "pattern_contrast": "medium",
+        "pattern_direction": "mixed",
+        "fabric_sheen": "subtle_sheen",
+        "fabric_opacity": "semi_opaque",
+        "fabric_drape": "fluid",
+        "fabric_texture": "woven",
+        "has_darts": false,
+        "has_seaming": true,
+        "has_ruching": true,
+        "has_draping": false,
+        "has_pleats": false,
+        "has_gathering": false,
+        "fabric_primary": "Rayon",
+        "fabric_secondary": "Linen",
+        "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
+        "stretch_percentage": 0,
+        "model_height_inches": 69,
+        "model_size_worn": "S",
+        "model_bust": 34,
+        "model_waist": 28,
+        "model_hips": 35,
+        "hemline_position": "mini",
+        "garment_length_inches": 24,
+        "fabric_weight": "medium",
+        "garment_type": "dress",
+        "title": "H&M Puff-Sleeved Dress",
+        "brand": "H&M",
+        "price": "$29.99",
+        "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+        "image_confidence": "high",
+        "text_confidence": "high"
+    }
+};
 
 let product_profile2 = {
 
@@ -641,70 +576,63 @@ let product_profile2 = {
 
     product_image_url: 'https://image.hm.com/assets/hm/58/40/5840c01a4c28574641d6b14de795a766adc63024.jpg?imwidth=1536',
 
-    product_url: "https://www2.hm.com/en_us/productpage.1278378001.html"
+    product_url: "https://www2.hm.com/en_us/productpage.1278378001.html",
+
+    merged_attrs : {
+        "neckline_type": "boat_neck",
+        "neckline_depth": "shallow",
+        "neckline_width": "medium",
+        "sleeve_type": "short",
+        "sleeve_width": "relaxed",
+        "silhouette_type": "a_line",
+        "waistline": "natural",
+        "waist_definition": "undefined",
+        "fit_category": "relaxed",
+        "color_primary": "white",
+        "color_value": "medium_light",
+        "color_temperature": "cool",
+        "color_saturation": "muted",
+        "pattern_type": "floral_large",
+        "pattern_scale": "large",
+        "pattern_contrast": "high",
+        "pattern_direction": "mixed",
+        "fabric_sheen": "subtle_sheen",
+        "fabric_opacity": "semi_opaque",
+        "fabric_drape": "fluid",
+        "fabric_texture": "smooth",
+        "has_darts": false,
+        "has_seaming": true,
+        "has_ruching": false,
+        "has_draping": false,
+        "has_pleats": false,
+        "has_gathering": false,
+        "fabric_primary": "rayon",
+        "fabric_secondary": "Livaeco™ Viscose",
+        "fabric_composition": "Rayon 100%",
+        "stretch_percentage": 0,
+        "model_height_inches": 68.9,
+        "model_size_worn": "S",
+        "model_bust": 35.43,
+        "model_waist": 30.31,
+        "model_hips": 37.4,
+        "hemline_position": "midi",
+        "garment_length_inches": 35.43,
+        "fabric_weight": "heavy",
+        "garment_type": "dress",
+        "title": "H&M Puff-Sleeved Dress",
+        "brand": "H&M",
+        "price": "$29.99",
+        "care_instructions": "Unlined.",
+        "image_confidence": "medium",
+        "text_confidence": "high"
+    }
 };
 
-let product_profile2_merged_attrs = {
-    "neckline_type": "boat_neck",
-    "neckline_depth": "shallow",
-    "neckline_width": "medium",
-    "sleeve_type": "short",
-    "sleeve_width": "relaxed",
-    "silhouette_type": "a_line",
-    "waistline": "natural",
-    "waist_definition": "undefined",
-    "fit_category": "relaxed",
-    "color_primary": "white",
-    "color_value": "medium_light",
-    "color_temperature": "cool",
-    "color_saturation": "muted",
-    "pattern_type": "floral_large",
-    "pattern_scale": "large",
-    "pattern_contrast": "high",
-    "pattern_direction": "mixed",
-    "fabric_sheen": "subtle_sheen",
-    "fabric_opacity": "semi_opaque",
-    "fabric_drape": "fluid",
-    "fabric_texture": "smooth",
-    "has_darts": false,
-    "has_seaming": true,
-    "has_ruching": false,
-    "has_draping": false,
-    "has_pleats": false,
-    "has_gathering": false,
-    "fabric_primary": "rayon",
-    "fabric_secondary": "Livaeco™ Viscose",
-    "fabric_composition": "Rayon 100%",
-    "stretch_percentage": 0,
-    "model_height_inches": 68.9,
-    "model_size_worn": "S",
-    "model_bust": 35.43,
-    "model_waist": 30.31,
-    "model_hips": 37.4,
-    "hemline_position": "midi",
-    "garment_length_inches": 35.43,
-    "fabric_weight": "heavy",
-    "garment_type": "dress",
-    "title": "H&M Puff-Sleeved Dress",
-    "brand": "H&M",
-    "price": "$29.99",
-    "care_instructions": "Unlined.",
-    "image_confidence": "medium",
-    "text_confidence": "high"
-}
-
-
-
 // Run the pipeline
-runPipeline(user_body_measurements1, product_profile1, {
-    // username: 'vineeth@kridha.io',        // Uncomment to enable MongoDB profile fetch + result save
-    // styling_goals: ['hide_midsection', 'look_taller'],  // Override goals (used if no MongoDB profile)
-}).then(async (result) => {
+runPipeline(user_body_measurements1, product_profile1).then((result) => {
     if (result) {
         console.log("\n=== PIPELINE COMPLETE ===\n");
     }
-    await disconnectMongoDB();
-}).catch(async (err) => {
+}).catch((err) => {
     console.error("Pipeline error:", err);
-    await disconnectMongoDB();
 });

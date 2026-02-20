@@ -704,13 +704,12 @@ export function buildBodyProfile(userMeasurements, stylingGoals = null) {
     const cUpperArmMax = sizeCategory === "plus_size" ? 14.0 : 11.0;
     const cCalfMax = cAnkle * 1.6;
 
-    // Styling goals
+    // Styling goals - use parameter if provided, otherwise check userMeasurements
     const goals = [];
-    if (stylingGoals) {
-        for (const g of stylingGoals) {
-            const mapped = GOAL_MAP[g];
-            if (mapped) goals.push(mapped);
-        }
+    const goalsSource = stylingGoals || u.styling_goals || [];
+    for (const g of goalsSource) {
+        const mapped = GOAL_MAP[g];
+        if (mapped) goals.push(mapped);
     }
 
     // Body shape and torso/leg ratio (pass through from input)

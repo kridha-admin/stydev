@@ -204,11 +204,12 @@ export function scoreAndCommunicate(
  *
  * @param {Object} userMeasurements - Raw user body measurements
  * @param {Object} garmentAttributes - Raw garment attributes
+ * @param {Array} stylingGoals - Optional styling goals
  * @param {Object} context - Optional context (occasion, culture, etc.)
  * @returns {Object} ScoreResult as dict
  */
-export function score(userMeasurements, garmentAttributes, context = null) {
-    const bodyProfile = buildBodyProfile(userMeasurements);
+export function score(userMeasurements, garmentAttributes, stylingGoals = null, context = null) {
+    const bodyProfile = buildBodyProfile(userMeasurements, stylingGoals);
     const garmentProfile = buildGarmentProfile(garmentAttributes);
     const scoreResult = scoreGarment(garmentProfile, bodyProfile, context);
     return scoreResultToDict(scoreResult);
