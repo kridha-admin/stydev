@@ -1646,3 +1646,26 @@ function suggestFixes(principles, exceptions, body) {
 
     return fixes;
 }
+
+// ================================================================
+// EXPORTS (for testing)
+// ================================================================
+
+export {
+    scoreHorizontalStripes,
+    scoreDarkSlimming,
+    scoreRiseElongation,
+    scoreAlineBalance,
+    scoreTentConcealment,
+    scoreColorBreak,
+    scoreBodyconMapping,
+    scoreMatteZone,
+    scoreVneckElongation,
+    scoreMonochromeColumn,
+    scoreHemline,
+    scoreSleeve,
+    scoreWaistPlacement,
+    scoreColorValue,
+    scoreFabricZone,
+    scoreNecklineCompound,
+};
