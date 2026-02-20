@@ -413,6 +413,7 @@ def format_bedrock_nova(system_prompt: str, user_prompt: str,
                         assistant_output: str) -> dict:
     """Bedrock Nova fine-tuning format."""
     return {
+        "schemaVersion": "bedrock-conversation-2024",
         "system": [{"text": system_prompt}],
         "messages": [
             {"role": "user", "content": [{"text": user_prompt}]},
