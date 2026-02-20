@@ -214,6 +214,7 @@ async function callScoringAndCommunicateService(userMeasurements, garmentAttrs, 
 // MAIN PIPELINE
 // ============================================================================
 
+let extract_user_text_and_image_attributes = false;
 async function runPipeline(user_body_measurements, product_profile, options = {}) {
     const { username = null, styling_goals = null } = options;
 
@@ -276,7 +277,7 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
         "natural_waist_from_shoulder": 28.43,
         "natural_waist_from_floor": 39.57
     }
-    if(false){
+    if(extract_user_text_and_image_attributes){
         const derived = calc_derived_measurements_and_ratios(user_body_measurements, null);
         user_measurements = {
             ...user_body_measurements,
@@ -337,7 +338,7 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
         "text_confidence": "high"
     }
 
-    if(false){
+    if(extract_user_text_and_image_attributes){
         console.log("\n--- STEP 2+3: EXTRACTING TEXT & IMAGE ATTRIBUTES (PARALLEL) ---\n");
 
         const [textResult, imageResult] = await Promise.all([
