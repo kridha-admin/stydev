@@ -452,6 +452,7 @@ export class GarmentProfile {
         this.brand_tier = data.brand_tier ?? BrandTier.MID_MARKET;
         this.uses_diverse_model = data.uses_diverse_model ?? false;
         this.model_estimated_size = data.model_estimated_size ?? 2;
+        this.model_height_inches = data.model_height_inches ?? 0;
 
         // Garment-type identification
         this.garment_layer = data.garment_layer ?? GarmentLayer.BASE;

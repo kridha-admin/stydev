@@ -133,12 +133,7 @@ const PATTERN_CONTRAST_MAP = {
     high: 0.80,
 };
 
-const GSM_MAP = {
-    very_light: 80,
-    light: 120,
-    medium: 180,
-    heavy: 280,
-};
+// GSM_MAP removed - now using 5-priority resolution chain in resolveFabricGsm()
 
 const DRAPE_MAP = {
     stiff: 2.0,
@@ -369,15 +364,310 @@ function detectCovers(category, hemPosition) {
 }
 
 // ================================================================
-// FABRIC GSM RESOLUTION (simplified - uses GSM_MAP fallback)
+// FABRIC GSM RESOLUTION (5-priority chain matching Python)
 // ================================================================
 
+// Text keyword matches (Priority 1)
+const TEXT_KEYWORD_MATCHES = {
+    "ponte": { gsm: 300, confidence: "high" },
+    "ponti": { gsm: 300, confidence: "high" },
+    "scuba": { gsm: 320, confidence: "high" },
+    "chiffon": { gsm: 50, confidence: "high" },
+    "charmeuse": { gsm: 90, confidence: "high" },
+    "denim": { gsm: 350, confidence: "high" },
+    "jeans": { gsm: 320, confidence: "high" },
+    "flannel": { gsm: 280, confidence: "high" },
+    "organza": { gsm: 50, confidence: "high" },
+    "tulle": { gsm: 30, confidence: "high" },
+    "velvet": { gsm: 280, confidence: "high" },
+    "crushed velvet": { gsm: 250, confidence: "high" },
+    "satin": { gsm: 130, confidence: "moderate" },
+    "crepe de chine": { gsm: 80, confidence: "high" },
+    "neoprene": { gsm: 350, confidence: "high" },
+    "corduroy": { gsm: 300, confidence: "high" },
+    "tweed": { gsm: 320, confidence: "high" },
+    "chambray": { gsm: 140, confidence: "high" },
+    "french terry": { gsm: 280, confidence: "high" },
+    "terry": { gsm: 280, confidence: "moderate" },
+    "modal": { gsm: 170, confidence: "high" },
+    "micromodal": { gsm: 170, confidence: "high" },
+    "tencel": { gsm: 200, confidence: "high" },
+    "lyocell": { gsm: 200, confidence: "high" },
+    "bamboo": { gsm: 160, confidence: "high" },
+    "cupro": { gsm: 100, confidence: "high" },
+    "bemberg": { gsm: 100, confidence: "high" },
+    "bengaline": { gsm: 250, confidence: "moderate" },
+    "millennium": { gsm: 250, confidence: "moderate" },
+    "leather": { gsm: 500, confidence: "high" },
+    "faux leather": { gsm: 350, confidence: "high" },
+    "vegan leather": { gsm: 350, confidence: "high" },
+    "pleather": { gsm: 350, confidence: "high" },
+    "poplin": { gsm: 120, confidence: "high" },
+    "broadcloth": { gsm: 120, confidence: "high" },
+    "sateen": { gsm: 150, confidence: "high" },
+    "gabardine": { gsm: 260, confidence: "high" },
+    "georgette": { gsm: 100, confidence: "moderate" },
+    "taffeta": { gsm: 100, confidence: "high" },
+    "interlock": { gsm: 240, confidence: "moderate" },
+    "pique": { gsm: 240, confidence: "moderate" },
+    "rib knit": { gsm: 220, confidence: "high" },
+    "ribbed": { gsm: 220, confidence: "moderate" },
+    "jacquard": { gsm: 250, confidence: "moderate" },
+    "brocade": { gsm: 300, confidence: "moderate" },
+    "sequin": { gsm: 200, confidence: "moderate" },
+    "mesh": { gsm: 100, confidence: "moderate" },
+};
+
+// Fiber + construction clue disambiguation (Priority 2)
+const FIBER_DISAMBIGUATION = {
+    "crepe": {
+        silk: { gsm: 80, confidence: "high" },
+        wool: { gsm: 200, confidence: "high" },
+        polyester: { gsm: 150, confidence: "moderate" },
+        default: { gsm: 150, confidence: "low" },
+    },
+    "jersey": {
+        cotton: { gsm: 180, confidence: "high" },
+        modal: { gsm: 170, confidence: "high" },
+        wool: { gsm: 220, confidence: "high" },
+        bamboo: { gsm: 160, confidence: "high" },
+        polyester: { gsm: 160, confidence: "low" },
+        default: { gsm: 180, confidence: "low" },
+    },
+    "satin": {
+        silk: { gsm: 90, confidence: "high" },
+        cotton: { gsm: 150, confidence: "high" },
+        polyester: { gsm: 130, confidence: "moderate" },
+        default: { gsm: 130, confidence: "low" },
+    },
+};
+
+// Fiber + weight + drape resolution (Priority 3)
+const FIBER_WEIGHT_DRAPE = {
+    rayon: {
+        "very_light|fluid": { gsm: 100, confidence: "moderate" },
+        "light|fluid": { gsm: 110, confidence: "high" },
+        "light|structured": { gsm: 145, confidence: "moderate" },
+        "medium|fluid": { gsm: 160, confidence: "moderate" },
+        "medium|structured": { gsm: 170, confidence: "moderate" },
+        default: { gsm: 120, confidence: "low" },
+    },
+    viscose: {
+        "very_light|fluid": { gsm: 100, confidence: "moderate" },
+        "light|fluid": { gsm: 110, confidence: "moderate" },
+        "medium|fluid": { gsm: 160, confidence: "moderate" },
+        "medium|structured": { gsm: 170, confidence: "moderate" },
+        default: { gsm: 120, confidence: "low" },
+    },
+    polyester: {
+        "very_light|fluid": { gsm: 50, confidence: "high" },
+        "very_light|stiff": { gsm: 50, confidence: "high" },
+        "light|fluid": { gsm: 130, confidence: "moderate" },
+        "light|structured": { gsm: 100, confidence: "low" },
+        "medium|fluid": { gsm: 160, confidence: "moderate" },
+        "medium|structured": { gsm: 300, confidence: "low" },
+        "heavy|stiff": { gsm: 350, confidence: "low" },
+        "heavy|structured": { gsm: 320, confidence: "low" },
+        default: { gsm: 150, confidence: "low" },
+    },
+    cotton: {
+        "very_light|stiff": { gsm: 100, confidence: "moderate" },
+        "light|stiff": { gsm: 120, confidence: "high" },
+        "light|structured": { gsm: 120, confidence: "high" },
+        "light|fluid": { gsm: 155, confidence: "moderate" },
+        "medium|fluid": { gsm: 180, confidence: "high" },
+        "medium|structured": { gsm: 240, confidence: "moderate" },
+        "heavy|stiff": { gsm: 350, confidence: "high" },
+        "heavy|structured": { gsm: 320, confidence: "moderate" },
+        default: { gsm: 180, confidence: "low" },
+    },
+    silk: {
+        "very_light|very_drapey": { gsm: 40, confidence: "high" },
+        "very_light|fluid": { gsm: 40, confidence: "high" },
+        "light|very_drapey": { gsm: 90, confidence: "high" },
+        "light|fluid": { gsm: 80, confidence: "moderate" },
+        default: { gsm: 80, confidence: "low" },
+    },
+    wool: {
+        "medium|fluid": { gsm: 200, confidence: "moderate" },
+        "medium|structured": { gsm: 260, confidence: "moderate" },
+        "heavy|stiff": { gsm: 280, confidence: "moderate" },
+        "heavy|structured": { gsm: 280, confidence: "moderate" },
+        default: { gsm: 220, confidence: "low" },
+    },
+    linen: {
+        "light|stiff": { gsm: 150, confidence: "moderate" },
+        "medium|stiff": { gsm: 180, confidence: "high" },
+        "medium|fluid": { gsm: 150, confidence: "moderate" },
+        "heavy|stiff": { gsm: 230, confidence: "moderate" },
+        default: { gsm: 180, confidence: "low" },
+    },
+    nylon: {
+        "light|fluid": { gsm: 100, confidence: "moderate" },
+        "medium|fluid": { gsm: 200, confidence: "moderate" },
+        default: { gsm: 200, confidence: "low" },
+    },
+};
+
+// Fallback by weight only (Priority 5)
+const WEIGHT_FALLBACK = {
+    very_light: { gsm: 60, confidence: "very_low" },
+    light: { gsm: 120, confidence: "very_low" },
+    medium: { gsm: 180, confidence: "very_low" },
+    heavy: { gsm: 320, confidence: "very_low" },
+};
+
+// Note: normalizeFiber and parsePrice functions are defined above (around line 273)
+
 export function resolveFabricGsm(garmentAttrs) {
+    // Gather all text signals
+    const title = (safeGet(garmentAttrs, "title") || "").toLowerCase();
+    const composition = (safeGet(garmentAttrs, "fabric_composition") || "").toLowerCase();
+    const care = (safeGet(garmentAttrs, "care_instructions") || "").toLowerCase();
+    const searchableText = `${title} ${composition} ${care}`;
+
+    const primaryFiber = normalizeFiber(safeGet(garmentAttrs, "fabric_primary"));
+    const secondaryFiber = normalizeFiber(safeGet(garmentAttrs, "fabric_secondary"));
     const weight = safeGet(garmentAttrs, "fabric_weight");
+    const drape = safeGet(garmentAttrs, "fabric_drape");
+    const stretchPct = safeGet(garmentAttrs, "stretch_percentage", 0) || 0;
+    const price = parsePrice(safeGet(garmentAttrs, "price"));
+
+    // -------------------------------------------------------------------
+    // Priority 1: Text keyword matches (longest match first)
+    // -------------------------------------------------------------------
+    const sortedKeywords = Object.keys(TEXT_KEYWORD_MATCHES).sort((a, b) => b.length - a.length);
+
+    for (const keyword of sortedKeywords) {
+        if (searchableText.includes(keyword)) {
+            let matchData = TEXT_KEYWORD_MATCHES[keyword];
+            let gsm = matchData.gsm;
+
+            // Apply conditional overrides
+            if (keyword === "chiffon" && primaryFiber === "silk" && price && price > 80) {
+                gsm = 40;
+            } else if (keyword === "charmeuse" && price && price < 50) {
+                gsm = 130;
+            } else if (keyword === "denim" && stretchPct > 0) {
+                gsm = 320;
+            } else if (keyword === "velvet" && searchableText.includes("crushed")) {
+                gsm = 250;
+            } else if (keyword === "satin" && primaryFiber === "silk" && price && price > 80) {
+                gsm = 90;
+            } else if (keyword === "leather" && (searchableText.includes("faux") || searchableText.includes("vegan"))) {
+                continue; // Skip — will match "faux leather" instead
+            } else if (keyword === "mesh" && searchableText.includes("power")) {
+                gsm = 200;
+            }
+
+            return {
+                gsm,
+                confidence: matchData.confidence,
+                resolutionPath: `keyword:${keyword}`,
+            };
+        }
+    }
+
+    // -------------------------------------------------------------------
+    // Priority 2: Fiber + construction clue disambiguation
+    // -------------------------------------------------------------------
+    for (const [clueWord, fiberMap] of Object.entries(FIBER_DISAMBIGUATION)) {
+        if (searchableText.includes(clueWord)) {
+            // Check primary fiber, then secondary, then default
+            for (const fiber of [primaryFiber, secondaryFiber]) {
+                if (fiber && fiberMap[fiber]) {
+                    const matchData = fiberMap[fiber];
+                    return {
+                        gsm: matchData.gsm,
+                        confidence: matchData.confidence,
+                        resolutionPath: `disambig:${clueWord}+${fiber}`,
+                    };
+                }
+            }
+            // Use default if no fiber match
+            if (fiberMap.default) {
+                return {
+                    gsm: fiberMap.default.gsm,
+                    confidence: fiberMap.default.confidence,
+                    resolutionPath: `disambig:${clueWord}+default`,
+                };
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------
+    // Priority 3: Fiber + weight + drape
+    // -------------------------------------------------------------------
+    for (const fiber of [primaryFiber, secondaryFiber]) {
+        if (!fiber || !FIBER_WEIGHT_DRAPE[fiber]) continue;
+        const fiberEntries = FIBER_WEIGHT_DRAPE[fiber];
+
+        // Try exact weight|drape key
+        if (weight && drape) {
+            const lookupKey = `${weight}|${drape}`;
+            if (fiberEntries[lookupKey]) {
+                const matchData = fiberEntries[lookupKey];
+                return {
+                    gsm: matchData.gsm,
+                    confidence: matchData.confidence,
+                    resolutionPath: `fwd:${fiber}|${lookupKey}`,
+                };
+            }
+        }
+
+        // Try weight|stiff and weight|structured as equivalent
+        if (weight && (drape === "stiff" || drape === "structured")) {
+            for (const altDrape of ["stiff", "structured"]) {
+                const altKey = `${weight}|${altDrape}`;
+                if (fiberEntries[altKey]) {
+                    return {
+                        gsm: fiberEntries[altKey].gsm,
+                        confidence: "low",
+                        resolutionPath: `fwd:${fiber}|${altKey}(alt)`,
+                    };
+                }
+            }
+        }
+
+        // Try weight only (any drape)
+        if (weight) {
+            for (const [key, matchData] of Object.entries(fiberEntries)) {
+                if (key.startsWith(`${weight}|`)) {
+                    return {
+                        gsm: matchData.gsm,
+                        confidence: "low",
+                        resolutionPath: `fwd:${fiber}|${key}(partial)`,
+                    };
+                }
+            }
+        }
+
+        // Fiber default
+        if (fiberEntries.default) {
+            return {
+                gsm: fiberEntries.default.gsm,
+                confidence: fiberEntries.default.confidence,
+                resolutionPath: `fwd:${fiber}|default`,
+            };
+        }
+    }
+
+    // -------------------------------------------------------------------
+    // Priority 5: Nuclear fallback — weight category alone
+    // -------------------------------------------------------------------
+    if (weight && WEIGHT_FALLBACK[weight]) {
+        return {
+            gsm: WEIGHT_FALLBACK[weight].gsm,
+            confidence: "very_low",
+            resolutionPath: `weight_only:${weight}`,
+        };
+    }
+
+    // Absolute last resort
     return {
-        gsm: weight ? (GSM_MAP[weight] || 180) : 180,
-        confidence: "moderate",
-        resolutionPath: "weight_map",
+        gsm: 180,
+        confidence: "very_low",
+        resolutionPath: "absolute_fallback",
     };
 }
 
@@ -620,6 +910,9 @@ export function buildGarmentProfile(garmentAttrs) {
     if (opacity === "sheer") surfaceFriction = 0.3;
     else if (opacity === "opaque") surfaceFriction = 0.6;
 
+    // Model height (for photo_note)
+    const modelHeightInches = safeGet(g, "model_height_inches", 0);
+
     return new GarmentProfile({
         primary_fiber: primaryFiber,
         primary_fiber_pct: 100.0,
@@ -660,6 +953,7 @@ export function buildGarmentProfile(garmentAttrs) {
         garment_ease_inches: garmentEaseInches,
         brand_tier: brandTier,
         model_estimated_size: modelEstimatedSize,
+        model_height_inches: modelHeightInches,
         garment_layer: GarmentLayer.BASE,
         title: safeGet(g, "title"),
         fit_category: fitCategory,

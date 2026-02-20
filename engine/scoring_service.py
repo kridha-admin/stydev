@@ -240,7 +240,8 @@ def score_and_communicate(request: ScoreRequest):
 
     garment_dict = dict(request.garment_attributes)
     garment_dict["category"] = garment.category.value
-    garment_dict["model_height_inches"] = getattr(garment, "model_estimated_size", 0)
+    # Use model_height_inches from input, not model_estimated_size (which is a dress size, not height)
+    garment_dict["model_height_inches"] = request.garment_attributes.get("model_height_inches", 0)
     # Add garment fields that communicate.py expects
     garment_dict["color_lightness"] = garment.color_lightness
     garment_dict["silhouette"] = garment.silhouette.value if hasattr(garment.silhouette, 'value') else garment.silhouette

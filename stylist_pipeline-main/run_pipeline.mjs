@@ -291,7 +291,7 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     // -------------------------------------------------------------------------
     // STEP 2 + 3: Extract Text & Image Attributes (in parallel)
     // -------------------------------------------------------------------------
-    let mergedAttrs = product_profile2_merged_attrs;
+    let mergedAttrs = product_profile1_merged_attrs;
     
     if(extract_user_text_and_image_attributes){
         console.log("\n--- STEP 2+3: EXTRACTING TEXT & IMAGE ATTRIBUTES (PARALLEL) ---\n");
