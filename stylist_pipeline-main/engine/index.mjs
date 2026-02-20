@@ -167,11 +167,12 @@ import { generateCommunication } from './communicate.mjs';
 export function scoreAndCommunicate(
     userMeasurements,
     garmentAttributes,
+    stylingGoals = null,
     context = null,
     userName = "You"
 ) {
     // Build profiles
-    const bodyProfile = buildBodyProfile(userMeasurements);
+    const bodyProfile = buildBodyProfile(userMeasurements, stylingGoals);
     const garmentProfile = buildGarmentProfile(garmentAttributes);
 
     // Score the garment
@@ -185,14 +186,16 @@ export function scoreAndCommunicate(
         scoreResultDict,
         bodyProfileToDict(bodyProfile),
         garmentProfileToDict(garmentProfile),
-        null,
+        stylingGoals,
         userName,
         true // run guardrails
     );
 
     return {
-        score_result: scoreResultDict,
+        scoreResult: scoreResultDict,
         communication,
+        bodyProfile: bodyProfileToDict(bodyProfile),
+        garmentProfile: garmentProfileToDict(garmentProfile),
     };
 }
 
@@ -301,6 +304,13 @@ function bodyProfileToDict(profile) {
 
 function garmentProfileToDict(profile) {
     const dict = { ...profile };
+
+    // Explicitly copy getter values (spread doesn't copy getters)
+    dict.is_dark = profile.is_dark;
+    dict.sheen_index = profile.sheen_index;
+    dict.drape_coefficient = profile.drape_coefficient;
+    dict.cling_risk = profile.cling_risk;
+
     // Convert enums to values
     if (dict.category?.value) dict.category = dict.category.value;
     if (dict.neckline?.value) dict.neckline = dict.neckline.value;

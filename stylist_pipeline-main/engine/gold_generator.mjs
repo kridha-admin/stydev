@@ -626,21 +626,21 @@ function phrase(principleName, direction, bodyShape, seed, hemZone = "") {
     const candidates = [];
     if (bank[bodyShape]) {
         candidates.push(...bank[bodyShape]);
-        console.log(`[JS phrase] Added ${bank[bodyShape].length} phrases for bodyShape=${bodyShape}`);
+        // console.log(`[JS phrase] Added ${bank[bodyShape].length} phrases for bodyShape=${bodyShape}`);
     }
     if (hemZone && bank[hemZone]) {
         candidates.push(...bank[hemZone]);
-        console.log(`[JS phrase] Added ${bank[hemZone].length} phrases for hemZone=${hemZone}`);
+        // console.log(`[JS phrase] Added ${bank[hemZone].length} phrases for hemZone=${hemZone}`);
     }
     if (bank._default) {
         candidates.push(...bank._default);
-        console.log(`[JS phrase] Added ${bank._default.length} default phrases`);
+        // console.log(`[JS phrase] Added ${bank._default.length} default phrases`);
     }
 
     const pickSeed = seed + key + direction + bodyShape;
     const result = candidates.length > 0 ? pick(candidates, pickSeed) : "";
-    console.log(`[JS phrase] key=${key}, direction=${direction}, bodyShape=${bodyShape}, hemZone=${hemZone}`);
-    console.log(`[JS phrase] candidates=${candidates.length}, seed=${pickSeed.slice(0, 30)}..., picked=${result.slice(0, 50)}...`);
+    // console.log(`[JS phrase] key=${key}, direction=${direction}, bodyShape=${bodyShape}, hemZone=${hemZone}`);
+    // console.log(`[JS phrase] candidates=${candidates.length}, seed=${pickSeed.slice(0, 30)}..., picked=${result.slice(0, 50)}...`);
     return result;
 }
 
@@ -664,9 +664,9 @@ export function generateGoldOutput(scored) {
     const topNeg = scored.top_negative_key;
 
     // DEBUG LOGGING
-    console.log(`[JS gold_generator] scenario_id=${sid}`);
-    console.log(`[JS gold_generator] verdict=${verdict}, body_shape=${bodyShape}, garment_cat=${garmentCat}`);
-    console.log(`[JS gold_generator] top_pos=${topPos}, top_neg=${topNeg}`);
+    // console.log(`[JS gold_generator] scenario_id=${sid}`);
+    // console.log(`[JS gold_generator] verdict=${verdict}, body_shape=${bodyShape}, garment_cat=${garmentCat}`);
+    // console.log(`[JS gold_generator] top_pos=${topPos}, top_neg=${topNeg}`);
 
     const gWord = GARMENT_WORDS[garmentCat] || "piece";
 
@@ -685,9 +685,9 @@ export function generateGoldOutput(scored) {
     // Hem zone from body_adjusted
     const ba = scored.score_result?.body_adjusted || {};
     const hemZone = ba.hem_zone || "";
-    console.log(`[JS gold_generator] hemZone=${hemZone}`);
-    console.log(`[JS gold_generator] positives=${positives.slice(0, 3).map(p => p.name)}`);
-    console.log(`[JS gold_generator] negatives=${negatives.slice(0, 3).map(p => p.name)}`);
+    // console.log(`[JS gold_generator] hemZone=${hemZone}`);
+    // console.log(`[JS gold_generator] positives=${positives.slice(0, 3).map(p => p.name)}`);
+    // console.log(`[JS gold_generator] negatives=${negatives.slice(0, 3).map(p => p.name)}`);
 
     const headline = makeHeadline(verdict, garmentCat, gWord, topPos, topNeg, sid);
     const pinch = makePinch(verdict, bodyShape, gWord, positives, negatives, hemZone, sid);
@@ -724,7 +724,7 @@ function makeHeadline(verdict, garmentCat, gWord, topPos, topNeg, sid) {
         // Use only first 13 hex chars to stay within JS safe integer range
         const idx = parseInt(hash.slice(0, 13), 16) % SP_HEADLINES.length;
         tpl = SP_HEADLINES[idx];
-        console.log(`[JS headline] seed=${seed}, hash13=${hash.slice(0, 13)}, pool_len=${SP_HEADLINES.length}, idx=${idx}, tpl=${tpl.slice(0, 50)}...`);
+        // console.log(`[JS headline] seed=${seed}, hash13=${hash.slice(0, 13)}, pool_len=${SP_HEADLINES.length}, idx=${idx}, tpl=${tpl.slice(0, 50)}...`);
     } else {
         tpl = pick(NTO_HEADLINES, sid + "h");
     }

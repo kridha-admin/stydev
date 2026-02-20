@@ -63,10 +63,10 @@ function makeScenarioId(bodyProfile, garmentProfile) {
     const seed = `${height}${bust}${waist}${hip}${bodyShape}${garmentCat}${colorLightness}${silhouette}`;
 
     // DEBUG LOGGING
-    console.log(`[JS makeScenarioId] height=${height}, bust=${bust}, waist=${waist}, hip=${hip}`);
-    console.log(`[JS makeScenarioId] bodyShape=${bodyShape}, garmentCat=${garmentCat}`);
-    console.log(`[JS makeScenarioId] colorLightness=${colorLightness}, silhouette=${silhouette}`);
-    console.log(`[JS makeScenarioId] seed=${seed}`);
+    // console.log(`[JS makeScenarioId] height=${height}, bust=${bust}, waist=${waist}, hip=${hip}`);
+    // console.log(`[JS makeScenarioId] bodyShape=${bodyShape}, garmentCat=${garmentCat}`);
+    // console.log(`[JS makeScenarioId] colorLightness=${colorLightness}, silhouette=${silhouette}`);
+    // console.log(`[JS makeScenarioId] seed=${seed}`);
 
     return crypto.createHash('md5').update(seed).digest('hex').slice(0, 12);
 }

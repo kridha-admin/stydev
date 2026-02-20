@@ -424,7 +424,8 @@ export function buildBodyProfile(userMeasurements, stylingGoals = null) {
     }
 
     // Body shape and torso/leg ratio (pass through from input)
-    const bodyShape = safeGet(u, "body_shape", "rectangle");
+    // Only use body_shape from input if explicitly provided, otherwise let it be computed
+    const bodyShape = u.body_shape || null;
     const torsoLegRatio = safeGet(u, "torso_leg_ratio", 0.50);
     const skinUndertone = safeGet(u, "skin_undertone", null);
 
