@@ -757,7 +757,7 @@ const outputFolder = args[0] || 'output';
 
 // Run the pipeline
 
-let extract_user_text_and_image_attributes = false;
+let extract_user_text_and_image_attributes = true;
 let product_profile_input = product_profile1;
 runPipeline(user_body_measurements1, product_profile_input).then((result) => {
     if (result) {
