@@ -1,0 +1,168 @@
+[
+  {
+    "principle_id": "D4_P01",
+    "name": "Horizontal Stripe Thinning (Helmholtz Illusion)",
+    "confidence_direction": "90%",
+    "confidence_magnitude": "60%",
+    "tier": "A",
+    "research": "Thompson & Mikellidou (2011): H vs V on rectangles 10.7% thinner, on 3D mannequins 5.8%. Koutsoumpis et al. (2021): H vs solid small but significant thinning, luminance interaction. Ashida et al. (2013): effect stronger for thin figures, weakens/reverses for fat figures.",
+    "engine_calibration": "Base H-vs-solid: +0.03. Body-size gate: plus-size -0.08 (Ashida nullification). Zone-split for pear and INVT. Fine stripes (<1cm) +0.03 bonus. Dark H stripes +0.04 luminance bonus (Koutsoumpis).",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.1"
+  },
+  {
+    "principle_id": "D4_P02",
+    "name": "Dark/Black Slimming (Irradiation Illusion)",
+    "confidence_direction": "90%",
+    "confidence_magnitude": "75%",
+    "tier": "A",
+    "research": "Toscani et al. (2020): n=1000 confirming body-width slimming from dark clothing, body-size independent. Helmholtz (1867): original irradiation effect.",
+    "engine_scores": {"base_dark_slimming": "+0.15", "petite_all_over": "x0.6 (height collapse)", "tall": "x1.2 (amplified)", "INVT_upper": "x1.4 (max shoulder reduction)", "hourglass": "x0.7 (flattens curves)"},
+    "critical_interaction_dark_sheen": "Dark + matte = maximum slimming (+0.20 for apple). Dark + high sheen (SI > 0.5) = specular highlights on dark surround creates MAXIMUM contour visibility (-0.15 penalty). Net effect depends on fabric.",
+    "skin_tone_interaction": "Warm undertone: gradual sallow function. Pure black (L=0.08) on warm skin near face = skin_mult 0.36. Dark brown (L=0.18) = skin_mult 0.82. Recommend dark brown or burgundy instead of pure black for warm-toned users.",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.2"
+  },
+  {
+    "principle_id": "D4_P03",
+    "name": "Rise Elongation",
+    "confidence_direction": "75%",
+    "confidence_magnitude": "50%",
+    "tier": "B",
+    "research": "Fan, Yu & Hunter (2004): perceived leg length increases ~1.5cm per cm of rise above mid-rise (20cm reference). Maximum benefit ~7.6cm perceived elongation at ultra-high rise.",
+    "engine_formula": "base = rise_delta * 0.015 per cm above 20cm mid-rise",
+    "critical_gates": {
+      "petite_short_torso_inversion": "torso_score <= -1.0 AND rise > 26cm: INVERTED to -0.30. High rise compresses already-short torso.",
+      "petite_long_torso": "torso_score >= 1.0: x1.5 (maximum benefit, double benefit)",
+      "petite_proportional": "x1.3",
+      "tall": "x0.5 (diminishing returns)",
+      "muffin_top_gate": "Apple/Plus + belly_zone > 0.3: wide elastic (>=5cm, >=8%) = +0.10; narrow rigid (<3cm, <5%) = OVERRIDE to -0.25 (muffin top)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.3"
+  },
+  {
+    "principle_id": "D4_P04",
+    "name": "A-Line Balance",
+    "confidence_direction": "80%",
+    "confidence_magnitude": "50%",
+    "tier": "B",
+    "research": "ASTM D5585-11 ease allowance framework. Gestalt principle of good continuation. Practitioner consensus 50+ years.",
+    "peak_benefit": "ER 0.06-0.12 = +0.25 (peak). ER > 0.18: excessive, diminishing.",
+    "drape_gate": {
+      "DC_lt_40_drapey": "x1.0 full benefit, fabric follows body then flares",
+      "DC_40_65_medium": "x0.7 reduced",
+      "DC_gt_65_stiff": "INVERTED to shelf effect. Fabric stands away from body at hip, adding net width. For plus-size, shelf effect amplified x1.5."
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.4"
+  },
+  {
+    "principle_id": "D4_P05",
+    "name": "Tent/Loose Concealment (Concealment Paradox)",
+    "confidence_direction": "85%",
+    "confidence_magnitude": "65%",
+    "tier": "B",
+    "research": "Cornelissen et al. (2009): eye-tracking study. Viewers use garment silhouette boundaries, not body contours, for size judgments under loose clothing.",
+    "dual_goal_split": {
+      "concealment_goal": "ER 0.12-0.20: +0.25 to +0.35 (hides contours)",
+      "slimming_goal": "ER 0.12-0.20: -0.20 to -0.40 (perceived bigger) CONCEALMENT PARADOX",
+      "balance_default": "weighted 70% toward slimming concern (conservative)"
+    },
+    "semi_fitted_optimal": "ER 0.03-0.08 = +0.15 (best of both worlds). Plus + structured = +0.20.",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.5"
+  },
+  {
+    "principle_id": "D4_P06",
+    "name": "Color Break at Waist",
+    "confidence_direction": "80%",
+    "confidence_magnitude": "60%",
+    "tier": "B",
+    "research": "Contrasting belt or color change at waist creates horizontal visual interruption that shortens perceived leg length by 3-5%.",
+    "base_score": "-0.10 (shortens legs)",
+    "hourglass_reversal": "+0.20 (highlights narrow waist = best feature). Wide belt (>=5cm) = +0.25.",
+    "apple_penalty": "-0.25 (spotlights widest circumference)",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.6"
+  },
+  {
+    "principle_id": "D4_P07",
+    "name": "Bodycon Contour Mapping",
+    "confidence_direction": "85%",
+    "confidence_magnitude": "60%",
+    "tier": "B",
+    "research": "Widest scoring range in entire engine (0.70 points, from hourglass +0.35 to apple -0.40). Purely body-type-dependent.",
+    "fabric_construction_gate": {
+      "thin_bodycon": "GSM < 200 + not structured: full contour mapping path",
+      "structured_bodycon": "GSM >= 250 or structured: all penalties reduced ~70%"
+    },
+    "hourglass_reversal": "+0.30 thin, +0.35 structured (contours = best feature)",
+    "apple_worst_case": "-0.40 thin bodycon. Athletic apple EXCEPTION: +0.20.",
+    "plus_size": "-0.40 thin jersey vs -0.05 structured scuba. 0.35-point difference from single attribute.",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.7"
+  },
+  {
+    "principle_id": "D4_P08",
+    "name": "Matte Zone Benefit",
+    "confidence_direction": "75%",
+    "confidence_magnitude": "40%",
+    "tier": "B",
+    "research": "No direct research on fabric sheen and perceived body width. Built on optical physics reasoning. Scoring magnitudes are estimates.",
+    "scores": {"deeply_matte_SI_lt_0_15": "+0.08", "neutral_SI_0_35_0_50": "0.00", "high_sheen_SI_gt_0_50": "negative (specular contour mapping)"},
+    "cling_trap": "Matte + cling_risk > 0.6: OVERRIDE to negative. Plus = -0.15, Apple = -0.12, Pear = -0.10. Conventional advice 'choose matte fabrics' backfires when fabric weight and drape ignored.",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.8"
+  },
+  {
+    "principle_id": "D4_P09",
+    "name": "V-Neck Elongation",
+    "confidence_direction": "70%",
+    "confidence_magnitude": "45%",
+    "tier": "B",
+    "research": "V-necklines create vertical visual channel elongating torso and slimming frame.",
+    "scores": {
+      "base": "+0.10",
+      "INVT": "+0.18 (narrows visual shoulder line, maximum benefit)",
+      "hourglass": "+0.12 (frames bust, directs eye to waist)",
+      "petite_short_torso_high_rise": "-0.05 (CONFLICT: V pulls DOWN, high waist pulls UP)",
+      "petite_mid_low_rise": "+0.15 (harmonious)",
+      "apple": "+0.10 (redirects from belly)",
+      "tall": "+0.05 (diminishing returns)"
+    },
+    "cross_garment_conflict": "V-neck + high rise on petite short torso = -0.05 (conflicting attention directions framing shortest segment)",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.9"
+  },
+  {
+    "principle_id": "D4_P10",
+    "name": "Monochrome Column",
+    "confidence_direction": "80%",
+    "confidence_magnitude": "55%",
+    "tier": "B",
+    "research": "Single-color outfit creates unbroken vertical line elongating perceived height 3-5%.",
+    "scores": {
+      "base": "+0.08",
+      "petite": "+0.15 (AMPLIFIED: max proportional benefit). + dark = +0.22",
+      "tall": "+0.03 (doesn't need height)",
+      "hourglass": "+0.03 (flattens waist-hip). + belt = +0.12 (best of both)",
+      "INVT": "+0.05. dark-top-light-bottom = +0.15 (better than mono)",
+      "apple": "+0.08. + dark = +0.15 (classic solution)",
+      "pear": "+0.05. + dark = +0.12",
+      "plus": "+0.10. + dark = +0.18 (most reliable combo)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "2.10"
+  }
+]

@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Paths
-const REGISTRY_DIR = join(__dirname, '../../stydev/golden_registry');
+const REGISTRY_DIR = join(__dirname, './golden_registry');
 
 // ================================================================
 // CONSTANTS - Empirical values from domains 2, 3, 4

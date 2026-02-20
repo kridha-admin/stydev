@@ -1,0 +1,218 @@
+[
+  {
+    "threshold_id": "D4_T01",
+    "name": "Dark Color Threshold",
+    "value": "L < 0.25",
+    "source_rationale": "Irradiation literature",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T02",
+    "name": "Bodycon Territory",
+    "value": "ER < 0.03",
+    "source_rationale": "Industry garment classification",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T03",
+    "name": "Tent Territory",
+    "value": "ER >= 0.12",
+    "source_rationale": "Industry garment classification",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T04",
+    "name": "Semi-Fitted Optimal Zone",
+    "value": "ER 0.03-0.08",
+    "source_rationale": "Concealment paradox resolution (engine-derived)",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T05",
+    "name": "A-Line Peak Benefit",
+    "value": "ER 0.06-0.12",
+    "source_rationale": "Trapezoidal response curve (engine-derived)",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T06",
+    "name": "Fine Stripes",
+    "value": "< 1.0cm width",
+    "source_rationale": "Robinson 1972",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T07",
+    "name": "Wide Stripes (Plus-Size)",
+    "value": "> 2.0cm width",
+    "source_rationale": "Measurement marker threshold",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T08",
+    "name": "Stiff Fabric Inversion",
+    "value": "DC > 65%",
+    "source_rationale": "Shelf effect threshold (practitioner-derived)",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T09",
+    "name": "Muffin-Top Risk",
+    "value": "WB < 3cm, stretch < 5%",
+    "source_rationale": "Apple/plus waistband compression threshold",
+    "additional": "Belly zone concern > 0.3 required for trigger",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T10",
+    "name": "Cling Trap",
+    "value": "Cling > 0.6, SI < 0.30",
+    "source_rationale": "Matte + cling override (practitioner-derived)",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T11",
+    "name": "Short Torso Inversion",
+    "value": "torso_score <= -1.0",
+    "source_rationale": "Rise x neckline conflict threshold",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T12",
+    "name": "High Rise Significant",
+    "value": "> 26cm",
+    "source_rationale": "Rise elongation significant benefit zone",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T13",
+    "name": "Mid Rise Reference",
+    "value": "20cm",
+    "source_rationale": "Rise gradient zero point (Fan et al.)",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T14",
+    "name": "Warm-Skin Sallow Gradient",
+    "value": "Linear L=0 to L=0.22",
+    "formula": "sallow_strength = max(0.0, 1.0 - (color_lightness / 0.22)). skin_mult = 1.0 - sallow_strength. Pure black (L=0.08): skin_mult = 0.36. Dark brown (L=0.18): skin_mult = 0.82.",
+    "source_rationale": "Gradual complexion penalty (engine-derived)",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "305-309"
+  },
+  {
+    "threshold_id": "D4_T15",
+    "name": "Specular Danger Zone",
+    "value": "SI > 0.50",
+    "source_rationale": "Sheen contour mapping threshold",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T16",
+    "name": "Structured Bodycon",
+    "value": "GSM >= 250 OR is_structured = True",
+    "source_rationale": "Fabric construction gate",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T17",
+    "name": "Thin Bodycon",
+    "value": "GSM < 200, not structured",
+    "source_rationale": "Full contour mapping path",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "TABLE 13"
+  },
+  {
+    "threshold_id": "D4_T18",
+    "name": "Light Color Expansion",
+    "value": "L > 0.65",
+    "formula": "penalty = -0.05 * ((color_lightness - 0.65) / 0.35)",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "264-267"
+  },
+  {
+    "threshold_id": "D4_T19",
+    "name": "Rise Elongation Base Formula",
+    "formula": "base = (rise_cm - 20) * 0.015, clamped to [-0.20, +0.20]",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "360-362"
+  },
+  {
+    "threshold_id": "D4_T20",
+    "name": "A-Line ER Response Curve",
+    "formula": "ER 0.03-0.06: ramp 0.10 to 0.25. ER 0.06-0.12: +0.25 (peak). ER 0.12-0.18: ramp 0.25 to 0.10. ER > 0.18: declining from 0.10. Minimum -0.10.",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "447-456"
+  },
+  {
+    "threshold_id": "D4_T21",
+    "name": "Dark Skin Low Contrast",
+    "value": "skin_darkness > 0.7",
+    "effect": "skin_mult = 0.5 for dark garment near face",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "310-312"
+  },
+  {
+    "threshold_id": "D4_T22",
+    "name": "Sheen Penalty on Apple/Plus",
+    "formula": "sheen_penalty = -0.15 * ((sheen_index - 0.5) / 0.5) * 1.5 for apple/plus",
+    "trigger": "sheen_index > 0.5 AND (body_shape == APPLE OR is_plus_size)",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "318-323"
+  },
+  {
+    "threshold_id": "D4_T23",
+    "name": "Wide Elastic Waistband Threshold",
+    "value": "waistband_width >= 5cm AND waistband_stretch >= 8%",
+    "effect": "+0.10 smooth containment bonus for apple/plus",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "390-392"
+  },
+  {
+    "threshold_id": "D4_T24",
+    "name": "Narrow Rigid Waistband Override",
+    "value": "waistband_width < 3cm AND waistband_stretch < 5%",
+    "effect": "OVERRIDE score to -0.25 for apple/plus with belly_zone > 0.3",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "393-396"
+  }
+]
