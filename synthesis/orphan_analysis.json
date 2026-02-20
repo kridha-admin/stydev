@@ -1,0 +1,1632 @@
+{
+  "total_orphans": 277,
+  "by_principle_type": {
+    "unknown": 273,
+    "OTHER: exercise_selection_for_body_type": 1,
+    "OTHER: music_intro_outro_skip": 1,
+    "construction_technique": 1,
+    "fit_body_relationship": 1
+  },
+  "by_visual_effect": {
+    "unknown": 273,
+    "N/A": 1,
+    "null": 1,
+    "ensures proper stitch formation": 1,
+    "creates_dissonance": 1
+  },
+  "by_body_zone": {
+    "unknown": 273,
+    "N/A": 1,
+    "null": 1,
+    "construction_detail": 1,
+    "legs_overall": 1
+  },
+  "by_source_tier": {
+    "book_C": 196,
+    "book_N": 59,
+    "book_B": 20,
+    "txt_transcripts": 2
+  },
+  "sample_orphans": [
+    {
+      "principle_type": "OTHER: exercise_selection_for_body_type",
+      "visual_effect": "N/A",
+      "body_zone": "N/A",
+      "garment_type": "N/A - fitness content",
+      "source_tier": "txt_transcripts",
+      "confidence": "N/A"
+    },
+    {
+      "principle_type": "OTHER: music_intro_outro_skip",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "txt_transcripts",
+      "confidence": "definitive"
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "construction_technique",
+      "visual_effect": "ensures proper stitch formation",
+      "body_zone": "construction_detail",
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": "high"
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_N",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "fit_body_relationship",
+      "visual_effect": "creates_dissonance",
+      "body_zone": "legs_overall",
+      "garment_type": "tapered_jeans",
+      "source_tier": "book_C",
+      "confidence": "contradicts_common_wisdom"
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_B",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    },
+    {
+      "principle_type": "unknown",
+      "visual_effect": null,
+      "body_zone": null,
+      "garment_type": null,
+      "source_tier": "book_C",
+      "confidence": null
+    }
+  ]
+}

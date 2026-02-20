@@ -1,0 +1,732 @@
+{
+  "domain": "garment_construction",
+  "layer": 1,
+  "source_file": "domain2.md",
+  "extraction_date": "2026-02-17",
+  "total_exceptions": 24,
+  "total_failure_conditions": 48,
+  "summary_table": {
+    "neckline": {"exceptions": 6, "sub_modes": 10, "total_failure_conditions": 16},
+    "hemline": {"exceptions": 4, "sub_modes": 2, "total_failure_conditions": 6},
+    "sleeve": {"exceptions": 3, "sub_modes": 7, "total_failure_conditions": 10},
+    "silhouette_and_fit": {"exceptions": 6, "sub_modes": 5, "total_failure_conditions": 11},
+    "cross_element": {"exceptions": 5, "sub_modes": 0, "total_failure_conditions": 5}
+  },
+  "exceptions": [
+    {
+      "exception_id": "N-01",
+      "category": "neckline",
+      "name": "V-Neck Elongation Reversal on Large Bust",
+      "standard_rule": "V-neck elongates the neck and torso",
+      "exception": "On DD+ busts, V-neck elongation plateaus then REVERSES into a 'dividing effect' where the V bisects the bust area, making bust the dominant focal point and eliminating neck elongation",
+      "trigger": {
+        "parameter": "bust_differential (bust_circumference - underbust_circumference)",
+        "condition": "effective_v_depth >= bust-size-specific dividing_threshold",
+        "dividing_thresholds_by_bust": {
+          "A-B_cup (diff<=4)": 7.0,
+          "C_cup (diff<=5)": 6.0,
+          "D_cup (diff<=6)": 5.0,
+          "DD_cup (diff<=7)": 4.5,
+          "E_cup (diff<=8)": 4.0,
+          "F+_cup (diff>8)": 3.5
+        },
+        "stretch_adjustment": "effective_v_depth = v_depth_inches + (fabric_stretch_pct / 100 * bust_differential * 0.4)",
+        "stretch_examples": [
+          "DD bust + 10% stretch: +0.28 inch effective deepening",
+          "G cup + 15% stretch: +0.60 inch effective deepening"
+        ]
+      },
+      "mechanism": "At shallow-to-medium depths, V creates two diagonal lines converging downward — eye follows lines and reads 'elongation.' As V deepens, exposed skin triangle grows large enough to become its own visual AREA rather than a directional LINE. On large busts, bust projection causes fabric to separate at wider angle at bust apex, making triangle wider and more area-like at shallower depth. Eye transitions from reading 'elongating arrow' to reading 'bust display window.'",
+      "score_impact": {
+        "elongation_override": "max(-0.40, 0.60 - (effective_v_depth - dividing_threshold) * 0.25)",
+        "bust_emphasis_penalty": "-0.40 - (effective_v_depth - dividing_threshold) * 0.15",
+        "examples": [
+          {"bust": "B cup", "v_depth": "4\"", "effective_depth_10pct_stretch": "4.2\"", "elongation_score": "+0.60 (normal)", "bust_emphasis": "-0.05 (minimal)"},
+          {"bust": "D cup", "v_depth": "4\"", "effective_depth_10pct_stretch": "4.4\"", "elongation_score": "+0.55 (normal)", "bust_emphasis": "-0.15 (mild)"},
+          {"bust": "DD cup", "v_depth": "4\"", "effective_depth_10pct_stretch": "4.7\"", "elongation_score": "+0.35 (reduced)", "bust_emphasis": "-0.40 (significant)"},
+          {"bust": "E cup", "v_depth": "4\"", "effective_depth_10pct_stretch": "4.9\"", "elongation_score": "+0.15 (collapsed)", "bust_emphasis": "-0.55 (strong)"},
+          {"bust": "G cup", "v_depth": "4\"", "effective_depth_10pct_stretch": "5.4\"", "elongation_score": "-0.10 (inverted)", "bust_emphasis": "-0.70 (dominant)"}
+        ]
+      },
+      "detection": "Body scan provides bust_differential. Product image analysis provides V-depth and fabric stretch estimate. Compute effective V-depth and compare to bust-size-specific threshold.",
+      "frequency": "Affects approximately 30% of women (DD+ cup size). Among DD+ women wearing V-necks, dividing effect active in ~60% of medium-V garments with stretch fabric."
+    },
+    {
+      "exception_id": "N-02",
+      "category": "neckline",
+      "name": "Boat Neck on Narrow Shoulders + Short Neck (Competing Effects)",
+      "standard_rule": "Boat neck is the best neckline for narrow shoulders",
+      "exception": "When user has BOTH narrow shoulders AND short neck, boat neck shoulder-widening benefit (+0.65) conflicts with severe neck-shortening penalty (-0.55). Rule holds for shoulder dimension but fails for overall flattery.",
+      "trigger": {
+        "narrow_shoulders": "shoulder_width < hip_width - 1.5 inches",
+        "short_neck": "neck_length < 3.0 inches",
+        "resolution_logic": "If neck_deficit > shoulder_deficit * 0.5: neck penalty dominates (AVOID). Otherwise: shoulder benefit dominates (CONDITIONAL).",
+        "neck_deficit": "3.0 - neck_length",
+        "shoulder_deficit": "hip_width - shoulder_width"
+      },
+      "mechanism": "Boat neck creates strongest horizontal line of any neckline. Horizontal lines simultaneously widen shoulders (positive for narrow) and shorten neck (negative for short). These are mechanistically LINKED — cannot get one without the other. Physics constraint, not design choice.",
+      "score_impact": [
+        {"body": "Narrow shoulders + average neck", "shoulder_score": "+0.65", "neck_score": "-0.30", "net_equal_weight": "+0.18", "net_shoulder_priority": "+0.38", "net_neck_priority": "-0.01"},
+        {"body": "Narrow shoulders + short neck", "shoulder_score": "+0.65", "neck_score": "-0.55", "net_equal_weight": "+0.05", "net_shoulder_priority": "+0.25", "net_neck_priority": "-0.23"},
+        {"body": "Narrow shoulders + very short neck (<2.5\")", "shoulder_score": "+0.65", "neck_score": "-0.75", "net_equal_weight": "-0.05", "net_shoulder_priority": "+0.15", "net_neck_priority": "-0.40"}
+      ],
+      "better_alternatives": [
+        {"neckline": "wide_scoop", "shoulder_score": "+0.40", "neck_score": "+0.15", "net": "+0.28", "conflict": false},
+        {"neckline": "off_shoulder", "shoulder_score": "+0.50", "neck_score": "-0.55", "conflict": "same as boat neck"},
+        {"neckline": "square_neck", "shoulder_score": "+0.25", "neck_score": "+0.20", "net": "+0.23", "conflict": false}
+      ],
+      "frequency": "Approximately 8-12% of women have both narrow shoulders and short necks. For this population, boat neck produces suboptimal result in ~60% of cases."
+    },
+    {
+      "exception_id": "N-03",
+      "category": "neckline",
+      "name": "Crew Neck That Elongates (The Loose Crew Paradox)",
+      "standard_rule": "Crew neck shortens the neck",
+      "exception": "A loose crew neck (2\"+ ease at neckline opening) drops below collarbone, creating a shallow scoop effect that MILDLY ELONGATES rather than shortens.",
+      "trigger": {
+        "parameter": "neckline_ease_inches + fabric_weight_sag",
+        "condition": "effective_drop > 1.0 inch below collarbone",
+        "formula": "effective_drop = (neckline_ease_inches * 0.3) + gravity_sag[fabric_weight]",
+        "gravity_sag": {"light": 0.3, "medium": 0.5, "heavy": 0.8},
+        "example": "3\" ease crew in heavy fabric: (3 * 0.3) + 0.8 = 1.7\" drop below collarbone"
+      },
+      "mechanism": "Rule assumes neckline sits AT base of neck. When neckline opening larger than head requires, gravity pulls circular opening downward. Neckline designed for neck base instead sits at/below collarbone, exposing neck that fitted crew would cover. Effect is a shallow scoop with rounded bottom edge.",
+      "score_impact": {
+        "new_score_formula": "+0.10 + (effective_drop - 1.0) * 0.05",
+        "examples": [
+          {"ease": "0\" (fitted)", "fabric": "Medium", "drop": "0.5\"", "neck_score": "-0.35", "note": "Baseline shortening"},
+          {"ease": "1\"", "fabric": "Medium", "drop": "0.8\"", "neck_score": "-0.20", "note": "Less shortening"},
+          {"ease": "2\"", "fabric": "Medium", "drop": "1.1\"", "neck_score": "+0.10", "note": "Inverted — now elongating"},
+          {"ease": "3\"", "fabric": "Heavy", "drop": "1.7\"", "neck_score": "+0.14", "note": "Mild elongation"},
+          {"ease": "4\"+", "fabric": "Light", "drop": "1.5\"", "neck_score": "+0.13", "note": "Functions as wide scoop"}
+        ]
+      },
+      "detection": "Product image analysis estimates neckline ease from how fabric falls relative to model's collarbone position. 'Relaxed fit' or 'oversized' product tags correlate with loose crews.",
+      "frequency": "Approximately 35-40% of crew neck tops in fast fashion are relaxed/loose fit. Rule is partially or fully inverted for significant fraction of market."
+    },
+    {
+      "exception_id": "N-04",
+      "category": "neckline",
+      "name": "Wrap Dress Failures (Four Distinct Failure Modes)",
+      "standard_rule": "The wrap dress is universally flattering",
+      "exception": "Four independent failure modes each with different triggers",
+      "sub_modes": [
+        {
+          "mode_id": "N-04-A",
+          "name": "Large Bust Gaping",
+          "trigger": {
+            "formula": "gaping_risk = bust_differential * (1 - fabric_friction * 0.5) * closure_multiplier",
+            "closure_multipliers": {"tie_only": 1.0, "snap_closure": 0.4, "hook_and_eye": 0.2, "sewn_closure": 0.2},
+            "threshold": "gaping_risk > 4.0",
+            "unintended_exposure": "(gaping_risk - 4.0) * 0.5 inches"
+          },
+          "score_override": "-0.40 - (unintended_exposure * 0.15)",
+          "examples": [
+            {"bust": "D cup (5\" diff)", "fabric": "Silk (0.1)", "closure": "Tie only", "risk": 4.75, "deepening": "0.4\"", "score": -0.46},
+            {"bust": "DD cup (6\" diff)", "fabric": "Silk (0.1)", "closure": "Tie only", "risk": 5.7, "deepening": "0.9\"", "score": -0.54},
+            {"bust": "DD cup (6\" diff)", "fabric": "Cotton (0.7)", "closure": "Tie only", "risk": 3.9, "deepening": "0 (safe)", "score": "+0.50"},
+            {"bust": "DD cup (6\" diff)", "fabric": "Silk (0.1)", "closure": "Snap", "risk": 2.3, "deepening": "0 (safe)", "score": "+0.45"},
+            {"bust": "E cup (7\" diff)", "fabric": "Polyester (0.3)", "closure": "Tie only", "risk": 5.95, "deepening": "1.0\"", "score": -0.55},
+            {"bust": "G cup (9\" diff)", "fabric": "ANY", "closure": "Tie only", "risk": ">6", "deepening": "1.5\"+", "score": -0.65},
+            {"bust": "G cup (9\" diff)", "fabric": "ANY", "closure": "Sewn closure", "risk": "<3", "deepening": "0 (safe)", "score": "+0.40"}
+          ],
+          "key_insight": "Wrap dress is 'universally flattering' only when closure mechanism matches bust size. Silk wrap with tie-only fails for DD+. SAME dress with internal snap works fine. This is a GARMENT CONSTRUCTION detail, not a body type problem."
+        },
+        {
+          "mode_id": "N-04-B",
+          "name": "Small Bust Bunching",
+          "trigger": {
+            "condition": "bust_differential < 3.5 inches (A cup territory)",
+            "formula": "bunching_severity = (3.5 - bust_differential) * (1 - fabric_drape * 0.6)",
+            "amplifier": "garment_size_match in ('slightly_large', 'too_large'): severity * 1.5",
+            "threshold": "bunching_severity > 1.0"
+          },
+          "score_override": "-0.25 - (bunching_severity - 1.0) * 0.10",
+          "mechanism": "Wrap panels designed to cross over bust, using bust projection as anchor point that holds fabric in position and creates diagonal drape. When bust too flat, panels have no anchor. They bunch, fold, collapse toward center without outward projection to maintain tension. Result: crumpled mass of fabric at chest reading as 'poor fit'.",
+          "perceived_effect": "Shapeless volume rather than bust illusion"
+        },
+        {
+          "mode_id": "N-04-C",
+          "name": "Thick Waist Tie Penalty",
+          "trigger": {
+            "formula": "tie_bulk = tie_width_inches * fabric_layers_at_tie * 0.15 (inches added circumference)",
+            "relative_impact": "tie_bulk / (waist_hip_differential * 40 + 1)",
+            "threshold": "relative_tie_impact > 0.3",
+            "example": "2\" wide tie with 4 fabric layers: 2 * 4 * 0.15 = 1.2\" added circumference"
+          },
+          "score_adjustment": "-(relative_tie_impact * 0.5)",
+          "mechanism": "On well-defined waists (WHR < 0.75), tie's added bulk is negligible relative to 6-10\" waist-hip differential. On thick waists (WHR > 0.85), tie's bulk is significant relative to 2-4\" differential. Tie WIDENS rather than DEFINES."
+        },
+        {
+          "mode_id": "N-04-D",
+          "name": "Very Slim Frame Excess Fabric",
+          "trigger": {
+            "condition": "Size 0-2 or body width < 13\" at bust",
+            "detection": "bust < 31\" AND waist < 24\" AND hip < 33\""
+          },
+          "score_impact": "Wrap score drops from +0.50 to approximately +0.05 (negligible benefit)",
+          "mechanism": "Wrap engineered for bodies with CONTOURS to drape over. On very slim, flat frames, fabric has nowhere to go.",
+          "frequency": "Approximately 5-8% of women in US market"
+        }
+      ]
+    },
+    {
+      "exception_id": "N-05",
+      "category": "neckline",
+      "name": "Turtleneck Triple Failure",
+      "standard_rule": "Turtleneck is a wardrobe staple",
+      "exception": "When short neck + round face + large bust co-occur, turtleneck scores negative on THREE dimensions simultaneously, creating compound catastrophe that no single score captures.",
+      "trigger": {
+        "dimension_1": {"condition": "neck_length < 3.0", "score": "-0.80 - (3.0 - neck_length) * 0.40", "range": "-0.80 to -1.0", "reason": "Neck disappears beneath collar"},
+        "dimension_2": {"condition": "face_roundness_ratio > 0.77 (face_width / face_length)", "score": "-0.45 - severity * 0.30 where severity = (ratio - 0.77) / 0.13", "range": "-0.45 to -0.75", "reason": "Cylindrical collar amplifies facial roundness"},
+        "dimension_3": {"condition": "bust_differential > 6", "score": "-0.45 - (bust_differential - 6) * 0.10", "range": "-0.45 to -0.75", "reason": "Unbroken fabric mass from collar to bust creates monolithic block"},
+        "triple_failure": "All 3 dimensions fail simultaneously",
+        "double_failure": "Any 2 of 3 dimensions fail"
+      },
+      "compound_effect": {
+        "formula": "compound_score = max(-1.0, individual_sum / count + gestalt_penalty)",
+        "gestalt_penalty": -0.20,
+        "reason": "The gestalt effect is WORSE than sum of individual failures because eye processes entire upper body as single unflattering unit rather than processing each dimension independently"
+      },
+      "gestalt_description": "Entire upper body reads as wide, round, monolithic column topped by round face. No element provides visual relief. Turtleneck eliminates every natural break point (neckline, collarbone, decolletage) that would normally create visual interest and break up the mass.",
+      "recommended_alternative": "V-neck medium: +0.60 neck, +0.55 face, +0.15 bust minimization",
+      "frequency": "Full triple failure (short neck + round face + DD+ bust): approximately 4-6% of women. Double failure (any two of three): approximately 15-20%.",
+      "unique_severity": "No other neckline scores negative on ALL THREE dimensions. Most necklines fail on one dimension at most. Turtleneck's unique failure: SINGLE MECHANISM (covering neck with cylinder) creates cascading effects across multiple perceptual dimensions simultaneously."
+    },
+    {
+      "exception_id": "N-06",
+      "category": "neckline",
+      "name": "Square Neckline Geometry Loss in Drapey Fabric",
+      "standard_rule": "Square neckline angularizes round faces",
+      "exception": "Angularization effect entirely dependent on GEOMETRIC PRECISION of 90-degree corners. When fabric drapes, corners round off and 'square' becomes a wide scoop.",
+      "trigger": {
+        "formula": "effective_drape = max(0, fabric_drape_coefficient - structure_support)",
+        "structure_support": {"boning": 0.4, "interfacing": 0.3},
+        "corner_retention": "max(0, 1.0 - effective_drape * 1.2)",
+        "angularization_multiplier": "corner_retention ^ 0.5 (square root: gentle falloff)",
+        "threshold": "corner_retention < 0.3 → geometry_lost",
+        "reclassification": "Reclassify as scoop_wide when geometry lost"
+      },
+      "score_impact": {
+        "base_score": 0.65,
+        "adjusted_formula": "0.65 * angularization_multiplier",
+        "examples": [
+          {"fabric": "Stiff cotton (0.2)", "boning": false, "interfacing": false, "corner_retention": "76%", "score": 0.57, "effective": "Square"},
+          {"fabric": "Medium crepe (0.4)", "boning": false, "interfacing": false, "corner_retention": "52%", "score": 0.47, "effective": "Degraded square"},
+          {"fabric": "Silk charmeuse (0.7)", "boning": false, "interfacing": false, "corner_retention": "16%", "score": 0.26, "effective": "Essentially a scoop"},
+          {"fabric": "Silk charmeuse (0.7)", "boning": true, "interfacing": false, "corner_retention": "56%", "score": 0.49, "effective": "Square (preserved by boning)"},
+          {"fabric": "Jersey (0.6)", "boning": false, "interfacing": true, "corner_retention": "36%", "score": 0.39, "effective": "Barely square"},
+          {"fabric": "Chiffon (0.9)", "boning": false, "interfacing": false, "corner_retention": "0%", "score": 0.00, "effective": "Scoop — no angularization"}
+        ]
+      },
+      "detection": "Engine must detect from product images rather than relying on product descriptions.",
+      "frequency": "Approximately 45-55% of 'square neck' garments in market use fabrics with drape coefficients above 0.5 without structural support. These are LABELED square neck but FUNCTION as scoops."
+    },
+    {
+      "exception_id": "H-01",
+      "category": "hemline",
+      "name": "Below-Knee Zone Collapse on Petite Bodies",
+      "standard_rule": "Below-knee is universally flattering",
+      "exception": "On bodies where knee-to-widest-calf distance < 5 inches, the 'safe zone' between knee danger zone and calf danger zone shrinks to 1 inch or less, making precise placement critical or impossible.",
+      "trigger": {
+        "formula": "safe_zone = knee_lower - calf_upper",
+        "knee_lower": "H_knee - 1.5 (lower boundary of knee danger zone)",
+        "calf_upper": "H_calf_max + calf_radius",
+        "calf_radius": "1.5 * max(0.5, min(2.0, (calf_prominence - 0.9) * 2.5))",
+        "calf_prominence": "C_calf_max / ((C_ankle + C_knee) / 2)",
+        "threshold": "safe_zone < 1.5 inches"
+      },
+      "score_override": {
+        "zone_collapsed": "-0.15 (when safe_zone <= 0)",
+        "marginal": "max(-0.05, (safe_zone - 1.5) * 0.10)"
+      },
+      "population_breakdown": [
+        {"height": "4'11\"", "typical_gap": "3.5\"", "safe_zone": "<=0.5\" or negative", "validity": "FAILS — zones overlap"},
+        {"height": "5'0\"", "typical_gap": "4.0\"", "safe_zone": "0.5-1.0\"", "validity": "FAILS — barely exists"},
+        {"height": "5'1\"", "typical_gap": "4.0\"", "safe_zone": "0.5-1.0\"", "validity": "FAILS"},
+        {"height": "5'2\"", "typical_gap": "4.0\"", "safe_zone": "1.0\"", "validity": "MARGINAL — requires precision"},
+        {"height": "5'3\"", "typical_gap": "4.5\"", "safe_zone": "1.0-1.5\"", "validity": "MARGINAL"},
+        {"height": "5'4\"", "typical_gap": "4.5\"", "safe_zone": "1.5\"", "validity": "HOLDS with care"},
+        {"height": "5'5\"+", "typical_gap": "5.0\"+", "safe_zone": "2.0\"+", "validity": "HOLDS comfortably"}
+      ],
+      "muscular_calf_exception": "A 5'6\" woman with muscular calves (prominence ratio > 1.4) has expanded calf danger zone (radius 2.25\" instead of 1.5\") which can collapse safe zone even at average height. Example: 5'6\" with muscular calves: safe_zone = (20 - 1.5) - (15 + 2.25) = 1.25\" — MARGINAL despite being 5'6\".",
+      "recommendation": "SKIP below-knee if zone collapsed. Use above-knee or midi instead.",
+      "frequency": "Affects approximately 25-30% of women (those under 5'4\" or with prominent calves at any height)."
+    },
+    {
+      "exception_id": "H-02",
+      "category": "hemline",
+      "name": "Maxi/Floor-Length on Petite Frames",
+      "standard_rule": "Floor-length creates an elegant vertical line",
+      "exception": "On petite frames, garment-to-body ratio becomes extreme. Garment dominates visual and person appears 'swallowed' by fabric.",
+      "trigger": {
+        "formula": "effective_height = user_height + (heel_height * 0.70)",
+        "overwhelm_thresholds_by_volume": {"slim": 60, "moderate": 62, "full": 64},
+        "modifiers": {
+          "waist_definition": "-2 inches (reduces threshold)",
+          "heavy_fabric": "+1 inch (increases threshold)"
+        },
+        "condition": "effective_height < threshold",
+        "severity": "(threshold - effective_height) / 4 (0 to 1 scale)"
+      },
+      "score_override": "-0.20 - severity * 0.50",
+      "examples": [
+        {"height": "5'0\"", "heels": "Flat", "eff_height": "60.0\"", "silhouette": "Full", "waist_defined": false, "overwhelm": "YES (severe)", "score": -0.70},
+        {"height": "5'0\"", "heels": "3\"", "eff_height": "62.1\"", "silhouette": "Full", "waist_defined": false, "overwhelm": "YES (mild)", "score": -0.34},
+        {"height": "5'0\"", "heels": "3\"", "eff_height": "62.1\"", "silhouette": "Full", "waist_defined": true, "overwhelm": "NO (mitigated)", "score": "+0.10"},
+        {"height": "5'0\"", "heels": "3\"", "eff_height": "62.1\"", "silhouette": "Slim", "waist_defined": false, "overwhelm": "NO", "score": "+0.15"},
+        {"height": "5'2\"", "heels": "Flat", "eff_height": "62.0\"", "silhouette": "Moderate", "waist_defined": false, "overwhelm": "NO (marginal)", "score": "+0.05"},
+        {"height": "5'2\"", "heels": "3\"", "eff_height": "64.1\"", "silhouette": "Full", "waist_defined": false, "overwhelm": "NO (just above)", "score": "+0.10"},
+        {"height": "5'4\"", "heels": "Flat", "eff_height": "64.0\"", "silhouette": "Full", "waist_defined": false, "overwhelm": "NO", "score": "+0.20"},
+        {"height": "5'8\"", "heels": "Flat", "eff_height": "68.0\"", "silhouette": "Full", "waist_defined": false, "overwhelm": "NO (comfortable)", "score": "+0.35"}
+      ],
+      "mitigation": [
+        "Add heel height to reach threshold",
+        "Choose slim/column silhouette over full skirt",
+        "Ensure strong waist definition (belt, seam, or contrast)",
+        "Choose lightweight fabric over heavy"
+      ]
+    },
+    {
+      "exception_id": "H-03",
+      "category": "hemline",
+      "name": "Ankle-Length Hemline + Heels (Disappearing Break)",
+      "standard_rule": "Ankle-length hemline is elongating because it frames the narrowest point",
+      "exception": "When wearing heels, shoe opening rises above ankle. Ankle-length garment designed for bare feet now falls ONTO the shoe rather than above it. The 'ankle break' (1-2\" sliver of exposed ankle) disappears.",
+      "trigger": {
+        "formula": "ankle_break = hem_from_floor - (ankle_height + heel_height + 0.5)",
+        "shoe_top": "ankle_height + heel_height + 0.5 (shoe opening above ankle + heel + clearance)",
+        "conditions": {
+          "break_disappeared": "ankle_break < 0",
+          "minimal_break": "ankle_break < 1.0 inch"
+        }
+      },
+      "score_impact": {
+        "break_disappeared": {"score": -0.15, "effect": "Hem sits on shoe upper — creates bunching and 'too short for heels' look"},
+        "minimal_break": {"score": -0.05, "effect": "Only fractional ankle visible — reads as 'almost floor-length' rather than intentional ankle-length"},
+        "fix": "Hem needs to be at least shoe_top + 1.5 inches from floor for proper ankle break with heels"
+      }
+    },
+    {
+      "exception_id": "H-04",
+      "category": "hemline",
+      "name": "Midi Hemline Hits Widest Calf on Average Height",
+      "standard_rule": "Midi hemline is sophisticated",
+      "exception": "'Midi' is a garment LENGTH description, not a body POSITION description. A garment labeled 'midi' on a 5'9\" model can hit an entirely different anatomical position on a different-height user. Worst case: hemline exactly at widest calf.",
+      "trigger": {
+        "formula": "hem_from_floor = user_waist_from_floor - garment_length_inches",
+        "condition": "abs(hem_from_floor - user_calf_max_from_floor) <= calf_danger_radius",
+        "proximity": "1 - (distance_from_calf_max / calf_danger_radius)"
+      },
+      "score_override": "-0.30 - proximity * 0.40 (range: -0.30 to -0.70)",
+      "fix_options": [
+        "Shorten hem to clear above danger zone",
+        "Lengthen hem to clear below danger zone"
+      ],
+      "core_use_case": "THE core Kridha use case. The user question from demo pitch: 'Will this midi dress actually look like a mid-length dress on me, or will it end up at my widest calf?' Answer depends on where it ACTUALLY falls relative to anatomy."
+    },
+    {
+      "exception_id": "S-01",
+      "category": "sleeve",
+      "name": "Cap Sleeve That Works (The Flutter Exception)",
+      "standard_rule": "Cap sleeves make arms look wider",
+      "exception": "Flutter cap sleeves (loose, unstructured fabric at cap position) avoid worst aspects of standard cap sleeves despite terminating at same position.",
+      "mechanism": {
+        "standard_cap_failure": [
+          "Hard horizontal hemline at widest arm point → creates precise width marker",
+          "Tight fit (negative ease) → compression → visual strain → perceived excess width",
+          "Static presentation → eye has time to register exact width"
+        ],
+        "flutter_avoids_all_three": [
+          "Soft, irregular edge → no precise width marker",
+          "Loose ease (+2-4\") → no compression → no strain",
+          "Movement → eye processes motion rather than static width"
+        ],
+        "quantified_difference": {
+          "standard_cap_on_average_arm": {"score": -0.40, "note": "moderate widening"},
+          "flutter_cap_on_same_arm": {"score": "+0.05", "note": "approximately neutral"},
+          "flutter_cap_with_qualitative_bonus": {"score": "+0.20", "note": "mildly flattering"},
+          "delta": "0.60 points — MASSIVE difference from same termination position"
+        }
+      },
+      "sub_failures": [
+        {
+          "mode": "shoulder_widening",
+          "trigger": "flutter_width > 6 inches beyond arm",
+          "formula": "shoulder_addition = (flutter_width - 6) * 0.3 inches",
+          "score_penalty": "-0.15 * (shoulder_addition / 0.5)",
+          "reason": "Over-wide flutter adds significant visual mass to shoulder zone"
+        },
+        {
+          "mode": "residual_arm_width",
+          "trigger": "arm_circumference_max > 16 inches",
+          "formula": "residual_widening = (arm_circ - 16) * 0.10",
+          "score_penalty": "-residual_widening",
+          "reason": "Very full arms: flutter helps but can't fully overcome width peak"
+        },
+        {
+          "mode": "opacity_failure",
+          "trigger": "fabric_opacity < 0.5 (semi-transparent to transparent)",
+          "score_penalty": -0.20,
+          "reason": "Sheer flutter reveals arm contour through fabric, defeating soft-edge benefit"
+        }
+      ]
+    },
+    {
+      "exception_id": "S-02",
+      "category": "sleeve",
+      "name": "3/4 Sleeve Length Miscalculation on Non-Average Arms",
+      "standard_rule": "3/4 sleeve ends at the forearm's narrowest point",
+      "exception": "'3/4 sleeve' defined as PROPORTION of arm length. On petite women with shorter arms, standard 3/4 sleeve may end at WRIST rather than forearm narrowest. On tall women with long arms, same garment may end at mid-forearm (above narrowest point).",
+      "trigger": {
+        "standard_3_4_garment_length": "~17 inches from shoulder (designed for ~23\" arm)",
+        "at_wrist": "garment_sleeve_length >= user_wrist_position - 0.5",
+        "above_narrowest": "garment_sleeve_length < user_forearm_min_position - 2"
+      },
+      "score_impact": [
+        {"user": "5'0\"", "arm_length": "20\"", "garment": "17\" (standard)", "actual_position": "Wrist — functions as full length", "score": "+0.70 (not +0.85)"},
+        {"user": "5'2\"", "arm_length": "21\"", "garment": "17\" (standard)", "actual_position": "1\" above wrist — barely 3/4", "score": "+0.80 (close to optimal)"},
+        {"user": "5'5\"", "arm_length": "23\"", "garment": "17\" (standard)", "actual_position": "At forearm narrowest — TRUE 3/4", "score": "+0.85 (optimal)"},
+        {"user": "5'8\"", "arm_length": "25\"", "garment": "17\" (standard)", "actual_position": "2\" above narrowest — mid-forearm", "score": "+0.55 (above narrowest)"},
+        {"user": "5'10\"", "arm_length": "26\"", "garment": "17\" (standard)", "actual_position": "3\" above narrowest", "score": "+0.45 (sub-optimal)"}
+      ],
+      "critical_insight": "The 'universally flattering' rule is based on the POSITION sleeve terminates, not the PROPORTION of arm it covers. On non-average arm lengths, proportion and position diverge. Engine must compute ACTUAL termination position from garment length + user arm length, not assume '3/4 sleeve' means 'at forearm narrowest.'"
+    },
+    {
+      "exception_id": "S-03",
+      "category": "sleeve",
+      "name": "Puff Sleeve Backfires (Four Independent Failure Modes)",
+      "standard_rule": "Puff sleeves balance narrow shoulders",
+      "sub_modes": [
+        {
+          "mode_id": "S-03-A",
+          "name": "Petite Frame Scale Violation",
+          "trigger": "Height < 5'3\"",
+          "mechanism": "Puff's volume occupies larger PROPORTION of small frame. 3\" puff on 5'2\" (62\"): puff is 4.8% of total height vs 4.4% on 5'8\" (68\"). Eye processes 'that shoulder structure is ___% of this person's size.' On smaller frame, same puff reads as proportionally larger.",
+          "score_penalty": "-0.08 per inch below 5'4\"",
+          "example": "At 5'0\": -0.32. Original narrow-shoulder score +0.80 → Adjusted +0.48. Still positive but marginal. Visual quality changes from 'elegantly proportioned' to 'costume-like.'"
+        },
+        {
+          "mode_id": "S-03-B",
+          "name": "Short Neck Compression",
+          "trigger": "Neck length < 3.0 inches",
+          "mechanism": "Puff sleeves raise visual 'shoulder platform' by 1-2 inches. Effectively SHORTENS neck by compressing chin-to-shoulder distance.",
+          "neck_shortening": "-0.5\" to -1.5\" perceived",
+          "score_penalty": "-0.25 to -0.55 (neck elongation dimension)",
+          "conflict": "When user has narrow shoulders (puff helps: +0.80) AND short neck (puff hurts: -0.40): net depends on priority weighting, identical to boat neck conflict (N-02)."
+        },
+        {
+          "mode_id": "S-03-C",
+          "name": "Large Bust Volume Compound",
+          "trigger": "Bust >= DD",
+          "mechanism": "Puff + bust = extreme upper body volume. Puff adds width at shoulder while bust adds depth at chest. Combined, upper body reads as single massive block.",
+          "score_penalty": "-0.25 to -0.45",
+          "adjusted_range": "Original +0.80 → Adjusted +0.35 to +0.55",
+          "visual_effect": "Overall visual is 'broad AND heavy' rather than 'balanced.'"
+        },
+        {
+          "mode_id": "S-03-D",
+          "name": "Wide Shoulders + Puff (Goal Mismatch)",
+          "trigger": "Shoulder width > hip width",
+          "mechanism": "Not a 'failure' of the puff — puff works as designed (adds width). But on already-wide shoulders, MORE width is OPPOSITE of what's needed.",
+          "score": "-0.65 to -1.0",
+          "note": "This is a GOAL MISMATCH, not a mechanism failure. Engine must detect this and NOT recommend puff sleeves even though 'puff provides shoulder widening' is mechanistically true."
+        }
+      ]
+    },
+    {
+      "exception_id": "SF-01",
+      "category": "silhouette_and_fit",
+      "name": "Empire Waist Tent Effect",
+      "standard_rule": "Empire waist elongates legs",
+      "exception": "On DD+ busts with stiff, non-stretchy fabric and no gathering below seam, empire line triggers 'tent effect' where fabric drops from bust apex at angle, creating triangle of air between fabric and body.",
+      "trigger": {
+        "formula": "tent_severity = max(0, bust_projection * fabric_stiffness - total_prevention * 5)",
+        "threshold": "tent_severity > 1.0",
+        "prevention_factors": {
+          "gathering_below_empire": {"value": 0.40, "mechanism": "Breaks flat fall line, allows fabric to follow body contour"},
+          "ruching_at_empire": {"value": 0.30, "mechanism": "Textured surface at seam allows directional change"},
+          "stretchy_fabric_per_pct": {"value": 0.05, "mechanism": "Elasticity pulls fabric back toward body after bust apex"},
+          "lightweight_fluid_fabric": {"value": "0.15-0.30", "mechanism": "Gravity and drape pull fabric inward"},
+          "empire_to_waist_tie": {"value": 0.35, "mechanism": "Physically cinches fabric at point below bust"},
+          "a_line_cut_below_empire": {"value": 0.20, "mechanism": "Intentional flare means 'tent' is the design, not a flaw"}
+        },
+        "fabric_standoff": "bust_projection * 0.6 * fabric_stiffness",
+        "perceived_waist_addition": "fabric_standoff * 2 (both sides contribute)",
+        "example": "DD bust with 3\" projection in stiff fabric: 3 * 0.6 * 0.8 = 1.44\" standoff → 2.88\" added perceived waist circumference"
+      },
+      "score_impact": {
+        "leg_elongation": "+0.40 (empire still shifts visual waist up)",
+        "waist_width_penalty": "-0.30 - tent_severity * 0.20",
+        "net": {
+          "mild_severity": "+0.40 - 0.50 = -0.10 (net negative)",
+          "severe": "+0.40 - 0.70 = -0.30 (clearly negative)"
+        }
+      },
+      "critical_distinction": "An A-line dress with empire waist is DESIGNED to have fabric stand away from body. This is NOT a 'tent effect' — it's intentional silhouette. Tent effect is FAILURE that occurs when garment designed to follow body contour (fitted or skimming) but physically cannot due to bust projection + fabric stiffness."
+    },
+    {
+      "exception_id": "SF-02",
+      "category": "silhouette_and_fit",
+      "name": "Bodycon on Non-Smooth Contours",
+      "standard_rule": "Bodycon shows off curves",
+      "exception": "Bodycon reveals EVERY contour, including contours user may not want revealed. Rule assumes smooth, convex contours. Real bodies have concavities (hip dips), ridges (bra lines), and folds (midsection skin folds) that bodycon maps precisely.",
+      "contour_specific_failures": [
+        {
+          "contour": "bra_line",
+          "trigger": "bra_band_ridge_depth > 0.15 inches",
+          "score_penalty": {"moderate": -0.08, "high (>0.3\")": -0.15},
+          "fix": "Seamless bra or bra-free construction"
+        },
+        {
+          "contour": "midsection_folds",
+          "trigger": "midsection_fold_count > 0",
+          "score_penalty": "-0.10 - fold_severity * 0.30 (fold_severity = count * depth)",
+          "fix": "Smoothing undergarment OR switch to skimming fit (1-2\" ease)"
+        },
+        {
+          "contour": "hip_dips",
+          "trigger": "hip_dip_depth > 0.3 inches",
+          "score_penalty": {"moderate": -0.08, "high (>0.6\")": -0.15},
+          "fix": "A-line or fit-and-flare silhouette bridges concavity with fabric"
+        },
+        {
+          "contour": "underwear_lines",
+          "trigger": "underwear_line_visible = true",
+          "score_penalty": -0.10,
+          "fix": "Seamless underwear or thong"
+        },
+        {
+          "contour": "back_fat_rolls",
+          "trigger": "back_fat_roll_count > 0",
+          "score_penalty": "-0.08 * roll_count",
+          "fix": "Smoothing bra OR garment with structured back panel"
+        },
+        {
+          "contour": "strain_lines",
+          "trigger": "garment_strain_detected = true",
+          "score_penalty": -0.40,
+          "fix": "SIZE UP. Strain lines indicate garment is too small. Correct fit eliminates strain while maintaining bodycon silhouette."
+        }
+      ],
+      "base_bodycon_score": 0.30,
+      "recommendation_threshold": "total_penalty < -0.40 → AVOID; else CONDITIONAL",
+      "key_insight": "Bodycon failure is NOT about body type — it's about SURFACE TEXTURE. Two women with identical measurements can have completely different bodycon outcomes if one has smooth contours and other has visible ridges/folds/dips. Body scan with only CIRCUMFERENCES misses this. Needs CONTOUR MAPPING (surface topology)."
+    },
+    {
+      "exception_id": "SF-03",
+      "category": "silhouette_and_fit",
+      "name": "A-Line Amplifies Wide Hips (Flare Origin Point)",
+      "standard_rule": "A-line flatters by skimming over hips",
+      "exception": "Effect depends critically on WHERE flare begins relative to widest hip point.",
+      "flare_positions": [
+        {
+          "position": "WELL_ABOVE_HIP (flare_origin > 2\" above hip widest)",
+          "effect": "WIDER_REFERENCE_FRAME",
+          "explanation": "Flare extends beyond hip width, making hips appear relatively narrower WITHIN garment. Garment's outer edge, not hip, is widest point.",
+          "score_wide_hips": "+0.25 (positive — wider frame makes hips relatively narrower)",
+          "score_narrow_hips": "-0.15 (negative — adds unneeded width)"
+        },
+        {
+          "position": "SLIGHTLY_ABOVE_HIP (0-2\" above hip widest)",
+          "effect_pear": "HIP_EMPHASIS",
+          "explanation": "Flare begins close to hip, fabric clings at widest point then flares. Transition from cling to flare EMPHASIZES hip as widest body point.",
+          "score_wide_hips_pear": "-0.25 (negative — draws attention to widest point)",
+          "score_narrow_hips": "+0.20 (mild positive — adds small amount of hip width)",
+          "score_non_pear_wide_hips": "+0.05",
+          "score_non_pear_narrow_hips": "+0.10"
+        },
+        {
+          "position": "BELOW_HIP (flare_origin below hip widest)",
+          "effect": "BELOW_HIP_FLARE (mermaid/trumpet territory)",
+          "explanation": "Hip is fully defined by fitted fabric. Flare below adds volume to lower silhouette.",
+          "score_wide_hips": "-0.35 (negative — hip fully revealed, flare below amplifies width)",
+          "score_narrow_hips": "+0.15"
+        }
+      ]
+    },
+    {
+      "exception_id": "SF-04",
+      "category": "silhouette_and_fit",
+      "name": "Dark Colors Not Always Slimming (Shape Loss Paradox)",
+      "standard_rule": "Dark colors are slimming",
+      "exception": "Head-to-toe monochrome dark eliminates ALL shape definition, making body read as featureless block that defaults to width of widest point.",
+      "trigger": {
+        "all_dark": "all L* values < 25 across multiple garment pieces",
+        "body_dependent": true
+      },
+      "body_type_impact": {
+        "hourglass_WHR_below_0.75": {
+          "effect": "SHAPE_LOSS",
+          "slimming_score": "+0.15",
+          "shape_loss_penalty": "-0.30",
+          "net_score": "-0.15 (NET NEGATIVE)",
+          "explanation": "All-dark eliminates contrast that would showcase waist-hip differential. Hourglass visually 'flattened' into dark column. Body reads as width of widest point throughout.",
+          "fix": "Break monochrome with lighter/contrasting element at waist. Belt, different-shade top, or textured middle creates needed contrast."
+        },
+        "rectangle_apple_WHR_above_0.85": {
+          "effect": "SLIMMING_WORKS",
+          "score": "+0.30",
+          "explanation": "Minimal waist-hip differential means dark monochrome's 'column' effect is DESIRABLE — hides lack of waist definition that would be visible in contrasting colors."
+        }
+      },
+      "the_paradox": "Dark monochrome is MORE flattering on bodies with LESS definition (rectangles, apples) and LESS flattering on bodies with MORE definition (hourglasses). Standard rule is backwards for most curved body types."
+    },
+    {
+      "exception_id": "SF-05",
+      "category": "silhouette_and_fit",
+      "name": "Fit-Skim Rule Fails for Rectangles",
+      "standard_rule": "Fit at your narrowest, skim over your widest",
+      "exception": "On rectangle body types (waist-hip ratio 0.80-0.90), 'narrowest' and 'widest' points barely different. Fitting at waist and skimming over hip means garment transitions from slightly fitted to slightly loose over 2-3\" circumference difference — reads as 'poor fit' not 'flattering shape.'",
+      "trigger": {
+        "condition": "max_circ - min_circ < 4 inches (between bust, waist, hip)",
+        "body_type": "RECTANGLE"
+      },
+      "alternative_strategies": [
+        {"strategy": "fitted_column", "score": "+0.30", "reason": "Clean, consistent fit respects body's actual proportions"},
+        {"strategy": "manufactured_shape", "score": "+0.55", "reason": "Fit-and-flare or peplum creates waist-hip differential via garment"},
+        {"strategy": "belt_addition", "score": "+0.35", "reason": "External cinch creates visible waist on otherwise straight torso"},
+        {"strategy": "oversized_intentional", "score": "+0.25", "reason": "Clearly oversized reads as 'fashion choice' rather than 'poor fit'"}
+      ]
+    },
+    {
+      "exception_id": "SF-06",
+      "category": "silhouette_and_fit",
+      "name": "Muscular Bodies Break Multiple Rules",
+      "standard_rule": "Various: skim over widest, 3/4 sleeve slims, A-line hides hips",
+      "exception": "Athletic/muscular bodies create unique exceptions because widest points are MUSCLE not adipose tissue. Standard rules assume user WANTS to minimize or conceal widest points. Muscular bodies may want to SHOWCASE them.",
+      "body_composition_types": ["low_body_fat_muscular", "athletic_moderate"],
+      "showcase_overrides": [
+        {
+          "standard_rule": "Skim over widest arm point",
+          "override": "FIT at widest arm point — muscular definition is a feature, not a flaw",
+          "cap_sleeve_score_adjustment": "+0.60",
+          "reason": "Defined deltoids and biceps are positively perceived when user wants to showcase them"
+        },
+        {
+          "standard_rule": "A-line to soften hips",
+          "override": "Fitted through hips — developed glutes are a feature",
+          "aline_score_adjustment": "-0.30 (A-line LESS desirable)",
+          "fitted_score_adjustment": "+0.40 (fitted MORE desirable)",
+          "reason": "Athletic hip development is desired contour, not concealment target"
+        },
+        {
+          "standard_rule": "Avoid boat neck on wide shoulders",
+          "override": "Boat neck SHOWCASES developed shoulders",
+          "boat_neck_score_adjustment": "+0.50",
+          "reason": "Developed deltoids and wide clavicle are athletic features user wants to highlight"
+        },
+        {
+          "standard_rule": "Avoid bodycon if contour issues",
+          "override": "Bodycon SHOWCASES muscular contour",
+          "bodycon_score_adjustment": "+0.45",
+          "reason": "Low body fat + muscle definition creates smooth, convex contours bodycon was designed for. 'Contour issues' (rolls, dips) penalizing bodycon on soft tissue are absent on toned bodies."
+        }
+      ],
+      "soften_overrides": [
+        {
+          "standard_rule": "Standard shoulder narrowing advice",
+          "override": "Raglan sleeves and V-necks softly narrow muscular shoulders",
+          "reason": "User wants to de-emphasize athletic build. Standard narrowing rules apply with ELEVATED priority."
+        }
+      ],
+      "meta_insight": "TWO WOMEN WITH IDENTICAL MEASUREMENTS can have OPPOSITE optimal recommendations if one is muscular (wants to showcase) and other carries same circumference in adipose tissue (wants to minimize). Scoring engine MUST include user aspiration as first-class input, not afterthought."
+    },
+    {
+      "exception_id": "X-01",
+      "category": "cross_element",
+      "name": "V-Neck + Off-Shoulder Shoulder Cancellation",
+      "standard_rule": "Each element scored independently",
+      "exception": "V-neck's elongation competes with off-shoulder's horizontal emphasis. Off-shoulder widening reduced by 40% when combined with V-neck.",
+      "score_delta": "Off-shoulder widening reduced by 40%",
+      "mechanism": "V-neck creates downward vertical line that partially cancels the horizontal emphasis of the off-shoulder cut."
+    },
+    {
+      "exception_id": "X-02",
+      "category": "cross_element",
+      "name": "Empire Waist + Mini + Petite Frame (Over-Elongation)",
+      "standard_rule": "Empire elongates legs; mini shows maximum leg",
+      "exception": "Empire shifts perceived waist UP by 3-4 inches. Mini shows maximum leg. On 5'0\" frame: combination makes torso appear EXTREMELY short (perceived torso: 20\" instead of 24\"). Body reads as 'all legs, no torso.'",
+      "score_impact": {
+        "leg_elongation": "+0.76",
+        "torso_proportion": "-0.45",
+        "net_if_goal_look_taller": "positive",
+        "net_if_goal_proportional": "negative"
+      }
+    },
+    {
+      "exception_id": "X-03",
+      "category": "cross_element",
+      "name": "Turtleneck + Wide Belt (Competing Waist Signals)",
+      "standard_rule": "Turtleneck creates column; belt defines waist",
+      "exception": "Column wants continuity; belt demands interruption. These CONFLICT.",
+      "score_impact": {
+        "long_torso": {
+          "turtleneck_neck": "+0.70",
+          "belt_waist": "+0.40",
+          "compound": "+0.82",
+          "note": "Belt works — breaks excessive column length"
+        },
+        "short_torso": {
+          "turtleneck_neck": "+0.70",
+          "belt_waist": "-0.25",
+          "compound": "+0.55",
+          "note": "Column already proportional; belt makes it feel truncated"
+        }
+      }
+    },
+    {
+      "exception_id": "X-04",
+      "category": "cross_element",
+      "name": "Puff Sleeve + Fit-and-Flare + Petite (Volume Overload)",
+      "standard_rule": "Puff sleeves and fit-and-flare are individually flattering",
+      "exception": "Puff adds upper body volume, fit-and-flare adds lower body volume. Combined on petite frame: BOTH ends have added volume. Body appears wider at both top AND bottom with narrow middle. Creates 'doll-like' proportion reading as costume rather than fashion.",
+      "trigger": "puff_sleeve + fit_and_flare + height < 63 inches",
+      "score_impact": {
+        "puff_individual": "+0.48 (after petite adjustment)",
+        "fit_and_flare_individual": "+0.55",
+        "interaction_penalty": -0.25,
+        "compound": "approximately +0.35",
+        "note": "Still net positive but significantly reduced from sum of parts"
+      }
+    },
+    {
+      "exception_id": "X-05",
+      "category": "cross_element",
+      "name": "Ankle-Length + Oversized Top (Proportion Loss)",
+      "standard_rule": "Ankle-length elongates; oversized top provides relaxed silhouette",
+      "exception": "Ankle-length assumes eye can read body proportions through garment. Oversized top hides waist and adds mass. Combined: body reads as 'wide top hanging over slim ankles.' No waist visible, no bust contour, no proportional reference.",
+      "score_impact": {
+        "ankle_elongation": "+0.25",
+        "oversized_proportion_loss": "-0.35",
+        "net": "-0.10 (net negative)"
+      },
+      "fix": {
+        "method": "Add waist definition (belt, front tuck) to oversized top",
+        "adjusted_scores": {
+          "ankle_elongation": "+0.25",
+          "oversized_with_waist": "-0.10",
+          "net": "+0.15 (recovered to net positive)"
+        }
+      }
+    }
+  ],
+  "exception_pipeline": {
+    "description": "Every garment evaluation should run through exception pipeline AFTER computing base scores, BEFORE outputting final score.",
+    "check_order": [
+      "NECKLINE: N-01 (V-neck dividing), N-02 (boat neck conflict), N-03 (loose crew), N-04 (wrap failures), N-05 (turtleneck triple), N-06 (square drape)",
+      "HEMLINE: H-01 (zone collapse), H-02 (maxi overwhelm), H-03 (ankle break), H-04 (midi collision)",
+      "SLEEVE: S-01 (flutter exception), S-02 (3/4 position), S-03 (puff backfires)",
+      "SILHOUETTE: SF-01 (empire tent), SF-02 (bodycon contour), SF-03 (A-line flare), SF-04 (dark shape loss), SF-05 (rectangle fit-skim), SF-06 (muscular override)",
+      "CROSS-ELEMENT: X-01 through X-05 (interaction effects)"
+    ],
+    "every_exception_includes": [
+      "Exact measurement threshold triggers",
+      "Physics/perceptual mechanism explanation",
+      "Quantified score impact",
+      "Detection method from body scan + product image",
+      "Population frequency estimate",
+      "Mitigation strategies or alternative recommendations"
+    ]
+  }
+}

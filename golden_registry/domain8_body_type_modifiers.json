@@ -1,0 +1,173 @@
+[
+  {
+    "modifier_id": "BM_D8_001",
+    "principle_id": "P_D8_001",
+    "body_type": "PETITE",
+    "modifier_value": 1.15,
+    "modifier_type": "stripe_amplification",
+    "explanation": "Petite (<160cm): stripe score x1.15. Smaller frame = illusion covers higher % of visible body. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_002",
+    "principle_id": "P_D8_001",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "Tall (>173cm): x1.00. Standard effect. Larger frame absorbs illusion. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_003",
+    "principle_id": "P_D8_001",
+    "body_type": "PEAR",
+    "modifier_value": 0.0,
+    "modifier_type": "zone_dependent",
+    "explanation": "Pear (S:H<0.90): ZONE-DEPENDENT. Hip zone: +0.45 (slims). Shoulder zone: +0.36 (less needed). Confidence MEDIUM.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_004",
+    "principle_id": "P_D8_001",
+    "body_type": "APPLE",
+    "modifier_value": 0.60,
+    "modifier_type": "attenuated",
+    "explanation": "Apple (W>H): x0.60 = +0.27. Midsection BWR often >1.05. Attenuated. NEVER on torso. Confidence MEDIUM.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_005",
+    "principle_id": "P_D8_001",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.90,
+    "modifier_type": "slight_attenuation",
+    "explanation": "Hourglass: x0.90 = +0.41. Curves break line continuity. Slight attenuation. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_006",
+    "principle_id": "P_D8_001",
+    "body_type": "RECTANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "Rectangle: x1.00 = +0.45. Straight silhouette = unbroken lines. Illusion operates cleanly. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_007",
+    "principle_id": "P_D8_001",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.80,
+    "modifier_type": "partial_attenuation",
+    "explanation": "Inv Triangle: x0.80 = +0.36. Top: slims shoulders (+0.45). Bottom: unnecessary on narrow hips. Confidence MEDIUM.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_008",
+    "principle_id": "P_D8_001",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": -0.50,
+    "modifier_type": "reversal",
+    "explanation": "Plus Size (BWR>1.15): x-0.50 = -0.23. REVERSAL (Ashida). Stripes may ADD 1-3% width. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_009",
+    "principle_id": "P_D8_002",
+    "body_type": "PETITE",
+    "modifier_value": 0.85,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Petite: luminance x0.85 (less surface area) + ALL-BLACK DANGER (shapeless dark mass; use navy/forest).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_010",
+    "principle_id": "P_D8_002",
+    "body_type": "APPLE",
+    "modifier_value": 1.10,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Apple: luminance x1.10 (helps obscure midsection).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_011",
+    "principle_id": "P_D8_002",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.90,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Rectangle: x0.90 (flattens already-straight silhouette; use charcoal, not black).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_012",
+    "principle_id": "P_D8_002",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 1.10,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Plus size: x1.10 (proportionally more useful).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_013",
+    "principle_id": "P_D8_002",
+    "body_type": "HOURGLASS",
+    "modifier_value": -0.10,
+    "modifier_type": "all_black_risk",
+    "explanation": "Hourglass: ALL-BLACK HIGH RISK (hides the waist that IS the feature). Score -0.10.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_014",
+    "principle_id": "P_D8_002",
+    "body_type": "PEAR",
+    "modifier_value": 0.0,
+    "modifier_type": "zone_specific",
+    "explanation": "Pear: ZONE-SPECIFIC (dark bottom +0.30, top neutral).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_015",
+    "principle_id": "P_D8_006",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.15,
+    "modifier_type": "reversal_positive",
+    "explanation": "Rectangle: heavy fabric REVERSAL to +0.15 (adds missing dimension).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_016",
+    "principle_id": "P_D8_006",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.20,
+    "modifier_type": "reversal_positive_hips",
+    "explanation": "Inv Triangle: heavy fabric on hip zone REVERSAL to +0.20 (adds width for balance).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_017",
+    "principle_id": "P_D8_006",
+    "body_type": "PETITE",
+    "modifier_value": -0.20,
+    "modifier_type": "heavy_penalty",
+    "explanation": "Petite + heavy >350 GSM: -0.20 (4mm/side = 2.5% of petite shoulder vs 2% average).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_018",
+    "principle_id": "P_D8_006",
+    "body_type": "APPLE",
+    "modifier_value": -0.35,
+    "modifier_type": "heavy_midsection_penalty",
+    "explanation": "Apple midsection + heavy: -0.35 (adds bulk to widest zone).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_019",
+    "principle_id": "P_D8_006",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": -0.35,
+    "modifier_type": "heavy_penalty",
+    "explanation": "Plus size + heavy >300 GSM: -0.35 (amplifies at larger dimensions).",
+    "source_domain": 8
+  }
+]

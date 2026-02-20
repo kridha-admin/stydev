@@ -1,0 +1,4136 @@
+[
+  {
+    "domain": "perception_science",
+    "layer": 2,
+    "source_file": "domain1.md",
+    "extraction_date": "2026-02-17",
+    "evidence_disclaimer": "Of 48 body-type x principle predictions, only 3 have direct empirical evidence. 45 are estimated from first principles. Confidence: 1-2/5 unless noted.",
+    "body_types": {
+      "petite": {
+        "shoulder_hip": "variable",
+        "whr": "variable",
+        "typical_wh": "variable",
+        "height": "<160cm/<5'3\"",
+        "widest_zone": "variable",
+        "key_feature": "Short total vertical extent; all proportions compressed"
+      },
+      "tall": {
+        "shoulder_hip": "variable",
+        "whr": "variable",
+        "typical_wh": "variable",
+        "height": ">173cm/>5'8\"",
+        "widest_zone": "variable",
+        "key_feature": "Long vertical extent; high natural proportion ratio"
+      },
+      "pear": {
+        "shoulder_hip": "<0.95",
+        "whr": "0.70-0.80",
+        "typical_wh": "0.40-0.55",
+        "widest_zone": "hips",
+        "key_feature": "Hip width > shoulder width"
+      },
+      "apple": {
+        "shoulder_hip": "~1.0",
+        "whr": "0.80-0.90",
+        "typical_wh": "0.50-0.65",
+        "widest_zone": "waist/abdomen",
+        "key_feature": "Widest at midsection; undefined waist"
+      },
+      "hourglass": {
+        "shoulder_hip": "~1.0",
+        "whr": "0.65-0.75",
+        "typical_wh": "0.40-0.50",
+        "widest_zone": "bust AND hips equally",
+        "key_feature": "Narrow waist; balanced upper/lower"
+      },
+      "rectangle": {
+        "shoulder_hip": "~1.0",
+        "whr": "0.80-0.90",
+        "typical_wh": "0.42-0.50",
+        "widest_zone": "uniform",
+        "key_feature": "Minimal waist definition"
+      },
+      "inverted_triangle": {
+        "shoulder_hip": ">1.05",
+        "whr": "0.75-0.85",
+        "typical_wh": "0.45-0.55",
+        "widest_zone": "shoulders",
+        "key_feature": "Shoulders wider than hips; V-shaped torso"
+      },
+      "plus_size": {
+        "shoulder_hip": "variable",
+        "whr": "variable",
+        "typical_wh": "0.55-0.80+",
+        "widest_zone": "variable",
+        "key_feature": "W:H in Ashida reversal zone (>0.52); ALL shapes exist within plus-size"
+      }
+    },
+    "note_plus_size": "Plus size is NOT a shape \u2014 it's a size range that intersects ALL shapes. Effects depend on BOTH shape AND size.",
+    "total_cells": 48,
+    "cells_with_direct_evidence": 3,
+    "cells_estimated": 45,
+    "modifiers": [
+      {
+        "body_type": "petite",
+        "principle": "P1_H_STRIPES",
+        "effect": "works",
+        "direction": "slimming",
+        "magnitude_vs_baseline": "~100%",
+        "notes": "Lower W:H on average. BUT shorter torso may have fewer visible stripes, reducing Oppel-Kundt contribution.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "petite",
+        "principle": "P2_LUMINANCE",
+        "effect": "slightly stronger",
+        "direction": "slimming",
+        "magnitude_vs_baseline": "+10-20%",
+        "notes": "Same absolute edge contraction = larger % on smaller body.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "petite",
+        "principle": "P4_PROPORTION",
+        "effect": "reduced",
+        "direction": "varies",
+        "notes": "GR break at 38.2% already near natural waist for many petite women. Provides no corrective illusion.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "petite",
+        "principle": "P5_ATTENTION",
+        "effect": "works",
+        "notes": "Focal points at neckline draw eye up. Low-placed focal points anchor eye down, emphasizing short stature.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "petite",
+        "principle": "P6_VERTICAL",
+        "effect": "amplified benefit",
+        "notes": "HVI more valuable on shorter bodies; each % height increase has larger relative impact. 5% on 155cm = 7.8cm gain.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "petite",
+        "principle": "P7_VNECKLINE",
+        "effect": "amplified value",
+        "notes": "STRONGEST single recommendation for petite. 12-15% ML elongation visually lengthens proportionally shorter upper body. Combined with HVI: 10-18% upper torso elongation.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "petite",
+        "principle": "P8_FIT",
+        "effect": "fitted best",
+        "notes": "Loose creates 'drowning in fabric' effect (+3-6% widening). Garment-to-body-size ratio is LARGEST for petite.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "tall",
+        "principle": "P1_H_STRIPES",
+        "effect": "works",
+        "direction": "slimming",
+        "magnitude_vs_baseline": "~100-110%",
+        "notes": "Lower W:H; more visible stripes on longer torso (closer to optimal 8-12 count).",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "tall",
+        "principle": "P2_LUMINANCE",
+        "effect": "slightly weaker",
+        "direction": "slimming",
+        "magnitude_vs_baseline": "-10-15%",
+        "notes": "Same edge contraction on larger width = smaller %.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "tall",
+        "principle": "P4_PROPORTION",
+        "effect": "overshoots",
+        "notes": "GR break at 38.2% may fall BELOW natural waist, shortening perceived legs. Need target ratio 0.33-0.35.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "tall",
+        "principle": "P5_ATTENTION",
+        "effect": "works",
+        "notes": "More 'garment real estate' for strategic placement. Less vulnerable to harmful focal points.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "tall",
+        "principle": "P6_VERTICAL",
+        "effect": "reduced benefit",
+        "notes": "Don't need height illusion. Diminishing returns. Horizontal elements more useful if wanting to appear less tall.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "tall",
+        "principle": "P7_VNECKLINE",
+        "effect": "standard",
+        "notes": "Works normally. Additional height minimal relative to already-tall stature.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "tall",
+        "principle": "P8_FIT",
+        "effect": "flexible",
+        "notes": "Both fitted and loose work. Most forgiving canvas for fit experimentation.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "pear",
+        "principle": "P1_H_STRIPES",
+        "effect": "ZONE_DEPENDENT",
+        "direction": "slimming upper, transition/widening at hips",
+        "magnitude_vs_baseline": "Upper: 80-100%; Lower: 0-50%",
+        "notes": "CRITICAL: hip zone W:H may exceed 0.52 crossover. Single H-striped garment covering both zones SLIMS upper body but may WIDEN lower body \u2014 amplifies exact imbalance.",
+        "confidence": "1/5",
+        "danger": true
+      },
+      {
+        "body_type": "pear",
+        "principle": "P2_LUMINANCE",
+        "effect": "zone-dependent beneficial",
+        "notes": "Edge contraction stronger at narrow waist, weaker at wide hips. Dark colors slim waist more than hips IN %, partially correcting pear imbalance.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "pear",
+        "principle": "P4_PROPORTION",
+        "effect": "reduced/harmful",
+        "notes": "GR break at waist emphasizes width transition zone. Attention conflict at hip transition.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "pear",
+        "principle": "P5_ATTENTION",
+        "effect": "hip focal points BACKFIRE",
+        "notes": "Bright belts/pockets at hip level increase fixation +15-25% -> +6-10% perceived hip width. MOST COMMON styling error for pears.",
+        "confidence": "1/5",
+        "danger": true
+      },
+      {
+        "body_type": "pear",
+        "principle": "P6_VERTICAL",
+        "effect": "selective application",
+        "notes": "Vertical lines on LOWER body maximally useful (elongate legs, reduce hip width via height-width reciprocity). Princess seams through hip zone ideal.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "pear",
+        "principle": "P7_VNECKLINE",
+        "effect": "beneficial",
+        "notes": "Dual benefit: ML elongation + gaze redirection away from hips. BUT narrow V on small upper body may amplify shoulder-hip imbalance.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "pear",
+        "principle": "P8_FIT",
+        "effect": "SPLIT: fitted top, loose bottom",
+        "notes": "The most universally given pear advice and one of the few aligned with research. Leverages attention redirection + Cundall & Guo gaze-shift.",
+        "confidence": "3/5"
+      },
+      {
+        "body_type": "apple",
+        "principle": "P1_H_STRIPES",
+        "effect": "REVERSAL",
+        "direction": "near-zero to widening at midsection",
+        "magnitude_vs_baseline": "0% to +50% (REVERSED)",
+        "notes": "Apple midsection W:H 0.50-0.65 is IN Ashida crossover zone. NEVER recommend H-stripes across apple midsection for slimming.",
+        "confidence": "2/5",
+        "danger": true
+      },
+      {
+        "body_type": "apple",
+        "principle": "P2_LUMINANCE",
+        "effect": "standard \u2014 best tool",
+        "direction": "slimming",
+        "magnitude_vs_baseline": "~100%",
+        "notes": "No crossover for luminance. Dark colors work where stripes fail. MOST RELIABLE slimming tool for apple.",
+        "confidence": "2/5"
+      },
+      {
+        "body_type": "apple",
+        "principle": "P4_PROPORTION",
+        "effect": "HARMFUL",
+        "notes": "GR break at natural waist hits WIDEST zone. Belt/seam at GR = focal point at widest circumference. Shift above waist or eliminate.",
+        "confidence": "1/5",
+        "danger": true
+      },
+      {
+        "body_type": "apple",
+        "principle": "P5_ATTENTION",
+        "effect": "waist focal points BACKFIRE",
+        "notes": "Belts/seams at natural waist concentrate +10-20% additional fixation at widest zone. V-necklines and shoulder details draw eye ABOVE midsection.",
+        "confidence": "1/5",
+        "danger": true
+      },
+      {
+        "body_type": "apple",
+        "principle": "P6_VERTICAL",
+        "effect": "HIGH value but count-dependent",
+        "notes": "Unbroken vertical from chest through hip bypasses midsection (eye follows PAST concern zone). BUT 4+ vertical lines trigger Oppel-Kundt. 1-2 seams: beneficial. 8+: harmful.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "apple",
+        "principle": "P7_VNECKLINE",
+        "effect": "beneficial with skin-exposure risk",
+        "notes": "V elongates and redirects eye from midsection. BUT deep V on larger bust (common with apple) triggers FC-7A. Moderate depth optimal (30-50 degree).",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "apple",
+        "principle": "P8_FIT",
+        "effect": "narrow sweet spot",
+        "notes": "Too tight: strain lines create widening. Too loose: tent/A-line widens silhouette. Semi-fitted (2-4cm ease) or empire waistline optimal.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "hourglass",
+        "principle": "P1_H_STRIPES",
+        "effect": "ZONE_DEPENDENT",
+        "notes": "THREE different W:H ratios (waist narrow, bust/hip wider). H-stripes may slim waist while having reduced/no effect at bust/hip. Net ambiguous.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "hourglass",
+        "principle": "P2_LUMINANCE",
+        "effect": "slightly flattens curves",
+        "notes": "Dark makes ALL edges contract equally. More benefit at narrow waist (larger %) than wider bust/hips -> reduces waist-to-hip differential. Suboptimal if goal is emphasize curves.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "hourglass",
+        "principle": "P4_PROPORTION",
+        "effect": "BEST case",
+        "notes": "Waist IS narrowest point. GR break at waist emphasizes curve differential. This is the body type the rule was designed for.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "hourglass",
+        "principle": "P5_ATTENTION",
+        "effect": "waist emphasis HELPS",
+        "notes": "Drawing attention to narrow waist makes flattering feature more prominent. Belts, nipped construction work well.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "hourglass",
+        "principle": "P6_VERTICAL",
+        "effect": "mixed \u2014 flattens curves",
+        "notes": "Strong verticals create straight channel contradicting in-out-in silhouette. Desirable for slimming, undesirable for celebrating shape.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "hourglass",
+        "principle": "P7_VNECKLINE",
+        "effect": "standard",
+        "notes": "V frames bust and emphasizes upper curve. V-shape echoes natural V from shoulder to waist. May emphasize bust more than some users want.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "hourglass",
+        "principle": "P8_FIT",
+        "effect": "fitted best",
+        "notes": "Fitted SHOWCASES natural curves. Loose HIDES defining feature (waist). Hourglass is the one body type where fitted is almost always optimal.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "rectangle",
+        "principle": "P1_H_STRIPES",
+        "effect": "works",
+        "direction": "slimming",
+        "magnitude_vs_baseline": "60-100%",
+        "notes": "Within Helmholtz zone. Uniform width = uniform effect. Body type where generic stripe advice is MOST likely correct.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "rectangle",
+        "principle": "P2_LUMINANCE",
+        "effect": "standard",
+        "magnitude_vs_baseline": "~100%",
+        "notes": "Uniform width = uniform % reduction. Straightforward.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "rectangle",
+        "principle": "P4_PROPORTION",
+        "effect": "moderate benefit",
+        "notes": "GR break creates APPEARANCE of waist through proportion illusion. Higher weight potentially than other body types (more corrective work).",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "rectangle",
+        "principle": "P5_ATTENTION",
+        "effect": "works",
+        "notes": "Single focal point at waist can CREATE waist definition. Peplum, contoured seaming, belt creates illusion of curves.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "rectangle",
+        "principle": "P6_VERTICAL",
+        "effect": "standard",
+        "notes": "Uniform width means consistent HVI effect. Standard scoring.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "rectangle",
+        "principle": "P7_VNECKLINE",
+        "effect": "HIGHLY beneficial",
+        "notes": "V creates tapered angular line on otherwise-straight body. Converging lines create illusion of upper-body taper rectangle lacks.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "rectangle",
+        "principle": "P8_FIT",
+        "effect": "needs construction",
+        "notes": "Neither pure fitted nor pure loose helps. Need STRUCTURED garments that engineer curves (peplums, belted, darted).",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "inverted_triangle",
+        "principle": "P1_H_STRIPES",
+        "effect": "ZONE_DEPENDENT",
+        "direction": "transition at shoulders, slimming at hips",
+        "magnitude_vs_baseline": "Upper: 0-50%; Lower: 80-100%",
+        "notes": "OPPOSITE of pear. H-stripes at shoulder zone may WIDEN already-wide shoulders.",
+        "confidence": "1/5",
+        "danger": true
+      },
+      {
+        "body_type": "inverted_triangle",
+        "principle": "P2_LUMINANCE",
+        "effect": "helpful differential",
+        "notes": "More benefit at wide shoulders (larger absolute contraction) and larger % at narrower hips. Slightly reduces shoulder-to-hip differential.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "inverted_triangle",
+        "principle": "P4_PROPORTION",
+        "effect": "shift target",
+        "notes": "GR break at waist creates anchor below widest point (shoulders). Better to use break at high hip to broaden perceived lower body.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "inverted_triangle",
+        "principle": "P5_ATTENTION",
+        "effect": "shoulder focal points BACKFIRE",
+        "notes": "Shoulder pads, boat necks, bright upper-body colors amplify fixation on already-wide upper body. Hip-level details, bold-colored bottoms draw gaze DOWN.",
+        "confidence": "1/5",
+        "danger": true
+      },
+      {
+        "body_type": "inverted_triangle",
+        "principle": "P6_VERTICAL",
+        "effect": "apply to upper body",
+        "notes": "Vertical lines on upper body slim widest zone. On lower body less useful (hips don't need narrowing). Selective placement.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "inverted_triangle",
+        "principle": "P7_VNECKLINE",
+        "effect": "CAUTION",
+        "notes": "V narrows chin-to-neckline axis, making inverted triangle look MORE top-heavy. Better: boat neck or square neck to widen horizontal at neckline level.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "inverted_triangle",
+        "principle": "P8_FIT",
+        "effect": "SPLIT: opposite of pear",
+        "notes": "Fitted bottom + relaxed top. Loose top softens wide shoulders; fitted/voluminous bottom adds weight to narrow lower body.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "plus_size",
+        "principle": "P1_H_STRIPES",
+        "effect": "REVERSAL",
+        "direction": "widening",
+        "magnitude_vs_baseline": "-50% to +100% (REVERSED)",
+        "notes": "Firmly in Ashida reversal zone (W:H 0.55-0.80+). H-stripes produce OPPOSITE of intended effect. Popular wisdom is CORRECT here but for wrong reasons.",
+        "confidence": "3/5",
+        "danger": true
+      },
+      {
+        "body_type": "plus_size",
+        "principle": "P2_LUMINANCE",
+        "effect": "standard but proportionally WEAKER",
+        "magnitude_vs_baseline": "-15-30%",
+        "notes": "Same absolute edge contraction on much wider body = smaller %. Dark colors LESS effective in % for larger bodies \u2014 OPPOSITE of fashion advice. Still no reversal.",
+        "confidence": "2/5"
+      },
+      {
+        "body_type": "plus_size",
+        "principle": "P4_PROPORTION",
+        "effect": "break at widest harmful",
+        "notes": "Like apple, natural waist may be widest circumference. GR target should shift based on actual thinnest-point ratio.",
+        "confidence": "1/5",
+        "danger": true
+      },
+      {
+        "body_type": "plus_size",
+        "principle": "P5_ATTENTION",
+        "effect": "loose fit helps",
+        "notes": "Cundall & Guo UK16+: loose redirects gaze from waist-hip to legs (-15% fixation shift -> ~1 dress size underestimation). DIRECT EVIDENCE.",
+        "confidence": "4/5"
+      },
+      {
+        "body_type": "plus_size",
+        "principle": "P6_VERTICAL",
+        "effect": "count-dependent reversal risk",
+        "notes": "1-2 princess seams: slimming (-2-4%). 4+: transition. 8-12+: Oppel-Kundt widening dominates. Pinstripe advice for plus-size may be HARMFUL.",
+        "confidence": "3/5",
+        "danger": true
+      },
+      {
+        "body_type": "plus_size",
+        "principle": "P7_VNECKLINE",
+        "effect": "beneficial but control depth + fit",
+        "notes": "V-elongation valuable. But FC-7A (deep V on wide chest) and FC-7C (gap on loose garments) both more likely. Moderate V-depth (40-60 degree) on semi-fitted garments.",
+        "confidence": "1/5"
+      },
+      {
+        "body_type": "plus_size",
+        "principle": "P8_FIT",
+        "effect": "loose best (DIRECT EVIDENCE)",
+        "notes": "Cundall & Guo UK16+: loose -> gaze redirection -> 1 dress size underestimation (-5-8%). ONLY body type with strong direct evidence for fit recommendations.",
+        "confidence": "4/5"
+      }
+    ],
+    "danger_zone_summary": [
+      {
+        "body_type": "pear",
+        "never_recommend": "H-stripes on hip-zone garments",
+        "why": "Zone-dependent reversal at hip W:H",
+        "alternative": "H-stripes upper body ONLY; solid/dark lower body"
+      },
+      {
+        "body_type": "apple",
+        "never_recommend": "Belts/horizontal breaks at natural waist; H-stripes across midsection",
+        "why": "Focal point + stripe reversal at widest zone",
+        "alternative": "Empire line; unbroken vertical continuity through midsection"
+      },
+      {
+        "body_type": "inverted_triangle",
+        "never_recommend": "H-stripes on upper body; shoulder pads; boat necks",
+        "why": "All WIDEN already-widest zone",
+        "alternative": "V-necklines with caution; dark/plain upper body; volume on lower body"
+      },
+      {
+        "body_type": "plus_size",
+        "never_recommend": "H-stripes for 'slimming'; pinstripes (many verticals); fitted garments",
+        "why": "H-stripes reverse; too many verticals reverse via Oppel-Kundt; fitted increases fixation",
+        "alternative": "Dark colors; 1-2 structural vertical lines; loose to semi-fitted"
+      },
+      {
+        "body_type": "petite",
+        "never_recommend": "Oversized/loose garments; low-placed focal points; wide horizontal stripes",
+        "why": "Garment overwhelms body; focal points anchor eye down; wide stripes reduce count below optimal",
+        "alternative": "Fitted/semi-fitted; V-necklines; monochromatic vertical flow"
+      },
+      {
+        "body_type": "hourglass",
+        "never_recommend": "Boxy/straight-cut garments; heavy vertical emphasis",
+        "why": "Hides defining feature (waist); flattens natural curve",
+        "alternative": "Fitted construction; waist emphasis"
+      }
+    ],
+    "summary_matrix_legend": "works=standard_effect, zone_dependent=varies_by_zone, reversal=opposite_effect, amplified=stronger_than_baseline, reduced=weaker_than_baseline"
+  },
+  {
+    "domain": "garment_construction",
+    "layer": 1,
+    "source_file": "domain2.md",
+    "extraction_date": "2026-02-17",
+    "total_body_types": 8,
+    "body_type_definitions": {
+      "petite": {
+        "threshold": "height < 63 inches (5'3\")",
+        "measurement": "height"
+      },
+      "tall": {
+        "threshold": "height > 68 inches (5'8\")",
+        "measurement": "height"
+      },
+      "pear": {
+        "threshold": "hip_circ > bust_circ by 3+ inches AND WHR < 0.78",
+        "measurements": [
+          "hip",
+          "bust",
+          "waist"
+        ]
+      },
+      "apple": {
+        "threshold": "waist_circ >= hip_circ OR WHR > 0.85",
+        "measurements": [
+          "waist",
+          "hip"
+        ]
+      },
+      "hourglass": {
+        "threshold": "bust approx hip (within 2\"), waist < bust by 6+ inches, WHR 0.65-0.75",
+        "measurements": [
+          "bust",
+          "waist",
+          "hip"
+        ]
+      },
+      "rectangle": {
+        "threshold": "bust approx waist approx hip (all within 4\"), WHR 0.80-0.90",
+        "measurements": [
+          "bust",
+          "waist",
+          "hip"
+        ]
+      },
+      "inverted_triangle": {
+        "threshold": "shoulder/bust > hip by 3+ inches, narrow hips",
+        "measurements": [
+          "shoulder_width",
+          "bust",
+          "hip"
+        ]
+      },
+      "plus_size": {
+        "threshold": "size 16+ / bust > 42\" or hip > 44\" (can overlap any shape)",
+        "measurements": [
+          "bust",
+          "hip"
+        ]
+      }
+    },
+    "non_exclusive_note": "Body types are NOT mutually exclusive. A woman can be PETITE + PEAR + PLUS SIZE simultaneously. The engine must layer modifiers from ALL applicable categories.",
+    "sections": {
+      "neckline_modifiers": {
+        "v_neck_elongation": {
+          "base_score": 0.6,
+          "base_mechanism": "Medium V-neck (4\" depth) elongation via Muller-Lyer wings-out",
+          "modifiers": {
+            "petite": {
+              "score": 0.7,
+              "flag": "AMPLIFIED",
+              "mechanism": "Neck elongation matters MORE on petite frames because every fraction of an inch is a larger percentage of total height. +1\" on 60\" body = 1.7% vs 1.3% on 68\" body."
+            },
+            "tall": {
+              "score": 0.45,
+              "flag": "DIMINISHED",
+              "mechanism": "Already-long necks rarely need elongation. If neck > 4.5\", may over-elongate to 'swan neck' effect. Score drops to +0.25 if neck > 5\"."
+            },
+            "pear": {
+              "score": 0.65,
+              "flag": "standard",
+              "mechanism": "V draws eye upward, away from wider hips. Secondary: creates visual activity in upper body to balance heavier lower body."
+            },
+            "apple": {
+              "score": 0.6,
+              "flag": "standard",
+              "mechanism": "Standard effect. V-neck diagonal lines provide mild torso slimming as secondary benefit (+0.15 waist dimension)."
+            },
+            "hourglass": {
+              "score": 0.55,
+              "flag": "standard",
+              "mechanism": "Slight reduction \u2014 hourglasses typically have proportional necks. V-neck PRIMARY value for hourglass is bust framing, not neck elongation."
+            },
+            "rectangle": {
+              "score": 0.65,
+              "flag": "standard",
+              "mechanism": "V-neck vertical pull creates strongest available directional element on body lacking natural directional cues."
+            },
+            "inverted_triangle": {
+              "score": 0.7,
+              "flag": "AMPLIFIED",
+              "mechanism": "V narrows visual focus of upper body. Converging diagonals counteract wide-shoulder horizontal. Dual: elongation + visual narrowing."
+            },
+            "plus_size": {
+              "score_range": [
+                0.5,
+                0.7
+              ],
+              "flag": "CONDITIONAL",
+              "mechanism": "Depends on bust size. Bust <= D: standard (+0.60). DD-E: dividing begins (+0.40). F+: may be in dividing zone (+0.20). See Exception N-01."
+            }
+          },
+          "depth_thresholds_by_body_type": {
+            "petite": {
+              "min": 2.5,
+              "optimal": 3.5,
+              "max": 4.5,
+              "reason": "Scale proportion - garment details proportional to frame size"
+            },
+            "tall": {
+              "min": 3.0,
+              "optimal": 4.5,
+              "max": 6.0,
+              "reason": "Larger frame accommodates deeper V without dominating"
+            },
+            "pear": {
+              "min": 3.0,
+              "optimal": 4.0,
+              "max": 5.5,
+              "reason": "Standard - V draws attention up"
+            },
+            "apple": {
+              "min": 3.0,
+              "optimal": 4.0,
+              "max": 5.0,
+              "reason": "Too deep risks revealing midsection posture"
+            },
+            "hourglass": {
+              "min": 2.5,
+              "optimal": 3.5,
+              "max": 4.5,
+              "reason": "Lower threshold because bust projection makes V appear deeper than designed"
+            },
+            "hourglass_DD_plus": {
+              "min": 2.0,
+              "optimal": 3.0,
+              "max": 3.5,
+              "reason": "Bust projection adds 1-2 effective inches to V-depth"
+            },
+            "rectangle": {
+              "min": 3.0,
+              "optimal": 4.5,
+              "max": 6.0,
+              "reason": "Can go deeper - flat chest doesn't trigger dividing effect"
+            },
+            "inverted_triangle": {
+              "min": 3.0,
+              "optimal": 4.0,
+              "max": 5.0,
+              "reason": "Standard V; too deep on wide chest can emphasize breadth"
+            },
+            "plus_size_large_bust": {
+              "min": 2.0,
+              "optimal": 3.0,
+              "max": 3.5,
+              "reason": "Bust projection dramatically lowers dividing threshold"
+            }
+          }
+        },
+        "boat_neck_widening": {
+          "base_score": 0.55,
+          "base_mechanism": "Widens perceived shoulders by +1.5 to +2.5\" total via horizontal emphasis",
+          "modifiers": {
+            "petite": {
+              "score": 0.35,
+              "flag": "DIMINISHED",
+              "mechanism": "Horizontal line across narrow frame creates strong widening ratio BUT can dominate small frame. If shoulder_width < 13\": drops to +0.20. Risk: 'clothes hanger' effect."
+            },
+            "tall": {
+              "score": 0.55,
+              "flag": "standard",
+              "mechanism": "Proportional effect. Tall frames have enough vertical space to balance the horizontal."
+            },
+            "pear": {
+              "score": 0.8,
+              "flag": "AMPLIFIED",
+              "mechanism": "CANONICAL USE CASE. +2\" widening brings shoulders closer to hip width, improving shoulder-hip ratio by 5-15%. If pear ALSO has short neck (<3\"): drops to +0.35 (competing neck penalty)."
+            },
+            "apple": {
+              "score": 0.45,
+              "flag": "standard",
+              "mechanism": "Mild positive. Creates mild inverted triangle drawing attention upward. Positive but less transformative than for pear."
+            },
+            "hourglass": {
+              "score_range": [
+                -0.4,
+                0.3
+              ],
+              "flag": "CONDITIONAL",
+              "mechanism": "If shoulders < 14.5\": +0.30. If shoulders >= 15.5\": REVERSES to -0.40. Widening can push balanced silhouette into inverted triangle."
+            },
+            "rectangle": {
+              "score": 0.55,
+              "flag": "standard",
+              "mechanism": "Creates visual taper to the (equally-wide) waist, suggesting narrower waist than actual."
+            },
+            "inverted_triangle": {
+              "score": -0.85,
+              "flag": "STRONG_REVERSAL",
+              "mechanism": "WORST COMBINATION. Already-wide shoulders become dramatically wider. Strongest reversal in entire neckline system."
+            },
+            "plus_size": {
+              "score_range": [
+                -0.3,
+                0.6
+              ],
+              "flag": "SHAPE_DEPENDENT",
+              "mechanism": "PS pear: +0.60. PS apple: +0.20. PS wide shoulders: -0.30. Stiff fabric penalty: -0.15 if fabric_drape < 0.3."
+            }
+          }
+        },
+        "turtleneck_shortening": {
+          "base_score": -0.5,
+          "base_mechanism": "Full turtleneck shortens perceived neck by 2-3 inches plus column effect",
+          "modifiers": {
+            "petite": {
+              "score_neck": -0.85,
+              "score_overall": -0.6,
+              "flag": "AMPLIFIED_NEGATIVE",
+              "mechanism": "Petite women MORE likely to have short necks. Turtleneck on already-short neck = neck disappears. Collar volume is larger proportion of face-to-shoulder zone. Double amplification."
+            },
+            "tall": {
+              "score_neck": 0.75,
+              "score_overall": 0.65,
+              "flag": "FULL_REVERSAL",
+              "mechanism": "Tall women often have long necks (>4.5\"). Turtleneck SHORTENS long neck toward proportional. Chunky knit on 5'9\"+ with 5\" neck: perceived neck becomes 2.5-3.0\" (proportional)."
+            },
+            "pear": {
+              "score_neck": -0.45,
+              "score_overall": -0.25,
+              "flag": "mild_negative",
+              "mechanism": "Standard shortening, slightly less critical because visual focus for pear is lower body, not neck zone."
+            },
+            "apple": {
+              "score_neck": -0.5,
+              "score_overall": -0.55,
+              "flag": "AMPLIFIED_NEGATIVE",
+              "mechanism": "Apple often carries weight in upper body/face. Turtleneck adds cylinder to already-full upper body = monolithic column effect."
+            },
+            "hourglass": {
+              "score_neck": -0.35,
+              "score_overall": -0.45,
+              "flag": "negative",
+              "mechanism": "Proportional neck is shortened below average. Unbroken line from collar to bust emphasizes bust on already-full hourglass bust. If bust DD+: overall drops to -0.65."
+            },
+            "rectangle": {
+              "score_neck": -0.4,
+              "score_overall": -0.2,
+              "flag": "mild_negative",
+              "mechanism": "Neither wide hips nor large bust to compound with. Less damaging because no secondary amplification."
+            },
+            "inverted_triangle": {
+              "score_neck": -0.5,
+              "score_overall": -0.55,
+              "flag": "AMPLIFIED_NEGATIVE",
+              "mechanism": "Adds mass to upper body zone where inv. triangle already has excess. Collar volume + broad shoulders = visually heavy top."
+            },
+            "plus_size": {
+              "score_neck": -0.6,
+              "score_overall": -0.7,
+              "flag": "AMPLIFIED_NEGATIVE",
+              "mechanism": "Compounds: (1) larger neck circumference = more fabric/mass, (2) full/round face amplified, (3) large bust monolithic column. EXCEPTION: Plus-size + tall + long neck = REVERSES to +0.55."
+            }
+          }
+        },
+        "wrap_compound": {
+          "base_score": 0.5,
+          "base_mechanism": "Compound: V-elongation + diagonal slimming + waist definition + bust accommodation",
+          "modifiers": {
+            "petite": {
+              "score": 0.55,
+              "flag": "AMPLIFIED",
+              "mechanism": "Waist definition proportionally more impactful on smaller frames. ONE CAVEAT: petite + very slim (size 0-2), excess fabric bunches. Score drops to +0.10."
+            },
+            "tall": {
+              "score": 0.4,
+              "flag": "DIMINISHED",
+              "mechanism": "Still positive but waist definition and elongation less impactful because tall frames already have length. 'Nice' rather than 'transformative.'"
+            },
+            "pear": {
+              "score": 0.6,
+              "flag": "AMPLIFIED",
+              "mechanism": "V draws eye up + waist definition shows pear's typically-defined waist + diagonal slims torso. Top 3 neckline for pear."
+            },
+            "apple": {
+              "score_range": [
+                -0.1,
+                0.2
+              ],
+              "flag": "PARTIALLY_COLLAPSES",
+              "mechanism": "Waist-definition mechanism FAILS. Tie adds 0.3-0.5\" bulk to widest point. If WHR > 0.88: visible 'belt of bulk'. Waist dim: -0.15. V still works (+0.50), diagonal still works (+0.15). At WHR > 0.92: overall DROPS to -0.10."
+            },
+            "hourglass": {
+              "score": 0.65,
+              "flag": "AMPLIFIED",
+              "mechanism": "PEAK PERFORMANCE. Showcases natural waist, V frames bust, tie cinches at narrowest. EXCEPTION: DD+ bust + silk/satin + tie_only: CRASHES to -0.40 (gaping)."
+            },
+            "rectangle": {
+              "score": 0.45,
+              "flag": "standard",
+              "mechanism": "CREATES waist definition rectangle doesn't have naturally. Gathered tie point manufactures a waist."
+            },
+            "inverted_triangle": {
+              "score": 0.55,
+              "flag": "AMPLIFIED",
+              "mechanism": "V narrows upper visual + diagonal sweeps away from shoulders. One of best necklines for inverted triangle."
+            },
+            "plus_size": {
+              "score_range": [
+                -0.3,
+                0.65
+              ],
+              "flag": "HIGHLY_SHAPE_DEPENDENT",
+              "mechanism": "PS hourglass: +0.65. PS pear: +0.55. PS apple: -0.10 to +0.10. PS DD+ bust: GAPING RISK. If bust > 44\" AND tie-only: drops to -0.30."
+            }
+          }
+        },
+        "cowl_bust_volume": {
+          "base_score": 0.65,
+          "base_mechanism": "Adds +1.5 to +2.5\" of front chest volume via drape",
+          "modifiers": {
+            "petite": {
+              "score_enhance": 0.55,
+              "score_minimize": -0.7,
+              "flag": "SCALE_PENALTY",
+              "mechanism": "Cowl drape proportionally larger on small frame. Enhancement risks overwhelming. Minimization penalty amplified."
+            },
+            "tall": {
+              "score_enhance": 0.75,
+              "score_minimize": -0.55,
+              "flag": "AMPLIFIED_ENHANCE",
+              "mechanism": "Volume proportionally smaller on tall frame. Enhancement effective without overwhelming."
+            },
+            "pear_small_bust": {
+              "score_enhance": 0.8,
+              "flag": "PEAK_USE_CASE",
+              "mechanism": "Small bust on pear = cowl adds upper body volume that BALANCES wider lower body. Dual: bust enhancement + upper body counterbalance."
+            },
+            "apple": {
+              "score_enhance": 0.3,
+              "score_minimize": -0.75,
+              "flag": "DIMINISHED",
+              "mechanism": "Already carries weight in upper body. Enhancement limited. Minimization strongly negative."
+            },
+            "hourglass_DD_plus": {
+              "score_enhance": -0.1,
+              "score_minimize": -1.0,
+              "flag": "REVERSAL",
+              "mechanism": "WORST COMBINATION FOR MINIMIZATION. Cowl on DD+ bust = maximum perceived chest mass. Enhancement near zero (bust already proportional)."
+            },
+            "rectangle": {
+              "score_enhance": 0.65,
+              "score_minimize": -0.6,
+              "flag": "standard",
+              "mechanism": "Creates visual interest and volume in upper body zone rectangle lacks."
+            },
+            "inverted_triangle_small_bust": {
+              "score_enhance": 0.4,
+              "score_minimize": -0.65,
+              "flag": "CONDITIONAL",
+              "mechanism": "Fills chest area between wide shoulders making upper body less skeletal. If bust >= C: drops to +0.10."
+            },
+            "plus_size": {
+              "score_enhance": 0.15,
+              "score_minimize": -0.9,
+              "flag": "EXTREME_MINIMIZE_PENALTY",
+              "mechanism": "Enhancement mild. Minimization extreme. Chunky knit cowl on plus-size: minimization reaches -1.0."
+            }
+          }
+        },
+        "square_neck_angularization": {
+          "base_score": 0.55,
+          "modifiers": {
+            "petite": {
+              "score": 0.55
+            },
+            "tall": {
+              "score": 0.5
+            },
+            "pear": {
+              "score": 0.55
+            },
+            "apple": {
+              "score": 0.55
+            },
+            "hourglass": {
+              "score": 0.55
+            },
+            "rectangle": {
+              "score": 0.55
+            },
+            "inverted_triangle": {
+              "score": 0.5
+            },
+            "plus_size": {
+              "score": 0.55
+            }
+          }
+        },
+        "off_shoulder_widening": {
+          "base_score": 0.5,
+          "modifiers": {
+            "petite": {
+              "score": 0.45
+            },
+            "tall": {
+              "score": 0.55
+            },
+            "pear": {
+              "score": 0.65,
+              "flag": "AMPLIFIED"
+            },
+            "apple": {
+              "score": 0.4,
+              "flag": "DIMINISHED"
+            },
+            "hourglass": {
+              "score": 0.3,
+              "flag": "DIMINISHED"
+            },
+            "rectangle": {
+              "score": 0.5
+            },
+            "inverted_triangle": {
+              "score": -0.65,
+              "flag": "REVERSAL",
+              "mechanism": "Same mechanism as boat neck - widens already-wide shoulders"
+            },
+            "plus_size": {
+              "score_range": [
+                -0.3,
+                0.6
+              ],
+              "flag": "SHAPE_DEPENDENT"
+            }
+          }
+        },
+        "sweetheart_enhance": {
+          "base_score": 0.55,
+          "modifiers": {
+            "petite": {
+              "score": 0.5
+            },
+            "tall": {
+              "score": 0.6
+            },
+            "pear": {
+              "score": 0.6
+            },
+            "apple": {
+              "score": 0.45,
+              "flag": "DIMINISHED"
+            },
+            "hourglass": {
+              "score_range": [
+                -0.2,
+                0.55
+              ],
+              "flag": "CONDITIONAL_BUST"
+            },
+            "rectangle": {
+              "score": 0.6
+            },
+            "inverted_triangle": {
+              "score": 0.45,
+              "flag": "DIMINISHED"
+            },
+            "plus_size": {
+              "score_range": [
+                -0.3,
+                0.55
+              ],
+              "flag": "CONDITIONAL_BUST"
+            }
+          }
+        }
+      },
+      "sleeve_modifiers": {
+        "cap_sleeve_widening": {
+          "base_score": -0.4,
+          "base_mechanism": "Cap at arm's widest point adds +0.30 to +0.50\" perceived arm diameter",
+          "modifiers": {
+            "petite": {
+              "score": -0.5,
+              "flag": "AMPLIFIED",
+              "mechanism": "Proportionally shorter upper arms = cap covers LARGER percentage of total arm. Percentage widening is larger (3.3% on 9\" arm vs 2.5% on 12\" arm)."
+            },
+            "tall": {
+              "score": -0.3,
+              "flag": "DIMINISHED",
+              "mechanism": "Longer arms = cap covers less proportional length. Eye has more 'normal arm' to reference below cap."
+            },
+            "pear": {
+              "score": -0.4,
+              "flag": "standard",
+              "mechanism": "Pear doesn't inherently change arm proportions."
+            },
+            "apple": {
+              "score": -0.55,
+              "flag": "AMPLIFIED",
+              "mechanism": "Apple often carries additional upper arm weight. Cap frames WIDER widest point. Severity multiplier from arm prominence > 1.80."
+            },
+            "hourglass": {
+              "score": -0.4,
+              "flag": "standard",
+              "mechanism": "Hourglass arms typically proportional."
+            },
+            "rectangle": {
+              "score": -0.35,
+              "flag": "SLIGHT_DIMINISH",
+              "mechanism": "More uniform arm profiles = less dramatic peak for cap to frame."
+            },
+            "inverted_triangle": {
+              "score": -0.55,
+              "flag": "AMPLIFIED",
+              "mechanism": "Often has developed deltoids/upper arms. Cap sits on already-wide shoulder-to-arm zone. EXCEPTION: If user_goal = 'showcase_muscle': REVERSES to +0.45."
+            },
+            "plus_size": {
+              "score_range": [
+                -1.0,
+                -0.7
+              ],
+              "flag": "STRONGLY_AMPLIFIED",
+              "mechanism": "Plus-size arms 14-18\" circumference. Cap frames maximum, compression and muffin-top effect. Single strongest negative in entire sleeve system."
+            }
+          },
+          "positive_cases": {
+            "slim_arms_showcase": {
+              "conditions": "C_upper_arm < 9.5 AND user_goal == 'showcase'",
+              "score": 0.3,
+              "reason": "Slim toned arms FRAMED attractively by cap."
+            },
+            "flutter_cap_any_arm": {
+              "conditions": "sleeve_subtype == 'flutter_cap' AND ease > 2",
+              "score_range": [
+                0.05,
+                0.2
+              ],
+              "reason": "Soft edge + no compression + movement = 0.60 score swing vs rigid cap."
+            },
+            "muscular_arms_showcase": {
+              "conditions": "body_composition == 'muscular' AND user_goal == 'showcase'",
+              "score": 0.45,
+              "reason": "Cap frames peak muscle definition. Deltoid and bicep are features."
+            }
+          }
+        },
+        "three_quarter_sleeve_slimming": {
+          "base_score": 0.85,
+          "base_mechanism": "Terminates at forearm narrowest - OPTIMAL for arm slimming",
+          "modifiers": {
+            "petite": {
+              "score": 0.6,
+              "flag": "DIMINISHED_POSITION_SHIFT",
+              "mechanism": "CRITICAL EXCEPTION: On petite arms (<21\"), standard 3/4 (17\" from shoulder) reaches WRIST, not forearm narrowest. Functions as full-length sleeve. FIX: recommend 'elbow length' garments (14-15\" from shoulder) for actual 3/4 position."
+            },
+            "tall": {
+              "score": 0.65,
+              "flag": "DIMINISHED_POSITION_SHIFT",
+              "mechanism": "Opposite: on tall arms (>25\"), standard 17\" sleeve ends at MID-FOREARM, 2-3\" above narrowest. FIX: need '7/8 sleeve' or 'below elbow' for actual 3/4 position."
+            },
+            "pear": {
+              "score": 0.85,
+              "flag": "standard",
+              "mechanism": "Pear doesn't typically affect arm proportions."
+            },
+            "apple": {
+              "score": 0.9,
+              "flag": "SLIGHT_AMPLIFICATION",
+              "mechanism": "Apple arms often have higher prominence ratio (more dramatic peak-to-narrowest). Creates LARGER delta = more slimming."
+            },
+            "hourglass": {
+              "score": 0.85,
+              "flag": "standard"
+            },
+            "rectangle": {
+              "score": 0.8,
+              "flag": "SLIGHT_DIMINISH",
+              "mechanism": "More uniform arms = less dramatic peak. Slimming delta smaller."
+            },
+            "inverted_triangle": {
+              "score": 0.8,
+              "flag": "standard",
+              "mechanism": "If goal is slimming: +0.80. If goal is 'showcase muscle': reduced to +0.40 (hides muscular upper arm)."
+            },
+            "plus_size": {
+              "score": 0.95,
+              "flag": "AMPLIFIED",
+              "mechanism": "HIGHEST SCORE FOR ANY BODY TYPE. Largest absolute difference between C_upper_arm_max and C_forearm_min. On arms with C_max 16\" and C_min 10\": perceived width drops from ~5.1\" to ~3.2\" diameter - 37% reduction."
+            }
+          }
+        },
+        "puff_sleeve_widening": {
+          "base_score": 0.8,
+          "base_mechanism": "Adds +2 to +4\" perceived shoulder width",
+          "modifiers": {
+            "petite": {
+              "score_widen": 0.48,
+              "score_narrow": -0.48,
+              "flag": "SCALE_PENALTY",
+              "mechanism": "SCALE PENALTY: -0.32. Volume occupies larger proportion of frame. If petite + short neck (<2.5\"): puff compresses neck. Neck penalty: -0.35. Net widening: +0.13."
+            },
+            "tall": {
+              "score_widen": 0.85,
+              "score_narrow": -0.85,
+              "flag": "AMPLIFIED",
+              "mechanism": "Tall frames absorb puff proportionally. Most architecturally elegant on tall frames. No scale penalty."
+            },
+            "pear": {
+              "score_widen": 0.9,
+              "score_narrow": -0.9,
+              "flag": "PEAK_USE_CASE",
+              "mechanism": "+3-4\" widening can bring shoulders within 1\" of hip width. Most powerful single element for pear balance. Petite pear net: +0.58."
+            },
+            "apple": {
+              "score_widen": 0.5,
+              "score_narrow": -0.5,
+              "flag": "MODERATE",
+              "mechanism": "Apple doesn't need widening as critically. If apple + plus-size: drops to +0.30 (combined upper body volume overwhelming)."
+            },
+            "hourglass": {
+              "score_widen": 0.35,
+              "score_narrow": -0.55,
+              "flag": "DIMINISHED",
+              "mechanism": "Already balanced. Puff WIDENS shoulders beyond hips = converts hourglass to inverted triangle. If bust DD+: additional -0.30."
+            },
+            "rectangle": {
+              "score_widen": 0.7,
+              "score_narrow": -0.7,
+              "flag": "strong_positive",
+              "mechanism": "Creates shoulder width rectangle lacks, establishing visual taper implying waist narrowness."
+            },
+            "inverted_triangle": {
+              "score": -0.9,
+              "flag": "EXTREME_REVERSAL",
+              "mechanism": "DO NOT RECOMMEND. Amplifies primary body imbalance to maximum. Deeply negative regardless of framing."
+            },
+            "plus_size": {
+              "score_widen_range": [
+                0.25,
+                0.6
+              ],
+              "score_narrow_range": [
+                -0.85,
+                -0.6
+              ],
+              "flag": "SHAPE_DEPENDENT",
+              "mechanism": "PS pear: +0.60. PS apple: +0.25. PS hourglass: +0.15. PS rectangle: +0.45. Fabric stiffness penalty: -0.15 if stiff AND size > 20."
+            }
+          }
+        },
+        "flutter_cap_vs_rigid": {
+          "base_score": 0.2,
+          "base_mechanism": "Flutter cap provides 0.60 point swing vs rigid cap due to soft edge + no compression + movement",
+          "modifiers": {
+            "petite": {
+              "score": 0.15
+            },
+            "tall": {
+              "score": 0.25
+            },
+            "pear": {
+              "score": 0.2
+            },
+            "apple": {
+              "score": 0.15
+            },
+            "hourglass": {
+              "score": 0.2
+            },
+            "rectangle": {
+              "score": 0.2
+            },
+            "inverted_triangle": {
+              "score": 0.2
+            },
+            "plus_size": {
+              "score": 0.1,
+              "flag": "DIMINISHED"
+            }
+          }
+        }
+      },
+      "hemline_modifiers": {
+        "above_knee_elongation": {
+          "base_score": 0.5,
+          "base_mechanism": "Each inch above knee adds +0.5 to +0.7\" perceived leg extension",
+          "modifiers": {
+            "petite": {
+              "score": 0.7,
+              "flag": "AMPLIFIED",
+              "mechanism": "HIGHEST VALUE. Each inch of above-knee exposure has proportionally MORE impact. 3\" above-knee on 5'1\" shows same absolute leg as 1\" above-knee on 5'7\", but PROPORTIONAL impact 2x greater."
+            },
+            "tall": {
+              "score": 0.3,
+              "flag": "DIMINISHED",
+              "mechanism": "Already-long legs need less elongation. If legs already > 62% of height: further elongation can create 'legs too long' imbalance. At >4\" above knee on tall + long-legged: drops to +0.15."
+            },
+            "pear": {
+              "score": 0.25,
+              "flag": "PARTIALLY_COLLAPSES",
+              "mechanism": "CRITICAL TENSION: elongates legs (positive +0.50) AND reveals widest zone (upper thighs). If thigh_circ > 24\": thigh penalty -0.25, net +0.25. If thigh_circ > 27\": penalty -0.40, net +0.10."
+            },
+            "apple": {
+              "score": 0.6,
+              "flag": "AMPLIFIED",
+              "mechanism": "Apple typically has SLIM LEGS relative to midsection. Above-knee SHOWCASES apple's best asset."
+            },
+            "hourglass": {
+              "score": 0.5,
+              "flag": "standard"
+            },
+            "rectangle": {
+              "score": 0.55,
+              "flag": "slight_amplification",
+              "mechanism": "Visible leg below hem is one of few zones where rectangle has visible shape (calf muscle, knee contour). More visual interest."
+            },
+            "inverted_triangle": {
+              "score": 0.55,
+              "flag": "standard",
+              "mechanism": "Typically narrower hips/thighs making above-knee proportionally easy to wear."
+            },
+            "plus_size": {
+              "score_range": [
+                0.15,
+                0.5
+              ],
+              "flag": "CONDITION_DEPENDENT",
+              "mechanism": "PS + slim legs (apple distribution): +0.50. PS + full thighs: +0.15. PS + proportional legs: +0.35."
+            }
+          }
+        },
+        "below_knee_safe_zone": {
+          "base_score": 0.3,
+          "base_mechanism": "Safe zone between knee danger zone and calf danger zone",
+          "modifiers": {
+            "petite": {
+              "score": -0.1,
+              "flag": "REVERSAL",
+              "mechanism": "ZONE COLLAPSES. Under 5'3\": knee-to-calf averages 3.5-4.5\". After subtracting danger zones, safe zone shrinks to 0-1\". If safe_zone < 1.0\": -0.10. If safe_zone < 0\": -0.25."
+            },
+            "tall": {
+              "score": 0.4,
+              "flag": "AMPLIFIED",
+              "mechanism": "Generous safe zone (5-7\"). Longer visible calf below hemline creates pleasing proportion."
+            },
+            "pear": {
+              "score": 0.25,
+              "flag": "slight_diminish",
+              "mechanism": "Mildly positive (covers widest thigh). If prominent calves (calf_prominence > 1.3): drops to +0.10."
+            },
+            "apple": {
+              "score": 0.3,
+              "flag": "standard"
+            },
+            "hourglass": {
+              "score": 0.3,
+              "flag": "standard"
+            },
+            "rectangle": {
+              "score": 0.25,
+              "flag": "slight_diminish",
+              "mechanism": "More uniform legs = less dramatic calf = smaller danger zone. Position matters less."
+            },
+            "inverted_triangle": {
+              "score": 0.3,
+              "flag": "standard"
+            },
+            "plus_size": {
+              "score_range": [
+                0.1,
+                0.35
+              ],
+              "flag": "variable",
+              "mechanism": "PS + muscular calves: +0.10 (expanded danger radius). PS + slim lower legs (apple): +0.35. PS + proportional: +0.25."
+            }
+          }
+        },
+        "midi_length": {
+          "base_score": 0.15,
+          "base_mechanism": "Lower calf position. Score varies +0.15 to -0.50 depending on actual anatomical landing",
+          "modifiers": {
+            "petite": {
+              "score": -0.35,
+              "flag": "REVERSAL",
+              "mechanism": "THE TRANSLATION PROBLEM AT ITS WORST. Midi designed for 5'9\" model lands at COMPLETELY DIFFERENT position on 5'1\" body. Can land at WIDEST CALF. Must compute ACTUAL hem position, not trust label."
+            },
+            "tall": {
+              "score": 0.3,
+              "flag": "AMPLIFIED",
+              "mechanism": "On tall bodies, midi hits mid-calf to lower calf - flattering, proportional. Reads as intentionally elegant."
+            },
+            "pear": {
+              "score": 0.1,
+              "flag": "near_neutral"
+            },
+            "apple": {
+              "score": 0.2,
+              "flag": "mild_positive",
+              "mechanism": "Apple's slim lower legs revealed. Covers midsection and hip area."
+            },
+            "hourglass": {
+              "score": 0.15,
+              "flag": "standard"
+            },
+            "rectangle": {
+              "score": 0.1,
+              "flag": "near_neutral",
+              "mechanism": "Doesn't add visual interest to rectangle's uniform silhouette."
+            },
+            "inverted_triangle": {
+              "score": 0.2,
+              "flag": "mild_positive",
+              "mechanism": "Adds visual weight/length to lower body, helping balance heavy upper body."
+            },
+            "plus_size": {
+              "score_range": [
+                -0.15,
+                0.25
+              ],
+              "flag": "MOST_HEIGHT_DEPENDENT",
+              "mechanism": "PS + petite: strongly negative (calf collision). PS + tall: +0.25. PS + prominent calves: negative."
+            }
+          }
+        },
+        "ankle_length_elongation": {
+          "base_score": 0.25,
+          "base_mechanism": "Frames at narrowest point + creates long unbroken vertical line",
+          "modifiers": {
+            "petite": {
+              "score_range": [
+                -0.2,
+                0.35
+              ],
+              "flag": "CONDITIONAL",
+              "mechanism": "OVERWHELM THRESHOLD. Slim column: +0.35 (maximally elongating). Full A-line/gown: -0.20 (volume swallows frame). Thresholds: slim > 60\", moderate > 62\", full > 64\" effective height. Waist definition shifts threshold by -2\"."
+            },
+            "tall": {
+              "score": 0.4,
+              "flag": "AMPLIFIED",
+              "mechanism": "One of strongest hemlines for tall. Can wear full-volume ankle-length without overwhelm. Ankle break is proportional and elegant."
+            },
+            "pear": {
+              "score": 0.3,
+              "flag": "mild_positive",
+              "mechanism": "Covers entire hip-thigh zone. Long line from waist to ankle counteracts horizontal emphasis of wide hips."
+            },
+            "apple": {
+              "score": 0.2,
+              "flag": "mild_positive",
+              "mechanism": "Covers midsection, creates vertical line. BUT must skim not cling. If fabric clings to belly: drops to -0.10."
+            },
+            "hourglass": {
+              "score_range": [
+                0.1,
+                0.35
+              ],
+              "flag": "CONDITIONAL",
+              "mechanism": "MUST have waist definition. With: +0.35. Without: +0.10 (shape loss penalty)."
+            },
+            "rectangle": {
+              "score": 0.3,
+              "flag": "slight_amplification",
+              "mechanism": "Long vertical line is rectangle's BEST friend. Column ankle-length on rectangle: +0.40."
+            },
+            "inverted_triangle": {
+              "score": 0.3,
+              "flag": "mild_positive",
+              "mechanism": "Long line adds visual weight below. Full-skirt ankle-length particularly effective."
+            },
+            "plus_size": {
+              "score_range": [
+                -0.15,
+                0.4
+              ],
+              "flag": "variable",
+              "mechanism": "PS + tall: +0.40 (excellent). PS + petite: -0.15 (overwhelm). PS + waist definition: +0.25."
+            }
+          }
+        }
+      },
+      "waist_silhouette_modifiers": {
+        "empire_waist_elongation": {
+          "base_score_leg": 0.4,
+          "base_score_overall": 0.3,
+          "base_mechanism": "Shifts perceived legs longer by 2-4 inches",
+          "modifiers": {
+            "petite": {
+              "score_leg": 0.55,
+              "score_overall": 0.45,
+              "flag": "AMPLIFIED",
+              "mechanism": "Benefits most from leg elongation. If petite + empire + mini: torso appears EXTREMELY short (perceived torso < 20%), torso proportion: -0.35."
+            },
+            "tall": {
+              "score_leg": 0.2,
+              "score_overall": 0.15,
+              "flag": "DIMINISHED",
+              "mechanism": "Already-long legs. If torso-to-leg ratio < 0.35: REVERSES to -0.25 (worsens existing imbalance)."
+            },
+            "pear": {
+              "score_leg": 0.45,
+              "score_overall": 0.35,
+              "flag": "standard",
+              "mechanism": "Elongates legs + raises waist above widest hip zone. Fabric skims over hips."
+            },
+            "apple": {
+              "score_leg": 0.4,
+              "score_overall": 0.3,
+              "flag": "CONDITIONAL",
+              "mechanism": "Empire seam above widest point. Flowing fabric covers midsection. BUT if bust >= DD + stiff fabric: TENT EFFECT. Score crashes to -0.30."
+            },
+            "hourglass": {
+              "score_leg": 0.35,
+              "score_overall_range": [
+                -0.4,
+                0.1
+              ],
+              "flag": "CONDITIONAL_REVERSAL",
+              "mechanism": "Empire CONCEALS natural waist (best feature). Fitted through torso: +0.10. Flows from underbust: -0.20. DD+ bust + stiff fabric: -0.40 (tent + hides waist). HOSTILE to hourglass unless stretchy."
+            },
+            "rectangle": {
+              "score_leg": 0.45,
+              "score_overall": 0.4,
+              "flag": "AMPLIFIED",
+              "mechanism": "No natural waist to LOSE. Empire seam CREATES a waist point. Flowing fabric suggests hip width."
+            },
+            "inverted_triangle": {
+              "score_leg": 0.4,
+              "score_overall": 0.35,
+              "flag": "standard",
+              "mechanism": "Flowing lower half adds visual volume below bust, counterbalancing wide shoulders."
+            },
+            "plus_size": {
+              "score_leg": 0.3,
+              "score_overall_range": [
+                -0.4,
+                0.3
+              ],
+              "flag": "HIGH_TENT_RISK",
+              "mechanism": "Bust projection typically > 3\". Tent effect in MAJORITY of cases with medium-to-stiff fabric. SAVES: stretchy (+0.20), gathering (+0.25), lightweight/drapey (+0.15). Without: NEGATIVE recommendation."
+            }
+          }
+        },
+        "fit_and_flare_proportion": {
+          "base_score": 0.5,
+          "base_mechanism": "Creates perceived hourglass proportions via fitted waist + flared skirt",
+          "modifiers": {
+            "petite": {
+              "score": 0.4,
+              "flag": "standard",
+              "mechanism": "Positive with volume caveat. Combined with upper body volume (puff, cowl): double-volume overwhelm, drops to +0.15. Optimal: simple upper body."
+            },
+            "tall": {
+              "score": 0.5,
+              "flag": "standard",
+              "mechanism": "Tall frames absorb flare proportionally. Creates dramatic elegant proportions."
+            },
+            "pear": {
+              "score": 0.2,
+              "flag": "DIMINISHED",
+              "mechanism": "Counter-intuitive: can AMPLIFY hip width if flare begins AT or BELOW widest hip. Only positive if flare begins ABOVE widest hip. If flare_origin below hip: drops to -0.15."
+            },
+            "apple": {
+              "score_range": [
+                -0.25,
+                0.4
+              ],
+              "flag": "CONDITIONAL",
+              "mechanism": "Fitted bodice must accommodate wide midsection. Proper fit: +0.40 (manufactures shape). Poor fit: -0.25 (visible strain). MOST sensitive to fit quality."
+            },
+            "hourglass": {
+              "score": 0.55,
+              "flag": "AMPLIFIED",
+              "mechanism": "ECHOES natural shape. Fitted at natural waist, flared at natural hip. Amplifies existing body shape."
+            },
+            "rectangle": {
+              "score": 0.75,
+              "flag": "PEAK_PERFORMANCE",
+              "mechanism": "HIGHEST SCORE FOR ANY BODY TYPE. Most to gain - least natural proportion differentiation. Perceived WHR reduction: 8-15%. Single most transformative element for rectangle."
+            },
+            "inverted_triangle": {
+              "score": 0.55,
+              "flag": "strong_positive",
+              "mechanism": "Flare adds hip volume to balance wide shoulders. Fitted waist creates transition. Becomes hourglass silhouette within garment."
+            },
+            "plus_size": {
+              "score_range": [
+                0.1,
+                0.6
+              ],
+              "flag": "SHAPE_DEPENDENT",
+              "mechanism": "PS rectangle: +0.60. PS hourglass: +0.55. PS apple: +0.10 to +0.40 (fit quality). PS pear: +0.15 (risk of amplifying). Minimum flare angle for PS: 20 deg (vs 10 deg standard)."
+            }
+          }
+        },
+        "dark_color_slimming": {
+          "base_score_mono": 0.2,
+          "base_score_contrast": 0.2,
+          "base_mechanism": "Dark clothing creates 2-5% perceived size reduction",
+          "modifiers": {
+            "petite": {
+              "score_mono": 0.2,
+              "score_contrast": 0.3,
+              "flag": "contrast_preferred",
+              "mechanism": "Contrast at waist adds definition monochrome loses. Monochrome creates 'dark block'. Dark + contrast always better for petite."
+            },
+            "tall": {
+              "score_mono": 0.2,
+              "score_contrast": 0.25,
+              "flag": "standard",
+              "mechanism": "Less sensitive to shape-loss effect. Longer vertical provides structural interest even in monochrome."
+            },
+            "pear": {
+              "score_mono": 0.1,
+              "score_contrast": 0.4,
+              "flag": "MONOCHROME_UNDERPERFORMS",
+              "mechanism": "All-dark slims uniformly but pear's lower body (needs slimming most) slimmed equally with upper (doesn't need). Dark bottom + lighter top is 2x more effective."
+            },
+            "apple": {
+              "score_mono": 0.3,
+              "score_contrast": 0.3,
+              "flag": "MONOCHROME_EQUALS_CONTRAST",
+              "mechanism": "Monochrome dark smooths waist-into-hip transition. Contrast risks drawing attention TO waist zone."
+            },
+            "hourglass": {
+              "score_mono": -0.15,
+              "score_contrast": 0.35,
+              "flag": "MONOCHROME_REVERSAL",
+              "mechanism": "All-dark ERASES waist-hip differential (best feature). Body reads as dark column at widest width. Shape loss (-0.30) exceeds slimming (+0.15). Net: -0.15."
+            },
+            "rectangle": {
+              "score_mono": 0.25,
+              "score_contrast": 0.2,
+              "flag": "MONOCHROME_PREFERRED",
+              "mechanism": "No waist to 'reveal' with contrast. Uniform dark column is DESIRABLE. Contrast risks 'striped' effect emphasizing LACK of waist curve."
+            },
+            "inverted_triangle": {
+              "score_mono": 0.15,
+              "score_contrast": 0.35,
+              "flag": "contrast_preferred",
+              "mechanism": "Dark top + lighter bottom draws eye DOWN from wide shoulders. Much more effective than uniform dark."
+            },
+            "plus_size": {
+              "score_mono": 0.25,
+              "score_contrast": 0.35,
+              "flag": "standard",
+              "mechanism": "Genuine slimming proportionally more visible on larger frames. If PS apple (WHR>0.85): mono better. If PS hourglass (WHR<0.78): contrast better."
+            }
+          }
+        },
+        "horizontal_stripes": {
+          "base_score": 0.05,
+          "base_mechanism": "Effect depends on body size per Ashida body-size model",
+          "modifiers": {
+            "petite": {
+              "score_h": 0.15,
+              "score_v": -0.1,
+              "flag": "AMPLIFIED",
+              "mechanism": "Petite bodies typically in SLIM range where H-stripes have thinning effect (Helmholtz). H may SLIM by 3-4%. V-stripes can make petite look WIDER. CONTRADICTS popular advice."
+            },
+            "tall": {
+              "score_h": 0.05,
+              "score_v": 0.05,
+              "flag": "near_neutral"
+            },
+            "pear": {
+              "score_h_range": [
+                -0.1,
+                0.1
+              ],
+              "score_v_range": [
+                -0.1,
+                0.1
+              ],
+              "flag": "ZONE_DEPENDENT",
+              "mechanism": "H on narrow upper body: +0.10 (Helmholtz works). H on wider lower body: -0.10. Engine should score stripes IN EACH ZONE independently."
+            },
+            "apple": {
+              "score_h": -0.15,
+              "score_v": 0.1,
+              "flag": "REVERSAL",
+              "mechanism": "Midsection is widest zone. Ashida reversal suggests H adds 2-3% width. V provides mild slimming. Confidence MEDIUM."
+            },
+            "hourglass": {
+              "score_h": 0.05,
+              "score_v": 0.05,
+              "flag": "near_neutral",
+              "mechanism": "Waist-hip differential dominates perception regardless of stripe direction."
+            },
+            "rectangle": {
+              "score_h": 0.1,
+              "score_v": -0.05,
+              "flag": "mild_positive_h",
+              "mechanism": "H on typical average-to-slim proportions provides Helmholtz thinning AND adds suggestion of horizontal contour rectangle lacks."
+            },
+            "inverted_triangle": {
+              "flag": "ZONE_CRITICAL",
+              "mechanism": "H on upper body (wide): possible -0.10 widening. H on lower body (narrow): possible +0.10. Best strategy: H bottom, solid dark top."
+            },
+            "plus_size": {
+              "score_h": -0.175,
+              "score_v": 0.125,
+              "flag": "REVERSAL",
+              "mechanism": "Above Ashida reversal threshold. H produces mild widening. V produces mild slimming. HERE popular advice approximately correct but effect MUCH smaller than believed (2-4%)."
+            }
+          }
+        },
+        "belt_waist_definition": {
+          "base_score": 0.35,
+          "modifiers": {
+            "petite": {
+              "score": 0.3
+            },
+            "tall": {
+              "score": 0.35
+            },
+            "pear": {
+              "score": 0.4
+            },
+            "apple": {
+              "score": -0.35,
+              "flag": "REVERSAL",
+              "mechanism": "Belt HIGHLIGHTS widest circumference. Inverts from +0.35 to -0.35."
+            },
+            "hourglass": {
+              "score": 0.45,
+              "flag": "AMPLIFIED"
+            },
+            "rectangle": {
+              "score": 0.35
+            },
+            "inverted_triangle": {
+              "score": 0.3
+            },
+            "plus_size": {
+              "flag": "CONDITIONAL_WHR",
+              "mechanism": "Depends on WHR. If defined waist: positive. If WHR > 0.85: negative."
+            }
+          }
+        }
+      }
+    },
+    "compound_body_types": {
+      "petite_pear": {
+        "estimated_prevalence": "8-10% of women",
+        "critical_modifications": {
+          "above_knee_hemline": {
+            "petite_score": 0.7,
+            "pear_score": 0.25,
+            "compound": 0.45,
+            "note": "Split difference. Optimal: 2-3 inches above knee (not mid-thigh)."
+          },
+          "below_knee_hemline": {
+            "petite_score": -0.1,
+            "pear_score": 0.25,
+            "compound": 0.05,
+            "note": "Petite zone collapse + pear thigh-covering need fight each other. Unreliable."
+          },
+          "puff_sleeve": {
+            "petite_score": 0.48,
+            "pear_score": 0.9,
+            "compound": 0.58,
+            "note": "Pear amplification partially offsets petite scale penalty. BEST single element. Choose SMALL puffs."
+          },
+          "ankle_length_column": {
+            "petite_score": 0.35,
+            "pear_score": 0.3,
+            "compound": 0.35,
+            "note": "Requires waist definition and slim silhouette. Full-skirt drops to +0.05."
+          }
+        },
+        "best_strategy": "V-neck medium (+0.70) + small puff/structured shoulder (+0.58) + above-knee at 2-3 inches (+0.45) + nude heel (+0.45). Compound: approx +0.65"
+      },
+      "petite_plus_size": {
+        "estimated_prevalence": "5-7% of women",
+        "critical_modifications": {
+          "empire_waist": {
+            "petite_score": 0.45,
+            "plus_size_score": -0.3,
+            "compound": -0.1,
+            "note": "AVOID unless stretchy/gathered. Tent + overwhelm = double negative."
+          },
+          "above_knee": {
+            "petite_score": 0.7,
+            "plus_size_score_range": [
+              0.15,
+              0.5
+            ],
+            "compound": 0.35,
+            "note": "If legs proportionally slim (apple): strong positive."
+          },
+          "three_quarter_sleeve": {
+            "petite_score": 0.6,
+            "plus_size_score": 0.95,
+            "compound": 0.75,
+            "note": "UNIVERSALLY EXCELLENT. Use 'elbow length' garments for correct positioning."
+          },
+          "monochrome_dark": {
+            "petite_score": 0.2,
+            "plus_size_score": 0.25,
+            "compound": 0.25,
+            "note": "Column elongation + genuine slimming. ADD waist definition to prevent block effect."
+          }
+        },
+        "best_strategy": "V-neck at 3.5\" + 'elbow-length' sleeves (actual 3/4) + dark A-line at 2\" above knee + nude heel. Compound: approx +0.60"
+      },
+      "tall_inverted_triangle": {
+        "estimated_prevalence": "4-6% of women",
+        "critical_modifications": {
+          "boat_neck": {
+            "tall_score": 0.55,
+            "inv_triangle_score": -0.85,
+            "compound": -0.55,
+            "note": "STRONGLY AVOID."
+          },
+          "v_neck_medium": {
+            "tall_score": 0.45,
+            "inv_triangle_score": 0.7,
+            "compound": 0.65,
+            "note": "EXCELLENT. V narrows upper body while providing proportional elongation."
+          },
+          "fit_and_flare": {
+            "tall_score": 0.5,
+            "inv_triangle_score": 0.55,
+            "compound": 0.6,
+            "note": "Flare adds hip volume. Tall frame absorbs flare proportionally."
+          },
+          "full_ankle_length_skirt": {
+            "tall_score": 0.4,
+            "inv_triangle_score": 0.3,
+            "compound": 0.4,
+            "note": "Volume of full skirt creates lower-body mass counterbalancing wide upper body."
+          }
+        },
+        "best_strategy": "V-neck medium (+0.65) + raglan/dropped shoulder (-0.50 shoulder reduction) + fit-and-flare wide flare (+0.60). Compound: approx +0.70"
+      },
+      "apple_plus_size": {
+        "estimated_prevalence": "8-12% of women",
+        "critical_modifications": {
+          "wrap_dress": {
+            "apple_score_range": [
+              -0.1,
+              0.2
+            ],
+            "plus_size_score_range": [
+              0.1,
+              0.65
+            ],
+            "compound_range": [
+              -0.1,
+              0.2
+            ],
+            "note": "UNRELIABLE. Only works with: snap closure + stretchy fabric + internal structure."
+          },
+          "above_knee_fitted_top": {
+            "apple_score": 0.6,
+            "plus_size_score": 0.35,
+            "compound": 0.5,
+            "note": "STRONG STRATEGY. Dark fitted (not tight) top + above-knee skirt = hides concern, showcases best asset."
+          },
+          "belt_at_waist": {
+            "apple_score": -0.35,
+            "plus_size_score": -0.2,
+            "compound": -0.3,
+            "note": "AVOID. Belt draws attention to widest circumference."
+          },
+          "monochrome_dark_column": {
+            "apple_score": 0.3,
+            "plus_size_score": 0.25,
+            "compound": 0.3,
+            "note": "EFFECTIVE. Smooths waist-to-hip transition."
+          }
+        },
+        "best_strategy": "V-neck at 3\" + dark structured top with vertical seaming + A-line/straight skirt 2-3\" above knee + 3/4 sleeves. Compound: approx +0.60"
+      }
+    },
+    "critical_reversals": {
+      "total": 15,
+      "description": "Cases where a principle's effect CHANGES SIGN for a body type. Most important entries because they represent active harm when following standard rules.",
+      "reversals": [
+        {
+          "number": 1,
+          "principle": "Boat neck widening",
+          "body_type": "Inverted Triangle",
+          "standard_score": 0.55,
+          "reversed_score": -0.85,
+          "why": "Widens already-wide shoulders to extreme"
+        },
+        {
+          "number": 2,
+          "principle": "Turtleneck shortening",
+          "body_type": "Tall + long neck",
+          "standard_score": -0.5,
+          "reversed_score": 0.75,
+          "why": "Shortens long neck to proportional - desirable"
+        },
+        {
+          "number": 3,
+          "principle": "Below-knee safe zone",
+          "body_type": "Petite (<5'3\")",
+          "standard_score": 0.3,
+          "reversed_score": -0.1,
+          "why": "Safe zone collapses - danger zones overlap"
+        },
+        {
+          "number": 4,
+          "principle": "Midi length",
+          "body_type": "Petite (<5'3\")",
+          "standard_score": 0.15,
+          "reversed_score": -0.35,
+          "why": "Hits widest calf on petite frame"
+        },
+        {
+          "number": 5,
+          "principle": "Puff sleeve widening",
+          "body_type": "Inverted Triangle",
+          "standard_score": 0.8,
+          "reversed_score": -0.9,
+          "why": "Amplifies primary body imbalance"
+        },
+        {
+          "number": 6,
+          "principle": "Dark monochrome slimming",
+          "body_type": "Hourglass",
+          "standard_score": 0.2,
+          "reversed_score": -0.15,
+          "why": "Erases waist definition - shape loss > slimming"
+        },
+        {
+          "number": 7,
+          "principle": "Belt waist definition",
+          "body_type": "Apple (WHR>0.85)",
+          "standard_score": 0.35,
+          "reversed_score": -0.35,
+          "why": "Highlights widest circumference"
+        },
+        {
+          "number": 8,
+          "principle": "Empire waist overall",
+          "body_type": "Hourglass + DD bust",
+          "standard_score": 0.3,
+          "reversed_score": -0.4,
+          "why": "Tent effect + hides best feature (waist)"
+        },
+        {
+          "number": 9,
+          "principle": "Empire waist overall",
+          "body_type": "Plus size + stiff fabric",
+          "standard_score": 0.3,
+          "reversed_score": -0.3,
+          "why": "Tent effect on large bust projection"
+        },
+        {
+          "number": 10,
+          "principle": "Horizontal stripes slimming",
+          "body_type": "Apple / Plus size",
+          "standard_score": 0.05,
+          "reversed_score": -0.15,
+          "why": "Ashida reversal - Helmholtz inverts on wider bodies"
+        },
+        {
+          "number": 11,
+          "principle": "Wrap compound",
+          "body_type": "Apple (WHR>0.92)",
+          "standard_score": 0.5,
+          "reversed_score": -0.1,
+          "why": "Tie adds bulk to widest point"
+        },
+        {
+          "number": 12,
+          "principle": "Cowl bust volume",
+          "body_type": "Hourglass DD+",
+          "standard_score": 0.65,
+          "reversed_score": -0.1,
+          "why": "Adds mass to already-maximal bust"
+        },
+        {
+          "number": 13,
+          "principle": "Fit-and-flare proportion",
+          "body_type": "Pear (low flare origin)",
+          "standard_score": 0.5,
+          "reversed_score": -0.15,
+          "why": "Amplifies hip width instead of balancing"
+        },
+        {
+          "number": 14,
+          "principle": "Cap sleeve widening",
+          "body_type": "Muscular + showcase goal",
+          "standard_score": -0.4,
+          "reversed_score": 0.45,
+          "why": "Frames peak muscle = desirable"
+        },
+        {
+          "number": 15,
+          "principle": "Off-shoulder widening",
+          "body_type": "Inverted Triangle",
+          "standard_score": 0.5,
+          "reversed_score": -0.65,
+          "why": "Same mechanism as boat neck - widens wide shoulders"
+        }
+      ]
+    },
+    "master_lookup_matrix": {
+      "description": "Quick-reference score matrix. Scores for PRIMARY goal per body type.",
+      "legend": {
+        "REVERSAL": "Score changes sign vs. base",
+        "AMPLIFIED": "|score| > base x 1.3",
+        "DIMINISHED": "|score| < base x 0.7",
+        "CONDITIONAL": "Score depends on additional measurements"
+      },
+      "necklines": {
+        "v_neck_elongation": {
+          "base": 0.6,
+          "petite": 0.7,
+          "tall": 0.45,
+          "pear": 0.65,
+          "apple": 0.6,
+          "hourglass": 0.55,
+          "rectangle": 0.65,
+          "inv_triangle": 0.7,
+          "plus_size": "COND_bust"
+        },
+        "boat_neck_widening": {
+          "base": 0.55,
+          "petite": 0.35,
+          "tall": 0.55,
+          "pear": 0.8,
+          "apple": 0.45,
+          "hourglass": "COND",
+          "rectangle": 0.55,
+          "inv_triangle": -0.85,
+          "plus_size": "COND_shape"
+        },
+        "turtleneck_shortening": {
+          "base": -0.5,
+          "petite": -0.85,
+          "tall": 0.75,
+          "pear": -0.45,
+          "apple": -0.55,
+          "hourglass": -0.45,
+          "rectangle": -0.4,
+          "inv_triangle": -0.55,
+          "plus_size": -0.7
+        },
+        "wrap_compound": {
+          "base": 0.5,
+          "petite": 0.55,
+          "tall": 0.4,
+          "pear": 0.6,
+          "apple": "COND_WHR",
+          "hourglass": 0.65,
+          "rectangle": 0.45,
+          "inv_triangle": 0.55,
+          "plus_size": "COND_bust"
+        },
+        "cowl_bust_volume": {
+          "base": 0.65,
+          "petite": 0.55,
+          "tall": 0.75,
+          "pear": 0.8,
+          "apple": 0.3,
+          "hourglass": -0.1,
+          "rectangle": 0.65,
+          "inv_triangle": 0.4,
+          "plus_size": 0.15
+        },
+        "square_angularization": {
+          "base": 0.55,
+          "petite": 0.55,
+          "tall": 0.5,
+          "pear": 0.55,
+          "apple": 0.55,
+          "hourglass": 0.55,
+          "rectangle": 0.55,
+          "inv_triangle": 0.5,
+          "plus_size": 0.55
+        },
+        "off_shoulder_widen": {
+          "base": 0.5,
+          "petite": 0.45,
+          "tall": 0.55,
+          "pear": 0.65,
+          "apple": 0.4,
+          "hourglass": 0.3,
+          "rectangle": 0.5,
+          "inv_triangle": -0.65,
+          "plus_size": "COND_shape"
+        },
+        "sweetheart_enhance": {
+          "base": 0.55,
+          "petite": 0.5,
+          "tall": 0.6,
+          "pear": 0.6,
+          "apple": 0.45,
+          "hourglass": "COND_bust",
+          "rectangle": 0.6,
+          "inv_triangle": 0.45,
+          "plus_size": "COND_bust"
+        }
+      },
+      "sleeves": {
+        "cap_sleeve_widening": {
+          "base": -0.4,
+          "petite": -0.5,
+          "tall": -0.3,
+          "pear": -0.4,
+          "apple": -0.55,
+          "hourglass": -0.4,
+          "rectangle": -0.35,
+          "inv_triangle": -0.55,
+          "plus_size": -0.85
+        },
+        "three_quarter_slimming": {
+          "base": 0.85,
+          "petite": 0.6,
+          "tall": 0.65,
+          "pear": 0.85,
+          "apple": 0.9,
+          "hourglass": 0.85,
+          "rectangle": 0.8,
+          "inv_triangle": 0.8,
+          "plus_size": 0.95
+        },
+        "puff_sleeve_widening": {
+          "base": 0.8,
+          "petite": 0.48,
+          "tall": 0.85,
+          "pear": 0.9,
+          "apple": 0.5,
+          "hourglass": 0.35,
+          "rectangle": 0.7,
+          "inv_triangle": -0.9,
+          "plus_size": "COND_shape"
+        },
+        "flutter_cap_vs_rigid": {
+          "base": 0.2,
+          "petite": 0.15,
+          "tall": 0.25,
+          "pear": 0.2,
+          "apple": 0.15,
+          "hourglass": 0.2,
+          "rectangle": 0.2,
+          "inv_triangle": 0.2,
+          "plus_size": 0.1
+        }
+      },
+      "hemlines": {
+        "above_knee_elongation": {
+          "base": 0.5,
+          "petite": 0.7,
+          "tall": 0.3,
+          "pear": 0.25,
+          "apple": 0.6,
+          "hourglass": 0.5,
+          "rectangle": 0.55,
+          "inv_triangle": 0.55,
+          "plus_size": "COND_legs"
+        },
+        "below_knee_safe_zone": {
+          "base": 0.3,
+          "petite": -0.1,
+          "tall": 0.4,
+          "pear": 0.25,
+          "apple": 0.3,
+          "hourglass": 0.3,
+          "rectangle": 0.25,
+          "inv_triangle": 0.3,
+          "plus_size": "COND_calves"
+        },
+        "midi_length": {
+          "base": 0.15,
+          "petite": -0.35,
+          "tall": 0.3,
+          "pear": 0.1,
+          "apple": 0.2,
+          "hourglass": 0.15,
+          "rectangle": 0.1,
+          "inv_triangle": 0.2,
+          "plus_size": "COND_height"
+        },
+        "ankle_length_elongation": {
+          "base": 0.25,
+          "petite": "COND_vol",
+          "tall": 0.4,
+          "pear": 0.3,
+          "apple": 0.2,
+          "hourglass": 0.25,
+          "rectangle": 0.3,
+          "inv_triangle": 0.3,
+          "plus_size": "COND_height"
+        }
+      },
+      "waist_silhouette": {
+        "empire_waist_elongation": {
+          "base": 0.4,
+          "petite": 0.55,
+          "tall": 0.2,
+          "pear": 0.45,
+          "apple": "COND_tent",
+          "hourglass": "COND_tent",
+          "rectangle": 0.45,
+          "inv_triangle": 0.4,
+          "plus_size": "COND_tent"
+        },
+        "fit_and_flare_proportion": {
+          "base": 0.5,
+          "petite": 0.4,
+          "tall": 0.5,
+          "pear": 0.2,
+          "apple": "COND_fit",
+          "hourglass": 0.55,
+          "rectangle": 0.75,
+          "inv_triangle": 0.55,
+          "plus_size": "COND_shape"
+        },
+        "a_line_hip_skim": {
+          "base": 0.3,
+          "petite": 0.25,
+          "tall": 0.35,
+          "pear": "COND_flare",
+          "apple": 0.3,
+          "hourglass": 0.25,
+          "rectangle": 0.3,
+          "inv_triangle": 0.4,
+          "plus_size": 0.25
+        },
+        "dark_color_slimming": {
+          "base": 0.2,
+          "petite": 0.2,
+          "tall": 0.2,
+          "pear": 0.1,
+          "apple": 0.3,
+          "hourglass": -0.15,
+          "rectangle": 0.25,
+          "inv_triangle": 0.15,
+          "plus_size": 0.25
+        },
+        "belt_waist_definition": {
+          "base": 0.35,
+          "petite": 0.3,
+          "tall": 0.35,
+          "pear": 0.4,
+          "apple": -0.35,
+          "hourglass": 0.45,
+          "rectangle": 0.35,
+          "inv_triangle": 0.3,
+          "plus_size": "COND_WHR"
+        },
+        "horizontal_stripes_slim": {
+          "base": 0.05,
+          "petite": 0.15,
+          "tall": 0.05,
+          "pear": "COND_zone",
+          "apple": -0.15,
+          "hourglass": 0.05,
+          "rectangle": 0.1,
+          "inv_triangle": "COND_zone",
+          "plus_size": -0.15
+        }
+      }
+    }
+  },
+  {
+    "modifier_id": "D3_BTM_P01",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Petite",
+    "modifier": "All sheen x1.15-1.25",
+    "reason": "Proportional dominance - bust/hip occupy larger % of frame",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "113-124"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_tall",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Tall",
+    "modifier": "All sheen x0.80-0.90",
+    "reason": "Distributed over larger area, gentler curves",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_pear",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Pear",
+    "modifier": "Hip sheen MAXIMUM (+0.28-0.33), bust sheen minimal",
+    "reason": "Curvature concentrated at hip",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_apple",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Apple",
+    "modifier": "Belly sheen EXTREME (+0.42-0.70)",
+    "reason": "Steepest anterior curvature at belly apex",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_hourglass",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Hourglass",
+    "modifier": "REVERSAL at waist: sheen REDUCES waist width (-0.03 to -0.08)",
+    "reason": "Concave waist picks up shadow not highlight",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_rectangle",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Rectangle",
+    "modifier": "Sheen DISAPPEARS (+0.03-0.08 all zones)",
+    "reason": "Curvature too low to generate highlight gradients",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_inverted_triangle",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Inverted Triangle",
+    "modifier": "Shoulder/bust +0.15-0.25, hip +0.05-0.08",
+    "reason": "Amplifies already-wide upper body",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_plus",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Plus Size",
+    "modifier": "All sheen x1.3-1.6, ADD upper arm zone (+0.15-0.28)",
+    "reason": "More surface area + often-overlooked arm highlights",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P02_apple",
+    "principle": "Cling Threshold",
+    "body_type": "Apple",
+    "modifier": "Effective front ease = max(0, total_ease - belly_projection x 0.8). Apple belly ALWAYS clings in fluid garments.",
+    "reason": "Belly consumes front ease while leaving surplus at sides/back",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "173-188"
+  },
+  {
+    "modifier_id": "D3_BTM_P02_hourglass",
+    "principle": "Cling Threshold",
+    "body_type": "Hourglass",
+    "modifier": "Sizing paradox: size for bust/hip -> 8-14\" excess waist ease -> boxy. Size for waist -> 45-65% cling demand at bust/hip.",
+    "reason": "No single size fits in non-stretch garments",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "192-199"
+  },
+  {
+    "modifier_id": "D3_BTM_P02_plus",
+    "principle": "Cling Threshold",
+    "body_type": "Plus Size",
+    "modifier": "Higher circumferences + steeper curvature rates = lower thresholds at ALL zones. Upper arm becomes significant cling zone (14-20\" circ). 3+ cling zones = strong size-up recommendation.",
+    "reason": "Compound effect of larger circumferences",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "201-211"
+  },
+  {
+    "modifier_id": "D3_BTM_P04_hourglass",
+    "principle": "Fabric Weight/Structure Volume",
+    "body_type": "Hourglass",
+    "modifier": "Structure at waist: proportion_erosion +0.15-0.25. Moderate cling BETTER than structure.",
+    "reason": "Structure fills concave waist = erases hourglass shape",
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "271-281"
+  },
+  {
+    "modifier_id": "D3_BTM_P04_apple",
+    "principle": "Fabric Weight/Structure Volume",
+    "body_type": "Apple",
+    "modifier": "Structured fabric CAN bridge over belly IF projection < bridging_capacity. Below capacity: structure HELPS. Above capacity: structure HURTS.",
+    "bridging_formula": "bridging_capacity = (6 - drape) x 0.8 inches",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "283-297"
+  },
+  {
+    "modifier_id": "D3_BTM_P04_petite",
+    "principle": "Fabric Weight/Structure Volume",
+    "body_type": "Petite",
+    "modifier": "Heavy-but-fluid (drape 7+, gsm 200+) in full-length garments REVERSES. Elongation bonus: -0.05 to -0.12 outweighs overwhelm penalty.",
+    "reason": "Heavy fluid in maxi creates unbroken vertical fall lines",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "298-304"
+  },
+  {
+    "body_type": "petite",
+    "definition": "< 160cm / 5'3\"",
+    "scoring_profile": "Dominated by HEIGHT MANAGEMENT. Everything preserving vertical continuity helps. Everything breaking the vertical line or overwhelming the frame hurts.",
+    "top_benefits": [
+      "Rise elongation +0.20 (amplified x1.3)",
+      "Monochrome column +0.15 (amplified)",
+      "A-line +0.15 (if ER <= 0.12)"
+    ],
+    "top_dangers": [
+      "Tent -0.35 (REVERSED)",
+      "Color break -0.18 (amplified penalty)",
+      "Full A-line -0.15 (ER > 0.12 overwhelms frame)"
+    ],
+    "critical_notes": "V-neck + high rise on short torso = -0.05 (conflicting attention direction). High rise + narrow rigid waistband on short torso = -0.30 (INVERTED). Dark monochrome is the single safest recommendation for petite.",
+    "principle_modifiers": {
+      "horizontal_stripes": "+0.05 (amplified on small frames)",
+      "dark_slimming_all_over": "x0.6 (height collapse)",
+      "dark_slimming_zone": "x0.9 (mild reduction)",
+      "rise_elongation_long_torso": "x1.5 (maximum benefit)",
+      "rise_elongation_proportional": "x1.3",
+      "rise_elongation_short_torso": "INVERTED to -0.30",
+      "aline_subtle": "+0.05",
+      "aline_full_ER_gt_0_12": "-0.15 (overwhelms frame)",
+      "tent_concealment": "-0.15 (fabric overwhelms frame)",
+      "color_break": "x1.5 penalty",
+      "monochrome_column": "+0.15 (AMPLIFIED)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.1"
+  },
+  {
+    "body_type": "tall",
+    "definition": "> 173cm / 5'8\"",
+    "scoring_profile": "EASIEST body type to dress. Almost nothing reverses. Height absorbs volume, making tent silhouettes less damaging and color breaks less costly.",
+    "top_benefits": [
+      "A-line +0.35 (amplified)",
+      "Dark slimming +0.18 (amplified lean silhouette)",
+      "Matte +0.10"
+    ],
+    "top_dangers": [
+      "Bodycon -0.10 only",
+      "Monochrome column +0.03 (diminishing returns)",
+      "Color breaks and proportion variation actually welcome"
+    ],
+    "principle_modifiers": {
+      "dark_slimming": "x1.2 (amplified)",
+      "rise_elongation": "x0.5 (diminishing returns)",
+      "aline": "+0.10 (carries volume elegantly)",
+      "tent_concealment": "+0.10 (carries volume, penalty reduced)",
+      "color_break": "x0.3 (can afford shortening)",
+      "vneck": "+0.05 (diminishing returns)",
+      "monochrome_column": "+0.03 (doesn't need height)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.2"
+  },
+  {
+    "body_type": "pear",
+    "definition": "Hip wider than shoulder by 2+ inches",
+    "scoring_profile": "Demands ZONE AWARENESS. Dark/matte below waist, lighter/brighter above. Zone-split principle is strongest here.",
+    "top_benefits": [
+      "A-line +0.30 (if drapey fabric)",
+      "Dark slimming +0.15 (lower body)",
+      "Matte +0.15 (hip zone)"
+    ],
+    "top_dangers": [
+      "Bodycon -0.30",
+      "Tent -0.15",
+      "Color break -0.10",
+      "A-line with stiff fabric INVERTS to -0.10 (shelf effect)"
+    ],
+    "critical_zone_split": {
+      "h_stripes_upper": "+0.08 (adds shoulder width)",
+      "h_stripes_lower": "-0.05 (attention to hips)",
+      "dark_lower": "+0.18",
+      "dark_upper": "+0.05 (wasted opportunity)"
+    },
+    "principle_modifiers": {
+      "horizontal_stripes_top": "+0.08",
+      "horizontal_stripes_bottom": "-0.05",
+      "aline_drapey": "+0.05",
+      "aline_stiff": "INVERTED (shelf effect)",
+      "bodycon_thin": "-0.30",
+      "bodycon_structured": "-0.09",
+      "matte_hip": "x1.3",
+      "vneck": "+0.10 (attention upward)",
+      "monochrome_dark": "+0.12",
+      "color_break_narrow_waist": "+0.05",
+      "color_break_moderate_waist": "-0.10",
+      "hem_mid_thigh": "-0.10 (frames widest thigh)",
+      "hem_knee": "+0.05 (frames narrowing)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.3"
+  },
+  {
+    "body_type": "apple",
+    "definition": "Waist circumference close to or exceeding hip circumference, belly projection >= 2",
+    "scoring_profile": "MOST CONDITIONAL cells (5 of 10). Almost every principle requires a secondary attribute check. Apple scoring without fabric data is unreliable.",
+    "top_benefits": [
+      "A-line +0.20 (empire start = +0.25, hip start = +0.05)",
+      "Matte +0.18 (convex midsection = max specular suppression)",
+      "Dark +0.15"
+    ],
+    "top_dangers": [
+      "Bodycon -0.40 (canonical worst case)",
+      "Color break -0.25 (spotlights widest circumference)",
+      "Tent -0.12"
+    ],
+    "critical_conditionals": {
+      "rise": "Depends on waistband construction: wide elastic +0.15, narrow rigid -0.25",
+      "dark": "Depends on fabric sheen: matte +0.20, shiny -0.15",
+      "aline": "Depends on flare start point",
+      "matte": "Depends on cling risk"
+    },
+    "principle_modifiers": {
+      "horizontal_stripes_covers_waist": "-0.05",
+      "dark_matte": "+0.20",
+      "dark_shiny": "-0.15",
+      "rise_wide_elastic": "+0.10 (smooth containment)",
+      "rise_narrow_rigid": "OVERRIDE -0.25 (muffin top)",
+      "aline_empire": "+0.25",
+      "aline_hip": "+0.05",
+      "tent": "-0.12",
+      "color_break": "-0.25 (spotlights widest zone)",
+      "bodycon_thin": "-0.40",
+      "bodycon_structured": "-0.12",
+      "bodycon_athletic": "+0.20 (EXCEPTION)",
+      "matte": "x1.5 (convex midsection)",
+      "matte_cling_trap": "-0.12 (OVERRIDE)",
+      "vneck": "+0.10 (redirects from belly)",
+      "monochrome": "+0.08",
+      "monochrome_dark": "+0.15"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.4"
+  },
+  {
+    "body_type": "hourglass",
+    "definition": "Bust-waist diff >= 7 AND hip-waist diff >= 7 AND shoulder-hip ratio 0.85-1.15",
+    "scoring_profile": "MOST EXCEPTION-RICH body type. Three full reversals. Generic engine gives WRONG recommendation on 3 of 10 principles. Philosophy: REVEAL curves, DEFINE waist, NEVER hide shape.",
+    "top_benefits": [
+      "Bodycon +0.30 (REVERSED from standard)",
+      "Color break +0.20 (REVERSED)",
+      "A-line +0.20"
+    ],
+    "top_dangers": [
+      "Tent -0.40 (REVERSED - strongest negative in engine)",
+      "Monochrome +0.03 (missed opportunity to highlight waist)"
+    ],
+    "critical_notes": "Hourglass + monochrome + belt = +0.12 (best of both worlds). Hourglass + moderate sheen (SI 0.35-0.55) = +0.05 (enhances curves). Hourglass + belly concern: bodycon reduced by -0.15 offset.",
+    "full_reversals": [
+      "Bodycon: standard -0.10 -> actual +0.30 (contours = best feature)",
+      "Color break: standard -0.10 -> actual +0.20 (belt highlights narrow waist)",
+      "Tent: standard +0.35 -> actual -0.40 (destroys WHR asset)"
+    ],
+    "principle_modifiers": {
+      "horizontal_stripes": "+0.03 (standard effect)",
+      "dark_slimming": "x0.7 (flattens curves)",
+      "rise_high": "+0.03 (smooth waist-to-hip line)",
+      "aline": "+0.05 (curve follow)",
+      "tent": "-0.20 additional (destroys WHR asset, perceived WHR 0.70 -> 0.90)",
+      "tent_semi_fitted": "+0.05 (slightly masks curves)",
+      "color_break_standard_belt": "+0.20 (REVERSAL: highlights narrow waist)",
+      "color_break_wide_belt": "+0.25",
+      "bodycon_thin": "+0.30 (REVERSAL: contours = best feature)",
+      "bodycon_structured": "+0.35 (enhanced curve display)",
+      "bodycon_belly_concern": "-0.15 offset",
+      "matte": "x0.5 (slight sheen follows curves)",
+      "moderate_sheen_SI_035_055": "+0.05 (curves enhanced)",
+      "vneck": "+0.12 (frames bust, directs to waist)",
+      "monochrome": "+0.03 (flattens waist-hip)",
+      "monochrome_plus_belt": "+0.12 (best of both worlds)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.5"
+  },
+  {
+    "body_type": "rectangle",
+    "definition": "Bust-waist diff < 5 AND hip-waist diff < 5",
+    "scoring_profile": "SECOND EASIEST body type. Nothing reverses. Challenge is creating shape where no natural curve exists. Fit-and-flare dramatically outperforms straight silhouettes.",
+    "top_benefits": [
+      "Dark +0.15",
+      "Rise +0.10",
+      "A-line +0.10",
+      "Fit-and-flare from hip +0.25",
+      "Belt at true narrowest point +0.05 (creates waist definition)"
+    ],
+    "top_dangers": [
+      "Tent -0.08 only",
+      "Bodycon = 0.00 (neutral: reveals straight silhouette)"
+    ],
+    "principle_modifiers": {
+      "horizontal_stripes": "+0.05 (adds visual interest)",
+      "v_stripes_torso": "+0.03 (adds desired shoulder width)",
+      "bodycon": "0.00 (neutral)",
+      "tent": "+0.05 (less curve to hide, reduced penalty)",
+      "color_break": "+0.05 (creates waist definition)",
+      "vneck_boat": "+0.08 (adds desired shoulder width)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.6"
+  },
+  {
+    "body_type": "inverted_triangle",
+    "definition": "Shoulder-hip ratio > 1.15 AND bust-waist > hip-waist + 2",
+    "scoring_profile": "MOST ZONE-SPLIT logic. Everything minimizing upper and maximizing lower helps. Dark upper + light lower, matte upper + sheen lower, V-neck upper + A-line lower.",
+    "top_benefits": [
+      "A-line +0.40 (HIGHEST single-cell benefit in entire matrix)",
+      "Dark upper +0.20",
+      "V-neck +0.18"
+    ],
+    "top_dangers": [
+      "Tent -0.20 (lampshade)",
+      "Bodycon full-body -0.15",
+      "Boat neck -0.15 (WORST neckline, widens shoulders)"
+    ],
+    "principle_modifiers": {
+      "h_stripes_top": "-0.12 (attention to broad shoulders)",
+      "h_stripes_bottom": "+0.10 (adds hip volume)",
+      "dark_upper": "x1.4 (maximum shoulder reduction)",
+      "v_stripes_lower": "-0.08 (thins already-narrow hips)",
+      "aline": "+0.15 (maximum A-line benefit)",
+      "tent": "-0.10 (hangs from widest point = lampshade)",
+      "color_break": "+0.08 (draws eye to waist, away from shoulders)",
+      "bodycon_full": "-0.15 (amplifies shoulder-hip differential)",
+      "bodycon_lower_only": "-0.05 (narrow hips visible)",
+      "bodycon_top": "-0.10 (maps broad shoulders)",
+      "matte_upper": "x1.2 (reduce shoulder highlights)",
+      "vneck": "+0.18 (narrows visual shoulder line)",
+      "vneck_boat": "-0.15 (widens shoulders)",
+      "vneck_turtleneck": "-0.05 (adds mass to upper body)",
+      "monochrome": "+0.05 (misses dark-top-light-bottom opportunity)",
+      "dark_top_light_bottom": "+0.15 (better than monochrome)",
+      "rise_high_slim_leg": "x0.6 (elongates thin legs)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.7"
+  },
+  {
+    "body_type": "plus_size",
+    "definition": "BMI 30+ or body_build == 'plus'",
+    "scoring_profile": "MOST CONDITIONAL cells tied with apple (5 of 10). Recurring theme: structured vs. unstructured. Every silhouette label needs a fabric construction qualifier.",
+    "top_benefits": [
+      "Matte +0.18",
+      "Dark +0.15",
+      "A-line +0.15 (all conditional on fabric)",
+      "Dark monochrome column = most reliable single recommendation"
+    ],
+    "top_dangers": [
+      "Tent -0.30 (REVERSED)",
+      "Bodycon -0.30 (thin jersey) to -0.05 (structured)",
+      "Color break -0.15"
+    ],
+    "critical_notes": "Matte + structured = +0.22. Matte + clingy thin jersey = -0.15 (CLING TRAP). Bodycon in thin jersey = -0.40. Bodycon in scuba = -0.05. Same label, opposite outcomes. Engine REQUIRES fabric construction data (GSM, stretch %, drape coefficient).",
+    "principle_modifiers": {
+      "horizontal_stripes": "-0.08 (Ashida nullification/reversal)",
+      "wide_stripes_gt_2cm": "-0.05 (measurement markers)",
+      "dark_matte": "+0.15",
+      "dark_shiny": "specular penalty amplified x1.5",
+      "tent": "-0.10 (max absolute size overestimate)",
+      "tent_semi_fitted_structured": "+0.20 (smooth containment)",
+      "bodycon_thin_jersey": "-0.40 (second-skin effect)",
+      "bodycon_structured_scuba": "-0.05 (sculpts rather than maps)",
+      "matte": "x1.5 (more convex surface area)",
+      "matte_cling_trap": "-0.15 (OVERRIDE: second skin)",
+      "color_break_belly_concern": "-0.20 (belt at widest zone)",
+      "color_break_no_belly": "+0.05 (belt creates waist)",
+      "monochrome": "+0.10",
+      "monochrome_dark": "+0.18 (most reliable combo)",
+      "aline_stiff": "shelf effect amplified x1.5"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "5.8"
+  },
+  {
+    "modifier_type": "positive_principles_matrix",
+    "description": "Body-type modifiers for the 10 positive principles (7 scored in matrix, 3 handled internally). Each cell is a multiplier applied to the raw principle score.",
+    "matrix": {
+      "monochromatic_column": {
+        "petite": 1.2,
+        "tall": 0.7,
+        "pear": 1.1,
+        "apple": 1.15,
+        "hourglass": 0.9,
+        "rectangle": 1.1,
+        "inverted_triangle": 0.8,
+        "plus": "1.20 (dark) / 0.36 (bright)"
+      },
+      "waist_elevation": {
+        "petite": 1.15,
+        "tall": 0.6,
+        "pear": 1.25,
+        "apple": "0.70 (drops to 0.45 with DD+ + short torso)",
+        "hourglass": 1.1,
+        "rectangle": 1.0,
+        "inverted_triangle": 0.8,
+        "plus": 0.85
+      },
+      "v_neckline": {
+        "petite": 1.15,
+        "tall": 0.6,
+        "pear": 1.25,
+        "apple": "1.20 (normal bust) / 0.60 (DD+)",
+        "hourglass": 1.0,
+        "rectangle": 1.15,
+        "inverted_triangle": 0.4,
+        "plus": 0.9
+      },
+      "slim_fit": {
+        "petite": 1.2,
+        "tall": 0.7,
+        "pear": "zone-specific",
+        "apple": "zone-specific",
+        "hourglass": 1.15,
+        "rectangle": 0.95,
+        "inverted_triangle": "zone-specific",
+        "plus": 0.8
+      },
+      "nude_shoes": {
+        "petite": 1.25,
+        "tall": 0.5,
+        "pear": 1.15,
+        "apple": 1.0,
+        "hourglass": 1.0,
+        "rectangle": 1.0,
+        "inverted_triangle": 0.7,
+        "plus": 1.15
+      },
+      "vertical_stripes": {
+        "petite": 1.0,
+        "tall": 0.5,
+        "pear": "0.60 (bottom: 0.30)",
+        "apple": 0.6,
+        "hourglass": 0.7,
+        "rectangle": 1.2,
+        "inverted_triangle": 0.5,
+        "plus": -0.3
+      },
+      "vertical_seams": {
+        "petite": 1.1,
+        "tall": 0.6,
+        "pear": 1.0,
+        "apple": 1.0,
+        "hourglass": 1.0,
+        "rectangle": 1.1,
+        "inverted_triangle": 0.8,
+        "plus": 0.65
+      }
+    },
+    "footnotes": {
+      "plus_monochromatic": "Plus: 1.20 for dark; 0.36 for bright (compound: 1.20 x 0.30)",
+      "apple_v_neckline": "Apple: 1.20 for normal bust; 0.60 for DD+",
+      "slim_fit_zone_specific": "Slim fit has zone-specific overrides (see zone_overrides)"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1362-1376"
+  },
+  {
+    "modifier_type": "sabotage_penalties_matrix",
+    "description": "Body-type modifiers for the 13 sabotage penalties (8 scored in matrix, 5 with internal handling). Each cell is a multiplier applied to the raw penalty.",
+    "matrix": {
+      "color_break": {
+        "petite": 1.3,
+        "tall": 0.65,
+        "pear": 1.35,
+        "apple": "1.20 (at hip: 1.40)",
+        "hourglass": 1.0,
+        "rectangle": 0.8,
+        "inverted_triangle": 0.75,
+        "plus": 1.3
+      },
+      "hemline_midi": {
+        "petite": 1.35,
+        "tall": 0.55,
+        "pear": 1.25,
+        "apple": 0.9,
+        "hourglass": 1.0,
+        "rectangle": 0.85,
+        "inverted_triangle": 0.8,
+        "plus": 1.25
+      },
+      "ankle_strap": {
+        "petite": 1.3,
+        "tall": 0.5,
+        "pear": 1.15,
+        "apple": 0.8,
+        "hourglass": 1.0,
+        "rectangle": 0.9,
+        "inverted_triangle": 0.75,
+        "plus": 1.25
+      },
+      "waist_depression": "ratio-dependent modifier (0.30 to 1.80) built into function, not matrix",
+      "oversized": {
+        "petite": 1.4,
+        "tall": 0.5,
+        "pear": 0.85,
+        "apple": 1.05,
+        "hourglass": 1.15,
+        "rectangle": 0.75,
+        "inverted_triangle": 0.85,
+        "plus": 1.25
+      },
+      "belt_segmentation": {
+        "petite": 1.25,
+        "tall": 0.6,
+        "pear": 1.1,
+        "apple": 1.3,
+        "hourglass": 0.65,
+        "rectangle": 1.1,
+        "inverted_triangle": 0.7,
+        "plus": 1.2
+      },
+      "cuff": {
+        "petite": 1.3,
+        "tall": 0.3,
+        "pear": 1.1,
+        "apple": 0.9,
+        "hourglass": 1.0,
+        "rectangle": 0.9,
+        "inverted_triangle": 0.85,
+        "plus": 1.15
+      },
+      "print_scale": {
+        "petite": 1.4,
+        "tall": 0.4,
+        "pear": 1.0,
+        "apple": 1.0,
+        "hourglass": 1.0,
+        "rectangle": 1.0,
+        "inverted_triangle": 1.0,
+        "plus": 1.1
+      }
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1378-1391"
+  },
+  {
+    "modifier_type": "slim_fit_zone_overrides",
+    "description": "Slim fit has different effects on different garment zones for certain body types.",
+    "overrides": {
+      "petite": {
+        "top": 1.2,
+        "bottom": 1.2
+      },
+      "tall": {
+        "top": 0.7,
+        "bottom": 0.7
+      },
+      "pear": {
+        "top": 1.3,
+        "bottom": 0.6
+      },
+      "apple": {
+        "top": 0.4,
+        "bottom": 1.2
+      },
+      "hourglass": {
+        "top": 1.15,
+        "bottom": 1.15
+      },
+      "rectangle": {
+        "top": 0.95,
+        "bottom": 0.95
+      },
+      "inverted_triangle": {
+        "top": 0.5,
+        "bottom": 1.3
+      },
+      "plus": {
+        "top": 0.8,
+        "bottom": 0.8
+      }
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "665-678"
+  },
+  {
+    "modifier_type": "zone_specific_overrides",
+    "description": "When a principle has different effects on different garment zones for a given body type.",
+    "overrides": {
+      "pear_slim_fit_top": 1.3,
+      "pear_slim_fit_bottom": 0.6,
+      "apple_slim_fit_top": 0.4,
+      "apple_slim_fit_bottom": 1.2,
+      "inverted_triangle_slim_fit_top": 0.5,
+      "inverted_triangle_slim_fit_bottom": 1.3,
+      "inverted_triangle_oversized_top": 1.3,
+      "inverted_triangle_oversized_bottom": 0.5,
+      "pear_oversized_top": 0.6,
+      "pear_oversized_bottom": 1.3,
+      "apple_oversized_top": 1.25,
+      "apple_oversized_bottom": 0.7,
+      "pear_vertical_stripes_top": 1.0,
+      "pear_vertical_stripes_bottom": 0.3,
+      "apple_color_break_at_high_waist": 0.9,
+      "apple_color_break_at_hip": 1.4
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1397-1415"
+  },
+  {
+    "modifier_type": "compound_body_type_examples",
+    "description": "Worked examples showing how compound body types multiply modifiers.",
+    "examples": [
+      {
+        "body_type": "Petite + Pear (5'1\", hip 40\", shoulder 36\")",
+        "key_modifiers": {
+          "color_break": "1.30 x 1.35 = 1.76 (highest penalty in system)",
+          "monochromatic_column": "1.20 x 1.10 = 1.32 (highest benefit in system)",
+          "midi_hemline": "1.35 x 1.25 = 1.69 (devastating)"
+        },
+        "priority": "Dark monochromatic > just-above-knee > skin-matching shoes > high-waist IF ratio allows"
+      },
+      {
+        "body_type": "Petite + Apple + Plus (5'0\", waist 38\", hip 40\")",
+        "key_modifiers": {
+          "color_break": "1.30 x 1.20 x 1.30 = 2.03 (MAXIMUM system penalty)",
+          "vertical_stripes": "1.00 x 0.60 x -0.30 = -0.18 (REVERSED)",
+          "dark_monochromatic": "1.20 x 1.15 x 1.20 = 1.66 (highest benefit)"
+        },
+        "rules": "NEVER recommend vertical stripes. NEVER recommend bright monochromatic. Dark monochromatic is NON-NEGOTIABLE."
+      },
+      {
+        "body_type": "Tall + Inverted Triangle (5'10\", shoulder 42\", hip 36\")",
+        "key_modifiers": {
+          "color_break": "0.65 x 0.75 = 0.49 (barely half baseline)",
+          "v_neck": "0.60 x 0.40 = 0.24 (effectively nullified)"
+        },
+        "priority": "Maximum styling freedom for height. Focus on proportion BALANCE rather than elongation."
+      }
+    ],
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1418-1437"
+  },
+  {
+    "modifier_type": "body_type_detection",
+    "description": "Detection thresholds for classifying users into body types. A user can be multiple types simultaneously.",
+    "thresholds": {
+      "petite": "height < 63\" (5'3\")",
+      "tall": "height > 68\" (5'8\")",
+      "pear": "hip_width > shoulder_width + 2\"",
+      "inverted_triangle": "shoulder_width > hip_width + 2\"",
+      "apple": "waist_width >= hip_width - 1\"",
+      "rectangle": "hip-waist diff < 3\" AND shoulder-hip diff < 2\"",
+      "hourglass": "hip-waist diff >= 8\" AND shoulder-hip diff < 3\"",
+      "plus": "BMI > 30 or body_build == 'plus'"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1348-1358"
+  },
+  {
+    "modifier_id": "BM_D6_001",
+    "principle_id": "P_D6_001",
+    "body_type": "PETITE",
+    "modifier_value": -0.04,
+    "modifier_type": "tall_penalty",
+    "explanation": "P1 Dark Luminance: DIMINISHED. Slim +0.10, Tall -0.04. Dark recession subtracts height. Cap at L* 15. Suggest navy/charcoal (L* 18-25) over pure black.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_002",
+    "principle_id": "P_D6_002",
+    "body_type": "PETITE",
+    "modifier_value": 1.3,
+    "modifier_type": "tall_multiplier",
+    "explanation": "P2 H-Stripes: ENHANCED. Tall x1.30. Stripe spatial frequency higher on smaller body. Only if WHR < 0.85. Narrow stripes (<5% torso width) required.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_003",
+    "principle_id": "P_D6_003",
+    "body_type": "PETITE",
+    "modifier_value": 1.3,
+    "modifier_type": "tall_multiplier",
+    "explanation": "P3 V-Stripes: ENHANCED tall. Tall x1.30. Elongation proportionally larger % of total height. YES for tall-priority. NO for slim-priority.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_004",
+    "principle_id": "P_D6_004",
+    "body_type": "PETITE",
+    "modifier_value": 1.4,
+    "modifier_type": "tall_multiplier",
+    "explanation": "P4 High Rise: MAX BENEFIT. Tall x1.40 (+0.21). Each inch of rise is larger % of total height. CHECK TLR: if < 0.52 (short torso): OVERRIDE -> tall = 0.00.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_005",
+    "principle_id": "P_D6_005",
+    "body_type": "PETITE",
+    "modifier_value": 1.2,
+    "modifier_type": "tall_multiplier",
+    "explanation": "P5 V-Neck: ENHANCED. Tall x1.20. V proportionally larger opening on smaller frame. Critical if short neck.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_006",
+    "principle_id": "P_D6_006",
+    "body_type": "PETITE",
+    "modifier_value": 1.4,
+    "modifier_type": "tall_multiplier",
+    "explanation": "P6 Monochrome: MAX BENEFIT. Tall x1.40 (+0.124 net). Each color break is larger % of height on petite. SINGLE MOST VALUABLE TECHNIQUE for petite.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_007",
+    "principle_id": "P_D6_007",
+    "body_type": "PETITE",
+    "modifier_value": 20.0,
+    "modifier_type": "max_angle_degrees",
+    "explanation": "P7 A-Line: CONDITIONAL. Max angle 20 degrees. Volume shortens petite disproportionately. Circle skirt PROHIBITED. Structured fabric only.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_008",
+    "principle_id": "P_D6_008",
+    "body_type": "PETITE",
+    "modifier_value": -1.0,
+    "modifier_type": "prohibition",
+    "explanation": "P8 Belt: RISKY. Width > 1.5 inches: PROHIBITED. Belt proportionally wider on petite frame. Tone-on-tone narrow ONLY. Wide contrasting belt = worst single item.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_009",
+    "principle_id": "P_D6_009",
+    "body_type": "PETITE",
+    "modifier_value": 0.1,
+    "modifier_type": "score_additive",
+    "explanation": "P9 Side Panels: Enhanced. Standard (+0.10). Proportional. Works normally.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_010",
+    "principle_id": "P_D6_010",
+    "body_type": "PETITE",
+    "modifier_value": 0.0,
+    "modifier_type": "neutral",
+    "explanation": "P10 Bodycon: Neutral. Standard. No specific petite interaction. Score by body shape, not height.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_011",
+    "principle_id": "P_D6_011",
+    "body_type": "PETITE",
+    "modifier_value": 1.3,
+    "modifier_type": "tall_negative_multiplier",
+    "explanation": "P11 Turtleneck: NEGATIVE. Tall x1.30 (amplified negative). Closes limited vertical column. One of worst necklines for petite. V-neck strictly dominates.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_012",
+    "principle_id": "P_D6_001",
+    "body_type": "APPLE",
+    "modifier_value": 1.3,
+    "modifier_type": "slim_multiplier",
+    "explanation": "P1 Dark: STRONGLY ENHANCED. Slim x1.30 (+0.16). HIGHEST-IMPACT single variable in entire system for apple. Matte NON-NEGOTIABLE.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_013",
+    "principle_id": "P_D6_002",
+    "body_type": "APPLE",
+    "modifier_value": -0.06,
+    "modifier_type": "reversal",
+    "explanation": "P2 H-Stripes: REVERSAL. WHR >0.92: slim = -0.06. Ashida zone: stripes become measurement lines. HIGHEST-RISK body type. NEVER H-stripes for WHR > 0.92.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_014",
+    "principle_id": "P_D6_003",
+    "body_type": "APPLE",
+    "modifier_value": -0.03,
+    "modifier_type": "slim_penalty",
+    "explanation": "P3 V-Stripes: Diminished. Slim -0.03. Widening at midsection. Solid dark strictly dominates.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_015",
+    "principle_id": "P_D6_004",
+    "body_type": "APPLE",
+    "modifier_value": 0.0,
+    "modifier_type": "complex_fit_dependent",
+    "explanation": "P4 High Rise: COMPLEX. +0.04 or -0.06 (FIT-DEPENDENT). If on belly: muffin top. If above belly: good. FIT_QUALITY gate critical. High rise ONLY if fit confirmed. Mid rise (9-10 inches) as safe default.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_016",
+    "principle_id": "P_D6_005",
+    "body_type": "APPLE",
+    "modifier_value": 0.01,
+    "modifier_type": "slim_bonus",
+    "explanation": "P5 V-Neck: Enhanced. Slim +0.01 bonus. Vertical corridor through midsection. Moderate V (3-5 inches). NOT deep V on large bust.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_017",
+    "principle_id": "P_D6_006",
+    "body_type": "APPLE",
+    "modifier_value": 1.2,
+    "modifier_type": "slim_multiplier",
+    "explanation": "P6 Monochrome: STRONGLY ENHANCED. Slim x1.20 (+0.108). Continuous column THROUGH midsection. Any horizontal break AT midsection = catastrophic.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_018",
+    "principle_id": "P_D6_007",
+    "body_type": "APPLE",
+    "modifier_value": 0.04,
+    "modifier_type": "slim_reduced",
+    "explanation": "P7 A-Line: REDUCED. Slim +0.04. Doesn't address midsection. Only helpful if flare starts BELOW midsection. Empire A-line WORSE (tent).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_019",
+    "principle_id": "P_D6_008",
+    "body_type": "APPLE",
+    "modifier_value": -0.04,
+    "modifier_type": "dangerous",
+    "explanation": "P8 Belt: DANGEROUS. +0.02 to -0.04. Belt at waist = belt at WIDEST AREA. Contrasting/wide: NEGATIVE. Beltless safer default.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_020",
+    "principle_id": "P_D6_009",
+    "body_type": "APPLE",
+    "modifier_value": 1.4,
+    "modifier_type": "slim_multiplier",
+    "explanation": "P9 Side Panels: MAX BENEFIT. Slim x1.40 (+0.14). Dark flanks contract midsection area. Side panels + lighter center = waist illusion. OPTIMAL technique.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_021",
+    "principle_id": "P_D6_010",
+    "body_type": "APPLE",
+    "modifier_value": -0.08,
+    "modifier_type": "max_negative",
+    "explanation": "P10 Bodycon: MAX NEGATIVE. Slim = -0.08. Maps midsection as widest feature. COMPRESSION_VIOLATION override. Structured column (+0.12) strictly dominates.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_022",
+    "principle_id": "P_D6_011",
+    "body_type": "APPLE",
+    "modifier_value": -0.04,
+    "modifier_type": "slim_penalty",
+    "explanation": "P11 Turtleneck: Negative. Slim -0.04. Unbroken surface from neck to bust = dome effect. V-neck creates moderating shadow. Strictly dominant.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_023",
+    "principle_id": "P_D6_001",
+    "body_type": "PEAR",
+    "modifier_value": 1.0,
+    "modifier_type": "standard_enhanced",
+    "explanation": "P1 Dark: Enhanced. Standard. Contracts lower body. Dark monochrome preferred over color-blocked.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_024",
+    "principle_id": "P_D6_002",
+    "body_type": "PEAR",
+    "modifier_value": 0.0,
+    "modifier_type": "zone_specific",
+    "explanation": "P2 H-Stripes: ZONE-SPECIFIC. Torso: +0.04. Hips: -0.02. Hip-region stripes approach Ashida zone. H-striped TOP + solid dark BOTTOM. Never H-stripes on lower body.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_025",
+    "principle_id": "P_D6_003",
+    "body_type": "PEAR",
+    "modifier_value": 1.5,
+    "modifier_type": "slim_negative_multiplier_at_hips",
+    "explanation": "P3 V-Stripes: NEGATIVE on lower. Slim x1.50 at hips. Widening at widest point. V-stripes on upper body only (adds shoulder width = good for balance).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_026",
+    "principle_id": "P_D6_004",
+    "body_type": "PEAR",
+    "modifier_value": 0.18,
+    "modifier_type": "score_enhanced",
+    "explanation": "P4 High Rise: ENHANCED. +0.18 net. Covers hip-waist transition at narrowest point. BUT: if pant tight at hip, stress lines reveal hip width.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_027",
+    "principle_id": "P_D6_005",
+    "body_type": "PEAR",
+    "modifier_value": 0.12,
+    "modifier_type": "score_enhanced",
+    "explanation": "P5 V-Neck: ENHANCED. +0.09 + attention +0.03. Draws eye upward away from hips. Moderate to deep V (4-6 inches). Wider angle adds shoulder width.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_028",
+    "principle_id": "P_D6_006",
+    "body_type": "PEAR",
+    "modifier_value": 0.15,
+    "modifier_type": "swing_vs_alternative",
+    "explanation": "P6 Monochrome: CRITICALLY IMPORTANT. +0.15 swing vs. color-blocked. Monochrome STRICTLY DOMINATES color-blocked under 5'7\". One of biggest single-variable improvements.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_029",
+    "principle_id": "P_D6_007",
+    "body_type": "PEAR",
+    "modifier_value": 0.1,
+    "modifier_type": "slim_enhanced",
+    "explanation": "P7 A-Line: STRONGLY ENHANCED. Slim +0.10 hip concealment. Flare from waist conceals hip differential. A-line is OPTIMAL silhouette for pear.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_030",
+    "principle_id": "P_D6_008",
+    "body_type": "PEAR",
+    "modifier_value": 0.08,
+    "modifier_type": "score_enhanced",
+    "explanation": "P8 Belt: Enhanced. +0.08 waist definition. At narrowest point = positive. POSITION CRITICAL: must be at waist, NOT at hip.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_031",
+    "principle_id": "P_D6_009",
+    "body_type": "PEAR",
+    "modifier_value": 1.2,
+    "modifier_type": "slim_multiplier",
+    "explanation": "P9 Side Panels: MAX BENEFIT. Slim x1.20 (+0.12). Dark panels contract hip region. Exact area pear wants minimized.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_032",
+    "principle_id": "P_D6_010",
+    "body_type": "PEAR",
+    "modifier_value": -0.05,
+    "modifier_type": "slim_negative",
+    "explanation": "P10 Bodycon: NEGATIVE. Slim -0.05. Maps every hip contour. Structured column strictly dominates.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_033",
+    "principle_id": "P_D6_011",
+    "body_type": "PEAR",
+    "modifier_value": -0.025,
+    "modifier_type": "slight_negative",
+    "explanation": "P11 Turtleneck: Negative. -0.02 to -0.03. Closes neckline (minor). V-neck strictly dominates for attention-shift benefit.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_034",
+    "principle_id": "P_D6_001",
+    "body_type": "HOURGLASS",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P1 Dark: Standard. Widest styling freedom. Few items score-destroying.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_035",
+    "principle_id": "P_D6_002",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.06,
+    "modifier_type": "slim_positive",
+    "explanation": "P2 H-Stripes: OPTIMAL. Slim +0.06. Full Helmholtz for hourglass.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_036",
+    "principle_id": "P_D6_003",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.0,
+    "modifier_type": "standard",
+    "explanation": "P3 V-Stripes: Standard for hourglass.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_037",
+    "principle_id": "P_D6_004",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.17,
+    "modifier_type": "score_enhanced",
+    "explanation": "P4 High Rise: Enhanced. High rise + tuck (+0.17).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_038",
+    "principle_id": "P_D6_005",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.09,
+    "modifier_type": "score_positive",
+    "explanation": "P5 V-Neck: V-neck works at any depth. (+0.09).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_039",
+    "principle_id": "P_D6_006",
+    "body_type": "HOURGLASS",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P6 Monochrome: Standard for hourglass.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_040",
+    "principle_id": "P_D6_007",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.0,
+    "modifier_type": "standard",
+    "explanation": "P7 A-Line: Standard, fit-and-flare works well.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_041",
+    "principle_id": "P_D6_008",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.08,
+    "modifier_type": "optimal",
+    "explanation": "P8 Belt: OPTIMAL (+0.08 showcases waist). Belt is positive for hourglass.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_042",
+    "principle_id": "P_D6_009",
+    "body_type": "HOURGLASS",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P9 Side Panels: Standard for hourglass.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_043",
+    "principle_id": "P_D6_010",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.04,
+    "modifier_type": "optimal",
+    "explanation": "P10 Bodycon: OPTIMAL (+0.04). Hourglass can showcase proportions.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_044",
+    "principle_id": "P_D6_011",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.0,
+    "modifier_type": "neutral",
+    "explanation": "P11 Turtleneck: Neutral. Avoid boxy oversized garments that hide waist.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_045",
+    "principle_id": "P_D6_001",
+    "body_type": "RECTANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P1 Dark: Standard. Goal is WAIST CREATION.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_046",
+    "principle_id": "P_D6_002",
+    "body_type": "RECTANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P2 H-Stripes: Standard for rectangle.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_047",
+    "principle_id": "P_D6_003",
+    "body_type": "RECTANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P3 V-Stripes: Standard for rectangle.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_048",
+    "principle_id": "P_D6_004",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.0,
+    "modifier_type": "height_conditional",
+    "explanation": "P4 High Rise: Height-conditional. TLR > 0.60: favor tall (0.40/0.60). TLR < 0.55: favor slim (0.55/0.45).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_049",
+    "principle_id": "P_D6_005",
+    "body_type": "RECTANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P5 V-Neck: Standard for rectangle.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_050",
+    "principle_id": "P_D6_006",
+    "body_type": "RECTANGLE",
+    "modifier_value": -0.05,
+    "modifier_type": "shape_penalty",
+    "explanation": "P6 Monochrome: Dark monochrome creates 'featureless column' for rectangle (shape -0.05). Need texture or color interest.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_051",
+    "principle_id": "P_D6_007",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.1,
+    "modifier_type": "score_positive",
+    "explanation": "P7 A-Line: Positive. Adds shape. (+0.10).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_052",
+    "principle_id": "P_D6_008",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.1,
+    "modifier_type": "score_positive",
+    "explanation": "P8 Belt: Belt on structured garment (+0.10). Positive for waist creation.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_053",
+    "principle_id": "P_D6_009",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.18,
+    "modifier_type": "optimal",
+    "explanation": "P9 Side Panels: Dark side panels = optimal technique (+0.18 combined).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_054",
+    "principle_id": "P_D6_010",
+    "body_type": "RECTANGLE",
+    "modifier_value": -0.05,
+    "modifier_type": "negative",
+    "explanation": "P10 Bodycon: Avoid plain bodycon ('tube' effect).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_055",
+    "principle_id": "P_D6_011",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.0,
+    "modifier_type": "neutral",
+    "explanation": "P11 Turtleneck: Neutral if paired with waist definition. Avoid monochrome without texture.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_056",
+    "principle_id": "P_D6_001",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.08,
+    "modifier_type": "score_positive",
+    "explanation": "P1 Dark: Dark shoulder contraction (+0.08). Positive for narrowing shoulders.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_057",
+    "principle_id": "P_D6_002",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.0,
+    "modifier_type": "standard",
+    "explanation": "P2 H-Stripes: Standard. Not a primary concern for inverted triangle.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_058",
+    "principle_id": "P_D6_003",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": -1.0,
+    "modifier_type": "prohibition_upper",
+    "explanation": "P3 V-Stripes: Avoid on upper body. V-stripes on upper body widens shoulders further.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_059",
+    "principle_id": "P_D6_004",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.17,
+    "modifier_type": "score_enhanced",
+    "explanation": "P4 High Rise: Enhanced. High rise + attention shift (+0.17).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_060",
+    "principle_id": "P_D6_005",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P5 V-Neck: Standard. Moderate V-neck is acceptable.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_061",
+    "principle_id": "P_D6_006",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P6 Monochrome: Standard. Dark structured top + same tone bottom recommended.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_062",
+    "principle_id": "P_D6_007",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.14,
+    "modifier_type": "optimal",
+    "explanation": "P7 A-Line: OPTIMAL. A-line bottom (+0.14 with balance). Adds hip width for proportion balance.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_063",
+    "principle_id": "P_D6_008",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.0,
+    "modifier_type": "standard",
+    "explanation": "P8 Belt: Standard. Not primary concern.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_064",
+    "principle_id": "P_D6_009",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P9 Side Panels: Standard.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_065",
+    "principle_id": "P_D6_010",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.0,
+    "modifier_type": "neutral",
+    "explanation": "P10 Bodycon: Neutral for inverted triangle.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_066",
+    "principle_id": "P_D6_011",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.02,
+    "modifier_type": "slim_positive",
+    "explanation": "P11 Turtleneck: Acceptable (+0.02 slim). Narrows shoulder frame.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_067",
+    "principle_id": "P_D6_001",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P1 Dark: Standard. Highest styling freedom.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_068",
+    "principle_id": "P_D6_002",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P2 H-Stripes: Standard. All elongation effects suppressed (unnecessary).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_069",
+    "principle_id": "P_D6_003",
+    "body_type": "TALL",
+    "modifier_value": 0.0,
+    "modifier_type": "suppressed",
+    "explanation": "P3 V-Stripes: Suppressed. Elongation unnecessary for tall.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_070",
+    "principle_id": "P_D6_004",
+    "body_type": "TALL",
+    "modifier_value": 0.0,
+    "modifier_type": "suppressed",
+    "explanation": "P4 High Rise: Elongation unnecessary for tall.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_071",
+    "principle_id": "P_D6_005",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P5 V-Neck: Standard for tall.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_072",
+    "principle_id": "P_D6_006",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P6 Monochrome: Standard. Can wear color breaks without penalty.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_073",
+    "principle_id": "P_D6_007",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P7 A-Line: Standard. No shortening concern for tall.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_074",
+    "principle_id": "P_D6_008",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P8 Belt: Standard. Wide belt segmentation penalty minimal for tall.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_075",
+    "principle_id": "P_D6_009",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "P9 Side Panels: Standard for tall.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_076",
+    "principle_id": "P_D6_010",
+    "body_type": "TALL",
+    "modifier_value": 0.0,
+    "modifier_type": "neutral",
+    "explanation": "P10 Bodycon: Neutral. Score by body shape, not height.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_077",
+    "principle_id": "P_D6_011",
+    "body_type": "TALL",
+    "modifier_value": 0.0,
+    "modifier_type": "neutral",
+    "explanation": "P11 Turtleneck: Neutral. Can wear horizontal interest and patterns.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_078",
+    "principle_id": "P_D6_001",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.2,
+    "modifier_type": "score_swing",
+    "explanation": "P1 Dark: Dark matte monochrome = highest single-impact recommendation (+0.20 swing from typical multi-break outfit). Never satin/sheen dark (highlights on curves).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_079",
+    "principle_id": "P_D6_002",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": -1.0,
+    "modifier_type": "prohibition_conditional",
+    "explanation": "P2 H-Stripes: Never H-stripes if WHR > 0.85. Bodycon: YES for hourglass-plus, NO for apple-plus.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_080",
+    "principle_id": "P_D6_003",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.0,
+    "modifier_type": "by_sub_shape",
+    "explanation": "P3 V-Stripes: Score by sub-shape. NEVER BY SIZE CATEGORY.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_081",
+    "principle_id": "P_D6_004",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.0,
+    "modifier_type": "by_sub_shape",
+    "explanation": "P4 High Rise: Score by sub-shape. Rise by fit confidence.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_082",
+    "principle_id": "P_D6_005",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.0,
+    "modifier_type": "depth_conditional",
+    "explanation": "P5 V-Neck: V-neck (3-4 inches for B_c > 42 inches). Moderate depth for plus.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_083",
+    "principle_id": "P_D6_006",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 1.0,
+    "modifier_type": "strongly_positive",
+    "explanation": "P6 Monochrome: Strongly positive. Tonal shoes extend column.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_084",
+    "principle_id": "P_D6_007",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.0,
+    "modifier_type": "by_sub_shape",
+    "explanation": "P7 A-Line: Score by sub-shape. Structured silhouette.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_085",
+    "principle_id": "P_D6_008",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": -1.0,
+    "modifier_type": "prohibition",
+    "explanation": "P8 Belt: Wide belt prohibited. 3+ color breaks avoided.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_086",
+    "principle_id": "P_D6_009",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.12,
+    "modifier_type": "strongly_positive",
+    "explanation": "P9 Side Panels: Strongly positive (+0.12).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_087",
+    "principle_id": "P_D6_010",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.0,
+    "modifier_type": "sub_shape_conditional",
+    "explanation": "P10 Bodycon: YES for hourglass-plus, NO for apple-plus. Score by SUB-SHAPE. Plus-size hourglass gets hourglass scoring (bodycon: positive). Plus-size apple gets apple scoring (bodycon: negative).",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D6_088",
+    "principle_id": "P_D6_011",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 0.0,
+    "modifier_type": "by_sub_shape",
+    "explanation": "P11 Turtleneck: Score by sub-shape.",
+    "source_domain": 6
+  },
+  {
+    "modifier_id": "BM_D7_001",
+    "principle_id": "P_D7_001",
+    "body_type": "PETITE",
+    "modifier_value": -0.04,
+    "modifier_type": "monochrome_VR_amplified",
+    "explanation": "C3 Monochrome elongation amplified: delta_VR -0.04 (vs standard -0.03). Also: all-black danger (shapeless dark mass; use navy/forest). Luminance \u00d70.85 (less surface area).",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_002",
+    "principle_id": "P_D7_001",
+    "body_type": "PEAR",
+    "modifier_value": -0.04,
+    "modifier_type": "monochrome_VR_amplified",
+    "explanation": "C3 Monochrome elongation amplified: delta_VR -0.04. C2 zone-specific: light upper GOOD (adds shoulder width). Dark bottom preferred.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_003",
+    "principle_id": "P_D7_001",
+    "body_type": "APPLE",
+    "modifier_value": 1.1,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "C1 Luminance \u00d71.10 (helps obscure midsection). C4 red on midsection SPOTLIGHTS problem zone.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_004",
+    "principle_id": "P_D7_001",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.9,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "C1 Luminance \u00d70.90 (flattens already-straight silhouette; use charcoal not black). C3 Monochrome amplified (-0.04). Dark center + light sides: +0.12.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_005",
+    "principle_id": "P_D7_001",
+    "body_type": "HOURGLASS",
+    "modifier_value": -0.1,
+    "modifier_type": "all_black_risk",
+    "explanation": "ALL-BLACK HIGH RISK: hides the waist that IS the feature. Score penalty -0.10.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_006",
+    "principle_id": "P_D7_001",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 1.1,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "C1 Luminance \u00d71.10 (proportionally more useful). C2 light widening amplified (+5-7%). C3 Monochrome amplified (-0.04). Shapeless all-black still AVOID.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_007",
+    "principle_id": "P_D7_001",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.12,
+    "modifier_type": "color_block_bonus",
+    "explanation": "Light bottom + dark top: +0.12 bonus. Reverse standard color advice for inv triangle.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_008",
+    "principle_id": "P_D7_001",
+    "body_type": "TALL",
+    "modifier_value": -0.02,
+    "modifier_type": "monochrome_reduced",
+    "explanation": "C3 Monochrome reduced: delta_VR -0.02 (vs standard -0.03). Height unnecessary.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_009",
+    "principle_id": "P_D7_002",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": -1.0,
+    "modifier_type": "reversal",
+    "explanation": "P1 H-Stripes: Helmholtz REVERSES above BMI>32. Stripes become emphasis, not illusion. STRONG avoid.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_010",
+    "principle_id": "P_D7_003",
+    "body_type": "PEAR",
+    "modifier_value": 0.06,
+    "modifier_type": "boat_neck_optimal",
+    "explanation": "Boat neck is TOP recommendation for pear: \u0394SHR +0.06. Combined with puff sleeve (+0.04) = +0.10 total. Neckline weight = 0.20 for pear.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_011",
+    "principle_id": "P_D7_003",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": -0.04,
+    "modifier_type": "deep_v_optimal",
+    "explanation": "V-neck/deep V narrows shoulders (\u0394SHR -0.03/-0.04). Boat neck is MAXIMUM HARMFUL (+0.06 in WRONG direction). Neckline weight = 0.24 for inv tri.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_012",
+    "principle_id": "P_D7_003",
+    "body_type": "APPLE",
+    "modifier_value": -0.04,
+    "modifier_type": "v_neck_enhanced",
+    "explanation": "V-neck/deep V best for apple: creates vertical corridor. Empire waist + V-neck = optimal combination. Neckline weight = 0.16 for apple.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_013",
+    "principle_id": "P_D7_004",
+    "body_type": "PEAR",
+    "modifier_value": 0.06,
+    "modifier_type": "puff_sleeve_optimal",
+    "explanation": "Puff sleeve top rec for pear: \u0394SHR +0.02 to +0.06. Stiff fabric 1.5x. Sleeve weight = 0.22 for pear.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_014",
+    "principle_id": "P_D7_004",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": -0.05,
+    "modifier_type": "raglan_optimal",
+    "explanation": "Raglan top rec for inv tri: \u0394SHR -0.05. Sleeve weight = 0.26 for inv tri.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_015",
+    "principle_id": "P_D7_006",
+    "body_type": "APPLE",
+    "modifier_value": -0.05,
+    "modifier_type": "empire_waist_optimal",
+    "explanation": "Empire waist BEST technique for apple: bypasses midsection entirely, \u0394WHR -0.05. Waist weight = 0.34 for apple (highest single-category weight in system).",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_016",
+    "principle_id": "P_D7_006",
+    "body_type": "RECTANGLE",
+    "modifier_value": -0.06,
+    "modifier_type": "princess_seam_optimal",
+    "explanation": "Princess seam top rec for rectangle: \u0394WHR -0.06. Also contrast belt (-0.03). Waist weight = 0.36 for rectangle (highest weight).",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_017",
+    "principle_id": "P_D7_007",
+    "body_type": "PETITE",
+    "modifier_value": 1.3,
+    "modifier_type": "VR_multiplier",
+    "explanation": "Petite 1.3x multiplier on all VR-modifying techniques. Vertical proportion weight = 0.32 for petite (highest single weight).",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_018",
+    "principle_id": "P_D7_007",
+    "body_type": "TALL",
+    "modifier_value": 0.0,
+    "modifier_type": "suppressed",
+    "explanation": "VR modifications suppressed for tall (height unnecessary). Overcorrection risk if VR>0.48-0.50.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_019",
+    "principle_id": "P_D7_005",
+    "body_type": "PEAR",
+    "modifier_value": 0.44,
+    "modifier_type": "bottom_score_positive",
+    "explanation": "A-line skirt helps pear: +0.44 bottom score (hip de-emphasis). Also wide-leg in soft fabric good. Pencil skirt AVOID. Bottom weight = 0.18 for pear.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_020",
+    "principle_id": "P_D7_005",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.0,
+    "modifier_type": "pleated_full_optimal",
+    "explanation": "Pleated/full skirt best for inv tri: adds hip volume for balance. Bottom weight = 0.16 for inv tri.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_021",
+    "principle_id": "P_D7_005",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.0,
+    "modifier_type": "bodycon_or_fit_flare",
+    "explanation": "Bodycon/fitted or fit-and-flare best for hourglass. 'Follow body's lines' correct ONLY for hourglass. Bottom weight = 0.18.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_022",
+    "principle_id": null,
+    "body_type": "PETITE",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Petite sub-scorer weights: Color=0.10, Pattern=0.05, Neckline=0.10, Sleeve=0.08, Bottom=0.15, Waist=0.15, Vertical=0.32. Core strategy: every decision maximizes perceived height and vertical line continuity. Top 3: (1) Monochrome + high-waist + full tuck. (2) Cropped structured blazer. (3) Pointed-toe nude pump. Avoid: (1) Wide-leg full-length. (2) Oversized tops. (3) Ankle strap.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_023",
+    "principle_id": null,
+    "body_type": "PEAR",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Pear sub-scorer weights: Sleeve=0.22, Neckline=0.20, Bottom=0.18. Core: ADD to shoulders, SKIM hips. Top 3: (1) Boat neck + puff sleeve (SHR +0.10). (2) Wide-leg soft fabric. (3) Structured blazer. Avoid: (1) Pencil skirt. (2) Raglan/dolman. (3) Stiff A-line.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_024",
+    "principle_id": null,
+    "body_type": "APPLE",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Apple sub-scorer weights: Waist=0.34, Neckline=0.16, Vertical=0.16. Core: define waist ABOVE natural waist or skim past. Top 3: (1) Empire waist. (2) V-neckline. (3) Front/half tuck. Avoid: (1) Contrast belt at waist. (2) Wrap dress standard tie. (3) Bodycon/pencil.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_025",
+    "principle_id": null,
+    "body_type": "HOURGLASS",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Hourglass sub-scorer weights: Bottom=0.18, Waist=0.18, Color=0.15. Core: ONLY body type where 'follow body's lines' is correct. Top 3: (1) Bodycon/fitted. (2) Fit-and-flare. (3) Princess seam blazer. Avoid: (1) Shift dress. (2) Oversized/boxy. (3) Shapeless drape.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_026",
+    "principle_id": null,
+    "body_type": "RECTANGLE",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Rectangle sub-scorer weights: Waist=0.36, Bottom=0.14, Vertical=0.14. Core: CREATE waist definition. Top 3: (1) Princess seam blazer. (2) Contrast belt. (3) Peplum. Avoid: (1) Shift dress no waist. (2) Oversized tops. (3) Turtleneck no waist.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_027",
+    "principle_id": null,
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Inv Tri sub-scorer weights: Sleeve=0.26, Neckline=0.24, Bottom=0.16. Core: narrow top, widen bottom. Reverse standard color advice. Top 3: (1) Raglan sleeve (-0.05). (2) V-neckline (-0.04). (3) Pleated/full skirt. Avoid: (1) Boat neck (+0.06 WRONG). (2) Puff sleeve. (3) Off-shoulder.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_028",
+    "principle_id": null,
+    "body_type": "PLUS_SIZE",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Plus Size sub-scorer weights: Waist=0.20, Color=0.16, Bottom+Vertical=0.16 each. Core: fabric/fit/structure OVERRIDE color. Top 3: (1) Monochrome + front tuck. (2) Structured matte fabric. (3) Strategic color placement. Avoid: (1) H-stripes (reverses). (2) Shiny/satin. (3) Shapeless all-black.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D7_029",
+    "principle_id": null,
+    "body_type": "TALL",
+    "modifier_value": null,
+    "modifier_type": "adaptive_weights",
+    "explanation": "Tall sub-scorer weights: Bottom=0.18, Waist=0.16, Vertical=0.16. Core: avoid overcorrection. VR suppressed. Greatest styling freedom.",
+    "source_domain": 7
+  },
+  {
+    "modifier_id": "BM_D8_001",
+    "principle_id": "P_D8_001",
+    "body_type": "PETITE",
+    "modifier_value": 1.15,
+    "modifier_type": "stripe_amplification",
+    "explanation": "Petite (<160cm): stripe score x1.15. Smaller frame = illusion covers higher % of visible body. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_002",
+    "principle_id": "P_D8_001",
+    "body_type": "TALL",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "Tall (>173cm): x1.00. Standard effect. Larger frame absorbs illusion. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_003",
+    "principle_id": "P_D8_001",
+    "body_type": "PEAR",
+    "modifier_value": 0.0,
+    "modifier_type": "zone_dependent",
+    "explanation": "Pear (S:H<0.90): ZONE-DEPENDENT. Hip zone: +0.45 (slims). Shoulder zone: +0.36 (less needed). Confidence MEDIUM.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_004",
+    "principle_id": "P_D8_001",
+    "body_type": "APPLE",
+    "modifier_value": 0.6,
+    "modifier_type": "attenuated",
+    "explanation": "Apple (W>H): x0.60 = +0.27. Midsection BWR often >1.05. Attenuated. NEVER on torso. Confidence MEDIUM.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_005",
+    "principle_id": "P_D8_001",
+    "body_type": "HOURGLASS",
+    "modifier_value": 0.9,
+    "modifier_type": "slight_attenuation",
+    "explanation": "Hourglass: x0.90 = +0.41. Curves break line continuity. Slight attenuation. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_006",
+    "principle_id": "P_D8_001",
+    "body_type": "RECTANGLE",
+    "modifier_value": 1.0,
+    "modifier_type": "standard",
+    "explanation": "Rectangle: x1.00 = +0.45. Straight silhouette = unbroken lines. Illusion operates cleanly. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_007",
+    "principle_id": "P_D8_001",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.8,
+    "modifier_type": "partial_attenuation",
+    "explanation": "Inv Triangle: x0.80 = +0.36. Top: slims shoulders (+0.45). Bottom: unnecessary on narrow hips. Confidence MEDIUM.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_008",
+    "principle_id": "P_D8_001",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": -0.5,
+    "modifier_type": "reversal",
+    "explanation": "Plus Size (BWR>1.15): x-0.50 = -0.23. REVERSAL (Ashida). Stripes may ADD 1-3% width. Confidence HIGH.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_009",
+    "principle_id": "P_D8_002",
+    "body_type": "PETITE",
+    "modifier_value": 0.85,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Petite: luminance x0.85 (less surface area) + ALL-BLACK DANGER (shapeless dark mass; use navy/forest).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_010",
+    "principle_id": "P_D8_002",
+    "body_type": "APPLE",
+    "modifier_value": 1.1,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Apple: luminance x1.10 (helps obscure midsection).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_011",
+    "principle_id": "P_D8_002",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.9,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Rectangle: x0.90 (flattens already-straight silhouette; use charcoal, not black).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_012",
+    "principle_id": "P_D8_002",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": 1.1,
+    "modifier_type": "luminance_multiplier",
+    "explanation": "Plus size: x1.10 (proportionally more useful).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_013",
+    "principle_id": "P_D8_002",
+    "body_type": "HOURGLASS",
+    "modifier_value": -0.1,
+    "modifier_type": "all_black_risk",
+    "explanation": "Hourglass: ALL-BLACK HIGH RISK (hides the waist that IS the feature). Score -0.10.",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_014",
+    "principle_id": "P_D8_002",
+    "body_type": "PEAR",
+    "modifier_value": 0.0,
+    "modifier_type": "zone_specific",
+    "explanation": "Pear: ZONE-SPECIFIC (dark bottom +0.30, top neutral).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_015",
+    "principle_id": "P_D8_006",
+    "body_type": "RECTANGLE",
+    "modifier_value": 0.15,
+    "modifier_type": "reversal_positive",
+    "explanation": "Rectangle: heavy fabric REVERSAL to +0.15 (adds missing dimension).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_016",
+    "principle_id": "P_D8_006",
+    "body_type": "INVERTED_TRIANGLE",
+    "modifier_value": 0.2,
+    "modifier_type": "reversal_positive_hips",
+    "explanation": "Inv Triangle: heavy fabric on hip zone REVERSAL to +0.20 (adds width for balance).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_017",
+    "principle_id": "P_D8_006",
+    "body_type": "PETITE",
+    "modifier_value": -0.2,
+    "modifier_type": "heavy_penalty",
+    "explanation": "Petite + heavy >350 GSM: -0.20 (4mm/side = 2.5% of petite shoulder vs 2% average).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_018",
+    "principle_id": "P_D8_006",
+    "body_type": "APPLE",
+    "modifier_value": -0.35,
+    "modifier_type": "heavy_midsection_penalty",
+    "explanation": "Apple midsection + heavy: -0.35 (adds bulk to widest zone).",
+    "source_domain": 8
+  },
+  {
+    "modifier_id": "BM_D8_019",
+    "principle_id": "P_D8_006",
+    "body_type": "PLUS_SIZE",
+    "modifier_value": -0.35,
+    "modifier_type": "heavy_penalty",
+    "explanation": "Plus size + heavy >300 GSM: -0.35 (amplifies at larger dimensions).",
+    "source_domain": 8
+  }
+]

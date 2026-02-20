@@ -1,0 +1,42 @@
+{
+  "total_extractions": 306811,
+  "total_registry_items": 1353,
+  "total_matches": 919553,
+  "matched_extractions": 306534,
+  "matched_extractions_pct": 99.91,
+  "orphan_extractions": 277,
+  "orphan_extractions_pct": 0.09,
+  "registry_items_matched": 1176,
+  "registry_items_matched_pct": 86.92,
+  "unmatched_registry_items": 177,
+  "confidence_distribution": {
+    "HIGH (>=0.7)": 132391,
+    "MEDIUM (0.4-0.7)": 786946,
+    "LOW (<0.4)": 216
+  },
+  "scored_matches_total": 919553,
+  "extraction_source_counts": {
+    "pegasus_tier1": 13279,
+    "pegasus_tier2": 10559,
+    "txt_tier1": 20044,
+    "txt_tier2": 35061,
+    "txt_transcripts": 213733,
+    "book_N": 1329,
+    "book_B": 4944,
+    "book_C": 7672,
+    "book_A": 190
+  },
+  "registry_type_counts": {
+    "rule": 415,
+    "principle": 85,
+    "threshold": 288,
+    "exception": 213,
+    "body_type_modifier": 229,
+    "danger_zone": 6,
+    "contradiction": 33,
+    "scoring_function": 27,
+    "fabric_rule": 10,
+    "context_rule": 47
+  },
+  "elapsed_seconds": 579.5
+}

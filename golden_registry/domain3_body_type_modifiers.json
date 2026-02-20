@@ -1,0 +1,136 @@
+[
+  {
+    "modifier_id": "D3_BTM_P01",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Petite",
+    "modifier": "All sheen x1.15-1.25",
+    "reason": "Proportional dominance - bust/hip occupy larger % of frame",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "113-124"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_tall",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Tall",
+    "modifier": "All sheen x0.80-0.90",
+    "reason": "Distributed over larger area, gentler curves",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_pear",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Pear",
+    "modifier": "Hip sheen MAXIMUM (+0.28-0.33), bust sheen minimal",
+    "reason": "Curvature concentrated at hip",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_apple",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Apple",
+    "modifier": "Belly sheen EXTREME (+0.42-0.70)",
+    "reason": "Steepest anterior curvature at belly apex",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_hourglass",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Hourglass",
+    "modifier": "REVERSAL at waist: sheen REDUCES waist width (-0.03 to -0.08)",
+    "reason": "Concave waist picks up shadow not highlight",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_rectangle",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Rectangle",
+    "modifier": "Sheen DISAPPEARS (+0.03-0.08 all zones)",
+    "reason": "Curvature too low to generate highlight gradients",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_inverted_triangle",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Inverted Triangle",
+    "modifier": "Shoulder/bust +0.15-0.25, hip +0.05-0.08",
+    "reason": "Amplifies already-wide upper body",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P01_plus",
+    "principle": "Surface Sheen Volume Amplification",
+    "body_type": "Plus Size",
+    "modifier": "All sheen x1.3-1.6, ADD upper arm zone (+0.15-0.28)",
+    "reason": "More surface area + often-overlooked arm highlights",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md"
+  },
+  {
+    "modifier_id": "D3_BTM_P02_apple",
+    "principle": "Cling Threshold",
+    "body_type": "Apple",
+    "modifier": "Effective front ease = max(0, total_ease - belly_projection x 0.8). Apple belly ALWAYS clings in fluid garments.",
+    "reason": "Belly consumes front ease while leaving surplus at sides/back",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "173-188"
+  },
+  {
+    "modifier_id": "D3_BTM_P02_hourglass",
+    "principle": "Cling Threshold",
+    "body_type": "Hourglass",
+    "modifier": "Sizing paradox: size for bust/hip -> 8-14\" excess waist ease -> boxy. Size for waist -> 45-65% cling demand at bust/hip.",
+    "reason": "No single size fits in non-stretch garments",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "192-199"
+  },
+  {
+    "modifier_id": "D3_BTM_P02_plus",
+    "principle": "Cling Threshold",
+    "body_type": "Plus Size",
+    "modifier": "Higher circumferences + steeper curvature rates = lower thresholds at ALL zones. Upper arm becomes significant cling zone (14-20\" circ). 3+ cling zones = strong size-up recommendation.",
+    "reason": "Compound effect of larger circumferences",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "201-211"
+  },
+  {
+    "modifier_id": "D3_BTM_P04_hourglass",
+    "principle": "Fabric Weight/Structure Volume",
+    "body_type": "Hourglass",
+    "modifier": "Structure at waist: proportion_erosion +0.15-0.25. Moderate cling BETTER than structure.",
+    "reason": "Structure fills concave waist = erases hourglass shape",
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "271-281"
+  },
+  {
+    "modifier_id": "D3_BTM_P04_apple",
+    "principle": "Fabric Weight/Structure Volume",
+    "body_type": "Apple",
+    "modifier": "Structured fabric CAN bridge over belly IF projection < bridging_capacity. Below capacity: structure HELPS. Above capacity: structure HURTS.",
+    "bridging_formula": "bridging_capacity = (6 - drape) x 0.8 inches",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "283-297"
+  },
+  {
+    "modifier_id": "D3_BTM_P04_petite",
+    "principle": "Fabric Weight/Structure Volume",
+    "body_type": "Petite",
+    "modifier": "Heavy-but-fluid (drape 7+, gsm 200+) in full-length garments REVERSES. Elongation bonus: -0.05 to -0.12 outweighs overwhelm penalty.",
+    "reason": "Heavy fluid in maxi creates unbroken vertical fall lines",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "298-304"
+  }
+]

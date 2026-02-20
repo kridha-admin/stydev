@@ -1,0 +1,22 @@
+{
+  "name": "stylist-pipeline",
+  "version": "1.0.0",
+  "description": "Kridha styling pipeline - garment attribute extraction and body-garment scoring using AWS Bedrock",
+  "type": "module",
+  "main": "run_pipeline.mjs",
+  "scripts": {
+    "start": "node run_pipeline.mjs",
+    "pipeline": "node run_pipeline.mjs",
+    "extract-text": "node product_text_extraction.mjs",
+    "extract-image": "node product_image_extraction.mjs",
+    "test-mongo": "node mongodb_helper.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.750.0",
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "principle_id": "P_D7_001",
+    "name": "color_scorer",
+    "display_name": "Color & Luminance Proportion Scoring",
+    "layer": 3,
+    "source_domain": 7,
+    "description": "Covers C1 (dark slimming, delta_width -4% to -5%), C2 (light widening, delta_width +4% to +6%), C3 (monochrome elongation, delta_VR -0.03), and C4 (red saturation, delta_width -2% to -3%). Luminance -> base delta -> sheen modifier (EX-01) -> fit modifier (EX-02) -> structure modifier (EX-03) -> zone-specific body-type logic -> opacity scaling -> red saturation special case -> skin contrast modifier.",
+    "scoring_range": [-1.0, 1.0],
+    "key_input_variables": ["garment.luminance", "garment.color", "fabric.sheen", "fabric.rigidity", "fabric.opacity", "body.skin_tone", "body_type", "garment.fit_tightness"],
+    "self_assessed_confidence": "HIGH for direction, LOW for magnitude in garment context",
+    "confidence_notes": "C1: Koutsoumpis 2021 d=0.61 (4-5% PSE shift). Robust in lab. Sheen > 0.7 reverses (EX-01). C2: Same mechanism in reverse. C3: Amplified on petite, pear, rectangle, plus (-0.04). Reduced on tall (-0.02). C4: Low confidence. Weight 0.08 in composite."
+  },
+  {
+    "principle_id": "P_D7_002",
+    "name": "pattern_scorer",
+    "display_name": "Pattern Proportion Scoring",
+    "layer": 3,
+    "source_domain": 7,
+    "description": "Covers P1 (Horizontal stripes BMI-conditional Helmholtz: BMI<22 full slimming -5%, BMI 22-28 linear decay, BMI 28-32 neutral, BMI>32 reversal +2%), P2 (Vertical stripes DO NOT SLIM: delta=0% neutral, never slimming), P3 (Diagonal lines 30-60 degrees optimal). 4-gate pipeline: count>=3 (EX-09) -> contrast>1.5 (EX-14) -> width modifier (EX-10) -> BMI-conditional Helmholtz.",
+    "scoring_range": [-1.0, 1.0],
+    "key_input_variables": ["garment.pattern_direction", "garment.stripe_count", "garment.contrast_ratio", "garment.stripe_width", "body.BMI", "body.WHR", "body_type", "garment.zone"],
+    "self_assessed_confidence": "HIGH for base Helmholtz, LOW for BMI transition points",
+    "confidence_notes": "P1: Thompson 2011 + Ashida 2013 + Swami 2012. BMI-conditional resolution. Gates: min 3 stripes (EX-09), contrast>1.5 (EX-14), width>2 inch weakens (EX-10), zone-localized=emphasis not Helmholtz (EX-13). P2: Thompson 2011 +7.1% widening in lab. Competitive edge: every competitor recommends vertical stripes for slimming; we won't. P3: Practitioner only."
+  },
+  {
+    "principle_id": "P_D7_003",
+    "name": "neckline_scorer",
+    "display_name": "Neckline Proportion Scoring (SHR Modification)",
+    "layer": 3,
+    "source_domain": 7,
+    "description": "Modifies perceived Shoulder-Hip Ratio (SHR). Base ΔSHR lookup per neckline type -> body-specific exception cascade (EX-15 through EX-22) -> deficit-proportional conversion -> aesthetic penalties -> height/torso modifiers. All ΔSHR magnitudes are estimates from practitioner synthesis, not direct measurements.",
+    "scoring_range": [-1.0, 1.0],
+    "key_input_variables": ["garment.neckline_type", "garment.neckline_depth", "garment.neckline_width", "body.SHR", "body.bust_circ", "body.neck_length", "body.upper_arm_circ", "body_type"],
+    "self_assessed_confidence": "MEDIUM for direction, LOW for magnitude",
+    "confidence_notes": "Direction confidence 2 stars. Magnitude confidence 1 star. See Part VI Gap #08. No direct measurement studies exist."
+  },
+  {
+    "principle_id": "P_D7_004",
+    "name": "sleeve_scorer",
+    "display_name": "Sleeve Proportion Scoring (SHR Modification)",
+    "layer": 3,
+    "source_domain": 7,
+    "description": "Modifies perceived Shoulder-Hip Ratio via sleeve construction. Puff (+0.02 to +0.06), Raglan (-0.05), Dolman (-0.04), Cap (+0.02), Dropped shoulder (-0.03). Stiff fabric multiplies puff effect 1.5x. Raglan diagonal seam invisible in same color: -60% effect on plus.",
+    "scoring_range": [-1.0, 1.0],
+    "key_input_variables": ["garment.sleeve_type", "body.SHR", "body_type", "fabric.rigidity", "garment.sleeve_color_match"],
+    "self_assessed_confidence": "MEDIUM for direction, LOW for magnitude",
+    "confidence_notes": "Practitioner synthesis. No direct measurement studies. Cap may be below JND (just noticeable difference)."
+  },
+  {
+    "principle_id": "P_D7_005",
+    "name": "bottom_silhouette_scorer",
+    "display_name": "Bottom Silhouette Proportion Scoring",
+    "layer": 3,
+    "source_domain": 7,
+    "description": "Scores bottom garment silhouette for hip de-emphasis, balance, or waist definition. A-line, pencil, wide-leg, pleated/full skirt. Zone-specific logic for pear (hip concealment), inverted triangle (add hip volume).",
+    "scoring_range": [-1.0, 1.0],
+    "key_input_variables": ["garment.bottom_silhouette", "garment.fabric_type", "body.SHR", "body.hip_circ", "body_type"],
+    "self_assessed_confidence": "MEDIUM",
+    "confidence_notes": "Geometric and practitioner reasoning. Pear: pencil skirt AVOID (maps hip contour). Wide-leg in soft fabric good. Stiff A-line tents from widest point on pear (EX-30)."
+  },
+  {
+    "principle_id": "P_D7_006",
+    "name": "waist_definition_scorer",
+    "display_name": "Waist Definition Proportion Scoring (WHR Modification)",
+    "layer": 3,
+    "source_domain": 7,
+    "description": "Modifies perceived Waist-Hip Ratio via garment waist treatments. Techniques: contrast belt (delta_WHR -0.02), wrap construction (-0.05), peplum (-0.04), princess seam (-0.06), empire waist (-0.05). Diminishing returns: 1st=100%, 2nd=80%, 3rd=50%, 4th=20%. Per-technique decision tree with failure conditions (EX-37 through EX-42) -> body-type-specific amplification or reversal.",
+    "scoring_range": [-1.0, 1.0],
+    "key_input_variables": ["garment.waist_techniques", "body.WHR", "body.SHR", "body.bust_circ", "body_type", "garment.belt_contrast", "garment.wrap_type"],
+    "self_assessed_confidence": "MEDIUM for direction, LOW for diminishing returns curve",
+    "confidence_notes": "Diminishing returns (100%, 80%, 50%, 20%) are ESTIMATED (Gap #10). Belt reversal on WHR > 0.88 well-supported by practitioner consensus. Princess seam is top rec for rectangle. Empire best for apple."
+  },
+  {
+    "principle_id": "P_D7_007",
+    "name": "vertical_proportion_scorer",
+    "display_name": "Vertical Proportion Scoring (VR/LBR Modification)",
+    "layer": 3,
+    "source_domain": 7,
+    "description": "Modifies perceived Vertical Ratio (leg-to-total height). Techniques: high-waist +2 inch (delta_VR -0.06), full tuck (-0.07), front/half tuck (-0.04), nude shoe (-0.02), ankle strap (+0.025 harmful), cropped jacket (-0.03). Overcorrection detection at perceived VR < 0.30 (catastrophic) and < 0.35 (warning). Petite 1.3x multiplier. STACKING WARNING: high-waist + full tuck + matching shoe = total delta_VR -0.15.",
+    "scoring_range": [-1.0, 1.0],
+    "key_input_variables": ["garment.waist_height", "garment.tuck_type", "garment.shoe_type", "garment.shoe_color", "body.skin_color", "body.VR", "body.height", "body_type"],
+    "self_assessed_confidence": "LOW to MEDIUM",
+    "confidence_notes": "VR target 0.483 from Sorokowski & Pawlowski 2008 (27-nation replication). Garment-lengthening untested (Gap #3). Overcorrection thresholds estimated. Ankle strap strong avoid for petite (EX-48)."
+  }
+]

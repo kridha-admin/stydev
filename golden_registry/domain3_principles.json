@@ -1,0 +1,230 @@
+[
+  {
+    "principle_id": "D3_P01",
+    "name": "Surface Sheen -> Volume Amplification",
+    "confidence": "MODERATE",
+    "confidence_pct": "50-84%",
+    "physics": "Shiny surfaces create specular highlights on convex body areas. The viewer's eye interprets these highlight-to-shadow gradients as 3D volume. The steeper the body curvature, the tighter the highlight, and the larger the area appears.",
+    "scoring_weight_pct": 15,
+    "score_range": "-0.15 to +0.75",
+    "flat_body_scores": {
+      "deep_matte_wool_flannel_brushed": "-0.08 to -0.05",
+      "standard_matte_cotton_poplin": "0.00 (baseline)",
+      "subtle_sheen_poly_blend_sateen": "+0.03 to +0.08",
+      "moderate_sheen_satin_charmeuse": "+0.08 to +0.15",
+      "high_shine_patent_wet_look": "+0.12 to +0.20",
+      "maximum_shine_sequins_metallic": "+0.18 to +0.28"
+    },
+    "curvature_amplifier": {
+      "radius_gt_8in_gentle": "x 1.2",
+      "radius_4_to_8in_moderate": "x 1.6 to 2.2",
+      "radius_2_to_4in_steep": "x 2.5 to 3.5",
+      "radius_lt_2in_extreme": "x 3.5+"
+    },
+    "critical_reversal": "Dark + Shiny Inversion: Dark shiny fabric on curved zones = VOLUME ADDING despite dark color. The dark surface absorbs ambient light, BUT specular highlights on the curve apex are MORE dramatic against the dark background (higher contrast). Black MATTE on apple belly: -0.27 + (-0.10) = -0.37 (WORKS - slimming). Black SHINY on apple belly: -0.27 + (+0.42) = +0.15 (FAILS - amplifying). The surface overwhelms the color. This is the #1 most dangerous common advice failure.",
+    "critical_reversal_confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "87-138"
+  },
+  {
+    "principle_id": "D3_P02",
+    "name": "Cling Threshold Model",
+    "confidence": "MODERATE",
+    "confidence_pct": "50-84%",
+    "physics": "Fabric clings when body curvature creates enough contact pressure to overcome gravity and fabric stiffness. The threshold depends on curvature rate, fabric properties, and ease.",
+    "scoring_weight_pct": 30,
+    "base_formula": "base_threshold = 62 - (26 x curvature_rate) where curvature_rate = circumference_differential / vertical_distance",
+    "coefficient_confidence": "LOW (<50%) - The 62 and 26 are reverse-engineered from endpoints, not measured. Cling onset is likely sigmoidal (phase transition), not linear.",
+    "modifiers_to_threshold": {
+      "silk_surface_low_friction": "+6%",
+      "cotton_surface_high_friction": "-4%",
+      "humid_skin": "-8% to -10%",
+      "fabric_weight_lt_120gsm": "-12%",
+      "fabric_weight_gt_300gsm": "up to +12%",
+      "high_drape_9_10": "-12.5%",
+      "low_drape_1_2": "+10%",
+      "lined_garment": "+20%",
+      "each_inch_of_projection": "-2%"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "142-211"
+  },
+  {
+    "principle_id": "D3_P03",
+    "name": "Color Lightness -> Volume Effect",
+    "confidence": "HIGH",
+    "confidence_pct": "85%+",
+    "physics": "Irradiation illusion - light objects appear larger than dark objects. Validated in perception research at 2-7% perceived size change.",
+    "scoring_weight_pct": 8,
+    "formula": "color_volume_score = (lightness_pct - 50) x 0.006",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "215-253"
+  },
+  {
+    "principle_id": "D3_P04",
+    "name": "Fabric Weight/Structure -> Volume Effect",
+    "confidence": "MODERATE",
+    "confidence_pct": "50-84%",
+    "physics": "Structured/stiff fabric (low drape) stands away from the body, creating air gaps. Gap width -> perceived volume.",
+    "scoring_weight_pct": 20,
+    "air_gap_by_drape": {
+      "drape_1_2_canvas_heavy_denim": "15-23mm - Strong independent silhouette",
+      "drape_3_4_medium_woven_taffeta": "5-15mm - Moderate projection",
+      "drape_5_6_ponte_medium_crepe": "2-5mm - Skim, minimal gap",
+      "drape_7_8_jersey_rayon": "0.5-2mm - Body-following",
+      "drape_9_10_charmeuse_chiffon": "0mm - Full body contact"
+    },
+    "bridging_formula": "bridging_capacity = (6 - drape) x 0.8 inches. Drape 2: bridges up to 3.2\" projection. Drape 4: up to 1.6\". Drape 5: up to 0.8\". Drape 6+: cannot bridge.",
+    "bridging_confidence": "LOW (<50%) - logical construction, not measured",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "256-304"
+  },
+  {
+    "principle_id": "D3_P05",
+    "name": "Texture/Pattern Effects",
+    "confidence": "MODERATE",
+    "confidence_pct": "50-84%",
+    "physics": "Vertical stripes on 2D surfaces elongate (standard advice). On 3D bodies with projection > 2\", stripes curve around the body, REVEALING curvature rather than masking it.",
+    "scoring_weight_pct": 5,
+    "vertical_stripe_crossover": {
+      "projection_lt_1_5in": "standard elongation benefit (-0.06)",
+      "projection_1_5_to_2_5in": "benefit partially negated",
+      "projection_gt_2_5in": "reversed - curvature revelation dominates (+0.03+)"
+    },
+    "stripe_width_effect": "Wide stripes (>1\") on curvy bodies show curvature most dramatically",
+    "pattern_scale_vs_body_size": {
+      "petite_max_safe_repeat": "torso_length x 0.12. 5'0\": max ~1.4\" repeat. 5'3\": max ~1.6\" repeat.",
+      "plus_size_scaling": "Size 4-8: baseline. Size 16-20: x1.3-1.5. Size 22+: x1.5-1.8."
+    },
+    "horizontal_stripes_help_cases": [
+      "Pear upper body: adds width at narrow shoulders (proportion balance)",
+      "Rectangle anywhere: creates faux curves at bust/hip",
+      "Tall-lean bodies: breaks excessive height (proportion benefit)"
+    ],
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "308-339"
+  },
+  {
+    "principle_id": "D3_P06",
+    "name": "Drape -> Silhouette Conformity",
+    "confidence": "MODERATE",
+    "confidence_pct": "50-84%",
+    "physics": "How closely fabric follows body contours. Negative = compression/smoothing. Positive = independent shape/volume.",
+    "scoring_weight_pct": 10,
+    "zone_specific_optimal_drape_ranges": {
+      "columns": ["BUST", "WAIST", "BELLY", "HIP", "THIGH", "ARM"],
+      "PETITE": [{"range":"5-7"},{"range":"5-7"},{"range":"4-6"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"}],
+      "TALL": [{"range":"3-8"},{"range":"3-8"},{"range":"3-7"},{"range":"3-8"},{"range":"3-8"},{"range":"3-8"}],
+      "PEAR": [{"range":"7-9"},{"range":"7-9"},{"range":"6-8"},{"range":"4-6"},{"range":"4-6"},{"range":"7-9"}],
+      "APPLE": [{"range":"5-7"},{"range":"5-7"},{"range":"3-5"},{"range":"7-9"},{"range":"7-9"},{"range":"5-7"}],
+      "HOURGLASS": [{"range":"5-7"},{"range":"7-9"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"}],
+      "RECTANGLE": [{"range":"5-8"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"}],
+      "INV_TRIANGLE": [{"range":"5-7"},{"range":"6-8"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"},{"range":"5-7"}],
+      "PLUS_SIZE": [{"range":"5-6"},{"range":"5-7"},{"range":"4-5"},{"range":"5-6"},{"range":"5-6"},{"range":"5-6"}]
+    },
+    "ponte_sweet_spot": "Drape 5-6: For plus-size bodies, drape 5-6 consistently outperforms both higher and lower values. Drape 7+ conforms to body irregularities while drape 1-4 creates choppy contact-gap alternation on large curves. Quantified advantage vs structured woven: 0.30-0.46 volume difference, massive smoothness improvement (0.85 vs 0.30).",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "343-364"
+  },
+  {
+    "principle_id": "D3_P07",
+    "name": "Silhouette Shape Effectiveness",
+    "confidence": "MODERATE",
+    "confidence_pct": "50-84%",
+    "physics": "How different garment silhouettes interact with different body types.",
+    "scoring_weight_pct": 4,
+    "a_line_conditions": {
+      "petite": {"works_when": "Above-knee, moderate flare, drape 4-6", "fails_when": "Below-knee (tent), extreme flare"},
+      "pear": {"works_when": "Knee-length, drape 4-6, gsm 180-280", "fails_when": "Fluid fabric (collapses to body-con at hip), stiff fabric (projects wider than hip)"},
+      "apple": {"works_when": "Empire/high-waist A-line ONLY", "fails_when": "Natural waist A-line (starts at widest point = amplifies)"},
+      "hourglass": {"works_when": "Fit-and-flare variant (fitted through waist)", "fails_when": "Straight A-line from waist (hides waist)"},
+      "rectangle": {"works_when": "Universal - creates shape that doesn't exist", "fails_when": "Almost no failure conditions"},
+      "inverted_triangle": {"works_when": "Strong - adds hip width for balance", "fails_when": "Almost no failure conditions"}
+    },
+    "wrap_dress_gapping": "gap_threshold = (fabric_stretch_pct x 0.15) + wrap_overlap_inches. Belly projection > gap_threshold -> wrap physically opens at belly. SOLUTION: Faux-wrap construction.",
+    "peplum_effects": {
+      "helps": "Apple (bridges over belly), Rectangle (creates shape), Inverted Triangle (adds hip width for balance)",
+      "hurts": "Pear (adds width at WIDEST zone)"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "367-392"
+  },
+  {
+    "principle_id": "D3_P08",
+    "name": "Construction Features",
+    "confidence": "HIGH",
+    "confidence_pct": "85%+",
+    "physics": "Darts, seams, sleeves, and necklines create structural effects on perceived body shape.",
+    "scoring_weight_pct": 3,
+    "darts_on_hourglass": {
+      "with_princess_seams": "-0.15 to -0.20 (structured fabric follows curves)",
+      "without_darts": "+0.15 to +0.25 (structured fabric goes boxy)",
+      "differential": "0.30 to 0.45 - one of the LARGEST effects in entire model"
+    },
+    "sleeve_type_critical_cases": {
+      "cap_sleeve": "Universally flattering IF arm circ <13\". Above 15\": AVOID. Hits at widest arm point = 'sausage sleeve' effect.",
+      "three_quarter_sleeve": "Universally flattering for ALL body types and arm sizes. Ends at narrowest forearm point.",
+      "raglan": "Reduces shoulder emphasis (good for inverted triangle).",
+      "dolman": "Covers full arms (good for plus-size), but overwhelms petite."
+    },
+    "neckline_by_body_type": {
+      "v_neck": "Best for petite (elongates), inv. triangle (narrows shoulders), apple (draws eye up). Caution on full bust (draws attention).",
+      "boat_neck": "BEST for pear (widens shoulders), WORST for inverted triangle.",
+      "crew_high_neck": "Problematic on full bust (stretches across = strain lines)."
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "395-420"
+  },
+  {
+    "principle_id": "D3_P09",
+    "name": "Hemline Effects",
+    "confidence": "HIGH",
+    "confidence_pct": "85%+",
+    "physics": "Where the hem hits determines what body width gets visual emphasis. The hem is a horizontal 'stop' line.",
+    "scoring_weight_pct": "separate channel",
+    "petite_hemline_sensitivity": {
+      "above_knee": "-0.10 (elongating - best choice)",
+      "at_knee": "-0.05 (good)",
+      "below_knee": "+0.05 (shortening starts)",
+      "mid_calf": "+0.12 (MAXIMUM shortening - worst choice for petite)",
+      "ankle": "-0.08 (clean vertical line - second-best)"
+    },
+    "pear_dead_zone": "3\" range centered on widest hip point, approximately 7-10 inches below natural waist. Any hemline here: +0.10-0.18 (draws eye to widest point).",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "424-443"
+  },
+  {
+    "principle_id": "D3_P10",
+    "name": "Photo-to-Reality Discount",
+    "confidence": "MODERATE",
+    "confidence_pct": "50-84%",
+    "physics": "Product photos are shot on size 0-4 models at 5'9\"-5'11\" with low projection everywhere. Fabric NEVER clings on the model even in fitted garments.",
+    "scoring_weight_pct": "separate channel",
+    "photo_gap_per_inch_coefficients": {
+      "belly_projection": "+0.06 per inch beyond model's 0.5\" (HIGHEST per-inch contributor. At 6\" projection: +0.33 extreme)",
+      "bust_projection": "+0.04 per inch beyond model's 1.5\"",
+      "hip_circumference": "+0.007 per inch beyond model's 35\"",
+      "thigh_circumference": "+0.012 per inch beyond model's 20\"",
+      "upper_arm_circumference": "+0.015 per inch beyond model's 10\""
+    },
+    "photo_accuracy_spectrum": "Tall rectangle (85%) -> Tall lean -> Rectangle -> Inverted triangle -> Petite lean -> Hourglass -> Pear -> Apple -> Plus-hourglass -> Plus-apple (47% - MOST MISLEADING)",
+    "manipulation_discount": {
+      "base_components": "pinning +0.08, steaming +0.04, lighting +0.03, posing +0.05, retouching +0.04 = 0.24 total",
+      "luxury_brands": "x 0.65 (less manipulation needed)",
+      "fast_fashion": "x 1.10 (maximum manipulation)"
+    },
+    "manipulation_confidence": "LOW (<50%) - individual manipulation values are fabricated, total range reasonable but breakdown is a guess",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "447-477"
+  }
+]

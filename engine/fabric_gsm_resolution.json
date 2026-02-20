@@ -1,0 +1,195 @@
+{
+  "version": "2.0.0",
+  "last_updated": "2026-02-19",
+  "description": "Fabric GSM Resolution Table — maps extraction signals to specific fabrics with GSM estimates",
+
+  "resolution_priority": [
+    "1. Check product text for exact fabric name keywords",
+    "2. Check fiber + construction/text clue combination",
+    "3. Check fiber + weight + drape + texture signals",
+    "4. Fall back to garment-type heuristic",
+    "5. Nuclear fallback: weight category alone"
+  ],
+
+  "text_keyword_matches": {
+    "_doc": "Priority 1: If any of these keywords appear in product text, resolve immediately",
+    "ponte": { "fabric_id": "PLY-005", "gsm": 300, "confidence": "high" },
+    "ponti": { "fabric_id": "PLY-005", "gsm": 300, "confidence": "high" },
+    "scuba": { "fabric_id": "PLY-004", "gsm": 320, "confidence": "high" },
+    "chiffon": { "fabric_id": "PLY-001", "gsm": 50, "confidence": "high", "note": "If silk fiber + price>$80, use SLK-002 at 40gsm" },
+    "charmeuse": { "fabric_id": "SLK-001", "gsm": 90, "confidence": "high", "note": "If price<$50, reclassify as PLY-003 at 130gsm" },
+    "denim": { "fabric_id": "COT-006", "gsm": 350, "confidence": "high", "note": "If stretch_pct>0, use COT-007 at 320gsm" },
+    "jeans": { "fabric_id": "COT-007", "gsm": 320, "confidence": "high" },
+    "flannel": { "fabric_id": "WOL-001", "gsm": 280, "confidence": "high" },
+    "organza": { "fabric_id": "SPE-004", "gsm": 50, "confidence": "high" },
+    "tulle": { "fabric_id": "SPE-005", "gsm": 30, "confidence": "high" },
+    "velvet": { "fabric_id": "SPE-001", "gsm": 280, "confidence": "high", "note": "If 'crushed', use SPE-002 at 250gsm" },
+    "crushed velvet": { "fabric_id": "SPE-002", "gsm": 250, "confidence": "high" },
+    "satin": { "fabric_id": "PLY-003", "gsm": 130, "confidence": "moderate", "note": "If silk+price>$80, use SLK-001" },
+    "crepe de chine": { "fabric_id": "SLK-003", "gsm": 80, "confidence": "high" },
+    "neoprene": { "fabric_id": "TEC-001", "gsm": 350, "confidence": "high" },
+    "corduroy": { "fabric_id": "COT-010", "gsm": 300, "confidence": "high" },
+    "tweed": { "fabric_id": "WOL-005", "gsm": 320, "confidence": "high" },
+    "chambray": { "fabric_id": "COT-005", "gsm": 140, "confidence": "high" },
+    "french terry": { "fabric_id": "COT-008", "gsm": 280, "confidence": "high" },
+    "terry": { "fabric_id": "COT-008", "gsm": 280, "confidence": "moderate" },
+    "modal": { "fabric_id": "RAY-005", "gsm": 170, "confidence": "high" },
+    "micromodal": { "fabric_id": "RAY-005", "gsm": 170, "confidence": "high" },
+    "tencel": { "fabric_id": "TEN-001", "gsm": 200, "confidence": "high" },
+    "lyocell": { "fabric_id": "TEN-001", "gsm": 200, "confidence": "high" },
+    "bamboo": { "fabric_id": "RAY-004", "gsm": 160, "confidence": "high" },
+    "cupro": { "fabric_id": "RAY-003", "gsm": 100, "confidence": "high" },
+    "bemberg": { "fabric_id": "RAY-003", "gsm": 100, "confidence": "high" },
+    "bengaline": { "fabric_id": "TEC-002", "gsm": 250, "confidence": "moderate" },
+    "millennium": { "fabric_id": "TEC-002", "gsm": 250, "confidence": "moderate" },
+    "leather": { "fabric_id": "TEC-004", "gsm": 500, "confidence": "high", "note": "Only if NOT preceded by 'faux' or 'vegan'" },
+    "faux leather": { "fabric_id": "TEC-005", "gsm": 350, "confidence": "high" },
+    "vegan leather": { "fabric_id": "TEC-005", "gsm": 350, "confidence": "high" },
+    "pleather": { "fabric_id": "TEC-005", "gsm": 350, "confidence": "high" },
+    "poplin": { "fabric_id": "COT-001", "gsm": 120, "confidence": "high" },
+    "broadcloth": { "fabric_id": "COT-001", "gsm": 120, "confidence": "high" },
+    "sateen": { "fabric_id": "COT-004", "gsm": 150, "confidence": "high" },
+    "gabardine": { "fabric_id": "WOL-003", "gsm": 260, "confidence": "high" },
+    "georgette": { "fabric_id": "PLY-012", "gsm": 100, "confidence": "moderate" },
+    "taffeta": { "fabric_id": "PLY-010", "gsm": 100, "confidence": "high" },
+    "interlock": { "fabric_id": "COT-003", "gsm": 240, "confidence": "moderate" },
+    "pique": { "fabric_id": "COT-003", "gsm": 240, "confidence": "moderate" },
+    "rib knit": { "fabric_id": "COT-009", "gsm": 220, "confidence": "high" },
+    "ribbed": { "fabric_id": "COT-009", "gsm": 220, "confidence": "moderate", "note": "Could be rib trim only" },
+    "jacquard": { "fabric_id": "JAC-001", "gsm": 250, "confidence": "moderate" },
+    "brocade": { "fabric_id": "JAC-002", "gsm": 300, "confidence": "moderate" },
+    "sequin": { "fabric_id": "SPE-003", "gsm": 200, "confidence": "moderate" },
+    "mesh": { "fabric_id": "PLY-009", "gsm": 100, "confidence": "moderate", "note": "If 'power mesh', use TEC-003" }
+  },
+
+  "fiber_disambiguation": {
+    "_doc": "Priority 2: When 'crepe' appears with a specific fiber, resolve the ambiguity",
+    "crepe": {
+      "silk": { "fabric_id": "SLK-003", "gsm": 80, "confidence": "high" },
+      "wool": { "fabric_id": "WOL-002", "gsm": 200, "confidence": "high" },
+      "polyester": { "fabric_id": "PLY-002", "gsm": 150, "confidence": "moderate", "note": "If heavy/structured, consider PLY-006 at 220gsm. If stretch detected, PLY-007 at 200gsm" },
+      "default": { "fabric_id": "PLY-002", "gsm": 150, "confidence": "low" }
+    },
+    "jersey": {
+      "cotton": { "fabric_id": "COT-002", "gsm": 180, "confidence": "high" },
+      "modal": { "fabric_id": "RAY-005", "gsm": 170, "confidence": "high" },
+      "wool": { "fabric_id": "WOL-004", "gsm": 220, "confidence": "high" },
+      "bamboo": { "fabric_id": "RAY-004", "gsm": 160, "confidence": "high" },
+      "polyester": { "fabric_id": "PLY-008", "gsm": 160, "confidence": "low" },
+      "default": { "fabric_id": "COT-002", "gsm": 180, "confidence": "low" }
+    },
+    "satin": {
+      "silk": { "fabric_id": "SLK-001", "gsm": 90, "confidence": "high" },
+      "cotton": { "fabric_id": "COT-004", "gsm": 150, "confidence": "high" },
+      "polyester": { "fabric_id": "PLY-003", "gsm": 130, "confidence": "moderate" },
+      "default": { "fabric_id": "PLY-003", "gsm": 130, "confidence": "low" }
+    }
+  },
+
+  "fiber_weight_drape_resolution": {
+    "_doc": "Priority 3: When we have fiber + weight + drape but no fabric name",
+    "rayon": {
+      "very_light|fluid": { "fabric_id": "RAY-001", "gsm": 100, "confidence": "moderate" },
+      "light|fluid": { "fabric_id": "RAY-001", "gsm": 110, "confidence": "high" },
+      "light|structured": { "fabric_id": "RAY-002", "gsm": 145, "confidence": "moderate" },
+      "medium|fluid": { "fabric_id": "RAY-002", "gsm": 160, "confidence": "moderate" },
+      "medium|structured": { "fabric_id": "RAY-002", "gsm": 170, "confidence": "moderate" },
+      "default": { "fabric_id": "RAY-001", "gsm": 120, "confidence": "low" }
+    },
+    "viscose": {
+      "very_light|fluid": { "fabric_id": "RAY-001", "gsm": 100, "confidence": "moderate" },
+      "light|fluid": { "fabric_id": "RAY-001", "gsm": 110, "confidence": "moderate" },
+      "medium|fluid": { "fabric_id": "RAY-002", "gsm": 160, "confidence": "moderate" },
+      "medium|structured": { "fabric_id": "RAY-002", "gsm": 170, "confidence": "moderate" },
+      "default": { "fabric_id": "RAY-001", "gsm": 120, "confidence": "low" }
+    },
+    "polyester": {
+      "very_light|fluid": { "fabric_id": "PLY-001", "gsm": 50, "confidence": "high" },
+      "very_light|stiff": { "fabric_id": "SPE-004", "gsm": 50, "confidence": "high" },
+      "light|fluid": { "fabric_id": "PLY-002", "gsm": 130, "confidence": "moderate" },
+      "light|structured": { "fabric_id": "PLY-010", "gsm": 100, "confidence": "low" },
+      "medium|fluid": { "fabric_id": "PLY-002", "gsm": 160, "confidence": "moderate" },
+      "medium|structured": { "fabric_id": "PLY-005", "gsm": 300, "confidence": "low" },
+      "heavy|stiff": { "fabric_id": "TEC-001", "gsm": 350, "confidence": "low" },
+      "heavy|structured": { "fabric_id": "PLY-004", "gsm": 320, "confidence": "low" },
+      "default": { "fabric_id": "PLY-002", "gsm": 150, "confidence": "low" }
+    },
+    "cotton": {
+      "very_light|stiff": { "fabric_id": "COT-001", "gsm": 100, "confidence": "moderate" },
+      "light|stiff": { "fabric_id": "COT-001", "gsm": 120, "confidence": "high" },
+      "light|structured": { "fabric_id": "COT-001", "gsm": 120, "confidence": "high" },
+      "light|fluid": { "fabric_id": "COT-002", "gsm": 155, "confidence": "moderate" },
+      "medium|fluid": { "fabric_id": "COT-002", "gsm": 180, "confidence": "high" },
+      "medium|structured": { "fabric_id": "COT-003", "gsm": 240, "confidence": "moderate" },
+      "heavy|stiff": { "fabric_id": "COT-006", "gsm": 350, "confidence": "high" },
+      "heavy|structured": { "fabric_id": "COT-006", "gsm": 320, "confidence": "moderate" },
+      "default": { "fabric_id": "COT-002", "gsm": 180, "confidence": "low" }
+    },
+    "silk": {
+      "very_light|very_drapey": { "fabric_id": "SLK-002", "gsm": 40, "confidence": "high" },
+      "very_light|fluid": { "fabric_id": "SLK-002", "gsm": 40, "confidence": "high" },
+      "light|very_drapey": { "fabric_id": "SLK-001", "gsm": 90, "confidence": "high" },
+      "light|fluid": { "fabric_id": "SLK-003", "gsm": 80, "confidence": "moderate" },
+      "default": { "fabric_id": "SLK-003", "gsm": 80, "confidence": "low" }
+    },
+    "wool": {
+      "medium|fluid": { "fabric_id": "WOL-002", "gsm": 200, "confidence": "moderate" },
+      "medium|structured": { "fabric_id": "WOL-003", "gsm": 260, "confidence": "moderate" },
+      "heavy|stiff": { "fabric_id": "WOL-001", "gsm": 280, "confidence": "moderate" },
+      "heavy|structured": { "fabric_id": "WOL-003", "gsm": 280, "confidence": "moderate" },
+      "default": { "fabric_id": "WOL-002", "gsm": 220, "confidence": "low" }
+    },
+    "linen": {
+      "light|stiff": { "fabric_id": "LIN-001", "gsm": 150, "confidence": "moderate" },
+      "medium|stiff": { "fabric_id": "LIN-001", "gsm": 180, "confidence": "high" },
+      "medium|fluid": { "fabric_id": "LIN-002", "gsm": 150, "confidence": "moderate" },
+      "heavy|stiff": { "fabric_id": "LIN-001", "gsm": 230, "confidence": "moderate" },
+      "default": { "fabric_id": "LIN-001", "gsm": 180, "confidence": "low" }
+    },
+    "nylon": {
+      "light|fluid": { "fabric_id": "PLY-009", "gsm": 100, "confidence": "moderate" },
+      "medium|fluid": { "fabric_id": "TEC-003", "gsm": 200, "confidence": "moderate" },
+      "default": { "fabric_id": "TEC-003", "gsm": 200, "confidence": "low" }
+    }
+  },
+
+  "fallback_by_weight_only": {
+    "_doc": "Priority 5: Nuclear fallback when fiber is unknown or unrecognized",
+    "very_light": { "gsm": 60, "confidence": "very_low" },
+    "light": { "gsm": 120, "confidence": "very_low" },
+    "medium": { "gsm": 180, "confidence": "very_low" },
+    "heavy": { "gsm": 320, "confidence": "very_low" },
+    "unknown": { "gsm": 180, "confidence": "very_low" }
+  },
+
+  "fiber_name_normalization": {
+    "_doc": "Normalize extraction fiber names to our standard fiber keys",
+    "rayon": "rayon",
+    "viscose": "viscose",
+    "livaeco": "viscose",
+    "livaeco viscose": "viscose",
+    "polyester": "polyester",
+    "poly": "polyester",
+    "cotton": "cotton",
+    "silk": "silk",
+    "wool": "wool",
+    "merino": "wool",
+    "cashmere": "wool",
+    "linen": "linen",
+    "flax": "linen",
+    "nylon": "nylon",
+    "spandex": "nylon",
+    "elastane": "nylon",
+    "lycra": "nylon",
+    "tencel": "tencel",
+    "lyocell": "tencel",
+    "modal": "modal",
+    "micromodal": "modal",
+    "bamboo": "viscose",
+    "hemp": "linen",
+    "acetate": "viscose",
+    "triacetate": "viscose",
+    "cupro": "viscose",
+    "acrylic": "polyester"
+  }
+}

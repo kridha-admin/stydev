@@ -1,0 +1,602 @@
+~/kridha/git/stylist_pipeline main ?10                                                                               Py base
+❯ node run_pipeline.mjs
+=== KRIDHA STYLING PIPELINE ===
+
+--- STEP 1: USER MEASUREMENTS ---
+
+{
+  "chest_circumference": 112.7,
+  "waist_circumference": 102.76,
+  "hip_circumference": 107.5,
+  "shoulder_breadth": 42.3164,
+  "neck_circumference": 44.97,
+  "thigh_left_circumference": 67.01,
+  "ankle_left_circumference": 28.64,
+  "arm_right_length": 75.9968,
+  "inside_leg_height": 77.66,
+  "height": 172.72,
+  "waist_hip_ratio": 0.96,
+  "bust_hip_ratio": 1.05,
+  "shoulder_hip_ratio": 1.24,
+  "torso_leg_ratio": 0.93,
+  "body_shape": "apple",
+  "height_category": "tall",
+  "size_category": "plus_size",
+  "compound_types": [
+    "apple",
+    "tall",
+    "plus_size"
+  ],
+  "knee_from_floor": 14.37,
+  "mid_calf_from_floor": 9.63,
+  "widest_calf_from_floor": 10.78,
+  "ankle_from_floor": 3.5,
+  "mid_thigh_from_floor": 22.01,
+  "elbow_from_shoulder": 17.05,
+  "widest_upper_arm_from_shoulder": 9.87,
+  "natural_waist_from_shoulder": 28.43,
+  "natural_waist_from_floor": 39.57
+}
+
+--- STEP 2: EXTRACTING TEXT ATTRIBUTES ---
+
+Text Attributes (raw):
+{
+  "overall_confidence": "high",
+  "product": {
+    "title": "H&M Puff-Sleeved Dress",
+    "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+    "brand": "H&M",
+    "price": "$29.99"
+  },
+  "fabric": {
+    "composition_raw": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%",
+    "primary_material": "Rayon",
+    "primary_percentage": 70,
+    "secondary_material": "Linen",
+    "secondary_percentage": 30,
+    "stretch_fiber": "none",
+    "stretch_percentage": 0,
+    "weight_description": "medium",
+    "confidence": "high"
+  },
+  "garment": {
+    "type": "dress",
+    "length_inches": 0,
+    "length_description": "mini",
+    "confidence": "high"
+  },
+  "model_info": {
+    "height_inches": 68.9,
+    "height_original": "175cm/5'9\"",
+    "size_worn": "S",
+    "bust_inches": 0,
+    "waist_inches": 0,
+    "hips_inches": 0,
+    "confidence": "high"
+  }
+}
+
+Text Attributes (flattened):
+{
+  "model_height_inches": 68.9,
+  "model_height_original": "175cm/5'9\"",
+  "model_size_worn": "S",
+  "model_bust": 0,
+  "model_waist": 0,
+  "model_hips": 0,
+  "model_confidence": "high",
+  "fabric_primary": "Rayon",
+  "fabric_primary_percentage": 70,
+  "fabric_secondary": "Linen",
+  "fabric_secondary_percentage": 30,
+  "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%",
+  "stretch_fiber": "none",
+  "stretch_percentage": 0,
+  "fabric_weight": "medium",
+  "fabric_confidence": "high",
+  "garment_type": "dress",
+  "garment_length_inches": 0,
+  "hemline_description": "mini",
+  "garment_confidence": "high",
+  "title": "H&M Puff-Sleeved Dress",
+  "brand": "H&M",
+  "price": "$29.99",
+  "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+  "overall_confidence": "high"
+}
+
+--- STEP 3: EXTRACTING IMAGE ATTRIBUTES ---
+
+Image Attributes (raw):
+{
+  "garment_type": "dress",
+  "neckline": {
+    "type": "boat_neck",
+    "depth": "shallow",
+    "width": "medium",
+    "confidence": "high"
+  },
+  "hemline": {
+    "position": "below_knee",
+    "confidence": "high"
+  },
+  "sleeve": {
+    "type": "short",
+    "width": "relaxed",
+    "confidence": "high"
+  },
+  "silhouette": {
+    "type": "a_line",
+    "confidence": "high"
+  },
+  "waist": {
+    "position": "natural",
+    "definition": "undefined",
+    "confidence": "low"
+  },
+  "fit": {
+    "category": "relaxed",
+    "confidence": "high"
+  },
+  "color": {
+    "primary": "light green",
+    "value": "medium_light",
+    "temperature": "cool",
+    "saturation": "moderate",
+    "confidence": "high"
+  },
+  "pattern": {
+    "type": "floral_small",
+    "scale": "small",
+    "contrast": "medium",
+    "direction": "mixed",
+    "confidence": "high"
+  },
+  "fabric": {
+    "apparent_weight": "light",
+    "sheen": "subtle_sheen",
+    "opacity": "semi_opaque",
+    "drape": "fluid",
+    "texture": "smooth",
+    "confidence": "high"
+  },
+  "construction": {
+    "has_darts": null,
+    "has_seaming": null,
+    "has_ruching": null,
+    "has_draping": null,
+    "has_pleats": null,
+    "has_gathering": null,
+    "confidence": "low"
+  },
+  "model_estimate": {
+    "apparent_height_category": "average",
+    "confidence": "high"
+  },
+  "overall_confidence": "high"
+}
+
+Image Attributes (flattened):
+{
+  "garment_type": "dress",
+  "neckline_type": "boat_neck",
+  "neckline_depth": "shallow",
+  "neckline_width": "medium",
+  "hemline_position": "below_knee",
+  "sleeve_type": "short",
+  "sleeve_width": "relaxed",
+  "silhouette_type": "a_line",
+  "waistline": "natural",
+  "waist_definition": "undefined",
+  "fit_category": "relaxed",
+  "color_primary": "light green",
+  "color_value": "medium_light",
+  "color_temperature": "cool",
+  "color_saturation": "moderate",
+  "pattern_type": "floral_small",
+  "pattern_scale": "small",
+  "pattern_contrast": "medium",
+  "pattern_direction": "mixed",
+  "fabric_weight": "light",
+  "fabric_sheen": "subtle_sheen",
+  "fabric_opacity": "semi_opaque",
+  "fabric_drape": "fluid",
+  "fabric_texture": "smooth",
+  "has_darts": null,
+  "has_seaming": null,
+  "has_ruching": null,
+  "has_draping": null,
+  "has_pleats": null,
+  "has_gathering": null,
+  "model_apparent_height_category": "average",
+  "overall_confidence": "high"
+}
+
+--- STEP 4: MERGED ATTRIBUTES ---
+
+{
+  "neckline_type": "boat_neck",
+  "neckline_depth": "shallow",
+  "neckline_width": "medium",
+  "sleeve_type": "short",
+  "sleeve_width": "relaxed",
+  "silhouette_type": "a_line",
+  "waistline": "natural",
+  "waist_definition": "undefined",
+  "fit_category": "relaxed",
+  "color_primary": "light green",
+  "color_value": "medium_light",
+  "color_temperature": "cool",
+  "color_saturation": "moderate",
+  "pattern_type": "floral_small",
+  "pattern_scale": "small",
+  "pattern_contrast": "medium",
+  "pattern_direction": "mixed",
+  "fabric_sheen": "subtle_sheen",
+  "fabric_opacity": "semi_opaque",
+  "fabric_drape": "fluid",
+  "fabric_texture": "smooth",
+  "has_darts": null,
+  "has_seaming": null,
+  "has_ruching": null,
+  "has_draping": null,
+  "has_pleats": null,
+  "has_gathering": null,
+  "fabric_primary": "Rayon",
+  "fabric_secondary": "Linen",
+  "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%",
+  "stretch_percentage": 0,
+  "model_height_inches": 68.9,
+  "model_size_worn": "S",
+  "model_bust": 0,
+  "model_waist": 0,
+  "model_hips": 0,
+  "hemline_position": "mini",
+  "garment_length_inches": 0,
+  "fabric_weight": "medium",
+  "garment_type": "dress",
+  "title": "H&M Puff-Sleeved Dress",
+  "brand": "H&M",
+  "price": "$29.99",
+  "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+  "image_confidence": "high",
+  "text_confidence": "high"
+}
+
+--- STEP 5: GOAL SCORING (ALL GOALS) ---
+
+Goals Assessment:
+{
+  "look_taller": {
+    "verdict": "almost",
+    "score": -0.1,
+    "factors": [
+      {
+        "type": "waist",
+        "effect": "negative",
+        "note": "undefined waist",
+        "value": -0.1
+      },
+      {
+        "type": "silhouette",
+        "effect": "positive",
+        "note": "a_line or fit_and_flare slightly lengthens",
+        "value": 0.1
+      },
+      {
+        "type": "neckline",
+        "effect": "negative",
+        "note": "boat neck is horizontal",
+        "value": -0.1
+      }
+    ],
+    "fix": "add_belt"
+  },
+  "look_slimmer": {
+    "verdict": "yes",
+    "score": 0.30000000000000004,
+    "factors": [
+      {
+        "type": "silhouette",
+        "effect": "positive",
+        "note": "a_line/fit_and_flare skims body",
+        "value": 0.2
+      },
+      {
+        "type": "pattern",
+        "effect": "positive",
+        "note": "small scale pattern is slimming",
+        "value": 0.1
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "fluid drape skims body",
+        "value": 0.1
+      },
+      {
+        "type": "neckline",
+        "effect": "negative",
+        "note": "wide neckline adds horizontal",
+        "value": -0.1
+      }
+    ],
+    "fix": null
+  },
+  "highlight_waist": {
+    "verdict": "no",
+    "score": -0.5,
+    "factors": [
+      {
+        "type": "waist_definition",
+        "effect": "negative",
+        "note": "undefined waist hides waistline",
+        "value": -0.4
+      },
+      {
+        "type": "silhouette",
+        "effect": "negative",
+        "note": "a_line with undefined waist doesn't emphasize",
+        "value": -0.1
+      }
+    ],
+    "fix": "add_belt"
+  },
+  "hide_midsection": {
+    "verdict": "yes",
+    "score": 0.9,
+    "factors": [
+      {
+        "type": "silhouette",
+        "effect": "positive",
+        "note": "a_line flows over midsection",
+        "value": 0.3
+      },
+      {
+        "type": "fit",
+        "effect": "positive",
+        "note": "relaxed/loose doesn't cling to midsection",
+        "value": 0.3
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "fluid fabric skims over curves",
+        "value": 0.1
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "medium/heavy weight doesn't cling",
+        "value": 0.1
+      },
+      {
+        "type": "pattern",
+        "effect": "positive",
+        "note": "pattern distracts eye from body shape",
+        "value": 0.1
+      }
+    ],
+    "fix": "add_ruched_overlay"
+  },
+  "minimize_hips": {
+    "verdict": "yes",
+    "score": 1,
+    "factors": [
+      {
+        "type": "silhouette",
+        "effect": "positive",
+        "note": "a_line skims over hips smoothly",
+        "value": 0.4
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "structured/fluid fabric skims hips",
+        "value": 0.2
+      },
+      {
+        "type": "fit",
+        "effect": "positive",
+        "note": "relaxed/loose doesn't cling to hips",
+        "value": 0.2
+      },
+      {
+        "type": "hemline",
+        "effect": "positive",
+        "note": "hemline avoids widest point",
+        "value": 0.1
+      },
+      {
+        "type": "pattern",
+        "effect": "positive",
+        "note": "solid/small pattern minimizes attention",
+        "value": 0.1
+      },
+      {
+        "type": "neckline",
+        "effect": "positive",
+        "note": "wide neckline balances hips",
+        "value": 0.2
+      }
+    ],
+    "fix": null
+  },
+  "balance_shoulders": {
+    "verdict": "almost",
+    "score": -0.2,
+    "factors": [
+      {
+        "type": "neckline",
+        "effect": "negative",
+        "note": "wide neckline widens broad shoulders",
+        "value": -0.4
+      },
+      {
+        "type": "silhouette",
+        "effect": "positive",
+        "note": "a_line/fit_and_flare adds hip volume to balance",
+        "value": 0.2
+      }
+    ],
+    "fix": null
+  },
+  "hide_upper_arms": {
+    "verdict": "yes",
+    "score": 0.30000000000000004,
+    "factors": [
+      {
+        "type": "sleeve_type",
+        "effect": "neutral",
+        "note": "short sleeve avoids widest point",
+        "value": 0.1
+      },
+      {
+        "type": "sleeve_width",
+        "effect": "positive",
+        "note": "relaxed fit provides room",
+        "value": 0.1
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "structured/fluid fabric doesn't cling to arms",
+        "value": 0.1
+      }
+    ],
+    "fix": null
+  },
+  "elongate_legs": {
+    "verdict": "almost",
+    "score": 0.3,
+    "factors": [
+      {
+        "type": "hemline",
+        "effect": "positive",
+        "note": "mini/above_knee shows maximum leg",
+        "value": 0.3
+      }
+    ],
+    "fix": "add_heels"
+  },
+  "create_curves": {
+    "verdict": "almost",
+    "score": 0.10000000000000003,
+    "factors": [
+      {
+        "type": "silhouette",
+        "effect": "positive",
+        "note": "a_line adds hip volume",
+        "value": 0.2
+      },
+      {
+        "type": "waist",
+        "effect": "negative",
+        "note": "undefined waist no curve definition",
+        "value": -0.3
+      },
+      {
+        "type": "waist",
+        "effect": "positive",
+        "note": "natural waist position",
+        "value": 0.2
+      }
+    ],
+    "fix": "add_belt"
+  },
+  "streamline_silhouette": {
+    "verdict": "yes",
+    "score": 0.5,
+    "factors": [
+      {
+        "type": "silhouette",
+        "effect": "positive",
+        "note": "subtle a_line streamlines",
+        "value": 0.2
+      },
+      {
+        "type": "pattern",
+        "effect": "negative",
+        "note": "busy pattern adds visual noise",
+        "value": -0.1
+      },
+      {
+        "type": "construction",
+        "effect": "positive",
+        "note": "minimal construction clean line",
+        "value": 0.1
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "fluid drape smooth line",
+        "value": 0.2
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "smooth texture clean look",
+        "value": 0.1
+      }
+    ],
+    "fix": "choose_solid_color"
+  },
+  "minimize_bust": {
+    "verdict": "yes",
+    "score": 0.30000000000000004,
+    "factors": [
+      {
+        "type": "neckline",
+        "effect": "negative",
+        "note": "horizontal neckline at bust level",
+        "value": -0.1
+      },
+      {
+        "type": "neckline_depth",
+        "effect": "positive",
+        "note": "shallow/medium depth less exposure",
+        "value": 0.1
+      },
+      {
+        "type": "fit",
+        "effect": "positive",
+        "note": "relaxed fit gives room",
+        "value": 0.2
+      },
+      {
+        "type": "fabric",
+        "effect": "positive",
+        "note": "medium weight supportive",
+        "value": 0.1
+      }
+    ],
+    "fix": "avoid_embellished_neckline"
+  },
+  "show_legs": {
+    "verdict": "yes",
+    "score": 0.6,
+    "factors": [
+      {
+        "type": "hemline",
+        "effect": "positive",
+        "note": "mini maximum leg exposure",
+        "value": 0.5
+      },
+      {
+        "type": "danger_zone",
+        "effect": "positive",
+        "note": "hemline at flattering position",
+        "value": 0.1
+      }
+    ],
+    "fix": null
+  }
+}
+
+--- TOKEN USAGE SUMMARY ---
+
+Text Extraction: { inputTokens: 2196, outputTokens: 274 }
+Image Extraction: { inputTokens: 3112, outputTokens: 435 }
+
+=== PIPELINE COMPLETE ===

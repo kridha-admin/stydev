@@ -1,0 +1,134 @@
+[
+  {
+    "modifier_type": "positive_principles_matrix",
+    "description": "Body-type modifiers for the 10 positive principles (7 scored in matrix, 3 handled internally). Each cell is a multiplier applied to the raw principle score.",
+    "matrix": {
+      "monochromatic_column": {"petite": 1.20, "tall": 0.70, "pear": 1.10, "apple": 1.15, "hourglass": 0.90, "rectangle": 1.10, "inverted_triangle": 0.80, "plus": "1.20 (dark) / 0.36 (bright)"},
+      "waist_elevation": {"petite": 1.15, "tall": 0.60, "pear": 1.25, "apple": "0.70 (drops to 0.45 with DD+ + short torso)", "hourglass": 1.10, "rectangle": 1.00, "inverted_triangle": 0.80, "plus": 0.85},
+      "v_neckline": {"petite": 1.15, "tall": 0.60, "pear": 1.25, "apple": "1.20 (normal bust) / 0.60 (DD+)", "hourglass": 1.00, "rectangle": 1.15, "inverted_triangle": 0.40, "plus": 0.90},
+      "slim_fit": {"petite": 1.20, "tall": 0.70, "pear": "zone-specific", "apple": "zone-specific", "hourglass": 1.15, "rectangle": 0.95, "inverted_triangle": "zone-specific", "plus": 0.80},
+      "nude_shoes": {"petite": 1.25, "tall": 0.50, "pear": 1.15, "apple": 1.00, "hourglass": 1.00, "rectangle": 1.00, "inverted_triangle": 0.70, "plus": 1.15},
+      "vertical_stripes": {"petite": 1.00, "tall": 0.50, "pear": "0.60 (bottom: 0.30)", "apple": 0.60, "hourglass": 0.70, "rectangle": 1.20, "inverted_triangle": 0.50, "plus": -0.30},
+      "vertical_seams": {"petite": 1.10, "tall": 0.60, "pear": 1.00, "apple": 1.00, "hourglass": 1.00, "rectangle": 1.10, "inverted_triangle": 0.80, "plus": 0.65}
+    },
+    "footnotes": {
+      "plus_monochromatic": "Plus: 1.20 for dark; 0.36 for bright (compound: 1.20 x 0.30)",
+      "apple_v_neckline": "Apple: 1.20 for normal bust; 0.60 for DD+",
+      "slim_fit_zone_specific": "Slim fit has zone-specific overrides (see zone_overrides)"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1362-1376"
+  },
+  {
+    "modifier_type": "sabotage_penalties_matrix",
+    "description": "Body-type modifiers for the 13 sabotage penalties (8 scored in matrix, 5 with internal handling). Each cell is a multiplier applied to the raw penalty.",
+    "matrix": {
+      "color_break": {"petite": 1.30, "tall": 0.65, "pear": 1.35, "apple": "1.20 (at hip: 1.40)", "hourglass": 1.00, "rectangle": 0.80, "inverted_triangle": 0.75, "plus": 1.30},
+      "hemline_midi": {"petite": 1.35, "tall": 0.55, "pear": 1.25, "apple": 0.90, "hourglass": 1.00, "rectangle": 0.85, "inverted_triangle": 0.80, "plus": 1.25},
+      "ankle_strap": {"petite": 1.30, "tall": 0.50, "pear": 1.15, "apple": 0.80, "hourglass": 1.00, "rectangle": 0.90, "inverted_triangle": 0.75, "plus": 1.25},
+      "waist_depression": "ratio-dependent modifier (0.30 to 1.80) built into function, not matrix",
+      "oversized": {"petite": 1.40, "tall": 0.50, "pear": 0.85, "apple": 1.05, "hourglass": 1.15, "rectangle": 0.75, "inverted_triangle": 0.85, "plus": 1.25},
+      "belt_segmentation": {"petite": 1.25, "tall": 0.60, "pear": 1.10, "apple": 1.30, "hourglass": 0.65, "rectangle": 1.10, "inverted_triangle": 0.70, "plus": 1.20},
+      "cuff": {"petite": 1.30, "tall": 0.30, "pear": 1.10, "apple": 0.90, "hourglass": 1.00, "rectangle": 0.90, "inverted_triangle": 0.85, "plus": 1.15},
+      "print_scale": {"petite": 1.40, "tall": 0.40, "pear": 1.00, "apple": 1.00, "hourglass": 1.00, "rectangle": 1.00, "inverted_triangle": 1.00, "plus": 1.10}
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1378-1391"
+  },
+  {
+    "modifier_type": "slim_fit_zone_overrides",
+    "description": "Slim fit has different effects on different garment zones for certain body types.",
+    "overrides": {
+      "petite": {"top": 1.20, "bottom": 1.20},
+      "tall": {"top": 0.70, "bottom": 0.70},
+      "pear": {"top": 1.30, "bottom": 0.60},
+      "apple": {"top": 0.40, "bottom": 1.20},
+      "hourglass": {"top": 1.15, "bottom": 1.15},
+      "rectangle": {"top": 0.95, "bottom": 0.95},
+      "inverted_triangle": {"top": 0.50, "bottom": 1.30},
+      "plus": {"top": 0.80, "bottom": 0.80}
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "665-678"
+  },
+  {
+    "modifier_type": "zone_specific_overrides",
+    "description": "When a principle has different effects on different garment zones for a given body type.",
+    "overrides": {
+      "pear_slim_fit_top": 1.30,
+      "pear_slim_fit_bottom": 0.60,
+      "apple_slim_fit_top": 0.40,
+      "apple_slim_fit_bottom": 1.20,
+      "inverted_triangle_slim_fit_top": 0.50,
+      "inverted_triangle_slim_fit_bottom": 1.30,
+      "inverted_triangle_oversized_top": 1.30,
+      "inverted_triangle_oversized_bottom": 0.50,
+      "pear_oversized_top": 0.60,
+      "pear_oversized_bottom": 1.30,
+      "apple_oversized_top": 1.25,
+      "apple_oversized_bottom": 0.70,
+      "pear_vertical_stripes_top": 1.00,
+      "pear_vertical_stripes_bottom": 0.30,
+      "apple_color_break_at_high_waist": 0.90,
+      "apple_color_break_at_hip": 1.40
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1397-1415"
+  },
+  {
+    "modifier_type": "compound_body_type_examples",
+    "description": "Worked examples showing how compound body types multiply modifiers.",
+    "examples": [
+      {
+        "body_type": "Petite + Pear (5'1\", hip 40\", shoulder 36\")",
+        "key_modifiers": {
+          "color_break": "1.30 x 1.35 = 1.76 (highest penalty in system)",
+          "monochromatic_column": "1.20 x 1.10 = 1.32 (highest benefit in system)",
+          "midi_hemline": "1.35 x 1.25 = 1.69 (devastating)"
+        },
+        "priority": "Dark monochromatic > just-above-knee > skin-matching shoes > high-waist IF ratio allows"
+      },
+      {
+        "body_type": "Petite + Apple + Plus (5'0\", waist 38\", hip 40\")",
+        "key_modifiers": {
+          "color_break": "1.30 x 1.20 x 1.30 = 2.03 (MAXIMUM system penalty)",
+          "vertical_stripes": "1.00 x 0.60 x -0.30 = -0.18 (REVERSED)",
+          "dark_monochromatic": "1.20 x 1.15 x 1.20 = 1.66 (highest benefit)"
+        },
+        "rules": "NEVER recommend vertical stripes. NEVER recommend bright monochromatic. Dark monochromatic is NON-NEGOTIABLE."
+      },
+      {
+        "body_type": "Tall + Inverted Triangle (5'10\", shoulder 42\", hip 36\")",
+        "key_modifiers": {
+          "color_break": "0.65 x 0.75 = 0.49 (barely half baseline)",
+          "v_neck": "0.60 x 0.40 = 0.24 (effectively nullified)"
+        },
+        "priority": "Maximum styling freedom for height. Focus on proportion BALANCE rather than elongation."
+      }
+    ],
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1418-1437"
+  },
+  {
+    "modifier_type": "body_type_detection",
+    "description": "Detection thresholds for classifying users into body types. A user can be multiple types simultaneously.",
+    "thresholds": {
+      "petite": "height < 63\" (5'3\")",
+      "tall": "height > 68\" (5'8\")",
+      "pear": "hip_width > shoulder_width + 2\"",
+      "inverted_triangle": "shoulder_width > hip_width + 2\"",
+      "apple": "waist_width >= hip_width - 1\"",
+      "rectangle": "hip-waist diff < 3\" AND shoulder-hip diff < 2\"",
+      "hourglass": "hip-waist diff >= 8\" AND shoulder-hip diff < 3\"",
+      "plus": "BMI > 30 or body_build == 'plus'"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1348-1358"
+  }
+]

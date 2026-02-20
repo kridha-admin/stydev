@@ -1,0 +1,1064 @@
+[
+  {
+    "registry_id": "R1_01",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Helmholtz stripe effect follows sigmoid transition centered at W:H=0.52"
+  },
+  {
+    "registry_id": "R1_02",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Duty cycle modifier for stripe effects"
+  },
+  {
+    "registry_id": "R1_04",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "3D viewing amplifies stripe effect by 1.84x"
+  },
+  {
+    "registry_id": "R1_05",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Oppel-Kundt filler curve is non-monotonic: peaks at 8-12 fillers then declines"
+  },
+  {
+    "registry_id": "R2_01",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Luminance-width relationship follows saturating sigmoid curve"
+  },
+  {
+    "registry_id": "R2_03",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Body-width proportionality correction: wider bodies get smaller % slimming"
+  },
+  {
+    "registry_id": "R2_05",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "On dark background (L*=30), luminance slimming is meaningful (1.33%, d=1.27, p<0.001)"
+  },
+  {
+    "registry_id": "R2_11",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Luminance contribution to Oppel-Kundt is 20-33% of total effect"
+  },
+  {
+    "registry_id": "R2_12",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Polarity asymmetry: bright-on-dark STRONGER expansion than dark-on-bright"
+  },
+  {
+    "registry_id": "R3_01",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "M\u00fcller-Lyer effect peaks at ~30 degree fin angle with 15-18% elongation (wings-out)"
+  },
+  {
+    "registry_id": "R3_08",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Downward chevron creates M\u00fcller-Lyer contraction at apex"
+  },
+  {
+    "registry_id": "R5_01",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "HVI magnitude: vertical overestimated 5-10% vs equal horizontal in 2D; 7-13% in 3D"
+  },
+  {
+    "registry_id": "R5_02",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Width vs height asymmetry: height overestimation (7.1%) > width underestimation (4.5%)"
+  },
+  {
+    "registry_id": "R7_03",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Loose clothing gaze redirection has binary threshold at ~4-8cm ease"
+  },
+  {
+    "registry_id": "R8_02",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Level 1 synergy: luminance + stripe edge component gives 1.44x boost"
+  },
+  {
+    "registry_id": "R8_03",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Level 1 ceiling: 1.01% on light background, scales to 3.03% on dark background"
+  },
+  {
+    "registry_id": "R8_05",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Percentage to score conversion is asymmetric"
+  },
+  {
+    "registry_id": "R10_01",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Confidence SD envelope increases in transition zone"
+  },
+  {
+    "registry_id": "R10_02",
+    "registry_type": "rule",
+    "domain": "perception_science",
+    "text": "Narrow stripes on wider bodies may preserve Helmholtz deeper into transition zone"
+  },
+  {
+    "registry_id": "D2R_N13",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Turtleneck petite amplification: if neck_score < 0, multiply by 1.20 to amplify negative."
+  },
+  {
+    "registry_id": "D2R_S03",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Sleeve danger zone score: -0.65 - (width_ratio - 0.8) * 1.0. Extra penalty for exact danger zone termination."
+  },
+  {
+    "registry_id": "D2R_S04",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Sleeve forearm_narrow zone score: +0.75 + (1.0 - width_ratio) * 0.25. Bonus for optimal termination."
+  },
+  {
+    "registry_id": "D2R_S07",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Plus size sleeve modifier: positive scores *= 1.15 (amplify benefits); negative scores *= 1.25 (amplify negatives, more at stake)"
+  },
+  {
+    "registry_id": "D2R_S08",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Apple sleeve modifier at danger zone: arm_width_score *= 1.20 (wider danger zone MORE damaging)"
+  },
+  {
+    "registry_id": "D2R_S12",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Puff on inverted triangle: score = -0.70 - min(new_imbalance * 0.04, 0.25). Confidence 0.92. EXTREME REVERSAL \u2014 do not recommend."
+  },
+  {
+    "registry_id": "D2R_S16",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Puff on rectangle: waist_taper_illusion = widening * 0.6. Score = 0.45 + min(taper/4.0, 0.25) (range 0.45 to 0.70)."
+  },
+  {
+    "registry_id": "D2R_S18",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Puff on tall: base_score = 0.70 (tall absorbs puff proportionally \u2014 elegant)."
+  },
+  {
+    "registry_id": "D2R_H04",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Pear thigh exposure penalty: c_thigh > 27in -> -0.35; > 24in -> -0.20; > 22in -> -0.10. If goal='showcase', penalty *= 0.5. If goal='narrower', penalty *= 1.2."
+  },
+  {
+    "registry_id": "D2R_H10",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Calf danger radius = 1.0 + (calf_prominence - 1.0) * 3.0. More prominent calf = wider danger zone."
+  },
+  {
+    "registry_id": "D2R_H16",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Hemline height-scaling: hem_from_shoulder_adjusted = hem_from_shoulder * (body_height / model_height) when height difference > 2 inches."
+  },
+  {
+    "registry_id": "D2R_W03",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Empire tent effect: bust_projection * (1.0 - fabric_drape) = tent_severity. If > 2.0: -0.45; > 1.0: -0.25; else -0.10."
+  },
+  {
+    "registry_id": "D2R_C05",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Goal 'define waist' + shape_loss < -0.15: additional -0.10 penalty."
+  },
+  {
+    "registry_id": "D2R_A01",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Master score_garment() calls all sub-scorers and aggregates via compute_dimension_weights() + weighted average of score * weight * confidence."
+  },
+  {
+    "registry_id": "D2R_A04",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Puff sleeve adds weight: shoulder_widening=0.20."
+  },
+  {
+    "registry_id": "D2R_A07",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Compound effect diminishing returns: final = sign * (1 - (1-|s1|) * (1-|s2|) * ...)"
+  },
+  {
+    "registry_id": "D2R_HC01",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Hemline computation engine: inputs are garment_length OR hem_position_label. Adjusts for height difference between model and user."
+  },
+  {
+    "registry_id": "D2R_HC02",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Danger zone overlap detection for petite: safe_zone_size = knee_danger_bottom - calf_danger_top. If negative, zones collapse."
+  },
+  {
+    "registry_id": "D2R_HC04",
+    "registry_type": "rule",
+    "domain": "garment_construction",
+    "text": "Calf danger radius: 1.0 + (calf_prominence - 1.0) * 3.0. Calf prominence = c_calf_max / c_calf_min."
+  },
+  {
+    "registry_id": "D3_R06",
+    "registry_type": "rule",
+    "domain": "3",
+    "text": "Apple belly effective front ease: max(0, total_ease - belly_projection x 0.8). Apple belly ALWAYS clings in fluid garments regardless of total ease."
+  },
+  {
+    "registry_id": "D5_R05",
+    "registry_type": "rule",
+    "domain": "5",
+    "text": "final = max(-1.0, min(1.0, positive_total + sabotage_total))"
+  },
+  {
+    "registry_id": "R_D6_051",
+    "registry_type": "rule",
+    "domain": "6",
+    "text": "R_D6_051; P_D6_008; Belt at waist"
+  },
+  {
+    "registry_id": "R_D8_009",
+    "registry_type": "rule",
+    "domain": "8",
+    "text": "R_D8_009; P_D8_001; Stripes with BWR 1.05-1.15 on torso zone"
+  },
+  {
+    "registry_id": "T1_02",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Transition zone bounds"
+  },
+  {
+    "registry_id": "T1_05",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Maximum Helmholtz slimming percentage"
+  },
+  {
+    "registry_id": "T1_06",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Maximum reversal widening percentage"
+  },
+  {
+    "registry_id": "T1_07",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "3D stereoscopic maximum"
+  },
+  {
+    "registry_id": "T2_01",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "L* slimming onset threshold"
+  },
+  {
+    "registry_id": "T2_03",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "L* saturation asymptote"
+  },
+  {
+    "registry_id": "T2_04",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Sigmoid midpoint"
+  },
+  {
+    "registry_id": "T2_05",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Sigmoid steepness"
+  },
+  {
+    "registry_id": "T2_06",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Maximum slimming percentage (pure luminance, 2D)"
+  },
+  {
+    "registry_id": "T2_07",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Maximum widening percentage (pure luminance)"
+  },
+  {
+    "registry_id": "T2_08",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Background multiplier gamma"
+  },
+  {
+    "registry_id": "T2_14",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Luminance contribution to Oppel-Kundt"
+  },
+  {
+    "registry_id": "T5_01",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Attention-to-size conversion factor"
+  },
+  {
+    "registry_id": "T7_01",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Fit level multipliers on L1-L3"
+  },
+  {
+    "registry_id": "T8_01",
+    "registry_type": "threshold",
+    "domain": "perception_science",
+    "text": "Cross-level attenuation factors"
+  },
+  {
+    "registry_id": "D2_T03",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "V-neck elongation plateau depth"
+  },
+  {
+    "registry_id": "D2_T06",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Crew neck shortening vs bare neck"
+  },
+  {
+    "registry_id": "D2_T08",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Boat neck shoulder widening by coverage ratio"
+  },
+  {
+    "registry_id": "D2_T14",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Turtleneck triple failure thresholds"
+  },
+  {
+    "registry_id": "D2_T17",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Wrap tie waist penalty formula"
+  },
+  {
+    "registry_id": "D2_T19",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Wrap WHR collapse thresholds"
+  },
+  {
+    "registry_id": "D2_T24",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Arm prominence ratio thresholds"
+  },
+  {
+    "registry_id": "D2_T27",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Puff sleeve scale penalty per inch below 5'4\""
+  },
+  {
+    "registry_id": "D2_T31",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Cap sleeve positive case thresholds"
+  },
+  {
+    "registry_id": "D2_T36",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Ankle break disappearance threshold"
+  },
+  {
+    "registry_id": "D2_T37",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Midi calf collision detection"
+  },
+  {
+    "registry_id": "D2_T42",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "A-line flare origin relative to hip thresholds"
+  },
+  {
+    "registry_id": "D2_T45",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Bodycon contour issue thresholds"
+  },
+  {
+    "registry_id": "D2_T61",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Compound effect diminishing returns formula"
+  },
+  {
+    "registry_id": "D2_T63",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Cross-element interaction penalties"
+  },
+  {
+    "registry_id": "D2_T64",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Dimension weight defaults for score_garment()"
+  },
+  {
+    "registry_id": "D2_T66",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Arm circumference profile decay function"
+  },
+  {
+    "registry_id": "D2_T67",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Arm prominence severity combined metric"
+  },
+  {
+    "registry_id": "D2_T68",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "Calf prominence ratio formula"
+  },
+  {
+    "registry_id": "D2_T78",
+    "registry_type": "threshold",
+    "domain": "garment_construction",
+    "text": "V-neck gaping risk thresholds"
+  },
+  {
+    "registry_id": "D3_T01",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Cling Threshold Base Formula"
+  },
+  {
+    "registry_id": "D3_T02",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Apple Belly Ease Consumption"
+  },
+  {
+    "registry_id": "D3_T06",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Wrap Dress Gapping Threshold"
+  },
+  {
+    "registry_id": "D3_T09",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Ponte Climate Limit"
+  },
+  {
+    "registry_id": "D3_T11",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Recommendation Composite Thresholds"
+  },
+  {
+    "registry_id": "D3_T12",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Dark + Shiny Cancellation Threshold"
+  },
+  {
+    "registry_id": "D3_T13",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Cling Status Categories"
+  },
+  {
+    "registry_id": "D3_T14",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Transparency Risk Threshold"
+  },
+  {
+    "registry_id": "D3_T15",
+    "registry_type": "threshold",
+    "domain": "3",
+    "text": "Plus-Size Confidence Reduction"
+  },
+  {
+    "registry_id": "D4_T01",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Dark Color Threshold"
+  },
+  {
+    "registry_id": "D4_T02",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Bodycon Territory"
+  },
+  {
+    "registry_id": "D4_T03",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Tent Territory"
+  },
+  {
+    "registry_id": "D4_T04",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Semi-Fitted Optimal Zone"
+  },
+  {
+    "registry_id": "D4_T05",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "A-Line Peak Benefit"
+  },
+  {
+    "registry_id": "D4_T06",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Fine Stripes"
+  },
+  {
+    "registry_id": "D4_T10",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Cling Trap"
+  },
+  {
+    "registry_id": "D4_T12",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "High Rise Significant"
+  },
+  {
+    "registry_id": "D4_T13",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Mid Rise Reference"
+  },
+  {
+    "registry_id": "D4_T15",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Specular Danger Zone"
+  },
+  {
+    "registry_id": "D4_T17",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Thin Bodycon"
+  },
+  {
+    "registry_id": "D4_T18",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Light Color Expansion"
+  },
+  {
+    "registry_id": "D4_T19",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Rise Elongation Base Formula"
+  },
+  {
+    "registry_id": "D4_T20",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "A-Line ER Response Curve"
+  },
+  {
+    "registry_id": "D4_T22",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Sheen Penalty on Apple/Plus"
+  },
+  {
+    "registry_id": "D4_T24",
+    "registry_type": "threshold",
+    "domain": "4",
+    "text": "Narrow Rigid Waistband Override"
+  },
+  {
+    "registry_id": "D5_T01",
+    "registry_type": "threshold",
+    "domain": "5",
+    "text": "Score-to-Inches Multiplier"
+  },
+  {
+    "registry_id": "D5_T02",
+    "registry_type": "threshold",
+    "domain": "5",
+    "text": "Petite Amplifier Formula"
+  },
+  {
+    "registry_id": "D5_T05",
+    "registry_type": "threshold",
+    "domain": "5",
+    "text": "Monochromatic Column \u0394E Sigmoid"
+  },
+  {
+    "registry_id": "D5_T10",
+    "registry_type": "threshold",
+    "domain": "5",
+    "text": "Hemline Position Calf Landmarks"
+  },
+  {
+    "registry_id": "D5_T13",
+    "registry_type": "threshold",
+    "domain": "5",
+    "text": "Color Break Contrast Sigmoid"
+  },
+  {
+    "registry_id": "D5_T15",
+    "registry_type": "threshold",
+    "domain": "5",
+    "text": "Positive Score Cap"
+  },
+  {
+    "registry_id": "D5_T18",
+    "registry_type": "threshold",
+    "domain": "5",
+    "text": "Confidence Interval Formula"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "threshold",
+    "domain": "6",
+    "text": "T_D6_001; P_D6_002; WHR_helmholtz_boundary"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "threshold",
+    "domain": "6",
+    "text": "T_D6_002; P_D6_002; WHR_full_reversal"
+  },
+  {
+    "registry_id": "P_D6_001",
+    "registry_type": "threshold",
+    "domain": "6",
+    "text": "T_D6_012; P_D6_001; fabric_sheen_threshold"
+  },
+  {
+    "registry_id": "P_D6_010",
+    "registry_type": "threshold",
+    "domain": "6",
+    "text": "T_D6_014; P_D6_010; bodycon_WHR_reversal"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "threshold",
+    "domain": "6",
+    "text": "T_D6_028; P_D6_002; WHR_full_helmholtz"
+  },
+  {
+    "registry_id": "P_D7_002",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_005; P_D7_002; minimum_stripes_helmholtz"
+  },
+  {
+    "registry_id": "P_D7_002",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_006; P_D7_002; stripe_contrast_minimum"
+  },
+  {
+    "registry_id": "P_D7_002",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_009; P_D7_002; BMI_helmholtz_reversal"
+  },
+  {
+    "registry_id": "P_D7_006",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_016; P_D7_006; belt_WHR_reversal"
+  },
+  {
+    "registry_id": "P_D7_006",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_019; P_D7_006; peplum_extreme_pear_SHR"
+  },
+  {
+    "registry_id": "P_D7_007",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_022; P_D7_007; VR_short_torso_reversal"
+  },
+  {
+    "registry_id": "P_D7_007",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_024; P_D7_007; VR_overcorrection_warning"
+  },
+  {
+    "registry_id": "threshold_739",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_028; WHR_target_range_low; WHR target range lower bound (0.67-0.80 for US/urban markets). Singh 1993 with cultural caveats."
+  },
+  {
+    "registry_id": "threshold_740",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_029; WHR_target_range_high; WHR target range upper bound. WHR > 0.88 = apple/undefined waist."
+  },
+  {
+    "registry_id": "threshold_749",
+    "registry_type": "threshold",
+    "domain": "7",
+    "text": "T_D7_038; A_line_stiff_fabric_pear; rigidity (0-1)"
+  },
+  {
+    "registry_id": "P_D8_001",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_003; P_D8_001; stripe_width_thick"
+  },
+  {
+    "registry_id": "P_D8_001",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_005; P_D8_001; fabric_cling_stripe_override"
+  },
+  {
+    "registry_id": "P_D8_004",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_013; P_D8_004; upper_calf_inseam_low"
+  },
+  {
+    "registry_id": "P_D8_004",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_014; P_D8_004; upper_calf_inseam_high"
+  },
+  {
+    "registry_id": "P_D8_004",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_015; P_D8_004; height_amplification_155"
+  },
+  {
+    "registry_id": "P_D8_004",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_004B; P_D8_004; height_amplification_163"
+  },
+  {
+    "registry_id": "P_D8_004",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_016; P_D8_004; height_amplification_170"
+  },
+  {
+    "registry_id": "P_D8_006",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_026; P_D8_006; starch_factor_light"
+  },
+  {
+    "registry_id": "P_D8_007",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_028; P_D8_007; pattern_scale_petite_max"
+  },
+  {
+    "registry_id": "P_D8_010",
+    "registry_type": "threshold",
+    "domain": "8",
+    "text": "T_D8_030; P_D8_010; saree_border_width_ratio_widening"
+  },
+  {
+    "registry_id": "FC-1H",
+    "registry_type": "exception",
+    "domain": "perception_science",
+    "text": "Cognitive override (cultural belief)"
+  },
+  {
+    "registry_id": "D5_EX42",
+    "registry_type": "exception",
+    "domain": "5",
+    "text": "Contradiction #10: Lab-to-Real-World Transfer"
+  },
+  {
+    "registry_id": "exception_1000",
+    "registry_type": "exception",
+    "domain": "8",
+    "text": "EX_D8_025; Outcome data contradicts prediction by >15%; Threshold holds"
+  },
+  {
+    "registry_id": "body_type_modifier_1037",
+    "registry_type": "body_type_modifier",
+    "domain": "perception_science",
+    "text": "rectangle"
+  },
+  {
+    "registry_id": "body_type_modifier_1040",
+    "registry_type": "body_type_modifier",
+    "domain": "perception_science",
+    "text": "rectangle"
+  },
+  {
+    "registry_id": "body_type_modifier_1050",
+    "registry_type": "body_type_modifier",
+    "domain": "perception_science",
+    "text": "plus_size"
+  },
+  {
+    "registry_id": "D3_BTM_P01_apple",
+    "registry_type": "body_type_modifier",
+    "domain": "3",
+    "text": "Belly sheen EXTREME (+0.42-0.70)"
+  },
+  {
+    "registry_id": "P_D6_003",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "PETITE"
+  },
+  {
+    "registry_id": "P_D6_010",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_032; P_D6_010; slim_negative"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "HOURGLASS"
+  },
+  {
+    "registry_id": "P_D6_003",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "HOURGLASS"
+  },
+  {
+    "registry_id": "P_D6_004",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "HOURGLASS"
+  },
+  {
+    "registry_id": "P_D6_006",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "HOURGLASS"
+  },
+  {
+    "registry_id": "P_D6_008",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "HOURGLASS"
+  },
+  {
+    "registry_id": "P_D6_009",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "HOURGLASS"
+  },
+  {
+    "registry_id": "P_D6_001",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "RECTANGLE"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "RECTANGLE"
+  },
+  {
+    "registry_id": "P_D6_003",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "RECTANGLE"
+  },
+  {
+    "registry_id": "P_D6_005",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "RECTANGLE"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "INVERTED_TRIANGLE"
+  },
+  {
+    "registry_id": "P_D6_004",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "INVERTED_TRIANGLE"
+  },
+  {
+    "registry_id": "P_D6_008",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "INVERTED_TRIANGLE"
+  },
+  {
+    "registry_id": "P_D6_009",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "INVERTED_TRIANGLE"
+  },
+  {
+    "registry_id": "P_D6_010",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "INVERTED_TRIANGLE"
+  },
+  {
+    "registry_id": "P_D6_001",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_067; P_D6_001; standard"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_068; P_D6_002; standard"
+  },
+  {
+    "registry_id": "P_D6_003",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_069; P_D6_003; suppressed"
+  },
+  {
+    "registry_id": "P_D6_004",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_070; P_D6_004; suppressed"
+  },
+  {
+    "registry_id": "P_D6_005",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_071; P_D6_005; standard"
+  },
+  {
+    "registry_id": "P_D6_007",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_073; P_D6_007; standard"
+  },
+  {
+    "registry_id": "P_D6_008",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_074; P_D6_008; standard"
+  },
+  {
+    "registry_id": "P_D6_009",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "BM_D6_075; P_D6_009; standard"
+  },
+  {
+    "registry_id": "P_D6_002",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "PLUS_SIZE"
+  },
+  {
+    "registry_id": "P_D6_003",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "PLUS_SIZE"
+  },
+  {
+    "registry_id": "P_D6_009",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "PLUS_SIZE"
+  },
+  {
+    "registry_id": "P_D6_011",
+    "registry_type": "body_type_modifier",
+    "domain": "6",
+    "text": "PLUS_SIZE"
+  },
+  {
+    "registry_id": "P_D7_001",
+    "registry_type": "body_type_modifier",
+    "domain": "7",
+    "text": "BM_D7_008; P_D7_001; monochrome_reduced"
+  },
+  {
+    "registry_id": "P_D7_004",
+    "registry_type": "body_type_modifier",
+    "domain": "7",
+    "text": "INVERTED_TRIANGLE"
+  },
+  {
+    "registry_id": "P_D7_007",
+    "registry_type": "body_type_modifier",
+    "domain": "7",
+    "text": "BM_D7_018; P_D7_007; suppressed"
+  },
+  {
+    "registry_id": "P_D8_002",
+    "registry_type": "body_type_modifier",
+    "domain": "8",
+    "text": "PLUS_SIZE"
+  },
+  {
+    "registry_id": "contra_1251",
+    "registry_type": "contradiction",
+    "domain": "cross_domain",
+    "text": "{'pattern': 'Rule optimizes for wrong goal', 'examples': ['proportion optimization vs practical scoring', 'minimize vs celebrate', 'cultural proportion ideals'], 'engine_response': \"GOAL-AWARE SCORING"
+  },
+  {
+    "registry_id": "SF_D3_001",
+    "registry_type": "scoring_function",
+    "domain": "scoring",
+    "text": "Applies woven/knit elastane multiplier (1.6/4.0/5.5/3.5), fiber-adjusted GSM, surface sheen mapping (0.0-1.0), crushed surface correction (25% curvature mapping)."
+  },
+  {
+    "registry_id": "CTX_029",
+    "registry_type": "context_rule",
+    "domain": "context",
+    "text": "Indian wedding scoring goals: grandeur=0.30, cultural_fit=0.25, color=0.25, modesty=0.20. These REPLACE standard proportion-optimization goals."
+  }
+]
