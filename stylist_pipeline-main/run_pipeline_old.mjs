@@ -22,9 +22,6 @@ import {
     estimate_goal_show_legs
 } from './user_garment_judgements.mjs';
 
-// JavaScript Scoring Engine (replaces Python server)
-import { scoreAndCommunicate, score } from './engine/index.mjs';
-
 let sample_user_body_derived_merged_attributes_result = {
     "chest_circumference": 112.7,
     "waist_circumference": 102.76,
@@ -172,42 +169,45 @@ let sample_product_image_text_merged_attributes_result = {
 }
 
 // ============================================================================
-// SCORING ENGINE (JavaScript - No Python Server Required)
+// SCORING SERVICE CLIENT
 // ============================================================================
 
-/**
- * Score a garment against user measurements using the JS scoring engine.
- * @param {Object} userMeasurements - User body measurements
- * @param {Object} garmentAttrs - Garment attributes from extraction
- * @param {Array} userGoals - Optional styling goals
- * @returns {Object} Score result with principle scores
- */
-function runScoring(userMeasurements, garmentAttrs, userGoals = []) {
-    // Add styling goals to user measurements if provided
-    const userWithGoals = { ...userMeasurements };
-    if (userGoals.length > 0) {
-        userWithGoals.styling_goals = userGoals;
+async function callScoringService(userMeasurements, garmentAttrs, userGoals = []) {
+    const response = await fetch('http://localhost:8000/score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_measurements: userMeasurements,
+            garment_attributes: garmentAttrs,
+            styling_goals: userGoals,
+        }),
+    });
+
+    if (!response.ok) {
+        const error = await response.text();
+        throw new Error(`Scoring service error (${response.status}): ${error}`);
     }
 
-    return score(userWithGoals, garmentAttrs);
+    return response.json();
 }
 
-/**
- * Score and generate communication for a garment.
- * @param {Object} userMeasurements - User body measurements
- * @param {Object} garmentAttrs - Garment attributes from extraction
- * @param {Array} userGoals - Optional styling goals
- * @param {string} userName - User display name for communication
- * @returns {Object} { score_result, communication }
- */
-function runScoringAndCommunicate(userMeasurements, garmentAttrs, userGoals = [], userName = "You") {
-    // Add styling goals to user measurements if provided
-    const userWithGoals = { ...userMeasurements };
-    if (userGoals.length > 0) {
-        userWithGoals.styling_goals = userGoals;
+async function callScoringAndCommunicateService(userMeasurements, garmentAttrs, userGoals = []) {
+    const response = await fetch('http://localhost:8000/score-and-communicate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_measurements: userMeasurements,
+            garment_attributes: garmentAttrs,
+            styling_goals: userGoals,
+        }),
+    });
+
+    if (!response.ok) {
+        const error = await response.text();
+        throw new Error(`Scoring service error (${response.status}): ${error}`);
     }
 
-    return scoreAndCommunicate(userWithGoals, garmentAttrs, null, userName);
+    return response.json();
 }
 
 // ============================================================================
@@ -322,15 +322,15 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     }
 
     // -------------------------------------------------------------------------
-    // STEP 5: Score + Communicate via JavaScript Scoring Engine
+    // STEP 5: Score + Communicate via Python Scoring Engine
     // -------------------------------------------------------------------------
-    console.log("\n--- STEP 5: SCORING + COMMUNICATION VIA JS ENGINE ---\n");
+    console.log("\n--- STEP 5: SCORING + COMMUNICATION VIA PYTHON ENGINE ---\n");
 
     let scoringResult;
     let communication;
     try {
-        const result = runScoringAndCommunicate(user_measurements, mergedAttrs, userGoals);
-        scoringResult = result.score_result;
+        const result = await callScoringAndCommunicateService(user_measurements, mergedAttrs, userGoals);
+        scoringResult = result.score;
         communication = result.communication;
 
         console.log("Scoring Result:");
@@ -340,24 +340,15 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
         console.log(`Verdict: ${communication.verdict}`);
         console.log(`Overall Score: ${communication.overall_score}`);
         console.log(`\nHeadline: ${communication.headline}`);
-
-        // Format pinch segments for display
-        const pinchText = (communication.pinch || []).map(p =>
-            typeof p === 'object' ? p.text : p
-        ).join('');
-        console.log(`Pinch: ${pinchText}`);
-
-        if (communication.guardrail_result && !communication.guardrail_result.passed) {
-            console.log(`\nGuardrail Violations: ${communication.guardrail_result.violations.length}`);
-            for (const v of communication.guardrail_result.violations) {
-                console.log(`  - ${v.rule}: ${v.text}`);
-            }
+        console.log(`Pinch: ${communication.pinch}`);
+        if (communication.guardrail_flags?.length > 0) {
+            console.log(`\nGuardrail Flags: ${communication.guardrail_flags.join(', ')}`);
         }
         console.log("\nFull Communication:");
         console.log(JSON.stringify(communication, null, 2));
     } catch (err) {
-        console.error("Scoring engine error:", err.message);
-        console.error(err.stack);
+        console.error("Scoring service error:", err.message);
+        console.error("Make sure the scoring service is running: bash start_scoring_service.sh");
         return;
     }
 
