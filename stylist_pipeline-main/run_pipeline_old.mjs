@@ -243,56 +243,139 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     // -------------------------------------------------------------------------
     // STEP 1: User Measurements (raw + derived)
     // -------------------------------------------------------------------------
-    console.log("--- STEP 1: USER MEASUREMENTS ---\n");
-
-    const derived = calc_derived_measurements_and_ratios(user_body_measurements, null);
-    const user_measurements = {
-        ...user_body_measurements,
-        ...derived,
-    };
-
+    let user_measurements = {
+        "chest_circumference": 112.7,
+        "waist_circumference": 102.76,
+        "hip_circumference": 107.5,
+        "shoulder_breadth": 42.3164,
+        "neck_circumference": 44.97,
+        "thigh_left_circumference": 67.01,
+        "ankle_left_circumference": 28.64,
+        "arm_right_length": 75.9968,
+        "inside_leg_height": 77.66,
+        "height": 172.72,
+        "waist_hip_ratio": 0.96,
+        "bust_hip_ratio": 1.05,
+        "shoulder_hip_ratio": 1.24,
+        "torso_leg_ratio": 0.93,
+        "body_shape": "apple",
+        "height_category": "tall",
+        "size_category": "plus_size",
+        "compound_types": [
+          "apple",
+          "tall",
+          "plus_size"
+        ],
+        "knee_from_floor": 14.37,
+        "mid_calf_from_floor": 9.63,
+        "widest_calf_from_floor": 10.78,
+        "ankle_from_floor": 3.5,
+        "mid_thigh_from_floor": 22.01,
+        "elbow_from_shoulder": 17.05,
+        "widest_upper_arm_from_shoulder": 9.87,
+        "natural_waist_from_shoulder": 28.43,
+        "natural_waist_from_floor": 39.57
+    }
+    if(false){
+        const derived = calc_derived_measurements_and_ratios(user_body_measurements, null);
+        user_measurements = {
+            ...user_body_measurements,
+            ...derived,
+        };
+    }
     console.log(JSON.stringify(user_measurements, null, 2));
 
     // -------------------------------------------------------------------------
     // STEP 2 + 3: Extract Text & Image Attributes (in parallel)
     // -------------------------------------------------------------------------
-    console.log("\n--- STEP 2+3: EXTRACTING TEXT & IMAGE ATTRIBUTES (PARALLEL) ---\n");
-
-    const [textResult, imageResult] = await Promise.all([
-        extractTextAttributes(product_profile.product_text),
-        extractGarmentAttributes(product_profile.product_image_url),
-    ]);
-
-    if (!textResult.success) {
-        console.error("Text extraction failed:", textResult.error);
-        return;
+    let mergedAttrs = {
+        "neckline_type": "sweetheart",
+        "neckline_depth": "shallow",
+        "neckline_width": "medium",
+        "sleeve_type": "puff",
+        "sleeve_width": "relaxed",
+        "silhouette_type": "a_line",
+        "waistline": "natural",
+        "waist_definition": "undefined",
+        "fit_category": "relaxed",
+        "color_primary": "cream",
+        "color_value": "light",
+        "color_temperature": "neutral",
+        "color_saturation": "muted",
+        "pattern_type": "floral_small",
+        "pattern_scale": "small",
+        "pattern_contrast": "medium",
+        "pattern_direction": "mixed",
+        "fabric_sheen": "subtle_sheen",
+        "fabric_opacity": "semi_opaque",
+        "fabric_drape": "fluid",
+        "fabric_texture": "woven",
+        "has_darts": false,
+        "has_seaming": true,
+        "has_ruching": true,
+        "has_draping": false,
+        "has_pleats": false,
+        "has_gathering": false,
+        "fabric_primary": "Rayon",
+        "fabric_secondary": "Linen",
+        "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
+        "stretch_percentage": 0,
+        "model_height_inches": 69,
+        "model_size_worn": "S",
+        "model_bust": 34,
+        "model_waist": 28,
+        "model_hips": 35,
+        "hemline_position": "mini",
+        "garment_length_inches": 24,
+        "fabric_weight": "medium",
+        "garment_type": "dress",
+        "title": "H&M Puff-Sleeved Dress",
+        "brand": "H&M",
+        "price": "$29.99",
+        "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+        "image_confidence": "high",
+        "text_confidence": "high"
     }
 
-    console.log("Text Attributes (raw):");
-    console.log(JSON.stringify(textResult.attributes, null, 2));
+    if(false){
+        console.log("\n--- STEP 2+3: EXTRACTING TEXT & IMAGE ATTRIBUTES (PARALLEL) ---\n");
 
-    const flatTextAttrs = flattenTextAttributes(textResult.attributes);
-    console.log("\nText Attributes (flattened):");
-    console.log(JSON.stringify(flatTextAttrs, null, 2));
+        const [textResult, imageResult] = await Promise.all([
+            extractTextAttributes(product_profile.product_text),
+            extractGarmentAttributes(product_profile.product_image_url),
+        ]);
 
-    if (!imageResult.success) {
-        console.error("Image extraction failed:", imageResult.error);
-        return;
+        if (!textResult.success) {
+            console.error("Text extraction failed:", textResult.error);
+            return;
+        }
+
+        console.log("Text Attributes (raw):");
+        console.log(JSON.stringify(textResult.attributes, null, 2));
+
+        const flatTextAttrs = flattenTextAttributes(textResult.attributes);
+        console.log("\nText Attributes (flattened):");
+        console.log(JSON.stringify(flatTextAttrs, null, 2));
+
+        if (!imageResult.success) {
+            console.error("Image extraction failed:", imageResult.error);
+            return;
+        }
+
+        console.log("\nImage Attributes (raw):");
+        console.log(JSON.stringify(imageResult.attributes, null, 2));
+
+        const flatImageAttrs = flattenAttributes(imageResult.attributes);
+        console.log("\nImage Attributes (flattened):");
+        console.log(JSON.stringify(flatImageAttrs, null, 2));
+
+        // -------------------------------------------------------------------------
+        // STEP 4: Merge Attributes (text overrides where authoritative)
+        // -------------------------------------------------------------------------
+        console.log("\n--- STEP 4: MERGED ATTRIBUTES ---\n");
+        mergedAttrs = mergeAttributes(flatImageAttrs, flatTextAttrs);
+        console.log(JSON.stringify(mergedAttrs, null, 2));
     }
-
-    console.log("\nImage Attributes (raw):");
-    console.log(JSON.stringify(imageResult.attributes, null, 2));
-
-    const flatImageAttrs = flattenAttributes(imageResult.attributes);
-    console.log("\nImage Attributes (flattened):");
-    console.log(JSON.stringify(flatImageAttrs, null, 2));
-
-    // -------------------------------------------------------------------------
-    // STEP 4: Merge Attributes (text overrides where authoritative)
-    // -------------------------------------------------------------------------
-    console.log("\n--- STEP 4: MERGED ATTRIBUTES ---\n");
-    const mergedAttrs = mergeAttributes(flatImageAttrs, flatTextAttrs);
-    console.log(JSON.stringify(mergedAttrs, null, 2));
 
     if(false){
 
@@ -385,23 +468,23 @@ async function runPipeline(user_body_measurements, product_profile, options = {}
     // -------------------------------------------------------------------------
     // STEP 7: Token Usage Summary
     // -------------------------------------------------------------------------
-    console.log("\n--- TOKEN USAGE SUMMARY ---\n");
-    console.log("Text Extraction:", {
-        inputTokens: textResult.usage?.inputTokens || 0,
-        outputTokens: textResult.usage?.outputTokens || 0,
-    });
-    console.log("Image Extraction:", {
-        inputTokens: imageResult.usage?.inputTokens || 0,
-        outputTokens: imageResult.usage?.outputTokens || 0,
-    });
-
+    if(false){
+        console.log("\n--- TOKEN USAGE SUMMARY ---\n");
+        console.log("Text Extraction:", {
+            inputTokens: textResult.usage?.inputTokens || 0,
+            outputTokens: textResult.usage?.outputTokens || 0,
+        });
+        console.log("Image Extraction:", {
+            inputTokens: imageResult.usage?.inputTokens || 0,
+            outputTokens: imageResult.usage?.outputTokens || 0,
+        });
+    }
     return {
         user: user_measurements,
         garment: mergedAttrs,
         scoring_result: scoringResult,
         communication: communication,
-        textAttrs: flatTextAttrs,
-        imageAttrs: flatImageAttrs,
+        mergedAttrs: mergedAttrs,
     };
 }
 
