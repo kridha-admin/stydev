@@ -192,7 +192,7 @@ export function scoreAndCommunicate(
     );
 
     return {
-        scoreResult: scoreResultDict,
+        score_result: scoreResultDict,
         communication,
         bodyProfile: bodyProfileToDict(bodyProfile),
         garmentProfile: garmentProfileToDict(garmentProfile),

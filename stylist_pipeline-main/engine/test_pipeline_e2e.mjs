@@ -156,7 +156,7 @@ function test_e2e_hm_dress_apple() {
 
     const stylingGoals = ["hide_midsection", "look_taller"];
 
-    const { scoreResult, communication, bodyProfile } = scoreAndCommunicate(
+    const { score_result, communication, bodyProfile } = scoreAndCommunicate(
         userMeasurements,
         garmentAttributes,
         stylingGoals
@@ -164,7 +164,7 @@ function test_e2e_hm_dress_apple() {
 
     check("body shape is apple", bodyProfile.body_shape, "apple");
 
-    validateScoreResult("HM_dress_apple", scoreResult, bodyProfile.body_shape);
+    validateScoreResult("HM_dress_apple", score_result, bodyProfile.body_shape);
 }
 
 // ================================================================
@@ -223,7 +223,7 @@ function test_e2e_bodycon_petite_pear() {
 
     const stylingGoals = ["slim_hips", "highlight_waist"];
 
-    const { scoreResult, communication, bodyProfile, garmentProfile } = scoreAndCommunicate(
+    const { score_result, communication, bodyProfile, garmentProfile } = scoreAndCommunicate(
         userMeasurements,
         garmentAttributes,
         stylingGoals
@@ -233,7 +233,7 @@ function test_e2e_bodycon_petite_pear() {
     check("is petite", bodyProfile.is_petite, true);
     check("garment is dark", garmentProfile.is_dark, true);
 
-    validateScoreResult("bodycon_petite_pear", scoreResult, bodyProfile.body_shape);
+    validateScoreResult("bodycon_petite_pear", score_result, bodyProfile.body_shape);
 }
 
 // ================================================================
@@ -288,7 +288,7 @@ function test_e2e_wide_leg_pants_rectangle() {
 
     const stylingGoals = ["look_taller", "highlight_waist"];
 
-    const { scoreResult, communication, bodyProfile, garmentProfile } = scoreAndCommunicate(
+    const { score_result, communication, bodyProfile, garmentProfile } = scoreAndCommunicate(
         userMeasurements,
         garmentAttributes,
         stylingGoals
@@ -298,7 +298,7 @@ function test_e2e_wide_leg_pants_rectangle() {
     check("garment category is pants", garmentProfile.category, "bottom_pants");
     check("zone is lower_body", garmentProfile.zone, "lower_body");
 
-    validateScoreResult("wide_leg_rectangle", scoreResult, bodyProfile.body_shape);
+    validateScoreResult("wide_leg_rectangle", score_result, bodyProfile.body_shape);
 }
 
 // ================================================================

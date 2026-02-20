@@ -592,6 +592,68 @@ let product_profile1 = {
     product_url: "https://www2.hm.com/en_us/productpage.1275471004.html"
 };
 
+let product_profile2 = {
+
+    product_text: `
+
+        Title:
+        H&M Puff-Sleeved Dress
+        $29.99
+
+        Color:
+        White/navy blue patterned
+
+        Product features
+        The model is 175cm/5'9" and wears a size S
+        Slim fit
+
+        Description & fit
+        Knee-length dress in woven fabric. Round neckline, buttons at front, and an extra-narrow, removable tie belt at waist. Elbow-length puff sleeves with elasticized cuffs. Unlined.
+
+        Art. No.: 1278378001
+
+        Description:
+        White/navy blue/dusty blue, Patterned
+
+        Size:
+        Sleeve: Length: 46 cm (size M)
+        Shoulder: Width: 33 cm (size M)
+        Back: Length: 95 cm (size M)
+
+        Length:             Short
+        Sleeve Length:      Short sleeve
+        Fit:                Regular fit
+        Neckline:           Round Neck      
+        Sleeve type:        Puff Sleeve
+        Imported:           Yes
+        Quantity:           Single
+
+        Materials
+
+        Composition
+        Rayon 100%
+
+        Additional material information
+        The total weight of this product contains at least:
+        100% Livaeco™ Viscose
+
+        We exclude the weight of minor components such as, but not exclusively: threads, buttons, zippers, embellishments and prints.
+        The total weight of the product is calculated by adding the weight of all layers and main components together. Based on that, we calculate how much of that weight is made out by each material. For sets and multipacks, all pieces are counted together as one product in calculations.
+
+        Materials in this product explained
+        
+        Livaeco™ Viscose
+        Livaeco™ is a branded viscose fiber. Its wood pulp raw material is sourced from certified forests according to standards regulating deforestation, wages and work environment, the protection of plant and animal species and community rights.
+        
+        Rayon
+        Viscose is a regenerated cellulose fibre commonly made from wood, but the raw material could also consist of other cellulosic materials.
+
+    `,
+
+    product_image_url: 'https://image.hm.com/assets/hm/58/40/5840c01a4c28574641d6b14de795a766adc63024.jpg?imwidth=1536',
+
+    product_url: "https://www2.hm.com/en_us/productpage.1278378001.html"
+};
 
 
 // Run the pipeline
