@@ -1,0 +1,441 @@
+SYSTEM PROMPT:
+You are a professional fashion stylist with 20 years of experience working with women of all body types, sizes, and styling goals. You understand how fabric weight, silhouette, neckline shape, hemline length, color value, and pattern interact with different body proportions to create visual effects.
+
+You are evaluating an AI styling recommendation engine. For each test case, you will see:
+1. A garment description (and optionally an image)
+2. A woman's body profile (measurements, shape, height, goals)
+3. The AI engine's recommendation (score, verdict, reasoning)
+
+Your job is to evaluate whether the AI's recommendation would serve this woman well. Be critical. Look for:
+- Verdicts that would lead to bad purchases (TII for a garment that will look terrible)
+- Verdicts that would cause missed opportunities (NTO for a garment that would actually work)
+- Reasoning that identifies the wrong strengths or weaknesses
+- Missing issues the engine didn't catch (e.g., fabric cling risk, hemline in danger zone)
+- Body-unsafe language or assumptions
+
+Respond ONLY with the JSON evaluation object. No preamble, no explanation outside the JSON.
+
+================================================================================
+USER: Petite Pear — wants to look taller and balance hips
+================================================================================
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_001
+
+GARMENT:
+A thin champagne satin slip dress with spaghetti straps and bias cut. The fabric is lightweight satin (Polyester 100%) at around 110 GSM — it will cling to every curve and gather in the midsection. Very drapey with moderate sheen. No structure, no waist definition. The light champagne color reflects light and visually expands. This is the worst-case garment for anyone with midsection concerns — the thin satin maps the body faithfully.
+
+Attributes: Type: dress, Silhouette: column, Fabric: polyester, Weight: very_light, Neckline: v_neck, Hemline: midi, Color: champagne (light), Pattern: solid, Fit: fitted, Waist: undefined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 4.4/10
+- Verdict: Not This One
+- Headline: "Hard pass — the fabric is too far off for your goals."
+- Reasoning: "The above-knee length is doing serious work — it makes your legs look miles long. But the fabric is so fluid it drapes onto your body like water — there's no structure to smooth. Look for a dress with compression fabric that smooths instead of maps."
+- Top positive principles: Hemline: +0.520, Neckline Compound: +0.305, V-Neck Elongation: +0.120
+- Top negative principles: Bodycon Mapping: -0.300, Matte Zone: -0.065, Fabric Zone: -0.035
+- Goal verdicts: look_taller=pass, slim_hips=pass, highlight_waist=fail, look_proportional=pass
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_002
+
+GARMENT:
+A fitted black ponte sheath dress with V-neckline, hitting just below the knee. Medium-weight double-knit ponte (Polyester 95%, Elastane 5%) with good structure and no sheen. Sleeveless with defined waist from princess seaming. Solid black. The structured fabric holds its shape and won't cling — creates a clean column effect. The dark color produces a continuous vertical line. This is the universal crowd-pleaser that should work for most body types.
+
+Attributes: Type: dress, Silhouette: sheath, Fabric: polyester + elastane, Weight: medium, Neckline: v_neck, Hemline: below_knee, Color: black (very_dark), Pattern: solid, Fit: fitted, Waist: defined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 8.5/10
+- Verdict: This Is It
+- Headline: "This one's a keeper — fit and fabric both work."
+- Reasoning: "The hemline is exactly where you want it for your height. Plus, the neckline shape works here — it creates the right visual frame for your upper half. And the color tone does quiet slimming work."
+- Top positive principles: Hemline: +0.520, Color Value: +0.250, Neckline Compound: +0.225
+- Top negative principles: Bodycon Mapping: -0.027, Waist Placement: +0.000, Fabric Zone: +0.036
+- Goal verdicts: look_taller=pass, slim_hips=pass, highlight_waist=caution, look_proportional=pass
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_003
+
+GARMENT:
+An oversized tent-shaped dress in oatmeal heavy linen. Crew neckline, dropped shoulders, no waist definition at all. The fabric is thick (280+ GSM), stiff linen that stands away from the body. Falls to below-knee length in a trapeze shape. Completely conceals the midsection and hips, but also hides any waist definition — will look boxy on hourglass figures. Good for apple bodies wanting concealment, bad for rectangles wanting curves.
+
+Attributes: Type: dress, Silhouette: tent, Fabric: linen, Weight: heavy, Neckline: crew_neck, Hemline: below_knee, Color: oatmeal (light), Pattern: solid, Fit: oversized, Waist: undefined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 7.2/10
+- Verdict: Smart Pick
+- Headline: "Good bones, but the silhouette is holding it back."
+- Reasoning: "At this length, you get maximum leg elongation. But this swamps your frame — there's no waist definition to anchor the eye. Try a fit-and-flare instead — it gives room at the hip without swamping you."
+- Top positive principles: Hemline: +0.520, Matte Zone: +0.104, Fabric Zone: +0.086
+- Top negative principles: Tent Concealment: -0.165, A-Line Balance: -0.033, Sleeve: -0.030
+- Goal verdicts: look_taller=pass, slim_hips=caution, highlight_waist=pass, look_proportional=pass
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_004
+
+GARMENT:
+A fitted crew-neck top in navy and white horizontal stripes. Thin cotton-modal jersey (160 GSM) with 5% elastane for stretch. The horizontal stripes are medium-width (about 1 inch) with high contrast between navy and white. Hits at high hip. The combination of horizontal lines + clinging fabric + high contrast is the classic widening combination — this should penalize heavily for wider midsections and apple shapes.
+
+Attributes: Type: top, Silhouette: sheath, Fabric: cotton + elastane, Weight: light, Neckline: crew_neck, Color: navy and white (medium), Pattern: stripes_horizontal, Fit: fitted, Waist: undefined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 1/10
+- Verdict: Not This One
+- Headline: "This top isn't built for what you need."
+- Reasoning: "The dark color creates a continuous visual column — very slimming. But the top length either cuts at the widest point or rides too short. And the fabric follows every contour instead of creating a smooth line. Look for a top built for your goals — the right fabric and fit exist."
+- Top positive principles: Dark/Black Slimming: +0.041, Color Value: +0.031, V-Neck Elongation: +0.000
+- Top negative principles: Top Hemline: -0.550, Bodycon Mapping: -0.300, Sleeve: -0.100
+- Goal verdicts: look_taller=pass, slim_hips=pass, highlight_waist=fail, look_proportional=caution
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_005
+
+GARMENT:
+High-rise wide-leg trousers in dark navy. Structured cotton-blend fabric (Cotton 70%, Polyester 28%, Elastane 2%) at medium-heavy weight. Sits at natural waist with a defined waistband, front pleats, and full-length wide legs. The high rise elongates the leg line. Dark solid color with matte finish. No pattern. These are the go-to elongation pants — the high waist + wide leg + dark color creates maximum vertical line. Should score very well for petite women wanting to look taller.
+
+Attributes: Type: pants, Silhouette: column, Fabric: cotton + polyester, Weight: medium, Hemline: floor_length, Color: navy (dark), Pattern: solid, Fit: relaxed, Waist: defined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 7.2/10
+- Verdict: Smart Pick
+- Headline: "Close — the shape is right, but the fit needs work."
+- Reasoning: "The flare from the waist does exactly what you want — it balances your proportions. Try these pants on — the stretch and weight will feel different on your body than on screen."
+- Top positive principles: A-Line Balance: +0.225, Color Value: +0.188, Dark/Black Slimming: +0.135
+- Top negative principles: Waist Placement: +0.000, Fabric Zone: +0.081, Matte Zone: +0.104
+- Goal verdicts: look_taller=caution, slim_hips=pass, highlight_waist=caution, look_proportional=caution
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_006
+
+GARMENT:
+A fitted crop top in white thin jersey. Scoop neckline, cap sleeves. The fabric is lightweight cotton-spandex jersey (150 GSM, Cotton 92%, Spandex 8%) that clings and maps the body. Hits at natural waist, exposing the midsection. White color reflects light and makes areas appear larger. This is a multi-risk garment for apple and plus-size bodies: the crop exposes the midsection, the thin clinging fabric maps bumps, and the white color expands visually.
+
+Attributes: Type: top, Silhouette: bodycon, Fabric: cotton + spandex, Weight: light, Neckline: scoop_neck, Color: white (very_light), Pattern: solid, Fit: tight, Waist: undefined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 3.6/10
+- Verdict: Not This One
+- Headline: "This top isn't built for what you need."
+- Reasoning: "The neckline shape works here — it creates the right visual frame for your upper half. But the top length either cuts at the widest point or rides too short. And the sleeve cuts off at the widest part of your arm, drawing attention there. Look for a top built for your goals — the right fabric and fit exist."
+- Top positive principles: Neckline Compound: +0.225, Tent Concealment: +0.150, V-Neck Elongation: +0.050
+- Top negative principles: Top Hemline: -0.550, Sleeve: -0.400, Matte Zone: -0.100
+- Goal verdicts: look_taller=pass, slim_hips=caution, highlight_waist=caution, look_proportional=caution
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_007
+
+GARMENT:
+A dark navy A-line midi dress with defined waist. V-neckline, three-quarter sleeves. Made from medium-weight crepe (Polyester 97%, Elastane 3%) with subtle structure — skims rather than clings. Fitted bodice with seam-defined waist, then flares gently from the hip to midi length. Dark solid color with matte finish. This is the universal crowd-pleaser: the V-neck elongates, the defined waist creates shape, the A-line accommodates wider hips, the dark color slims, and the midi hem is safe for most heights. Should score 7+ for nearly everyone.
+
+Attributes: Type: dress, Silhouette: fit_and_flare, Fabric: polyester + elastane, Weight: medium, Neckline: v_neck, Hemline: midi, Color: navy (dark), Pattern: solid, Fit: semi_fitted, Waist: defined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 8.3/10
+- Verdict: This Is It
+- Headline: "This is your dress."
+- Reasoning: "At this length, the eye gets an unbroken run from hem to floor. Plus, the neckline shape works here — it creates the right visual frame for your upper half. And the sleeve length is right — it ends at a slim point on your arm."
+- Top positive principles: Hemline: +0.520, Neckline Compound: +0.225, Color Value: +0.188
+- Top negative principles: A-Line Balance: -0.015, Waist Placement: +0.000, Fabric Zone: +0.021
+- Goal verdicts: look_taller=pass, slim_hips=pass, highlight_waist=caution, look_proportional=caution
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_008
+
+GARMENT:
+A bodycon mini dress in light pink thin jersey. Round neckline, sleeveless. Extremely thin cotton-polyester jersey (130 GSM, Polyester 65%, Cotton 30%, Elastane 5%) that clings tightly to every contour. Hits mid-thigh. Light pink color amplifies body volume. No structure, no shaping seams. This is the maximum adversarial garment — the bodycon fit maps every bump, the thin jersey provides zero structure, the mini length exposes the widest part of the thigh, and the light pink color expands visually. Should score very low for apple and pear bodies.
+
+Attributes: Type: dress, Silhouette: bodycon, Fabric: polyester + elastane, Weight: light, Neckline: crew_neck, Hemline: mini, Color: light pink (light), Pattern: solid, Fit: tight, Waist: undefined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 7.6/10
+- Verdict: Smart Pick
+- Headline: "Really close — just the fabric to sort out."
+- Reasoning: "The above-knee length is doing serious work — it makes your legs look miles long. But this doesn't have enough structure to keep a smooth silhouette. Look for a fabric over 200 GSM — ponte, scuba, or structured cotton."
+- Top positive principles: Hemline: +0.520, Tent Concealment: +0.150, V-Neck Elongation: +0.000
+- Top negative principles: Matte Zone: -0.100, Fabric Zone: -0.085, A-Line Balance: -0.050
+- Goal verdicts: look_taller=pass, slim_hips=caution, highlight_waist=caution, look_proportional=pass
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_009
+
+GARMENT:
+A floor-length maxi dress in a colorful floral chiffon print. V-neckline with flutter sleeves. The fabric is lightweight chiffon (Polyester 100%) — sheer, floaty, with a lined bodice and unlined skirt. Large-scale floral pattern in warm tones (coral, green, cream) on a dark base. The sheer fabric layers and moves beautifully, but the extreme length will overwhelm petite frames. The large floral print can also visually expand. At floor-length on a 4'11" woman, this creates a fabric-to-person ratio that drowns the wearer.
+
+Attributes: Type: dress, Silhouette: a_line, Fabric: polyester, Weight: very_light, Neckline: v_neck, Hemline: floor_length, Color: multicolor floral (medium), Pattern: floral_large, Fit: relaxed, Waist: semi_defined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 6.5/10
+- Verdict: Smart Pick
+- Headline: "Almost there — fix the fit and this works."
+- Reasoning: "The hemline is exactly where you want it for your height. But the flare doesn't flow — it sticks out and adds width instead of draping. Look for a softer fabric that drapes into a natural flare."
+- Top positive principles: Neckline Compound: +0.225, Hemline: +0.150, V-Neck Elongation: +0.120
+- Top negative principles: A-Line Balance: -0.022, Waist Placement: +0.000, Sleeve: +0.000
+- Goal verdicts: look_taller=caution, slim_hips=caution, highlight_waist=caution, look_proportional=caution
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+
+---CASE_BOUNDARY--- user_01_petite_pear__g_010
+
+GARMENT:
+A structured single-breasted blazer in charcoal grey. Notch lapels, two-button closure, hits at the hip. Made from medium-weight suiting fabric (Polyester 65%, Viscose 30%, Elastane 5%) with a structured drape — holds its shape, creates clean lines. Fully lined. The hip-length hem covers the widest part of the hips and creates a smooth line through the torso. The structured shoulders balance wider hips (good for pear shapes). Charcoal grey is slimming without being as stark as black. This is the classic balancing layer piece.
+
+Attributes: Type: jacket, Silhouette: sheath, Fabric: polyester + viscose, Weight: medium, Neckline: v_neck, Color: charcoal grey (medium_dark), Pattern: solid, Fit: semi_fitted, Waist: semi_defined
+
+WOMAN'S BODY PROFILE:
+- Height: 5'2"
+- Body shape: pear (hips (40.0") wider than bust (34.0") — weight carries in lower body)
+- Key measurements: Bust 34.0", Waist 27.0", Hip 40.0"
+- Size category: standard
+- Her styling goals: wants to appear taller; wants to minimize the appearance of her hips
+
+AI ENGINE RECOMMENDATION:
+- Score: 6.9/10
+- Verdict: Smart Pick
+- Headline: "Like the shape — sort out the structure and you're set."
+- Reasoning: "This shape works with your proportions instead of fighting them. But the jacket doesn't define your waist — it falls too straight. Try a cropped jacket that ends above the hip — it'll balance proportions better."
+- Top positive principles: A-Line Balance: +0.240, Neckline Compound: +0.225, Tent Concealment: +0.150
+- Top negative principles: Jacket Scoring: -0.090, Waist Placement: +0.000, Fabric Zone: +0.077
+- Goal verdicts: look_taller=caution, slim_hips=caution, highlight_waist=caution, look_proportional=caution
+
+EVALUATE THIS RECOMMENDATION:
+
+{
+  "verdict_correct": true or false,
+  "verdict_should_be": "this_is_it" or "smart_pick" or "not_this_one",
+  "score_reasonable": true or false,
+  "score_expected_range": [low, high],
+  "top_positive_correct": true or false,
+  "what_is_actually_best": "free text — what the real top positive should be",
+  "top_negative_correct": true or false,
+  "what_is_actually_worst": "free text — what the real top concern should be",
+  "missed_issues": ["list of problems the engine didn't catch"],
+  "communication_body_safe": true or false,
+  "body_safety_issue": null or "description of the problem",
+  "communication_quality": 1 to 5,
+  "confidence": "high" or "medium" or "low",
+  "reasoning": "1-3 sentence explanation of your evaluation, especially any disagreements"
+}
+

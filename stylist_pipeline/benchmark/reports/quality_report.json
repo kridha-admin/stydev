@@ -1,0 +1,2197 @@
+{
+  "generated_at": "2026-02-24T04:03:53.604Z",
+  "total_combinations": 510,
+  "valid_combinations": 510,
+  "error_count": 0,
+  "garment_count": 51,
+  "user_count": 10,
+  "score_stats": {
+    "min": 2.3,
+    "p25": 4.4,
+    "median": 5.5,
+    "mean": 5.34,
+    "p75": 6.2,
+    "max": 8.9,
+    "std_dev": 1.32
+  },
+  "verdict_distribution": {
+    "smart_pick": 309,
+    "not_this_one": 175,
+    "this_is_it": 26
+  },
+  "aggregate": {
+    "total_flags": 140,
+    "by_severity": {
+      "error": 20,
+      "warning": 54,
+      "info": 66
+    },
+    "by_category": {
+      "extraction": 70,
+      "score_verdict": 47,
+      "communication": 3,
+      "goal_logic": 2,
+      "distribution": 18
+    },
+    "extraction_error_rate": 0,
+    "contradiction_rate": 0.09215686274509804,
+    "headline_diversity": 0.39215686274509803,
+    "goal_logic_error_rate": 0
+  },
+  "flags": {
+    "extraction": [
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_001",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_002",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_003",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_004",
+        "user_id": null,
+        "title": "Type mismatch: title says \"skirt\" but merged says \"dress\"",
+        "expected": "garment_type = \"skirt\" based on product title",
+        "actual": "merged_attrs.garment_type = \"dress\"",
+        "details": {
+          "title": "ANARABESS 2 Piece Skirts Sets For Women Fall Fashion 2025 Striped Sweater Midi Dress Knit Lounge Travel Outfits Winter Clothes Beige Black Medium",
+          "imgType": "dress",
+          "txtType": null,
+          "mergedType": "dress"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_004",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_005",
+        "user_id": null,
+        "title": "Type mismatch: title says \"top\" but merged says \"dress\"",
+        "expected": "garment_type = \"top\" based on product title",
+        "actual": "merged_attrs.garment_type = \"dress\"",
+        "details": {
+          "title": "PRETTYGARDEN Cocktail Dresses for Women 2026 Summer Formal Elegant Tube Top Strapless Spring Wedding Guest Party Midi Dress(Burgundy,Medium)",
+          "imgType": "dress",
+          "txtType": null,
+          "mergedType": "dress"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_005",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_006",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_007",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_008",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_009",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_010",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_011",
+        "user_id": null,
+        "title": "Type mismatch: title says \"jacket\" but merged says \"top\"",
+        "expected": "garment_type = \"jacket\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Puff-Sleeved Twill Jacket - Beige - Ladies | H&M US",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_011",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_012",
+        "user_id": null,
+        "title": "Type mismatch: title says \"jacket\" but merged says \"top\"",
+        "expected": "garment_type = \"jacket\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Chimney-Collar Jacket - Brown - Ladies | H&M US",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_012",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_013",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_014",
+        "user_id": null,
+        "title": "Type mismatch: title says \"pants\" but merged says \"top\"",
+        "expected": "garment_type = \"pants\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Flared High Waist Jeans - Denim blue - Ladies | H&M US",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_014",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_015",
+        "user_id": null,
+        "title": "Type mismatch: title says \"pants\" but merged says \"top\"",
+        "expected": "garment_type = \"pants\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Mom Slim-Fit High-Waist Ankle Jeans - Light beige - Ladies | H&M US",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_015",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_016",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_017",
+        "user_id": null,
+        "title": "Type mismatch: title says \"pants\" but merged says \"top\"",
+        "expected": "garment_type = \"pants\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Flared High Waist Jeans - Denim blue - Ladies | H&M US",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_017",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_018",
+        "user_id": null,
+        "title": "Type mismatch: title says \"jacket\" but merged says \"skirt\"",
+        "expected": "garment_type = \"jacket\" based on product title",
+        "actual": "merged_attrs.garment_type = \"skirt\"",
+        "details": {
+          "title": "Buy Antheaa Embellished Shawl Neck Jacket With Skirt - Co Ords for Women 305323878",
+          "imgType": "skirt",
+          "txtType": null,
+          "mergedType": "skirt"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_018",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_019",
+        "user_id": null,
+        "title": "Type mismatch: title says \"pants\" but merged says \"top\"",
+        "expected": "garment_type = \"pants\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Buy Glitchez Striped Sweatshirt With Trousers - Co Ords for Women 40045423 | Myntra",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_019",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_020",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_021",
+        "user_id": null,
+        "title": "Type mismatch: title says \"top\" but merged says \"jumpsuit\"",
+        "expected": "garment_type = \"top\" based on product title",
+        "actual": "merged_attrs.garment_type = \"jumpsuit\"",
+        "details": {
+          "title": "Buy DressBerry Floral Printed Off Shoulder Top With Trousers Co Ords - Co Ords for Women 33427748 | Myntra",
+          "imgType": "jumpsuit",
+          "txtType": null,
+          "mergedType": "jumpsuit"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_021",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_022",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_023",
+        "user_id": null,
+        "title": "Type mismatch: title says \"pants\" but merged says \"jacket\"",
+        "expected": "garment_type = \"pants\" based on product title",
+        "actual": "merged_attrs.garment_type = \"jacket\"",
+        "details": {
+          "title": "Nike Sportswear Tech Fleece Women's Mid-Rise Joggers",
+          "imgType": "jacket",
+          "txtType": null,
+          "mergedType": "jacket"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_023",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_024",
+        "user_id": null,
+        "title": "Type mismatch: title says \"jacket\" but merged says \"top\"",
+        "expected": "garment_type = \"jacket\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Nike 24.7 PerfectStretch Women's Dri-FIT Loose-Fit Cropped Jacket",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_024",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_025",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_026",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_027",
+        "user_id": null,
+        "title": "Type mismatch: title says \"skirt\" but merged says \"dress\"",
+        "expected": "garment_type = \"skirt\" based on product title",
+        "actual": "merged_attrs.garment_type = \"dress\"",
+        "details": {
+          "title": "Nike Sportswear Phoenix Fleece Women's Cargo Midi Skirt",
+          "imgType": "dress",
+          "txtType": null,
+          "mergedType": "dress"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_027",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_028",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_029",
+        "user_id": null,
+        "title": "Type mismatch: title says \"sweater\" but merged says \"top\"",
+        "expected": "garment_type = \"sweater\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "2017 Virgin Wool Sweater",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_029",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_030",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_031",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_032",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_033",
+        "user_id": null,
+        "title": "Type mismatch: title says \"top\" but merged says \"dress\"",
+        "expected": "garment_type = \"top\" based on product title",
+        "actual": "merged_attrs.garment_type = \"dress\"",
+        "details": {
+          "title": "Vintage 2008 Top",
+          "imgType": "dress",
+          "txtType": null,
+          "mergedType": "dress"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_033",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_034",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_035",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_036",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_037",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_038",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_039",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_040",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_041",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_042",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_043",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_044",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_045",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_046",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_047",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_048",
+        "user_id": null,
+        "title": "Type mismatch: title says \"top\" but merged says \"sweater\"",
+        "expected": "garment_type = \"top\" based on product title",
+        "actual": "merged_attrs.garment_type = \"sweater\"",
+        "details": {
+          "title": "TEMOFON Womens Sweatshirts Long Sleeve Tops Oversized Blouse Waffle Knit Crew Neck Fashion Side Slits Casual Pullover Lightblue",
+          "imgType": "sweater",
+          "txtType": null,
+          "mergedType": "sweater"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_048",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_049",
+        "user_id": null,
+        "title": "Type mismatch: title says \"dress\" but merged says \"top\"",
+        "expected": "garment_type = \"dress\" based on product title",
+        "actual": "merged_attrs.garment_type = \"top\"",
+        "details": {
+          "title": "Fantaslook Blouses for Women Henley Long Sleeve Shirts Dressy Casual Fall Tops Work Blouses",
+          "imgType": "top",
+          "txtType": null,
+          "mergedType": "top"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_049",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_050",
+        "user_id": null,
+        "title": "Type mismatch: title says \"top\" but merged says \"sweater\"",
+        "expected": "garment_type = \"top\" based on product title",
+        "actual": "merged_attrs.garment_type = \"sweater\"",
+        "details": {
+          "title": "XPMWRP Women's Gradient Trendy Sweatshirt Casual Long Sleeve Crew Neck Pullover Loose Fall Winter Warm Sweatshirt Blue S",
+          "imgType": "sweater",
+          "txtType": null,
+          "mergedType": "sweater"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_050",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "warning",
+        "garment_id": "s_051",
+        "user_id": null,
+        "title": "Type mismatch: title says \"top\" but merged says \"sweater\"",
+        "expected": "garment_type = \"top\" based on product title",
+        "actual": "merged_attrs.garment_type = \"sweater\"",
+        "details": {
+          "title": "Terra & Sky Women's Plus Size Bon Appetito Graphic Sweatshirt, Sizes 0X-5X",
+          "imgType": "sweater",
+          "txtType": null,
+          "mergedType": "sweater"
+        }
+      },
+      {
+        "category": "extraction",
+        "severity": "info",
+        "garment_id": "s_051",
+        "user_id": null,
+        "title": "High null rate in image extraction: 60%",
+        "expected": "Image extraction should populate most fields",
+        "actual": "26/43 fields are null",
+        "details": {
+          "nullPct": 0.6,
+          "nullCount": 26,
+          "totalFields": 43
+        }
+      }
+    ],
+    "score_verdict": [
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_003",
+        "user_id": "user_01_petite_pear",
+        "title": "Majority goals pass (3/4) but overall NTO (3.3)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.3, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "slim_hips: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_010",
+        "user_id": "user_01_petite_pear",
+        "title": "Majority goals pass (3/4) but overall NTO (3.3)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.3, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "slim_hips: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_020",
+        "user_id": "user_01_petite_pear",
+        "title": "Majority goals pass (3/4) but overall NTO (3.3)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.3, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "slim_hips: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_025",
+        "user_id": "user_01_petite_pear",
+        "title": "All 4 goals PASS but overall is NTO (2.5)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.5, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass (0.275)",
+            "slim_hips: pass (0.132)",
+            "highlight_waist: pass (0.850)",
+            "look_proportional: pass (0.850)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_026",
+        "user_id": "user_01_petite_pear",
+        "title": "All 4 goals PASS but overall is NTO (2.5)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.5, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass (0.275)",
+            "slim_hips: pass (0.132)",
+            "highlight_waist: pass (0.850)",
+            "look_proportional: pass (0.850)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_031",
+        "user_id": "user_01_petite_pear",
+        "title": "Majority goals pass (3/4) but overall NTO (3.3)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.3, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "slim_hips: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_048",
+        "user_id": "user_01_petite_pear",
+        "title": "All 4 goals PASS but overall is NTO (2.4)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.4, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass (0.275)",
+            "slim_hips: pass (0.112)",
+            "highlight_waist: pass (0.850)",
+            "look_proportional: pass (0.850)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_050",
+        "user_id": "user_01_petite_pear",
+        "title": "All 4 goals PASS but overall is NTO (2.4)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.4, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass (0.275)",
+            "slim_hips: pass (0.112)",
+            "highlight_waist: pass (0.850)",
+            "look_proportional: pass (0.850)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_051",
+        "user_id": "user_01_petite_pear",
+        "title": "All 4 goals PASS but overall is NTO (2.3)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.3, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass (0.275)",
+            "slim_hips: pass (0.092)",
+            "highlight_waist: pass (0.850)",
+            "look_proportional: pass (0.850)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_025",
+        "user_id": "user_02_avg_hourglass",
+        "title": "All 3 goals PASS but overall is NTO (3.7)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.7, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "emphasis: pass (0.326)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_026",
+        "user_id": "user_02_avg_hourglass",
+        "title": "All 3 goals PASS but overall is NTO (3.7)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.7, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "emphasis: pass (0.326)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_048",
+        "user_id": "user_02_avg_hourglass",
+        "title": "All 3 goals PASS but overall is NTO (3.6)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.6, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "emphasis: pass (0.326)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_050",
+        "user_id": "user_02_avg_hourglass",
+        "title": "All 3 goals PASS but overall is NTO (3.6)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.6, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "emphasis: pass (0.326)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_051",
+        "user_id": "user_02_avg_hourglass",
+        "title": "All 3 goals PASS but overall is NTO (3.5)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.5, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "emphasis: pass (0.326)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_003",
+        "user_id": "user_04_plus_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (2.9)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "hide_midsection: pass",
+            "slimming: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_010",
+        "user_id": "user_04_plus_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (2.9)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "hide_midsection: pass",
+            "slimming: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_025",
+        "user_id": "user_04_plus_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (4.2)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=4.2, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "hide_midsection: caution",
+            "slimming: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_026",
+        "user_id": "user_04_plus_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (4.2)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=4.2, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "hide_midsection: caution",
+            "slimming: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_048",
+        "user_id": "user_04_plus_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (4.0)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=4.0, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "hide_midsection: fail",
+            "slimming: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_050",
+        "user_id": "user_04_plus_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (4.0)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=4.0, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "hide_midsection: fail",
+            "slimming: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_051",
+        "user_id": "user_04_plus_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (3.9)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "hide_midsection: fail",
+            "slimming: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_003",
+        "user_id": "user_05_petite_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (2.9)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "hide_midsection: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_010",
+        "user_id": "user_05_petite_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (2.9)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "hide_midsection: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_020",
+        "user_id": "user_05_petite_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (2.9)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "hide_midsection: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_031",
+        "user_id": "user_05_petite_apple",
+        "title": "Majority goals pass (3/4) but overall NTO (2.9)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: pass",
+            "hide_midsection: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_018",
+        "user_id": "user_06_tall_invtri",
+        "title": "Majority goals pass (3/4) but overall NTO (4.5)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=4.5, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "balance: caution",
+            "concealment: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_003",
+        "user_id": "user_07_avg_pear_plus",
+        "title": "Majority goals pass (3/4) but overall NTO (3.3)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.3, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "slim_hips: pass",
+            "slimming: pass",
+            "highlight_waist: fail",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_025",
+        "user_id": "user_07_avg_pear_plus",
+        "title": "All 4 goals PASS but overall is NTO (3.1)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.1, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "slim_hips: pass (0.190)",
+            "slimming: pass (0.260)",
+            "highlight_waist: pass (0.650)",
+            "look_proportional: pass (0.650)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_026",
+        "user_id": "user_07_avg_pear_plus",
+        "title": "All 4 goals PASS but overall is NTO (3.1)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.1, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "slim_hips: pass (0.190)",
+            "slimming: pass (0.260)",
+            "highlight_waist: pass (0.650)",
+            "look_proportional: pass (0.650)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_048",
+        "user_id": "user_07_avg_pear_plus",
+        "title": "All 4 goals PASS but overall is NTO (2.9)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "slim_hips: pass (0.165)",
+            "slimming: pass (0.216)",
+            "highlight_waist: pass (0.650)",
+            "look_proportional: pass (0.650)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_050",
+        "user_id": "user_07_avg_pear_plus",
+        "title": "All 4 goals PASS but overall is NTO (2.9)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "slim_hips: pass (0.165)",
+            "slimming: pass (0.216)",
+            "highlight_waist: pass (0.650)",
+            "look_proportional: pass (0.650)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_051",
+        "user_id": "user_07_avg_pear_plus",
+        "title": "All 4 goals PASS but overall is NTO (2.8)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=2.8, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "slim_hips: pass (0.143)",
+            "slimming: pass (0.177)",
+            "highlight_waist: pass (0.650)",
+            "look_proportional: pass (0.650)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_025",
+        "user_id": "user_08_tall_hourglass",
+        "title": "Majority goals pass (3/4) but overall NTO (3.8)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.8, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_taller: caution",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_026",
+        "user_id": "user_08_tall_hourglass",
+        "title": "Majority goals pass (3/4) but overall NTO (3.8)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.8, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_taller: caution",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_048",
+        "user_id": "user_08_tall_hourglass",
+        "title": "Majority goals pass (3/4) but overall NTO (3.7)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.7, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_taller: caution",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_050",
+        "user_id": "user_08_tall_hourglass",
+        "title": "Majority goals pass (3/4) but overall NTO (3.7)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.7, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_taller: caution",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_051",
+        "user_id": "user_08_tall_hourglass",
+        "title": "Majority goals pass (3/4) but overall NTO (3.5)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.5, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_taller: caution",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_025",
+        "user_id": "user_09_petite_rectangle",
+        "title": "Majority goals pass (3/4) but overall NTO (3.6)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.6, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: caution",
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_026",
+        "user_id": "user_09_petite_rectangle",
+        "title": "Majority goals pass (3/4) but overall NTO (3.6)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.6, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: caution",
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_048",
+        "user_id": "user_09_petite_rectangle",
+        "title": "Majority goals pass (3/4) but overall NTO (3.5)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.5, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: caution",
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_050",
+        "user_id": "user_09_petite_rectangle",
+        "title": "Majority goals pass (3/4) but overall NTO (3.5)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.5, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: caution",
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "warning",
+        "garment_id": "s_051",
+        "user_id": "user_09_petite_rectangle",
+        "title": "Majority goals pass (3/4) but overall NTO (3.4)",
+        "expected": "Majority green should correlate with SP or better",
+        "actual": "score=3.4, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "look_taller: caution",
+            "emphasis: pass",
+            "highlight_waist: pass",
+            "look_proportional: pass"
+          ]
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_025",
+        "user_id": "user_10_no_goals",
+        "title": "All 2 goals PASS but overall is NTO (3.9)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_026",
+        "user_id": "user_10_no_goals",
+        "title": "All 2 goals PASS but overall is NTO (3.9)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.9, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_048",
+        "user_id": "user_10_no_goals",
+        "title": "All 2 goals PASS but overall is NTO (3.7)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.7, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_050",
+        "user_id": "user_10_no_goals",
+        "title": "All 2 goals PASS but overall is NTO (3.7)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.7, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      },
+      {
+        "category": "score_verdict",
+        "severity": "error",
+        "garment_id": "s_051",
+        "user_id": "user_10_no_goals",
+        "title": "All 2 goals PASS but overall is NTO (3.6)",
+        "expected": "All green goals should mean SP or TII",
+        "actual": "score=3.6, verdict=not_this_one",
+        "details": {
+          "goals": [
+            "highlight_waist: pass (0.750)",
+            "look_proportional: pass (0.750)"
+          ],
+          "silhouette_dominance": null
+        }
+      }
+    ],
+    "communication": [
+      {
+        "category": "communication",
+        "severity": "info",
+        "garment_id": null,
+        "user_id": null,
+        "title": "18% of pinch texts are fabric-only (94/510)",
+        "expected": "Pinch should mention hemline, silhouette, proportion — not just fabric",
+        "actual": "94 combos have fabric-only pinch",
+        "details": {
+          "fabricOnlyCount": 94,
+          "withPinch": 510,
+          "pct": 0.18,
+          "examples": [
+            {
+              "garment": "s_039",
+              "user": "user_01_petite_pear",
+              "pinch": "the cut works with your frame — it follows without clinging.  the key is the fabric in person — make sure it holds its shape on your frame."
+            },
+            {
+              "garment": "s_041",
+              "user": "user_01_petite_pear",
+              "pinch": "the cut works with your frame — it follows without clinging.  check these pants in person — the fabric weight will determine if it sculpts or clings."
+            },
+            {
+              "garment": "s_042",
+              "user": "user_01_petite_pear",
+              "pinch": "the cut works with your frame — it follows without clinging.  the key is the fabric in person — make sure it holds its shape on your frame."
+            },
+            {
+              "garment": "s_043",
+              "user": "user_01_petite_pear",
+              "pinch": "the cut works with your frame — it follows without clinging.  check these pants in person — the fabric weight will determine if it sculpts or clings."
+            },
+            {
+              "garment": "s_047",
+              "user": "user_01_petite_pear",
+              "pinch": "the flat texture means no shine drawing the eye where you don't want it.  but  where this top ends creates a visual break in the wrong spot.  look for"
+            }
+          ]
+        }
+      },
+      {
+        "category": "communication",
+        "severity": "info",
+        "garment_id": null,
+        "user_id": null,
+        "title": "37% of TII/NTO combos don't reference user goals (75/201)",
+        "expected": "Strong verdicts should mention what the user cares about",
+        "actual": "75 combos with no goal reference in headline/pinch",
+        "details": {
+          "noGoalRefCount": 75,
+          "tiiNtoCount": 201,
+          "pct": 0.37
+        }
+      },
+      {
+        "category": "communication",
+        "severity": "info",
+        "garment_id": null,
+        "user_id": null,
+        "title": "Headline diversity: 200 unique out of 510 (39%)",
+        "expected": "Higher diversity = more personalized communication",
+        "actual": "200 unique headlines",
+        "details": {
+          "uniqueCount": 200,
+          "total": 510,
+          "diversityScore": 0.39
+        }
+      }
+    ],
+    "goal_logic": [
+      {
+        "category": "goal_logic",
+        "severity": "warning",
+        "garment_id": "s_005",
+        "user_id": "user_09_petite_rectangle",
+        "title": "Petite (152.4cm) + floor_length passes look_taller",
+        "expected": "Maxi/floor hemlines should fail look_taller for petite users",
+        "actual": "look_taller: pass (score=0.074)",
+        "details": {
+          "user_height": 152.4,
+          "hemline_position": "floor_length",
+          "hemline_score": -0.105
+        }
+      },
+      {
+        "category": "goal_logic",
+        "severity": "warning",
+        "garment_id": "s_038",
+        "user_id": "user_09_petite_rectangle",
+        "title": "Petite (152.4cm) + floor_length passes look_taller",
+        "expected": "Maxi/floor hemlines should fail look_taller for petite users",
+        "actual": "look_taller: pass (score=0.074)",
+        "details": {
+          "user_height": 152.4,
+          "hemline_position": "floor_length",
+          "hemline_score": -0.105
+        }
+      }
+    ],
+    "distribution": [
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_001",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "jumpsuit"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_002",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "jumpsuit"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_006",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "dress"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_011",
+        "user_id": null,
+        "title": "Same verdict \"not_this_one\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: not_this_one",
+        "details": {
+          "verdict": "not_this_one",
+          "garment_type": "top"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_013",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "pants"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "warning",
+        "garment_id": "s_023",
+        "user_id": null,
+        "title": "Low body sensitivity (stddev=0.30)",
+        "expected": "Different body types should get different scores (stddev > 0.3)",
+        "actual": "scores: 4.3, 4.9, 5.0, 4.8, 5.0, 5.1, 4.2, 5.0, 5.0, 4.9",
+        "details": {
+          "std_dev": 0.3,
+          "garment_type": "jacket",
+          "title": "Nike Sportswear Tech Fleece Women's Mid-Rise Joggers"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "warning",
+        "garment_id": "s_039",
+        "user_id": null,
+        "title": "Low body sensitivity (stddev=0.11)",
+        "expected": "Different body types should get different scores (stddev > 0.3)",
+        "actual": "scores: 5.7, 5.4, 5.6, 5.5, 5.6, 5.8, 5.6, 5.6, 5.5, 5.5",
+        "details": {
+          "std_dev": 0.11,
+          "garment_type": "pants",
+          "title": "Glitchez Women Brown Jeans"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_039",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "pants"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "warning",
+        "garment_id": "s_040",
+        "user_id": null,
+        "title": "Low body sensitivity (stddev=0.09)",
+        "expected": "Different body types should get different scores (stddev > 0.3)",
+        "actual": "scores: 5.4, 5.2, 5.4, 5.2, 5.3, 5.5, 5.3, 5.3, 5.3, 5.3",
+        "details": {
+          "std_dev": 0.09,
+          "garment_type": "pants",
+          "title": "M Moddy Straight Fit Women Dark Blue Jeans"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_040",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "pants"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "warning",
+        "garment_id": "s_041",
+        "user_id": null,
+        "title": "Low body sensitivity (stddev=0.23)",
+        "expected": "Different body types should get different scores (stddev > 0.3)",
+        "actual": "scores: 5.9, 5.4, 6.0, 5.8, 5.9, 6.0, 6.0, 5.6, 5.9, 5.4",
+        "details": {
+          "std_dev": 0.23,
+          "garment_type": "pants",
+          "title": "Houseofcommon Regular Women Black Jeans"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_041",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "pants"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "warning",
+        "garment_id": "s_042",
+        "user_id": null,
+        "title": "Low body sensitivity (stddev=0.11)",
+        "expected": "Different body types should get different scores (stddev > 0.3)",
+        "actual": "scores: 5.7, 5.4, 5.6, 5.5, 5.6, 5.8, 5.6, 5.6, 5.5, 5.5",
+        "details": {
+          "std_dev": 0.11,
+          "garment_type": "pants",
+          "title": "Glitchez Women Brown Jeans"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_042",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "pants"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "warning",
+        "garment_id": "s_043",
+        "user_id": null,
+        "title": "Low body sensitivity (stddev=0.22)",
+        "expected": "Different body types should get different scores (stddev > 0.3)",
+        "actual": "scores: 5.9, 5.4, 6.0, 5.9, 5.9, 6.1, 6.0, 5.6, 5.9, 5.5",
+        "details": {
+          "std_dev": 0.22,
+          "garment_type": "pants",
+          "title": "Globenaut Boot Leg Women Black Jeans"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_043",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "pants"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": "s_045",
+        "user_id": null,
+        "title": "Same verdict \"smart_pick\" for all 10 users",
+        "expected": "At least some body types should get different verdicts",
+        "actual": "All 10 users: smart_pick",
+        "details": {
+          "verdict": "smart_pick",
+          "garment_type": "jacket"
+        }
+      },
+      {
+        "category": "distribution",
+        "severity": "info",
+        "garment_id": null,
+        "user_id": "user_06_tall_invtri",
+        "title": "86% of garments are \"smart_pick\" for Tall Inverted Triangle — broad shoulders, wants balance and bust minimizing",
+        "expected": "Verdict distribution should have spread",
+        "actual": "{\"smart_pick\":44,\"not_this_one\":3,\"this_is_it\":4}",
+        "details": {
+          "verdictCounts": {
+            "smart_pick": 44,
+            "not_this_one": 3,
+            "this_is_it": 4
+          },
+          "user_label": "Tall Inverted Triangle — broad shoulders, wants balance and bust minimizing"
+        }
+      }
+    ]
+  }
+}

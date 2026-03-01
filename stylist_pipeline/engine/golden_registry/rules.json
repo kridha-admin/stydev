@@ -1,0 +1,4592 @@
+[
+  {
+    "domain": "perception_science",
+    "layer": 2,
+    "source_file": "domain1.md",
+    "extraction_date": "2026-02-17",
+    "total_rules": 52,
+    "rules": [
+      {
+        "rule_id": "R1_01",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Helmholtz stripe effect follows sigmoid transition centered at W:H=0.52",
+        "formula": "sigmoid = 1 / (1 + exp(-(wh_ratio - 0.52) * 6.0)); effect = -5.8 + sigmoid * (15.37 - (-5.8))",
+        "parameters": {
+          "crossover_ratio": 0.52,
+          "steepness": 6.0,
+          "max_slim": -5.8,
+          "max_widen": 15.37
+        },
+        "score_range": [
+          -1.0,
+          1.0
+        ],
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R1_02",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Duty cycle modifier for stripe effects",
+        "formula": "duty_cycle_modifier = 0.6 + 0.4 * stripe_duty_cycle",
+        "parameters": {
+          "min_modifier": 0.6,
+          "max_modifier": 1.0
+        },
+        "evidence": "Thompson 2011: duty cycle 0.9 -> ~10% effect; duty cycle 0.1 -> ~4%",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R1_03",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Comparison baseline reduction: H-stripes vs plain garment reduces effect by 70%",
+        "formula": "if baseline == 'none': effect *= 0.3",
+        "evidence": "Thompson Exp 3: horizontal vs PLAIN -> effect ~0 for moderate bodies",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R1_04",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "3D viewing amplifies stripe effect by 1.84x",
+        "formula": "if viewing_3D: effect *= 1.84",
+        "evidence": "Thompson: 3D mannequin 10.7% vs 2D drawing 5.8%",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R1_05",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Oppel-Kundt filler curve is non-monotonic: peaks at 8-12 fillers then declines",
+        "formula": "Inverted-U curve with maximum at 11-13 equispaced fillers (Wackermann 2010)",
+        "parameters": {
+          "peak_fillers": [
+            11,
+            13
+          ],
+          "refined_peak": [
+            15,
+            16
+          ]
+        },
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R1_06",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Luminance additive component: darker garment independently slims",
+        "formula": "luminance_effect = -3.5 * (1 - garment_luminance_normalized)",
+        "parameters": {
+          "max_slim_pct": -3.5,
+          "at_luminance": 0
+        },
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R1_07",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Stripe width: narrow stripes amplify Helmholtz more than wide stripes",
+        "evidence": "Thompson 2011: duty cycle 0.9 (narrow lines, wide gaps) -> up to 10.1%; 0.1 -> ~4%",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R1_08",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Bright horizontal stripes on dark garment maximize perceived widening",
+        "formula": "irradiation expansion: +5-10% per stripe edge * stripe count; Oppel-Kundt: +3-7% at 8-12 stripes; Combined: +5-12%",
+        "score_range": [
+          0.05,
+          0.11
+        ],
+        "confidence": 0.6
+      },
+      {
+        "rule_id": "R2_01",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Luminance-width relationship follows saturating sigmoid curve",
+        "formula": "sigmoid = 1/(1+exp(-0.08*(L_star-35))); if sigmoid<0.5: effect = -1.5*(1-2*sigmoid); else: effect = 0.8*(2*sigmoid-1)",
+        "parameters": {
+          "L_midpoint": 35,
+          "L_steepness": 0.08,
+          "max_slim_pct": -1.5,
+          "max_widen_pct": 0.8
+        },
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R2_02",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Background luminance multiplier: dark backgrounds amplify slimming 7x",
+        "formula": "bg_multiplier = max(0.15, (1 - bg_L/100)^1.5 * 3.0 + 0.15)",
+        "parameters": {
+          "gamma": 1.5,
+          "range": [
+            0.15,
+            3.15
+          ]
+        },
+        "evidence": "Koutsoumpis Exp 3: dark bg 1.33% vs light bg 0.19% (7x ratio)",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "R2_03",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Body-width proportionality correction: wider bodies get smaller % slimming",
+        "formula": "width_correction = reference_width_ratio / body_width_ratio; reference = 0.40",
+        "evidence": "Edge contraction is absolute; % decreases for wider bodies",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "R2_04",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "On white e-commerce background (L*=100), luminance slimming is near zero (0.19%, not significant, p=0.38)",
+        "score_value": -0.018,
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "R2_05",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "On dark background (L*=30), luminance slimming is meaningful (1.33%, d=1.27, p<0.001)",
+        "score_value": -0.124,
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "R2_06",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Red rated as slim as black despite higher L* \u2014 hue anomaly",
+        "evidence": "Sidhu 2021: red attracted slimmer body size ratings similar to black",
+        "score_note": "Captured in hue-correction term",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "R2_07",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Grey perceived wider than white despite lower L* \u2014 hue anomaly",
+        "evidence": "Sidhu 2021: grey/green rated as making body appear LARGER than white",
+        "score_note": "Proves hue/saturation/psychological associations independently modulate perceived size",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "R2_08",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Monochromatic dressing (unbroken vertical column) reduces perceived width by ~1.5-5.0%",
+        "formula": "HVI on full outfit -> 5-10% height overestimation -> 1.5-5.0% width reduction via reciprocity factor (0.3-0.5% per 1%)",
+        "score_range": [
+          -0.014,
+          -0.047
+        ],
+        "confidence": 0.2
+      },
+      {
+        "rule_id": "R2_09",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Color break at waist splits column, reducing height overestimation by 40-60%",
+        "formula": "Effective widening at break zone: +1-3% relative to monochromatic",
+        "score_range": [
+          0.01,
+          0.03
+        ],
+        "confidence": 0.2
+      },
+      {
+        "rule_id": "R2_10",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Skin-garment contrast modifier: high contrast sharpens body boundary (+width), low blends (-width)",
+        "formula": "When deltaL > 60: +0.5-1.5% width. When deltaL < 30: boundary less salient. Net: < \u00b10.5%",
+        "score_range": [
+          -0.05,
+          0.05
+        ],
+        "confidence": 0.2
+      },
+      {
+        "rule_id": "R2_11",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Luminance contribution to Oppel-Kundt is 20-33% of total effect",
+        "evidence": "Wackermann 2012",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R2_12",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Polarity asymmetry: bright-on-dark STRONGER expansion than dark-on-bright",
+        "evidence": "Wackermann 2012: negative polarity (bright on dark) = stronger Oppel-Kundt",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R3_01",
+        "principle": "P7_VNECKLINE_MULLER_LYER",
+        "rule": "M\u00fcller-Lyer effect peaks at ~30 degree fin angle with 15-18% elongation (wings-out)",
+        "formula": "See muller_lyer_effect() in domain1.md",
+        "parameters": {
+          "peak_diverging": 0.15,
+          "peak_converging": 0.1,
+          "optimal_angle": 30
+        },
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R3_02",
+        "principle": "P7_VNECKLINE_MULLER_LYER",
+        "rule": "Wings-OUT (diverging) produces 30-50% stronger effect than wings-IN (converging)",
+        "evidence": "Day & Dickinson 1976; Biervliet 1896; Heymans 1896",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "R3_03",
+        "principle": "P7_VNECKLINE_MULLER_LYER",
+        "rule": "At 90 degrees from body axis, M\u00fcller-Lyer effect is zero",
+        "evidence": "Standard horizontal shoulder seams, perpendicular pocket flaps are perceptually neutral",
+        "confidence": 0.9
+      },
+      {
+        "rule_id": "R3_04",
+        "principle": "P7_VNECKLINE_MULLER_LYER",
+        "rule": "Gap between design element and body edge (8-18mm) can REVERSE the illusion",
+        "evidence": "Assimilation -> contrast shift per gap-effect studies",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "R3_05",
+        "principle": "P3_PATTERN_SCALE",
+        "rule": "Pattern scale optimal zone: 5-15 repeats across body segment",
+        "formula": "< 3 repeats: BLOCK effect (-0.3); > 20 repeats: NOISE/Oppel-Kundt (-0.2); 5-15: optimal (+0.1)",
+        "confidence": 0.35
+      },
+      {
+        "rule_id": "R3_06",
+        "principle": "P3_PATTERN_SCALE",
+        "rule": "Single pattern element > 20% of body segment width triggers figure-ground segregation",
+        "formula": "width_ratio > 0.20: score -= 0.25",
+        "confidence": 0.35
+      },
+      {
+        "rule_id": "R3_07",
+        "principle": "P3_PATTERN_SCALE",
+        "rule": "Diagonal lines decompose into H and V components by angle",
+        "formula": "H_component = cos(theta); V_component = sin(theta); 45deg = equal; 30deg = more Helmholtz; 60deg = more elongation",
+        "confidence": 0.4
+      },
+      {
+        "rule_id": "R3_08",
+        "principle": "P3_PATTERN_SCALE",
+        "rule": "Downward chevron creates M\u00fcller-Lyer contraction at apex",
+        "formula": "alpha=30deg: ~10% narrowing; 45deg: ~8%; 60deg: ~5%; 90deg: 0%",
+        "confidence": 0.4
+      },
+      {
+        "rule_id": "R4_01",
+        "principle": "P5_VISUAL_ATTENTION",
+        "rule": "Attention-to-size conversion factor: 1% fixation shift = 0.3-0.5% perceived size change",
+        "formula": "size_change_pct = fixation_shift_pct * 0.4",
+        "evidence": "Derived from Cundall & Guo 2017: 15% fixation shift -> 5-8% width underestimation",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "R4_02",
+        "principle": "P5_VISUAL_ATTENTION",
+        "rule": "Focal point at concern zone produces NEGATIVE score (draws MORE attention)",
+        "formula": "if focal_zone == concern_zone: score = -0.5 * strength",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R4_03",
+        "principle": "P5_VISUAL_ATTENTION",
+        "rule": "Loose clothing at waist-hip redirects gaze to legs, producing 1 dress size underestimation",
+        "formula": "Binary threshold: kicks in at ~4-8cm garment ease beyond body circumference",
+        "evidence": "Cundall & Guo 2017",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R4_04",
+        "principle": "P5_VISUAL_ATTENTION",
+        "rule": "Black clothing directs gaze to upper body; white clothing to waist-hip",
+        "evidence": "Sidhu 2021: black = double duty (irradiation contraction + attention redirection away from waist); white = double damage",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "R4_05",
+        "principle": "P5_VISUAL_ATTENTION",
+        "rule": "Observer awareness suppression: lab data underestimates real-world body scrutiny",
+        "evidence": "PMC7881876: gaze recording awareness shifts fixation to faces, away from body",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "R4_06",
+        "principle": "P5_VISUAL_ATTENTION",
+        "rule": "Face receives ~20% fixation regardless of clothing; remaining 80% is modulated by garment",
+        "evidence": "Consolidated from Cornelissen 2009, Cundall & Guo 2017",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R5_01",
+        "principle": "P6_VERTICAL_LINES",
+        "rule": "HVI magnitude: vertical overestimated 5-10% vs equal horizontal in 2D; 7-13% in 3D",
+        "evidence": "Meta-analysis of 100+ years of data",
+        "confidence": 0.9
+      },
+      {
+        "rule_id": "R5_02",
+        "principle": "P6_VERTICAL_LINES",
+        "rule": "Width vs height asymmetry: height overestimation (7.1%) > width underestimation (4.5%)",
+        "evidence": "Thompson & Mikellidou 2011 Exp 1",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "R5_03",
+        "principle": "P6_VERTICAL_LINES",
+        "rule": "Frame orientation modulates HVI: horizontal frame gives 3.9% HVI; vertical frame reduces to ~1%",
+        "evidence": "PMC6802759",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R6_01",
+        "principle": "P4_PROPORTION_DIVISION",
+        "rule": "Color break at widest body point increases perceived zone width by +4-8%",
+        "formula": "Combined: attention redirection (+3.2-4.8%) + HVI column disruption (+1-3%)",
+        "score_range": [
+          0.04,
+          0.07
+        ],
+        "confidence": 0.3
+      },
+      {
+        "rule_id": "R6_02",
+        "principle": "P4_PROPORTION_DIVISION",
+        "rule": "High-contrast color break at waist disrupts vertical continuity, reducing HVI by 40-60%",
+        "evidence": "Sidhu 2021: white increases waist-hip fixation by 8-12%",
+        "confidence": 0.3
+      },
+      {
+        "rule_id": "R7_01",
+        "principle": "P8_GARMENT_FIT",
+        "rule": "Garment fit multiplier on L1-L3 illusion effects",
+        "formula": "bodycon=1.0, fitted=0.85, regular=0.70, relaxed=0.50, loose=0.35, oversized=0.25",
+        "confidence": 0.6
+      },
+      {
+        "rule_id": "R7_02",
+        "principle": "P8_GARMENT_FIT",
+        "rule": "Fit as L4 additive: when aligned with L1-3, adds at 0.90x; when conflicting, 50/50 blend",
+        "formula": "if L4_aligned: total += L4_effect * 0.90; if conflicting: total = 0.5*L1_3 + 0.5*L4",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "R7_03",
+        "principle": "P8_GARMENT_FIT",
+        "rule": "Loose clothing gaze redirection has binary threshold at ~4-8cm ease",
+        "evidence": "Cundall & Guo 2017",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "R8_01",
+        "principle": "HIERARCHY",
+        "rule": "4-level hierarchical combination with cross-level attenuation",
+        "formula": "L1: luminance + stripes_partial (synergy 1.44x, ceiling 1.01% on light bg); L2: adds to L1 at 0.92x attenuation (ceiling \u00b115.37%); L3: adds to L1+L2 at 0.97x; L4: aligned adds at 0.90x, conflicting 50/50 blend",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "R8_02",
+        "principle": "HIERARCHY",
+        "rule": "Level 1 synergy: luminance + stripe edge component gives 1.44x boost",
+        "evidence": "Koutsoumpis Exp 2",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R8_03",
+        "principle": "HIERARCHY",
+        "rule": "Level 1 ceiling: 1.01% on light background, scales to 3.03% on dark background",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "R8_04",
+        "principle": "HIERARCHY",
+        "rule": "Background multiplier ranges from 0.15 (white) to 6.5 (very dark)",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "R8_05",
+        "principle": "CONVERSION",
+        "rule": "Percentage to score conversion is asymmetric",
+        "formula": "if pct <= 0: score = max(-1.0, pct/10.7); if pct > 0: score = min(1.0, pct/15.37)",
+        "parameters": {
+          "slim_anchor": -10.7,
+          "widen_anchor": 15.37
+        },
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "R9_01",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Color contrast at body transitions: white at waist-hip = double damage",
+        "formula": "irradiation expansion + attention drawn to widest zone",
+        "evidence": "Sidhu 2021: white clothing increased waist-hip fixation by 8-12%",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "R9_02",
+        "principle": "P2_LUMINANCE_COLOR",
+        "rule": "Black at waist-hip = double duty: irradiation contraction + attention redirection away",
+        "evidence": "Sidhu 2021 + Koutsoumpis 2021",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "R10_01",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Confidence SD envelope increases in transition zone",
+        "formula": "Helmholtz zone: SD \u2248 3-4%; Transition zone: SD \u2248 5-7% (highest uncertainty); Reversal zone: SD \u2248 9.24% (Imai n=137)",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "R10_02",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Narrow stripes on wider bodies may preserve Helmholtz deeper into transition zone",
+        "evidence": "Oppel-Kundt literature: filler parameters shift the maximum",
+        "confidence": 0.45
+      },
+      {
+        "rule_id": "R10_03",
+        "principle": "P1_HELMHOLTZ_STRIPES",
+        "rule": "Cultural expectations modulate the perceptual effect (Swami 2012 ecological contradiction)",
+        "evidence": "Swami real-world: Cohen's d=0.63 widening despite Helmholtz predicting slimming",
+        "confidence": 0.55
+      }
+    ]
+  },
+  {
+    "domain": "garment_construction",
+    "layer": 1,
+    "source_file": "domain2.md",
+    "extraction_date": "2026-02-17",
+    "total_rules": 128,
+    "rules": [
+      {
+        "rule_id": "D2R_N01",
+        "category": "neckline",
+        "rule": "V-neck perceived extension = min(v_depth * 0.55, 2.5) inches for standard V; reduced to v_depth * 0.45 for wrap V (overlap softens effect)",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_N02",
+        "category": "neckline",
+        "rule": "V-neck elongation score = min(perceived_extension / 2.5, 1.0). Capped at 1.0.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_N03",
+        "category": "neckline",
+        "rule": "V-neck dividing threshold: depth where V transitions from elongating to bust-focal. Shifts by bust size: 7.0in for A-B cup, down to 3.5in for F+ cup.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_N04",
+        "category": "neckline",
+        "rule": "V-neck bust framing: below dividing threshold = negative (draws eye to bust). Score branches by bust differential and fabric stretch.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_N05",
+        "category": "neckline",
+        "rule": "Crew neck shortens perceived neck by ~1.0 inch. Creates horizontal line across upper chest.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_N06",
+        "category": "neckline",
+        "rule": "Boat neck widens perceived shoulders by 1.5-3.0 inches. Width increase proportional to neckline width minus shoulder width.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_N07",
+        "category": "neckline",
+        "rule": "Boat neck on inverted triangle: score = -0.70 - min(imbalance * 0.04, 0.25). Confidence 0.92 \u2014 well-understood bad pairing.",
+        "confidence": 0.92
+      },
+      {
+        "rule_id": "D2R_N08",
+        "category": "neckline",
+        "rule": "Square neckline angularizes face shape perception. Creates structured frame.",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_N09",
+        "category": "neckline",
+        "rule": "Turtleneck neck shortening: ~2.0 inches for full turtleneck; ~1.2 inches for mock neck.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_N10",
+        "category": "neckline",
+        "rule": "Turtleneck REVERSAL for long necks: if perceived_neck_after >= 3.0in, neck_score is POSITIVE (0.10 to 0.75 based on original neck length)",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_N11",
+        "category": "neckline",
+        "rule": "Turtleneck collar volume factor: computed as neck_circ/13 * collar_height/3 * fabric_weight_factor. Amplifies upper body volume score.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_N12",
+        "category": "neckline",
+        "rule": "Turtleneck monolithic column score by body type: apple=-0.35-(collar*0.10); hourglass+large_bust=-0.40-(collar*0.12); inverted_triangle=-0.30-(collar*0.08); plus_size=-0.25-extra_volume-(collar*0.10); rectangle=-0.10; pear=-0.15; default=-0.15-(collar*0.05)",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_N13",
+        "category": "neckline",
+        "rule": "Turtleneck petite amplification: if neck_score < 0, multiply by 1.20 to amplify negative.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_N14",
+        "category": "neckline",
+        "rule": "Turtleneck tall + long neck (>= 4.5in): neck_score = max(current, 0.65). Ensures tall + long neck gets strong positive.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_N15",
+        "category": "neckline",
+        "rule": "Sweetheart bust illusion: enhances perceived bust by 0.5-1.0 cup size via curved neckline framing.",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_N16",
+        "category": "neckline",
+        "rule": "Cowl neck adds volume at upper chest. Drape creates visual mass.",
+        "confidence": 0.6
+      },
+      {
+        "rule_id": "D2R_N17",
+        "category": "neckline",
+        "rule": "Off-shoulder exposure effect depends on shoulder width relative to body. Exposes shoulder-to-arm transition.",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_N18",
+        "category": "neckline",
+        "rule": "Wrap neckline is COMPOUND: 4 weighted components \u2014 V-elongation (0.25 weight), diagonal slimming (0.15), waist definition (0.45), bust accommodation (0.15)",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_N19",
+        "category": "neckline",
+        "rule": "Wrap diagonal slimming: base +0.20. Rectangle: +0.25 (creates shape differentiation). Apple: +0.15.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_N20",
+        "category": "neckline",
+        "rule": "Wrap waist definition \u2014 hourglass peak: waist_definition >= 8in -> score 0.70; >= 6in -> 0.55; else 0.40",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_N21",
+        "category": "neckline",
+        "rule": "Wrap waist collapse on apple: WHR > 0.92 -> score -0.35 (tie adds bulk at widest); WHR > 0.88 -> -0.15; WHR > 0.85 -> +0.05; else +0.20",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_N22",
+        "category": "neckline",
+        "rule": "Wrap gaping risk: bust_differential >= 7 AND fabric_friction < 0.3 AND closure='tie' -> gaping_penalty = -0.50",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_N23",
+        "category": "neckline",
+        "rule": "Wrap on rectangle: waist_score = 0.35 (manufactures waist definition)",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_N24",
+        "category": "neckline",
+        "rule": "Wrap on petite + very slim (bust<32, waist<25): waist_score = 0.15, reduced from standard (panels may bunch)",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_N25",
+        "category": "neckline",
+        "rule": "Wrap plus size overlay: bust > 44in AND tie-only closure -> waist_score -= 0.25 (high gaping risk)",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_S01",
+        "category": "sleeve",
+        "rule": "Sleeve termination scoring principle: arm appears as wide as where it's last visible. Score maps termination circumference to arm range: 0.0 ratio (narrowest) -> +0.80; 1.0 ratio (widest) -> -0.80.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_S02",
+        "category": "sleeve",
+        "rule": "Sleeve label to length mapping: sleeveless=0, cap=2.5, short=5.0, elbow=10.0, three_quarter=17.0, seven_eighth=19.0, long=23.0 inches from shoulder.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_S03",
+        "category": "sleeve",
+        "rule": "Sleeve danger zone score: -0.65 - (width_ratio - 0.8) * 1.0. Extra penalty for exact danger zone termination.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_S04",
+        "category": "sleeve",
+        "rule": "Sleeve forearm_narrow zone score: +0.75 + (1.0 - width_ratio) * 0.25. Bonus for optimal termination.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_S05",
+        "category": "sleeve",
+        "rule": "Sleeve shoulder_cap zone score: -0.30 - width_ratio * 0.30. Negative because creates 'ledge' effect.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_S06",
+        "category": "sleeve",
+        "rule": "Sleeve wrist zone score: +0.40. Covers everything \u2014 neutral-positive.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_S07",
+        "category": "sleeve",
+        "rule": "Plus size sleeve modifier: positive scores *= 1.15 (amplify benefits); negative scores *= 1.25 (amplify negatives, more at stake)",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_S08",
+        "category": "sleeve",
+        "rule": "Apple sleeve modifier at danger zone: arm_width_score *= 1.20 (wider danger zone MORE damaging)",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_S09",
+        "category": "sleeve",
+        "rule": "Goal 'showcase' + danger_zone + muscular body: REVERSAL \u2014 arm_width_score = +0.45 (danger zone frames muscle = positive)",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_S10",
+        "category": "sleeve",
+        "rule": "3/4 sleeve translation: on petite arm < 21in, standard 17in reaches WRIST, not forearm. On tall arm > 25in, ends at mid-forearm, 2-3in above optimal.",
+        "confidence": 0.93
+      },
+      {
+        "rule_id": "D2R_S11",
+        "category": "sleeve",
+        "rule": "Puff sleeve widening by volume: fitted=0.5in, slim=1.0in, moderate=2.5in, voluminous=4.0in of shoulder widening.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_S12",
+        "category": "sleeve",
+        "rule": "Puff on inverted triangle: score = -0.70 - min(new_imbalance * 0.04, 0.25). Confidence 0.92. EXTREME REVERSAL \u2014 do not recommend.",
+        "confidence": 0.92
+      },
+      {
+        "rule_id": "D2R_S13",
+        "category": "sleeve",
+        "rule": "Puff on pear: correction_pct = widening / shoulder_deficit. Score = 0.50 + correction_pct * 0.40 (range 0.50 to 0.90). Peak use case.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_S14",
+        "category": "sleeve",
+        "rule": "Puff on petite pear: scale_penalty = max(0, (63 - height) / 20) up to 0.30 at 5'0. Neck compression if neck_length < 2.5in: additional -0.30.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_S15",
+        "category": "sleeve",
+        "rule": "Puff on hourglass: if balance_after > 1.5in, creates inverted triangle effect. Score = -0.30 - (balance_after - 1.5) * 0.15. DD+ bust compounds: additional -0.25.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_S16",
+        "category": "sleeve",
+        "rule": "Puff on rectangle: waist_taper_illusion = widening * 0.6. Score = 0.45 + min(taper/4.0, 0.25) (range 0.45 to 0.70).",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_S17",
+        "category": "sleeve",
+        "rule": "Puff on petite alone: scale_ratio = widening / height. If > 0.045: score 0.20; > 0.035: 0.35; else 0.50. Neck compression check applies.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_S18",
+        "category": "sleeve",
+        "rule": "Puff on tall: base_score = 0.70 (tall absorbs puff proportionally \u2014 elegant).",
+        "confidence": 0.78
+      },
+      {
+        "rule_id": "D2R_S19",
+        "category": "sleeve",
+        "rule": "Puff on apple + plus_size: base_score = 0.25 (combined upper body volume concern). Apple alone: 0.45.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_S20",
+        "category": "sleeve",
+        "rule": "Plus size puff + stiff fabric (drape < 0.3): -0.15 penalty ('armor effect').",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_H01",
+        "category": "hemline",
+        "rule": "Above-knee elongation = min(inches_above * 0.20, 0.60). Diminishing returns \u2014 first 3 inches most impactful.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_H02",
+        "category": "hemline",
+        "rule": "Petite above-knee bonus = (63 - height) / 50. Up to +0.16 at 5'0. Each inch is larger % of total leg.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_H03",
+        "category": "hemline",
+        "rule": "Tall above-knee diminishment: if leg_ratio > 0.62, elongation *= 0.65 (already-long legs benefit less); else *= 0.85.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_H04",
+        "category": "hemline",
+        "rule": "Pear thigh exposure penalty: c_thigh > 27in -> -0.35; > 24in -> -0.20; > 22in -> -0.10. If goal='showcase', penalty *= 0.5. If goal='narrower', penalty *= 1.2.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_H05",
+        "category": "hemline",
+        "rule": "Apple above-knee bonus: slim legs (c_thigh < 22in) -> +0.15; < 24in -> +0.08. Showcases apple's asset (slim legs).",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_H06",
+        "category": "hemline",
+        "rule": "Knee danger zone score: -0.30 base. Petite: -0.40. Bisects leg at joint, creates visual 'cut'.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_H07",
+        "category": "hemline",
+        "rule": "Safe zone (between knee and calf dangers): sweet spot (25-75% through zone) = +0.30; near edges = +0.15. Tall bonus: +0.10.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_H08",
+        "category": "hemline",
+        "rule": "Collapsed zone: when safe_zone_size < 0 (petite), score = -0.20. WARNING: no safe below-knee position exists.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_H09",
+        "category": "hemline",
+        "rule": "Calf danger zone: base -0.35. If calf_prominence > 1.3: -0.50. If > 1.2: -0.42. Petite amplification: *= 1.15.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_H10",
+        "category": "hemline",
+        "rule": "Calf danger radius = 1.0 + (calf_prominence - 1.0) * 3.0. More prominent calf = wider danger zone.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_H11",
+        "category": "hemline",
+        "rule": "Below-calf score: +0.15. Past danger zones \u2014 shows narrow lower leg.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_H12",
+        "category": "hemline",
+        "rule": "Ankle on petite: relaxed/oversized/tent silhouette -> -0.15 (volume overwhelms); bodycon/fitted + belt/high waist -> +0.40 (strong elongation); else +0.10.",
+        "confidence": 0.78
+      },
+      {
+        "rule_id": "D2R_H13",
+        "category": "hemline",
+        "rule": "Ankle on tall: +0.45 (elegant, proportional).",
+        "confidence": 0.78
+      },
+      {
+        "rule_id": "D2R_H14",
+        "category": "hemline",
+        "rule": "Ankle on hourglass without belt/waist definition: -0.15 (shape loss from hiding curves in column).",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_H15",
+        "category": "hemline",
+        "rule": "Floor length: tall +0.15; standard +0.05; petite -0.10 (drowning without heels).",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_H16",
+        "category": "hemline",
+        "rule": "Hemline height-scaling: hem_from_shoulder_adjusted = hem_from_shoulder * (body_height / model_height) when height difference > 2 inches.",
+        "confidence": 0.9
+      },
+      {
+        "rule_id": "D2R_W01",
+        "category": "waist",
+        "rule": "Waist placement score: improvement = deviation_before - deviation_after from golden ratio (0.618). Score = improvement * 8.0, clamped to [-0.80, +0.80].",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_W02",
+        "category": "waist",
+        "rule": "Empire + hourglass shape loss: standard fabric -> -0.30 penalty; drapey (drape>0.7) -> -0.15; stretchy (stretch>0.5) -> -0.10.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_W03",
+        "category": "waist",
+        "rule": "Empire tent effect: bust_projection * (1.0 - fabric_drape) = tent_severity. If > 2.0: -0.45; > 1.0: -0.25; else -0.10.",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_W04",
+        "category": "waist",
+        "rule": "Empire + tall + short torso (torso_leg_ratio < 0.35): -0.25 penalty (worsens imbalance).",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_W05",
+        "category": "waist",
+        "rule": "Drop waist + short legs (leg_ratio < 0.55): -0.30 penalty (dramatically shortens perceived legs). If < 0.58: -0.15.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_W06",
+        "category": "waist",
+        "rule": "Natural waist + apple + belt + WHR > 0.88: -0.30 penalty (belt highlights widest circumference). If WHR > 0.85: -0.15.",
+        "confidence": 0.72
+      },
+      {
+        "rule_id": "D2R_W07",
+        "category": "waist",
+        "rule": "Short legs (leg_ratio < 0.55) + empire/high waist: +0.10 bonus on top of proportion improvement.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_W08",
+        "category": "waist",
+        "rule": "Waist position mapping: empire = height - torso * 0.35; high = height - torso * 0.65; natural = height - torso; drop = height - torso * 1.15.",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_C01",
+        "category": "color",
+        "rule": "Dark color slimming: L*<=10: ~4% slim; L*<=25: ~3%; L*<=40: ~2%; L*<=60: ~0.5%; L*<=80: -0.5% (mild widening); L*>80: -1% (widening). Score conversion: slim_pct * 6.25.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_C02",
+        "category": "color",
+        "rule": "Hourglass shape loss in dark: waist_hip_diff >= 8: shape_loss = -0.30 * (1 - L/25); >= 6: -0.20 * factor; else -0.10 * factor. Only applies at L* <= 25.",
+        "confidence": 0.6
+      },
+      {
+        "rule_id": "D2R_C03",
+        "category": "color",
+        "rule": "Rectangle dark bonus: L* <= 25 -> shape_loss = +0.05 (no shape to erase \u2014 clean column).",
+        "confidence": 0.65
+      },
+      {
+        "rule_id": "D2R_C04",
+        "category": "color",
+        "rule": "Skin tone contrast modifier: skin_garment_contrast > 0.70 (fair skin + black) -> -0.05 (edges MORE visible); < 0.30 (dark skin + black) -> +0.05 (edges blend).",
+        "confidence": 0.6
+      },
+      {
+        "rule_id": "D2R_C05",
+        "category": "color",
+        "rule": "Goal 'define waist' + shape_loss < -0.15: additional -0.10 penalty.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_P01",
+        "category": "pattern",
+        "rule": "Horizontal stripe Ashida model by body width percentile: <20th: +0.20 (slim); <30th: +0.12; <50th: +0.03; <70th: -0.05; <85th: -0.12; >=85th: -0.18.",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "D2R_P02",
+        "category": "pattern",
+        "rule": "Vertical stripe effect: <30th percentile: -0.08 (may slightly widen \u2014 mild Helmholtz inverse); <50th: +0.03; <70th: +0.08; >=70th: +0.12.",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "D2R_P03",
+        "category": "pattern",
+        "rule": "Stripe width modifier: < 0.25in (pinstripe) *= 1.30; < 0.5in *= 1.10; > 1.5in (wide) *= 0.70.",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "D2R_P04",
+        "category": "pattern",
+        "rule": "Stripe count modifier: > 15 stripes *= 1.15; < 5 stripes *= 0.80.",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "D2R_P05",
+        "category": "pattern",
+        "rule": "Dark stripes bonus: primary_color_lightness < 25 -> dark_bonus = +0.05 (adds to positive, subtracts from negative).",
+        "confidence": 0.55
+      },
+      {
+        "rule_id": "D2R_P06",
+        "category": "pattern",
+        "rule": "Body width percentile estimation from hip circumference: <36in: 15th; <38: 25th; <40: 40th; <42: 55th; <44: 65th; <46: 75th; <48: 85th; >=48: 92nd.",
+        "confidence": 0.6
+      },
+      {
+        "rule_id": "D2R_A01",
+        "category": "aggregation",
+        "rule": "Master score_garment() calls all sub-scorers and aggregates via compute_dimension_weights() + weighted average of score * weight * confidence.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_A02",
+        "category": "aggregation",
+        "rule": "Dimension weight defaults: neckline/neck_elongation=0.15, neckline/bust_framing=0.12, neckline/torso_slimming=0.08, neckline/upper_body_balance=0.10, sleeves/arm_width=0.15 (or 0.05 if sleeveless), hemline=0.18, waist=0.15, color=0.08, pattern=0.10 (if patterned).",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_A03",
+        "category": "aggregation",
+        "rule": "Wrap neckline adds weights: waist_definition=0.20, compound_overall=0.15.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_A04",
+        "category": "aggregation",
+        "rule": "Puff sleeve adds weight: shoulder_widening=0.20.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_A05",
+        "category": "aggregation",
+        "rule": "Goal-based weight adjustment: goal='longer neck' -> neck_elongation *= 1.5; bust='enhance/minimize' -> bust_framing *= 1.5; arms='slimmer' -> arm_width *= 1.5; legs='longer' -> hemline *= 1.3; waist='define' -> waist_placement *= 1.5; shoulders='wider/narrower' -> shoulder weights *= 1.4.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_A06",
+        "category": "aggregation",
+        "rule": "Weight normalization: sum to 1.0 after goal adjustment. Clamp: no single weight > 0.35 (prevents single-issue domination). Re-normalize after clamping.",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_A07",
+        "category": "aggregation",
+        "rule": "Compound effect diminishing returns: final = sign * (1 - (1-|s1|) * (1-|s2|) * ...)",
+        "confidence": 0.7
+      },
+      {
+        "rule_id": "D2R_CAL01",
+        "category": "calibration",
+        "rule": "Neck length calibration: <= 2.0in = very_short (-1.0); 2.5in = short (-0.50); 3.0in = average (0.0); 3.5in = long (+0.50); >= 4.0in = very_long (+1.0).",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_CAL02",
+        "category": "calibration",
+        "rule": "Shoulder width calibration: <= 13.0in = very_narrow (-1.0); 14.0in = narrow (-0.50); 15.0in = average (0.0); 16.0in = wide (+0.50); >= 17.0in = very_wide (+1.0).",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_CAL03",
+        "category": "calibration",
+        "rule": "Arm width calibration (upper arm circ): <= 9.0in = slim (-1.0); 10.0in = below_average (-0.50); 11.5in = average (0.0); 13.0in = above_average (+0.50); >= 15.0in = full (+1.0).",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_CAL04",
+        "category": "calibration",
+        "rule": "Leg length calibration (visual leg as fraction of height): <= 0.52 = very_short (-1.0); 0.55 = short (-0.50); 0.58 = average (0.0); 0.62 = long (+0.50); >= 0.65 = very_long (+1.0).",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_CAL05",
+        "category": "calibration",
+        "rule": "Waist width calibration (WHR): <= 0.68 = very_defined (-1.0); 0.72 = defined (-0.50); 0.78 = average (0.0); 0.85 = undefined (+0.50); >= 0.90 = very_undefined (+1.0).",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_CAL06",
+        "category": "calibration",
+        "rule": "Bust size calibration (bust differential): <= 2.0in = very_small (-1.0); 3.5in = small (-0.50); 5.0in = average (0.0); 7.0in = large (+0.50); >= 9.0in = very_large (+1.0).",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_CAL07",
+        "category": "calibration",
+        "rule": "Height/elongation calibration: <= 60in = very_petite (-1.0); 62in = petite (-0.50); 65in = average (0.0); 68in = tall (+0.50); >= 71in = very_tall (+1.0).",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_CAL08",
+        "category": "calibration",
+        "rule": "Face shape angularization: jaw_width / cheekbone_width ratio determines angular vs round face score for neckline matching.",
+        "confidence": 0.5
+      },
+      {
+        "rule_id": "D2R_SC01",
+        "category": "sleeve_computation",
+        "rule": "Arm circumference profile modeled inch-by-inch from shoulder to wrist. Key landmarks: max upper arm position, forearm narrowest position, elbow at ~44% of arm length.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_SC02",
+        "category": "sleeve",
+        "rule": "Anatomical zone mapping: shoulder_cap (0-2in), danger_zone (max_pos\u00b11-1.5), upper_taper, elbow (\u00b11in), forearm_taper, forearm_narrow (\u00b10.5-1.5in), wrist_approach, wrist.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_SC03",
+        "category": "sleeve",
+        "rule": "Arm circumference interpolation: between shoulder and widest = increasing; between widest and forearm narrowest = decreasing; between forearm narrowest and wrist = slight increase.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_SC04",
+        "category": "sleeve",
+        "rule": "Width ratio computation: (c_at_termination - c_wrist) / (c_upper_arm_max - c_wrist). 0.0 = narrowest visible, 1.0 = widest visible.",
+        "confidence": 0.85
+      },
+      {
+        "rule_id": "D2R_HC01",
+        "category": "hemline_computation",
+        "rule": "Hemline computation engine: inputs are garment_length OR hem_position_label. Adjusts for height difference between model and user.",
+        "confidence": 0.9
+      },
+      {
+        "rule_id": "D2R_HC02",
+        "category": "hemline_computation",
+        "rule": "Danger zone overlap detection for petite: safe_zone_size = knee_danger_bottom - calf_danger_top. If negative, zones collapse.",
+        "confidence": 0.82
+      },
+      {
+        "rule_id": "D2R_HC03",
+        "category": "hemline_computation",
+        "rule": "Knee danger zone: knee_center \u00b1 (1.0 below, 1.5 above).",
+        "confidence": 0.8
+      },
+      {
+        "rule_id": "D2R_HC04",
+        "category": "hemline_computation",
+        "rule": "Calf danger radius: 1.0 + (calf_prominence - 1.0) * 3.0. Calf prominence = c_calf_max / c_calf_min.",
+        "confidence": 0.75
+      },
+      {
+        "rule_id": "D2R_EX01",
+        "category": "example",
+        "rule": "Worked example: petite pear (5'2, 34-27-40) + wrap dress (3/4 sleeve, 'knee length' from 5'9 model, navy). Overall score: +0.42. Key finding: 'knee length' lands at mid-thigh; 3/4 sleeve reaches wrist.",
+        "confidence": "example"
+      },
+      {
+        "rule_id": "D2R_EX02",
+        "category": "example",
+        "rule": "Worked example translation warnings: (1) 3/4 sleeve hits wrist on 20.5in arm, (2) 'knee length' dress garment_length 39in on 5'9 model = 35in on 5'2 body = 10in above knee.",
+        "confidence": "example"
+      }
+    ]
+  },
+  {
+    "fabric_rule_id": "FR_001",
+    "fabric_property": "Woven vs Knit Elastane Multiplier",
+    "visual_effect": "Stretch behavior prediction",
+    "rule": "Same elastane percentage = completely different stretch in woven vs knit. Getting this wrong produces 200-400% errors.",
+    "scoring_formula": "woven: elastane_pct * 1.6; standard_knit: * 4.0; rib_knit: * 5.5; double_knit_ponte: * 3.5",
+    "fabric_examples": {
+      "3pct_woven": "4.8% total stretch",
+      "3pct_knit": "12% total stretch",
+      "3pct_rib": "16.5% total stretch",
+      "3pct_ponte": "10.5% total stretch"
+    },
+    "interaction_with_fit": "Determines cling threshold at every body zone. Most competitors treat elastane as single property.",
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "485-503"
+  },
+  {
+    "fabric_rule_id": "FR_002",
+    "fabric_property": "Fiber-Adjusted GSM",
+    "visual_effect": "Perceived weight/stiffness correction",
+    "rule": "Same GSM, different fiber = different perceived weight/stiffness. Cotton feels 15% heavier than poly; silk 15% lighter.",
+    "scoring_formula": "effective_gsm = gsm_estimated * fiber_multiplier. cotton:1.15, polyester:1.00, silk:0.85, wool:1.10, rayon:0.90, linen:1.25, nylon:0.95, tencel:0.92, modal:0.90, viscose:0.90",
+    "fabric_examples": {
+      "cotton_150gsm": "effective 172.5gsm",
+      "silk_150gsm": "effective 127.5gsm",
+      "linen_150gsm": "effective 187.5gsm"
+    },
+    "interaction_with_fit": "Affects cling threshold modifiers (weight_mod) and structure volume calculations",
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "504-515"
+  },
+  {
+    "fabric_rule_id": "FR_003",
+    "fabric_property": "Surface Sheen Score",
+    "visual_effect": "Volume amplification on curved body zones",
+    "rule": "Sheen score mapped from surface finish type. Interacts with curvature for volume effect. Crushed surfaces reduce curvature mapping to 25%.",
+    "scoring_formula": "deep_matte:0.0, matte:0.10, subtle_sheen:0.25, moderate_sheen:0.50, high_shine:0.75, maximum_shine:1.0, crushed:0.35",
+    "fabric_examples": {
+      "wool_flannel": "0.0",
+      "cotton_poplin": "0.10",
+      "satin": "0.50",
+      "patent": "0.75",
+      "sequins": "1.0"
+    },
+    "interaction_with_fit": "Sheen * curvature_factor * projection_mod * height_mod. Concave zones get negative factor. Dark+shiny compound flag.",
+    "confidence": "MODERATE",
+    "source_domain": 3,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "394-411"
+  },
+  {
+    "fabric_rule_id": "FR_004",
+    "fabric_property": "Ponte Knit (Double Knit)",
+    "visual_effect": "Optimal fabric for curvy bodies - smooth drape without body-documenting conformity",
+    "rule": "Rayon/nylon/elastane double knit (~300gsm, drape 5) is the sweet spot between cling (drape 7+) and projection (drape 3-). Recovery rate ~92%. Built-in smoothing layer.",
+    "scoring_formula": "Ponte vs structured woven on plus-size: volume 0.30-0.46 advantage, smoothness 0.85 vs 0.30",
+    "fabric_examples": {
+      "ponte": "drape 5, gsm 280-350, sheen 0.12, stretch med-high",
+      "competitor_structured_woven": "drape 3, volume +0.22-0.38, smoothness 0.30"
+    },
+    "interaction_with_fit": "Climate limit: above 80F/27C uncomfortable. Alternative: polyester crepe (drape 5-6, ~180gsm).",
+    "confidence": "MODERATE",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "517-537"
+  },
+  {
+    "fabric_rule_id": "FR_005",
+    "fabric_property": "Cotton Poplin",
+    "visual_effect": "Baseline reference fabric (score 0.00)",
+    "rule": "Standard reference for all scoring. Drape 4, GSM 120-160, Sheen 0.10, Stretch Low, Woven. Sweet spot for rectangle body type.",
+    "scoring_formula": "Baseline: 0.00 on all scales",
+    "fabric_examples": {
+      "cotton_poplin": "drape 4, gsm 120-160, sheen 0.10"
+    },
+    "interaction_with_fit": "All other fabrics scored relative to cotton poplin baseline",
+    "confidence": "HIGH",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "545"
+  },
+  {
+    "fabric_rule_id": "FR_006",
+    "fabric_property": "Cotton Jersey",
+    "visual_effect": "Body-following casual fabric",
+    "rule": "Drape 6-7, GSM 150-200, Sheen 0.10, Stretch Medium, Knit. Sweet spot for casual wear on lean bodies.",
+    "scoring_formula": "Moderate cling risk on curvy bodies due to drape 6-7",
+    "fabric_examples": {
+      "cotton_jersey": "drape 6-7, gsm 150-200, sheen 0.10"
+    },
+    "interaction_with_fit": "High cling risk on hourglass/plus at drape 7",
+    "confidence": "HIGH",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "545"
+  },
+  {
+    "fabric_rule_id": "FR_007",
+    "fabric_property": "Polyester Satin",
+    "visual_effect": "High sheen volume amplification - WARNING: Only safe on lean bodies",
+    "rule": "Drape 8, GSM 80-120, Sheen 0.50, Stretch Low, Woven. DANGEROUS: high sheen + high drape + low weight = maximum cling + maximum specular highlighting on curves.",
+    "scoring_formula": "Sheen 0.50 * curvature amplifier on any curved zone = significant volume addition",
+    "fabric_examples": {
+      "polyester_satin": "drape 8, gsm 80-120, sheen 0.50"
+    },
+    "interaction_with_fit": "Black satin on apple belly = the #1 most dangerous common advice failure (dark+shiny inversion)",
+    "confidence": "HIGH",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "546"
+  },
+  {
+    "fabric_rule_id": "FR_008",
+    "fabric_property": "Polyester Crepe",
+    "visual_effect": "Apple belly bridging, moderate drape",
+    "rule": "Drape 5-6, GSM 140-200, Sheen 0.15, Stretch Low-Med, Woven. Bridges apple belly. Ponte climate alternative.",
+    "scoring_formula": "bridging_capacity at drape 5 = 0.8 inches; at drape 6 = 0 inches",
+    "fabric_examples": {
+      "polyester_crepe": "drape 5-6, gsm 140-200, sheen 0.15"
+    },
+    "interaction_with_fit": "Better breathability than ponte in hot/humid climates while providing similar visual properties",
+    "confidence": "HIGH",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "547"
+  },
+  {
+    "fabric_rule_id": "FR_009",
+    "fabric_property": "Silk Charmeuse",
+    "visual_effect": "Maximum cling risk with high sheen",
+    "rule": "Drape 9, GSM 60-80, Sheen 0.55, Stretch Low, Woven. WARNING: High cling risk. Full body contact + high specular highlighting.",
+    "scoring_formula": "Drape 9 + gsm 60-80 = floor_to_body contact. Sheen 0.55 on any curve = strong volume amplification.",
+    "fabric_examples": {
+      "silk_charmeuse": "drape 9, gsm 60-80, sheen 0.55"
+    },
+    "interaction_with_fit": "Silk surface friction modifier +6% on cling threshold (slides off body somewhat), but extremely low weight -12% overwhelms",
+    "confidence": "HIGH",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "550"
+  },
+  {
+    "fabric_rule_id": "FR_010",
+    "fabric_property": "Wool Crepe",
+    "visual_effect": "Professional versatile fabric for all bodies",
+    "rule": "Drape 4-5, GSM 200-280, Sheen 0.08, Stretch Low, Woven. Low sheen + moderate weight + moderate drape = safe for professional wear across all body types.",
+    "scoring_formula": "Matte (0.08 sheen) suppresses highlights. Moderate drape (4-5) provides skim without cling.",
+    "fabric_examples": {
+      "wool_crepe": "drape 4-5, gsm 200-280, sheen 0.08"
+    },
+    "interaction_with_fit": "Universal professional recommendation. Low scoring variance across body types.",
+    "confidence": "HIGH",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "553"
+  },
+  {
+    "rule_id": "D3_R01",
+    "rule": "Impact Hierarchy: Fit/Ease 30%, Construction 25%, Fabric behavior 20%, Surface finish 15%, Color 10%. Color is OVERWEIGHTED 5x in popular advice.",
+    "implication": "A well-fitting matte ponte dress in medium blue looks dramatically better than a poorly fitting black satin dress, despite the blue adding 2% perceived width and the black removing 5%.",
+    "confidence": "MODERATE",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "37-62"
+  },
+  {
+    "rule_id": "D3_R02",
+    "rule": "All effects scored on -1.0 to +1.0 scale. -1.0 = Maximum volume reduction (compression + dark + matte + structure bridging). 0.00 = Cotton poplin baseline. +1.0 = Maximum volume amplification (cling + shiny + light + projected).",
+    "stacking_formula": "total = sign x (1 - (1-|a|)(1-|b|)(1-|c|)...). Same-direction effects stack with DIMINISHING RETURNS, not linearly. Prevents unrealistic compounding and naturally caps near +/-1.0.",
+    "example": "shiny (+0.25) + light color (+0.20) + curved zone (+0.15) = +(1 - 0.75 x 0.80 x 0.85) = +0.49",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "64-78"
+  },
+  {
+    "rule_id": "D3_R03",
+    "rule": "Woven vs Knit Elastane Multiplier: Same elastane percentage = completely different stretch behavior. Getting this wrong produces 200-400% errors in stretch prediction.",
+    "multipliers": {
+      "woven": "x 1.6 (3% elastane gives 4.8% total stretch)",
+      "standard_knit": "x 4.0 (3% elastane gives 12% total stretch)",
+      "rib_knit": "x 5.5 (3% elastane gives 16.5% total stretch)",
+      "double_knit_ponte": "x 3.5 (3% elastane gives 10.5% total stretch)"
+    },
+    "confidence": "HIGH (85%+)",
+    "priority": "#1 priority correction from the failure catalog",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "485-503"
+  },
+  {
+    "rule_id": "D3_R04",
+    "rule": "Effective GSM (Fiber-Adjusted): Same GSM, different fiber = different perceived weight/stiffness.",
+    "fiber_multipliers": {
+      "cotton": "x 1.15 (feels 15% heavier/stiffer than poly equivalent)",
+      "polyester": "x 1.00 (baseline)",
+      "silk": "x 0.85 (feels 15% lighter/more fluid)",
+      "wool": "x 1.10 (slightly stiffer than poly)",
+      "rayon": "x 0.90 (more fluid than poly)",
+      "linen": "x 1.25 (significantly stiffer than poly)"
+    },
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "504-515"
+  },
+  {
+    "rule_id": "D3_R05",
+    "rule": "The Ponte Advantage: Rayon/nylon/elastane double knit (~300gsm, drape 5) consistently scores as the optimal fabric for bodies with curves.",
+    "reasons": [
+      "Drape 5 = sweet spot between cling (drape 7+) and projection (drape 3-)",
+      "Double knit = smooth surface without body-documenting conformity",
+      "Recovery rate ~92% = maintains shape across wear cycles",
+      "Thickness = built-in smoothing layer (like permanent lining)"
+    ],
+    "ponte_vs_structured_woven_on_plus_size": {
+      "structured_woven_drape_3": "volume +0.22-0.38, smoothness 0.30",
+      "ponte_drape_5": "volume -0.05 to +0.08, smoothness 0.85",
+      "advantage": "0.30-0.46 on volume, massive on smoothness"
+    },
+    "ponte_limitation": "Ponte traps heat. In hot/humid climates (above ~80F/27C), ponte becomes uncomfortable. Alternative: polyester crepe (drape 5-6, ~180gsm).",
+    "confidence": "MODERATE",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "517-537"
+  },
+  {
+    "rule_id": "D3_R06",
+    "rule": "Apple belly effective front ease: max(0, total_ease - belly_projection x 0.8). Apple belly ALWAYS clings in fluid garments regardless of total ease.",
+    "example": "At 4\" total ease with 4\" belly projection: effective front ease = 0.8\". At 3\" total ease with 4\" projection: effective front ease = 0\".",
+    "confidence_on_0_8_fraction": "LOW (<50%) - calibrated estimate",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "173-188"
+  },
+  {
+    "rule_id": "D3_R07",
+    "rule": "Hourglass Sizing Paradox: Size for bust/hip -> waist has 8-14\" EXCESS ease -> boxy silhouette. Size for waist -> bust/hip cling at 45-65% demand -> strain everywhere. No single size fits in non-stretch garments.",
+    "solutions": [
+      "Stretch fabrics (ponte/jersey)",
+      "Tailored construction with darts",
+      "Separate top/bottom sizing"
+    ],
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "192-199"
+  },
+  {
+    "rule_id": "D3_R08",
+    "rule": "Plus Size Compound Cling Effect: Higher circumferences + steeper curvature rates = lower thresholds at ALL zones. Upper arm becomes significant cling zone (14-20\" circ).",
+    "severity_indicator": {
+      "0_zones": "fits well",
+      "1_zone": "minor concern",
+      "2_zones": "moderate concern",
+      "3_plus_zones": "strong size-up recommendation"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "201-211"
+  },
+  {
+    "rule_id": "D3_R09",
+    "rule": "Hourglass Waist - Structure is WORSE than Cling: Structure at hourglass waist fills the concavity, ERASING the waist definition. Proportion_erosion +0.15-0.25. Moderate cling preserves waist definition better than structure.",
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "271-281"
+  },
+  {
+    "rule_id": "D3_R10",
+    "rule": "Petite in Heavy Fluid Long Garments REVERSAL: 'Avoid heavy fabrics if petite' REVERSES for heavy-but-fluid (drape 7+, gsm 200+) in full-length garments. Heavy fluid in maxi creates unbroken vertical fall lines that ELONGATE.",
+    "elongation_bonus": "-0.05 to -0.12 (outweighs overwhelm penalty)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "298-304"
+  },
+  {
+    "rule_id": "D3_R11",
+    "rule": "When surface sheen > 0.15 on a dark garment at a curved zone, the highlight contrast cancels the dark-color benefit. At sheen 0.50: dark benefit fully cancelled (net zero). At sheen 0.75+: dark is actively WORSE than medium-tone matte.",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "246-253"
+  },
+  {
+    "rule_id": "D3_R12",
+    "rule": "Petite Color Paradox: Dark reduces BOTH width AND height. OPTIMAL: Monochrome in medium tones (lightness 30-60%), creating longest unbroken vertical line. Elongation benefit of monochrome (-0.05 to -0.10 proportion score) is MORE valuable than +/-0.15 width change from dark vs light.",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "225-234"
+  },
+  {
+    "rule_id": "D3_R13",
+    "rule": "Pear Zone Color Strategy: Light top adds +0.10-0.20 width at narrow shoulders (beneficial). Dark bottom removes -0.15-0.30 at wide hips (beneficial). Combined effect: 2x more effective than all-dark.",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "236-244"
+  },
+  {
+    "rule_id": "D3_R14",
+    "rule": "12 Independent Body Dimensions: Standard body types capture only 1 of 12 independent dimensions. Two 'pear' bodies with identical bust-waist-hip ratios but different heights, belly projections, and tissue firmness will have completely different experiences.",
+    "dimensions": [
+      "1. Height: Pattern overwhelm, hemline zones, proportional dominance of curves",
+      "2. Bust circumference: Bust cling demand, button gap risk",
+      "3. Waist circumference: Sizing anchor for most garments",
+      "4. Hip circumference: Hip cling demand, A-line behavior",
+      "5. Shoulder width: Silhouette frame, sleeve fit",
+      "6. Bust-waist differential: Bust curvature rate, dart need",
+      "7. Hip-waist differential: Hip curvature rate, sizing paradox",
+      "8. Torso length: Curvature rate modulator (short torso = steeper rates at same differentials)",
+      "9. Bust projection (anterior): Sheen amplification, photo gap, cling",
+      "10. Belly projection: #1 photo gap contributor, cling threshold, bridging calculation, wrap gap risk",
+      "11. Hip projection (lateral): Stripe reversal, A-line behavior",
+      "12. Tissue firmness: Compression artifacts, cling visual severity"
+    ],
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "558-630"
+  },
+  {
+    "rule_id": "D3_R15",
+    "rule": "Scoring Engine Pipeline: Input -> Phase 1 (Fabric Resolution) -> Phase 2 (Body Metric Derivation) -> Phase 3 (Zone Selection) -> Phase 4 (Per-Zone Scoring across 10 principles with diminishing returns) -> Phase 5 (Context Modifiers: sitting, climate) -> Phase 6 (Composite + Recommendation).",
+    "scoring_weights": {
+      "P1_sheen": "15%",
+      "P2_cling": "30%",
+      "P3_color": "8%",
+      "P4_structure_weight": "20%",
+      "P5_texture": "5%",
+      "P6_pattern_stripe": "5%",
+      "P7_drape_conformity": "10%",
+      "P8_silhouette_shape": "4%",
+      "P9_construction": "3%",
+      "P10_photo_discount": "separate channel"
+    },
+    "context_sitting_deltas": {
+      "belly": "+2-4 inches",
+      "thigh": "+1-2 inches",
+      "hip": "+0.5-1.5 inches"
+    },
+    "recommendation_tiers": "strong_recommend / recommend / neutral / caution / avoid",
+    "confidence_by_body_type": {
+      "rectangle": "85%",
+      "tall": "85%",
+      "inverted_triangle": "75%",
+      "pear": "72%",
+      "hourglass": "68%",
+      "apple": "62%",
+      "plus_size": "53% (lowest)"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "683-757"
+  },
+  {
+    "rule_id": "D4_R01",
+    "name": "The Stripe Wars Resolution",
+    "category": "contradiction_resolution",
+    "description": "H vs V: research is clear, H wins. H vs solid: small benefit (+0.03), not the dramatic 10% from H-vs-V comparisons. Cultural belief may modulate real-world social perception. Score H stripes as mildly positive for standard bodies, nullified for plus-size (Ashida), zone-split for pear/INVT.",
+    "competing_evidence": {
+      "academic": "H stripes thin 5-11% vs V stripes (Thompson 2011, Koutsoumpis 2021)",
+      "popular_wisdom": "77% of people believe H stripes widen (multiple surveys)",
+      "practitioner": "Split \u2014 some say avoid H, others say research proves they're fine"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "3.1"
+  },
+  {
+    "rule_id": "D4_R02",
+    "name": "Black Near the Face Resolution",
+    "category": "contradiction_resolution",
+    "description": "Both optical slimming and sallow complexion are true simultaneously. Dark color slims the body, but black near warm-toned skin creates unflattering complexion effect. Gradual sallow function: pure black (L=0.08) on warm skin near face = skin_mult 0.36, dark chocolate brown (L=0.18) = skin_mult 0.82. Recommend dark brown or burgundy instead of pure black for warm-toned users.",
+    "competing_evidence": {
+      "optical_science": "Dark colors contract perceived width (irradiation illusion, well-replicated)",
+      "color_analysis": "Black near the face creates sallow appearance for warm undertones"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "3.2"
+  },
+  {
+    "rule_id": "D4_R03",
+    "name": "The Concealment Paradox Resolution",
+    "category": "contradiction_resolution",
+    "description": "Dual-goal scoring. Tent silhouettes score positively for concealment (+0.35) and negatively for slimming (-0.40). Composite weights 70% toward slimming by default (conservative: protect from common misconception), but shifts to 100% concealment if user explicitly selects concealment as goal.",
+    "competing_evidence": {
+      "user_belief": "Loose clothing hides my body and makes me look thinner",
+      "perception_research": "Viewers estimate body size from garment boundaries, not body contours (Cornelissen 2009)"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "3.3"
+  },
+  {
+    "rule_id": "D4_R04",
+    "name": "V-Neck + High Rise Conflict Resolution",
+    "category": "contradiction_resolution",
+    "description": "Cross-garment interaction detection. When torso_score <= -1.0 AND rise > 26cm AND neckline = V: override V-neck score to -0.05. V pulls DOWN into torso, high waist pulls UP to waist \u2014 framing the shortest body segment. Requires seeing both garments simultaneously.",
+    "competing_evidence": {
+      "standard_advice": "V-necks elongate. High rise elongates legs. Both are good for petite.",
+      "the_problem": "On short-torso petite body, they create opposing attention vectors"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "3.4"
+  },
+  {
+    "rule_id": "D4_R05",
+    "name": "Structured vs. Unstructured for Plus-Size Resolution",
+    "category": "contradiction_resolution",
+    "description": "Fabric construction gate: GSM, is_structured flag. Same ER < 0.03 triggers bodycon scoring, but path branches on fabric. Structured bodycon (scuba, shapewear panels) sculpts and smooths (-0.05). Thin jersey bodycon maps every contour (-0.40). The silhouette label is identical; only fabric construction distinguishes them.",
+    "competing_evidence": {
+      "generic_advice": "Avoid bodycon / Choose flowing fabrics for plus-size bodies",
+      "reality": "Structured bodycon sculpts (-0.05). Thin jersey bodycon maps contours (-0.40). Same label, opposite outcomes."
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "3.5"
+  },
+  {
+    "rule_id": "D4_R06",
+    "name": "Emphasis vs. Balance Philosophy Resolution",
+    "category": "contradiction_resolution",
+    "description": "Style philosophy axis. Engine supports both: emphasis philosophy increases weight on bodycon, color break, V-neck. Balance philosophy increases weight on dark slimming, matte zone, monochrome column. Scoring magnitudes don't change \u2014 only weights in composite. Users choose their philosophy; engine optimizes within it.",
+    "competing_evidence": {
+      "traditional_styling": "Balance proportions \u2014 minimize wide areas, maximize narrow ones",
+      "body_positive": "Emphasize what you have \u2014 celebrate curves, showcase shoulders"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "3.6"
+  },
+  {
+    "rule_id": "D4_R07",
+    "name": "Source Quality Hierarchy Resolution",
+    "category": "contradiction_resolution",
+    "description": "Tiered confidence. Academic measurements set base effect direction and approximate magnitude. Practitioner consensus validates or adjusts for real-world factors academics miss (fabric behavior, cultural context). Popular wisdom acknowledged only where it modulates social perception (belief-perception loop on H stripes). When sources conflict, engine documents which source it follows and why.",
+    "competing_evidence": {
+      "problem": "Academic papers test on 2D shapes/mannequins, not real bodies in social contexts. Practitioner advice is experience-based but uncontrolled. Popular wisdom is often wrong but influences real-world perception."
+    },
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "3.7"
+  },
+  {
+    "rule_id": "D4_R08",
+    "name": "Composite Scoring Architecture",
+    "category": "scoring_rule",
+    "description": "5-step composite scoring pipeline",
+    "steps": {
+      "step_1": "Call all 10 principle scorers independently. Each returns (score, reasoning_chain).",
+      "step_2": "Assign weights. Non-applicable principles -> weight 0. User's primary goal -> matching principles get x1.5. Strong negatives (< -0.15) -> x1.2 (conservative protection).",
+      "step_3": "Compute weighted average of applicable principles.",
+      "step_4": "Apply SILHOUETTE DOMINANCE RULE: if tent or bodycon scores < -0.20 AND user's goal is slimming, the composite CANNOT go positive. No amount of good color or pattern compensates for fundamentally wrong fit.",
+      "step_5": "Clamp to [-1.0, +1.0]."
+    },
+    "key_insight": "Composite is CONSERVATIVE. Bad silhouettes cannot be fixed by good colors. But good silhouettes CAN be enhanced by good colors.",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "6.2"
+  },
+  {
+    "rule_id": "D4_R09",
+    "name": "Silhouette Dominance Rule",
+    "category": "scoring_rule",
+    "description": "If tent or bodycon scores < -0.20 AND user's goal is slimming, the composite CANNOT go positive. This prevents color/pattern from masking fundamentally wrong fit. Composite is forced to worst_silhouette_score * 0.3.",
+    "trigger": "tent_or_bodycon_score < -0.20 AND styling_goal == SLIMMING AND composite > 0",
+    "action": "composite = worst_silhouette_score * 0.3",
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "1148-1154"
+  },
+  {
+    "rule_id": "D4_R10",
+    "name": "Goal-Based Weighting",
+    "category": "scoring_rule",
+    "description": "Principle weights adjusted based on user's styling goal",
+    "weight_modifiers": {
+      "SLIMMING": {
+        "amplified": [
+          "Dark/Black Slimming",
+          "Matte Zone",
+          "H-Stripe Thinning",
+          "Tent Concealment"
+        ],
+        "multiplier": 1.5
+      },
+      "EMPHASIS": {
+        "amplified": [
+          "Bodycon Mapping",
+          "Color Break",
+          "V-Neck Elongation"
+        ],
+        "multiplier": 1.5
+      },
+      "CONCEALMENT": {
+        "amplified": [
+          "Tent Concealment"
+        ],
+        "multiplier": 1.5,
+        "secondary": {
+          "Matte Zone": 1.3
+        }
+      }
+    },
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "1117-1130"
+  },
+  {
+    "rule_id": "D4_R11",
+    "name": "Conservative Negative Amplification",
+    "category": "scoring_rule",
+    "description": "Any principle scoring below -0.15 gets its weight multiplied by 1.2. This creates asymmetric protection: the engine is more cautious about bad outcomes than optimistic about good ones.",
+    "trigger": "score < -0.15",
+    "multiplier": 1.2,
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "1132-1133"
+  },
+  {
+    "rule_id": "D4_R12",
+    "name": "5-Step Principle Scoring Pipeline",
+    "category": "scoring_rule",
+    "description": "Each garment is scored by 10 independent principle functions. Each function follows: (1) relevance gate, (2) base effect from garment attributes, (3) body-type modifier from 80-cell matrix, (4) breakdown/failure-mode check, (5) return score + reasoning chain.",
+    "source_domain": 4,
+    "source_file": "kridha_master_reference.docx",
+    "section": "1"
+  },
+  {
+    "rule_id": "D4_R13",
+    "name": "Dual-Goal Scoring for Tent Silhouettes",
+    "category": "scoring_rule",
+    "description": "Tent silhouettes receive two separate scores: concealment (+0.25 to +0.35) and slimming (-0.20 to -0.40). Default weighting: 30% concealment + 70% slimming (conservative). If user goal = CONCEALMENT: 100% concealment score. If goal = SLIMMING: 100% slimming score.",
+    "formulas": {
+      "concealment_score": "ER 0.12-0.20: +0.25; ER > 0.20: +0.35",
+      "slimming_score": "ER 0.12-0.20: -0.20; ER > 0.20: -0.40",
+      "balance_default": "concealment * 0.3 + slimming * 0.7"
+    },
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "source_lines": "566-585"
+  },
+  {
+    "rule_id": "D5_R01",
+    "name": "Score-to-Inches Conversion",
+    "category": "scoring_rule",
+    "description": "Convert [-1,+1] score to perceived height change in inches.",
+    "formula": "MULTIPLIER = 2.25 (revised from 2.75 after Contradiction #10). scale = max(0.75, min(1.20, 1.0 + (62 - user_height)*0.025)). perceived_inches = score * MULTIPLIER * scale.",
+    "uncertainty": "+/-25% on all inch estimates. +1.0 inch prediction = +0.75 to +1.25 in practice.",
+    "score_to_inches_table": {
+      "+1.00": "+2.25\" (theoretical max from clothing alone)",
+      "+0.67": "+1.50\" (visible in photographs)",
+      "+0.44": "+1.00\" (reliably changes conscious height judgment)",
+      "+0.22": "+0.50\" (perception noise floor)",
+      "0.00": "0.00\" (neutral)",
+      "-0.22": "-0.50\" (perception noise floor)",
+      "-0.44": "-1.00\" (reliably shortening)",
+      "-0.67": "-1.50\" (visible in photographs)",
+      "-1.00": "-2.25\" (maximum sabotage)"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "54-68, 124-136"
+  },
+  {
+    "rule_id": "D5_R02",
+    "name": "Confidence Tier Weights",
+    "category": "scoring_rule",
+    "description": "Every principle carries a confidence weight that determines contribution to final aggregated score. Higher confidence = more influence. Weight = confidence^2.",
+    "weights": {
+      "shoe_height": {
+        "confidence": 0.95,
+        "tier": "Tier 1"
+      },
+      "proportion": {
+        "confidence": 0.9,
+        "tier": "Tier 1-2"
+      },
+      "monochromatic_column": {
+        "confidence": 0.8,
+        "tier": "Tier 2"
+      },
+      "color_break": {
+        "confidence": 0.8,
+        "tier": "Tier 2"
+      },
+      "hemline_position": {
+        "confidence": 0.75,
+        "tier": "Tier 2"
+      },
+      "ankle_strap": {
+        "confidence": 0.75,
+        "tier": "Tier 3"
+      },
+      "waist_elevation": {
+        "confidence": 0.7,
+        "tier": "Tier 2"
+      },
+      "dark_slimming": {
+        "confidence": 0.65,
+        "tier": "Tier 2"
+      },
+      "slim_fit": {
+        "confidence": 0.65,
+        "tier": "Tier 2"
+      },
+      "v_neckline": {
+        "confidence": 0.6,
+        "tier": "Tier 2-3"
+      },
+      "nude_shoes": {
+        "confidence": 0.55,
+        "tier": "Tier 2-3"
+      },
+      "vertical_seams": {
+        "confidence": 0.55,
+        "tier": "Tier 3"
+      },
+      "print_scale": {
+        "confidence": 0.5,
+        "tier": "Tier 3"
+      },
+      "vertical_stripes": {
+        "confidence": 0.35,
+        "tier": "Tier 1 CONTRADICTED"
+      },
+      "luminance_direction": {
+        "confidence": 0.3,
+        "tier": "Tier 4"
+      }
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "140-158"
+  },
+  {
+    "rule_id": "D5_R03",
+    "name": "Positive Aggregation Method",
+    "category": "scoring_rule",
+    "description": "Confidence-weighted average for positive principles. Weight = confidence^2 to emphasize high-confidence principles.",
+    "formula": "weighted_sum = sum(score * conf^2). weight_total = sum(conf^2). positive_total = (weighted_sum / weight_total) * 2.5. Capped at 0.70.",
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1467-1477"
+  },
+  {
+    "rule_id": "D5_R04",
+    "name": "Sabotage Aggregation Method (Product-Complement)",
+    "category": "scoring_rule",
+    "description": "Sabotage penalties use product-complement stacking (diminishing returns). Each individual penalty capped at 0.40 before stacking.",
+    "formula": "remaining = 1.0. For each penalty p (sorted largest first): remaining *= (1.0 - min(0.40, |p|)). sabotage_total = -(1.0 - remaining).",
+    "rationale": "Product-complement ensures multiple small penalties compound realistically without exceeding -1.0, and diminishing returns mirror real perception.",
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1479-1487"
+  },
+  {
+    "rule_id": "D5_R05",
+    "name": "Final Score Combination",
+    "category": "scoring_rule",
+    "description": "Final score = positive_total + sabotage_total, clamped to [-1.0, +1.0]. Simple additive combination of positive (up to +0.70) and sabotage (down to -1.0).",
+    "formula": "final = max(-1.0, min(1.0, positive_total + sabotage_total))",
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1489-1491"
+  },
+  {
+    "rule_id": "D5_R06",
+    "name": "Sabotage Interaction Matrix",
+    "category": "scoring_rule",
+    "description": "Some sabotage penalties amplify or attenuate each other when co-occurring.",
+    "super_additive_pairs": {
+      "color_break_AND_waist_depression": 1.25,
+      "midi_hemline_AND_ankle_strap": 1.3,
+      "cropped_gap_AND_cuff": 1.35,
+      "oversized_AND_waist_depression": 1.2,
+      "color_break_AND_horizontal_at_hip": 1.15
+    },
+    "sub_additive_pairs": {
+      "midi_hemline_AND_cropped_gap": 0.6,
+      "oversized_AND_fabric_bunching": 0.75,
+      "ankle_strap_AND_shoe_vamp": 0.7
+    },
+    "confidence_note": "ALL 12 interaction values are geometric reasoning with ZERO empirical backing. Confidence: 25%. Most fabricated numbers in entire system.",
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1446-1462"
+  },
+  {
+    "rule_id": "D5_R07",
+    "name": "Confidence Interval Calculation",
+    "category": "scoring_rule",
+    "description": "Uncertainty on perceived inches based on average confidence of active components.",
+    "formula": "uncertainty_pct = 0.55 - avg_confidence * 0.45. ci_low = perceived_inches * (1 - uncertainty_pct). ci_high = perceived_inches * (1 + uncertainty_pct). At avg_confidence 0.90: +/-15%. At avg_confidence 0.50: +/-40%.",
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1496-1504"
+  },
+  {
+    "rule_id": "D5_R08",
+    "name": "Compound Body-Type Modifier Multiplication",
+    "category": "scoring_rule",
+    "description": "Users with multiple body types get ALL applicable modifiers multiplied together.",
+    "examples": {
+      "petite_plus_pear_color_break": "1.30 x 1.35 = 1.76 (nearly 2x penalty)",
+      "petite_apple_plus_color_break": "1.30 x 1.20 x 1.30 = 2.03 (MAXIMUM system penalty)",
+      "petite_pear_monochromatic": "1.20 x 1.10 = 1.32 (highest benefit in system)",
+      "petite_apple_plus_dark_mono": "1.20 x 1.15 x 1.20 = 1.66 (highest benefit)",
+      "tall_invt_color_break": "0.65 x 0.75 = 0.49 (barely half baseline)",
+      "tall_invt_vneck": "0.60 x 0.40 = 0.24 (effectively nullified)"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1418-1437"
+  },
+  {
+    "rule_id": "D5_R09",
+    "name": "Petite Amplifier Formula",
+    "category": "scoring_rule",
+    "description": "Effects are amplified on petite frames. 1.0 at 5'6\", 1.50 at 4'10\".",
+    "formula": "petite_amplifier = max(0.85, min(1.50, 1.0 + (66 - height_inches) * 0.05))",
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "197-198"
+  },
+  {
+    "rule_id": "D5_R10",
+    "name": "CIEDE2000 Color Distance Thresholds",
+    "category": "scoring_rule",
+    "description": "All color comparisons use CIEDE2000 perceptually uniform distance metric.",
+    "thresholds": {
+      "0_to_2": "Indistinguishable = Same color",
+      "2_to_5": "Barely noticeable = Tonal match",
+      "5_to_10": "Noticeable but related = Related colors",
+      "10_to_20": "Clearly different = Moderate contrast",
+      "20_to_40": "Very different = High contrast",
+      "40_plus": "Maximum opposition = Extreme contrast"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "304-313"
+  },
+  {
+    "rule_id": "D5_R11",
+    "name": "Build Order by Scoring Variance",
+    "category": "implementation_rule",
+    "description": "Implementation priority ordered by percentage of scoring variance explained.",
+    "priorities": {
+      "P1_40pct": "Shoe height (P1) + Proportion (P7) + Monochromatic column (P2) = MVP scoring",
+      "P2_20pct": "Color break (S1) + Hemline (S2) = Core sabotage detection",
+      "P3_15pct": "Body-type detection + modifier layer = Personalization begins",
+      "P4_10pct": "Waist elevation (P3) with ratio gate = Highest-value insight",
+      "P5_5pct": "Nude shoe with skin-tone matching (P6) = Signature differentiation",
+      "P6_10pct": "Remaining principles + interaction matrix = Full engine"
+    },
+    "source_domain": 5,
+    "source_file": "domain5.md",
+    "source_lines": "1725-1732"
+  },
+  {
+    "rule_id": "R_D6_001",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Garment L* darker than neutral (delta_L = 50 - garment.L_star positive)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Perceived width reduction via irradiation illusion",
+    "score_value": null,
+    "score_formula": "slim = clamp(delta_L * 0.0024, -0.12, +0.12); tall = clamp(delta_L * 0.0004, -0.02, +0.02)",
+    "confidence": "HIGH (0.90)",
+    "source_text": "delta_L = 50 - garment.L_star; slim = clamp(delta_L * 0.0024, -0.12, +0.12); tall = clamp(delta_L * 0.0004, -0.02, +0.02)"
+  },
+  {
+    "rule_id": "R_D6_002",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Fabric sheen > 0.30",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Sheen penalty: highlights on convexities reduce slim benefit",
+    "score_value": null,
+    "score_formula": "slim *= max(0.20, 1.0 - sheen * 0.80)",
+    "confidence": "HIGH (calibration priority)",
+    "source_text": "Gate 1: Sheen penalty. if fabric.sheen > 0.30: slim *= max(0.20, 1.0 - sheen * 0.80)"
+  },
+  {
+    "rule_id": "R_D6_003",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Any garment",
+    "body_condition": "Skin-garment L* contrast < 15 units",
+    "zone": "full_body",
+    "effect": "Low skin contrast reduces slim effect",
+    "score_value": null,
+    "score_formula": "slim *= (delta / 15.0) where delta = |body.skin_L - garment.L_star|",
+    "confidence": "MEDIUM",
+    "source_text": "Gate 2: Skin contrast. if |body.skin_L - garment.L_star| < 15: slim *= (delta / 15.0)"
+  },
+  {
+    "rule_id": "R_D6_004",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Garment L* < 15 (very dark)",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "full_body",
+    "effect": "Dark recession subtracts height on petite",
+    "score_value": -0.04,
+    "score_formula": "tall -= 0.04",
+    "confidence": "MEDIUM",
+    "source_text": "Gate 3: Petite recession. if body.H < 63 and garment.L_star < 15: tall -= 0.04"
+  },
+  {
+    "rule_id": "R_D6_005",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Any dark garment",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "midsection",
+    "effect": "Apple amplification of dark slimming",
+    "score_value": null,
+    "score_formula": "slim *= 1.30",
+    "confidence": "INVENTED",
+    "source_text": "Gate 4: Apple amplification. if body.WHR > 0.85: slim *= 1.30"
+  },
+  {
+    "rule_id": "R_D6_006",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Rigid fabric (drape < 0.40)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Rigid fabric reduces slim effect",
+    "score_value": null,
+    "score_formula": "slim *= max(0.30, drape)",
+    "confidence": "INVENTED",
+    "source_text": "Gate 5: Rigid fabric. if fabric.drape < 0.40: slim *= max(0.30, drape)"
+  },
+  {
+    "rule_id": "R_D6_007",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "WHR < 0.78",
+    "zone": "torso",
+    "effect": "Full Helmholtz slimming",
+    "score_value": null,
+    "score_formula": "slim = +0.06; tall = +0.03",
+    "confidence": "HIGH (0.85)",
+    "source_text": "STAGE 1: if body.WHR < 0.78: slim = +0.06; tall = +0.03 # Full Helmholtz"
+  },
+  {
+    "rule_id": "R_D6_008",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "WHR 0.78-0.85",
+    "zone": "torso",
+    "effect": "Linear decay of Helmholtz slimming",
+    "score_value": null,
+    "score_formula": "slim = lerp(+0.06, 0.00) based on WHR position in range",
+    "confidence": "MEDIUM (0.60)",
+    "source_text": "elif body.WHR < 0.85: slim = lerp(+0.06, 0.00) # Linear decay"
+  },
+  {
+    "rule_id": "R_D6_009",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "WHR 0.85-0.92",
+    "zone": "torso",
+    "effect": "Transition zone - stripes becoming harmful",
+    "score_value": null,
+    "score_formula": "slim = lerp(0.00, -0.03)",
+    "confidence": "MEDIUM (0.60)",
+    "source_text": "elif body.WHR < 0.92: slim = lerp(0.00, -0.03) # Transition"
+  },
+  {
+    "rule_id": "R_D6_010",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "WHR >= 0.92",
+    "zone": "torso",
+    "effect": "ASHIDA REVERSAL - stripes become measurement lines, actively harmful",
+    "score_value": null,
+    "score_formula": "slim = -0.06; tall = -0.02; OVERRIDE: recommend solid dark or diagonal",
+    "confidence": "HIGH (0.70)",
+    "source_text": "else: # WHR >= 0.92. slim = -0.06; tall = -0.02 # ASHIDA REVERSAL. OVERRIDE: recommend solid dark or diagonal"
+  },
+  {
+    "rule_id": "R_D6_011",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Stripe width ratio > 12% of torso width",
+    "body_condition": "Any body type",
+    "zone": "torso",
+    "effect": "Wide stripes collapse slim effect",
+    "score_value": null,
+    "score_formula": "stripe_ratio = garment.stripe_width / (body.B_c / pi); if stripe_ratio > 0.12: slim *= 0.3; slim = min(slim, -0.01)",
+    "confidence": "MEDIUM",
+    "source_text": "STAGE 2: Stripe frequency (Oppel-Kundt). stripe_ratio = garment.stripe_width / (body.B_c / pi). if stripe_ratio > 0.12: slim *= 0.3; slim = min(slim, -0.01)"
+  },
+  {
+    "rule_id": "R_D6_012",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Fabric stretch > 0.15 AND silhouette == FITTED",
+    "body_condition": "Any body type",
+    "zone": "torso",
+    "effect": "Stripes curve over convexities = shape revelation",
+    "score_value": -0.03,
+    "score_formula": "slim = min(slim, -0.03)",
+    "confidence": "INVENTED",
+    "source_text": "STAGE 3: Fabric corrections. if fabric.stretch > 0.15 and silhouette == FITTED: slim = min(slim, -0.03)"
+  },
+  {
+    "rule_id": "R_D6_013",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes, VIDEO context",
+    "body_condition": "Any body type",
+    "zone": "torso",
+    "effect": "Motion reduces stripe effect",
+    "score_value": null,
+    "score_formula": "slim *= 0.50",
+    "confidence": "INVENTED",
+    "source_text": "STAGE 4: Context. if context == VIDEO: slim *= 0.50"
+  },
+  {
+    "rule_id": "R_D6_014",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes, IN_PERSON context",
+    "body_condition": "Any body type",
+    "zone": "torso",
+    "effect": "In-person viewing drastically reduces stripe effect",
+    "score_value": null,
+    "score_formula": "slim *= 0.30",
+    "confidence": "INVENTED",
+    "source_text": "if context == IN_PERSON: slim *= 0.30"
+  },
+  {
+    "rule_id": "R_D6_015",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "torso",
+    "effect": "Petite amplification of stripe tall effect",
+    "score_value": null,
+    "score_formula": "tall *= 1.30",
+    "confidence": "INVENTED",
+    "source_text": "if body.H < 63: tall *= 1.30 # Petite amplification"
+  },
+  {
+    "rule_id": "R_D6_016",
+    "principle_id": "P_D6_004",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "High rise pants/skirt",
+    "body_condition": "Petite (H < 63 inches) AND TLR > 0.55",
+    "zone": "waist",
+    "effect": "Maximum tall benefit for petite with sufficient torso",
+    "score_value": 0.21,
+    "score_formula": "tall *= 1.40 (net +0.21)",
+    "confidence": "LOW (0.40)",
+    "source_text": "P4 High Rise: MAX BENEFIT. Tall x1.40 (+0.21). Each inch of rise is larger % of total height. CHECK TLR: if < 0.52 (short torso): OVERRIDE -> tall = 0.00"
+  },
+  {
+    "rule_id": "R_D6_017",
+    "principle_id": "P_D6_004",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "High rise pants/skirt",
+    "body_condition": "Petite (H < 63 inches) AND TLR < 0.52",
+    "zone": "waist",
+    "effect": "Short torso override - tall benefit nullified entirely",
+    "score_value": 0.0,
+    "score_formula": "tall = 0.00 (OVERRIDE)",
+    "confidence": "LOW (0.40)",
+    "source_text": "CHECK TLR: if < 0.52 (short torso): OVERRIDE -> tall = 0.00"
+  },
+  {
+    "rule_id": "R_D6_018",
+    "principle_id": "P_D6_004",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "High rise",
+    "body_condition": "Apple (WHR > 0.85) AND good fit",
+    "zone": "waist",
+    "effect": "Positive if garment fits above belly",
+    "score_value": 0.04,
+    "score_formula": "slim = +0.04 (FIT-DEPENDENT)",
+    "confidence": "LOW",
+    "source_text": "P4 High Rise for Apple: COMPLEX. +0.04 or -0.06 (FIT-DEPENDENT). If on belly: muffin top. If above belly: good."
+  },
+  {
+    "rule_id": "R_D6_019",
+    "principle_id": "P_D6_004",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "High rise with poor fit",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "waist",
+    "effect": "Muffin top - actively harmful",
+    "score_value": -0.06,
+    "score_formula": "slim = -0.06",
+    "confidence": "LOW",
+    "source_text": "If on belly: muffin top. FIT_QUALITY gate critical. High rise ONLY if fit confirmed. Mid rise (9-10 inches) as safe default."
+  },
+  {
+    "rule_id": "R_D6_020",
+    "principle_id": "P_D6_004",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "High rise",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "waist",
+    "effect": "Enhanced tall benefit for pear - covers hip-waist transition at narrowest point",
+    "score_value": 0.18,
+    "score_formula": "+0.18 net",
+    "confidence": "LOW",
+    "source_text": "P4 High Rise for Pear: ENHANCED. +0.18 net. Covers hip-waist transition at narrowest point. BUT: if pant tight at hip, stress lines reveal hip width."
+  },
+  {
+    "rule_id": "R_D6_021",
+    "principle_id": "P_D6_005",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "V-neckline",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "neckline",
+    "effect": "Enhanced elongation - V proportionally larger opening on smaller frame",
+    "score_value": null,
+    "score_formula": "tall *= 1.20",
+    "confidence": "LOW (0.35)",
+    "source_text": "P5 V-Neck for Petite: ENHANCED. Tall x1.20. V proportionally larger opening on smaller frame. Critical if short neck."
+  },
+  {
+    "rule_id": "R_D6_022",
+    "principle_id": "P_D6_005",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "V-neckline",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "neckline",
+    "effect": "Enhanced slim via vertical corridor through midsection",
+    "score_value": 0.01,
+    "score_formula": "slim += 0.01 bonus. Moderate V (3-5 inches). NOT deep V on large bust.",
+    "confidence": "LOW",
+    "source_text": "P5 V-Neck for Apple: Enhanced. Slim +0.01 bonus. Vertical corridor through midsection. Moderate V (3-5 inches). NOT deep V on large bust."
+  },
+  {
+    "rule_id": "R_D6_023",
+    "principle_id": "P_D6_005",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "V-neckline (4-6 inch depth)",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "neckline",
+    "effect": "Enhanced elongation + attention shift away from hips",
+    "score_value": 0.12,
+    "score_formula": "+0.09 elongation + 0.03 attention shift",
+    "confidence": "LOW",
+    "source_text": "P5 V-Neck for Pear: ENHANCED. +0.09 + attention +0.03. Draws eye upward away from hips. Moderate to deep V (4-6 inches). Wider angle adds shoulder width."
+  },
+  {
+    "rule_id": "R_D6_024",
+    "principle_id": "P_D6_006",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Monochrome outfit (unbroken column)",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "full_body",
+    "effect": "MAX BENEFIT - single most valuable technique for petite",
+    "score_value": 0.124,
+    "score_formula": "tall *= 1.40 (net +0.124). Each color break is larger % of height on petite.",
+    "confidence": "MEDIUM (0.65)",
+    "source_text": "P6 Monochrome for Petite: MAX BENEFIT. Tall x1.40 (+0.124 net). Each color break is larger % of height on petite. SINGLE MOST VALUABLE TECHNIQUE for petite."
+  },
+  {
+    "rule_id": "R_D6_025",
+    "principle_id": "P_D6_006",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Monochrome outfit",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "full_body",
+    "effect": "Strongly enhanced - continuous column through midsection",
+    "score_value": 0.108,
+    "score_formula": "slim *= 1.20 (net +0.108). Any horizontal break AT midsection = catastrophic.",
+    "confidence": "MEDIUM",
+    "source_text": "P6 Monochrome for Apple: STRONGLY ENHANCED. Slim x1.20 (+0.108). Continuous column THROUGH midsection. Any horizontal break AT midsection = catastrophic. NO belt or tone-on-tone narrow only."
+  },
+  {
+    "rule_id": "R_D6_026",
+    "principle_id": "P_D6_006",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Monochrome vs color-blocked outfit",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "full_body",
+    "effect": "Critically important - monochrome strictly dominates color-blocked under 5'7\"",
+    "score_value": 0.15,
+    "score_formula": "+0.15 swing vs. color-blocked. Standard 'dark bottom, light top' creates horizontal break.",
+    "confidence": "MEDIUM",
+    "source_text": "P6 Monochrome for Pear: CRITICALLY IMPORTANT. +0.15 swing vs. color-blocked. PEAR CRITICAL: monochrome STRICTLY DOMINATES color-blocked under 5'7\". One of biggest single-variable improvements in system."
+  },
+  {
+    "rule_id": "R_D6_027",
+    "principle_id": "P_D6_007",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "A-line skirt/dress",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "lower_body",
+    "effect": "CONDITIONAL - volume shortens petite disproportionately",
+    "score_value": null,
+    "score_formula": "Max angle 20 degrees. Circle skirt PROHIBITED. Structured fabric only.",
+    "confidence": "LOW (0.40)",
+    "source_text": "P7 A-Line for Petite: CONDITIONAL. Max angle 20 degrees. Volume shortens petite disproportionately. Circle skirt PROHIBITED. Structured fabric only."
+  },
+  {
+    "rule_id": "R_D6_028",
+    "principle_id": "P_D6_007",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "A-line skirt/dress",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "lower_body",
+    "effect": "Reduced benefit - only helpful if flare starts below midsection",
+    "score_value": 0.04,
+    "score_formula": "slim = +0.04. Only helpful if flare starts BELOW midsection. Empire A-line WORSE (tent).",
+    "confidence": "LOW",
+    "source_text": "P7 A-Line for Apple: REDUCED. Slim +0.04. Doesn't address midsection. Only helpful if flare starts BELOW midsection. Empire A-line WORSE (tent)."
+  },
+  {
+    "rule_id": "R_D6_029",
+    "principle_id": "P_D6_007",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "A-line skirt/dress",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "lower_body",
+    "effect": "Strongly enhanced - optimal silhouette for pear",
+    "score_value": 0.1,
+    "score_formula": "slim = +0.10 hip concealment. Flare from waist conceals hip differential.",
+    "confidence": "LOW",
+    "source_text": "P7 A-Line for Pear: STRONGLY ENHANCED. Slim +0.10 hip concealment. Flare from waist conceals hip differential. A-line is OPTIMAL silhouette for pear."
+  },
+  {
+    "rule_id": "R_D6_030",
+    "principle_id": "P_D6_008",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Belt wider than 1.5 inches",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "waist",
+    "effect": "PROHIBITED - belt proportionally wider on petite frame",
+    "score_value": null,
+    "score_formula": "Width > 1.5 inches: PROHIBITED. Tone-on-tone narrow ONLY. Wide contrasting belt = worst single item.",
+    "confidence": "LOW (0.30)",
+    "source_text": "P8 Belt for Petite: RISKY. Width > 1.5 inches: PROHIBITED. Belt proportionally wider on petite frame. Tone-on-tone narrow ONLY. Wide contrasting belt = worst single item."
+  },
+  {
+    "rule_id": "R_D6_031",
+    "principle_id": "P_D6_008",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Belt (contrasting/wide)",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "waist",
+    "effect": "DANGEROUS - belt at waist = belt at widest area",
+    "score_value": null,
+    "score_formula": "+0.02 to -0.04. Contrasting/wide: NEGATIVE. Beltless safer default.",
+    "confidence": "LOW",
+    "source_text": "P8 Belt for Apple: DANGEROUS. +0.02 to -0.04. Belt at waist = belt at WIDEST AREA. Contrasting/wide: NEGATIVE. Beltless safer default."
+  },
+  {
+    "rule_id": "R_D6_032",
+    "principle_id": "P_D6_008",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Belt at natural waist",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "waist",
+    "effect": "Enhanced - belt at narrowest point is positive",
+    "score_value": 0.08,
+    "score_formula": "+0.08 waist definition. POSITION CRITICAL: must be at waist, NOT at hip.",
+    "confidence": "LOW",
+    "source_text": "P8 Belt for Pear: Enhanced. +0.08 waist definition. At narrowest point = positive. POSITION CRITICAL: must be at waist, NOT at hip."
+  },
+  {
+    "rule_id": "R_D6_033",
+    "principle_id": "P_D6_009",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Garment with dark side panels",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "torso_sides",
+    "effect": "MAX BENEFIT - dark panels contract midsection area",
+    "score_value": 0.14,
+    "score_formula": "slim *= 1.40 (+0.14). Side panels + lighter center = waist illusion. OPTIMAL technique.",
+    "confidence": "LOW (0.35)",
+    "source_text": "P9 Side Panels for Apple: MAX BENEFIT. Slim x1.40 (+0.14). Dark flanks contract midsection area. Side panels + lighter center = waist illusion. OPTIMAL technique."
+  },
+  {
+    "rule_id": "R_D6_034",
+    "principle_id": "P_D6_009",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Garment with dark side panels",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "hip_sides",
+    "effect": "MAX BENEFIT for hip contraction",
+    "score_value": 0.12,
+    "score_formula": "slim *= 1.20 (+0.12). Dark panels contract hip region. Exact area pear wants minimized.",
+    "confidence": "LOW",
+    "source_text": "P9 Side Panels for Pear: MAX BENEFIT. Slim x1.20 (+0.12). Dark panels contract hip region. Exact area pear wants minimized."
+  },
+  {
+    "rule_id": "R_D6_035",
+    "principle_id": "P_D6_009",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Garment with dark side panels",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "torso_sides",
+    "effect": "Standard enhanced effect",
+    "score_value": 0.1,
+    "score_formula": "Standard (+0.10). Proportional. Works normally.",
+    "confidence": "LOW",
+    "source_text": "P9 Side Panels for Petite: Enhanced. Standard (+0.10). Proportional. Works normally."
+  },
+  {
+    "rule_id": "R_D6_036",
+    "principle_id": "P_D6_010",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Bodycon/tight-fitting garment",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "full_body",
+    "effect": "MAX NEGATIVE - maps midsection as widest feature",
+    "score_value": -0.08,
+    "score_formula": "slim = -0.08. COMPRESSION_VIOLATION override. Structured column (+0.12) strictly dominates.",
+    "confidence": "MEDIUM (0.50)",
+    "source_text": "P10 Bodycon for Apple: MAX NEGATIVE. Slim = -0.08. Maps midsection as widest feature. COMPRESSION_VIOLATION override. Structured column (+0.12) strictly dominates."
+  },
+  {
+    "rule_id": "R_D6_037",
+    "principle_id": "P_D6_010",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Bodycon/tight-fitting garment",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "lower_body",
+    "effect": "NEGATIVE - maps every hip contour",
+    "score_value": -0.05,
+    "score_formula": "slim = -0.05. Structured column strictly dominates.",
+    "confidence": "MEDIUM",
+    "source_text": "P10 Bodycon for Pear: NEGATIVE. Slim -0.05. Maps every hip contour. Structured column strictly dominates."
+  },
+  {
+    "rule_id": "R_D6_038",
+    "principle_id": "P_D6_010",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Bodycon/tight-fitting garment",
+    "body_condition": "Hourglass (|B_c - H_c| <= 1 inch AND waist_differential >= 9 inches)",
+    "zone": "full_body",
+    "effect": "OPTIMAL - hourglass can showcase body proportions",
+    "score_value": 0.04,
+    "score_formula": "+0.04. Bodycon OPTIMAL for hourglass.",
+    "confidence": "MEDIUM",
+    "source_text": "Hourglass: Bodycon OPTIMAL (+0.04)."
+  },
+  {
+    "rule_id": "R_D6_039",
+    "principle_id": "P_D6_011",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Turtleneck",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "neckline",
+    "effect": "NEGATIVE - amplified negative; closes limited vertical column",
+    "score_value": null,
+    "score_formula": "tall *= 1.30 (amplified negative). One of worst necklines for petite. V-neck strictly dominates.",
+    "confidence": "LOW (0.30)",
+    "source_text": "P11 Turtleneck for Petite: NEGATIVE. Tall x1.30 (amplified negative). Closes limited vertical column. One of worst necklines for petite. V-neck strictly dominates."
+  },
+  {
+    "rule_id": "R_D6_040",
+    "principle_id": "P_D6_011",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Turtleneck",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "neckline",
+    "effect": "Negative - unbroken surface from neck to bust creates dome effect",
+    "score_value": -0.04,
+    "score_formula": "slim = -0.04. V-neck creates moderating shadow. Strictly dominant.",
+    "confidence": "LOW",
+    "source_text": "P11 Turtleneck for Apple: Negative. Slim -0.04. Unbroken surface from neck to bust = dome effect. V-neck creates moderating shadow. Strictly dominant."
+  },
+  {
+    "rule_id": "R_D6_041",
+    "principle_id": "P_D6_011",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Turtleneck",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "neckline",
+    "effect": "Negative - closes neckline, minor effect",
+    "score_value": -0.025,
+    "score_formula": "-0.02 to -0.03. V-neck strictly dominates for attention-shift benefit.",
+    "confidence": "LOW",
+    "source_text": "P11 Turtleneck for Pear: Negative. -0.02/-0.03. Closes neckline (minor). V-neck strictly dominates for attention-shift benefit."
+  },
+  {
+    "rule_id": "R_D6_042",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes on torso",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "torso",
+    "effect": "Zone-specific: positive on torso",
+    "score_value": 0.04,
+    "score_formula": "Torso: +0.04. H-striped TOP + solid dark BOTTOM. Never H-stripes on lower body.",
+    "confidence": "HIGH",
+    "source_text": "P2 H-Stripes for Pear: ZONE-SPECIFIC. Torso: +0.04. Hips: -0.02. H-striped TOP + solid dark BOTTOM. Never H-stripes on lower body."
+  },
+  {
+    "rule_id": "R_D6_043",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes on hips/lower body",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "hips",
+    "effect": "Zone-specific: negative on hips - approaching Ashida zone",
+    "score_value": -0.02,
+    "score_formula": "Hips: -0.02. Hip-region stripes approach Ashida zone.",
+    "confidence": "MEDIUM",
+    "source_text": "P2 H-Stripes for Pear: Hips: -0.02. Hip-region stripes approach Ashida zone."
+  },
+  {
+    "rule_id": "R_D6_044",
+    "principle_id": "P_D6_003",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Vertical stripes on lower body",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "hips",
+    "effect": "NEGATIVE - widening at widest point",
+    "score_value": null,
+    "score_formula": "slim *= 1.50 at hips. V-stripes on upper body only (adds shoulder width = good for balance).",
+    "confidence": "MEDIUM",
+    "source_text": "P3 V-Stripes for Pear: NEGATIVE on lower. Slim x1.50 at hips. Widening at widest point. V-stripes on upper body only (adds shoulder width = good for balance)."
+  },
+  {
+    "rule_id": "R_D6_045",
+    "principle_id": "P_D6_003",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Vertical stripes",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "midsection",
+    "effect": "Diminished - widening at midsection",
+    "score_value": -0.03,
+    "score_formula": "slim = -0.03. Solid dark strictly dominates.",
+    "confidence": "MEDIUM",
+    "source_text": "P3 V-Stripes for Apple: Diminished. Slim -0.03. Widening at midsection. Solid dark strictly dominates."
+  },
+  {
+    "rule_id": "R_D6_046",
+    "principle_id": "P_D6_003",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Vertical stripes",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "full_body",
+    "effect": "Enhanced tall - elongation proportionally larger % of total height",
+    "score_value": null,
+    "score_formula": "tall *= 1.30. YES for tall-priority. NO for slim-priority.",
+    "confidence": "MEDIUM",
+    "source_text": "P3 V-Stripes for Petite: ENHANCED tall. Tall x1.30. Elongation proportionally larger % of total height. YES for tall-priority. NO for slim-priority."
+  },
+  {
+    "rule_id": "R_D6_047",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Dark garment (L* 18-25 navy/charcoal preferred)",
+    "body_condition": "Petite (H < 63 inches)",
+    "zone": "full_body",
+    "effect": "Diminished slim + negative tall due to dark recession",
+    "score_value": null,
+    "score_formula": "Slim +0.10, Tall -0.04. Cap at L* 15. Suggest navy/charcoal (L* 18-25) over pure black.",
+    "confidence": "HIGH",
+    "source_text": "P1 Dark for Petite: DIMINISHED. Slim +0.10, Tall -0.04. Dark recession subtracts height. Cap at L* 15. Suggest navy/charcoal (L* 18-25) over pure black."
+  },
+  {
+    "rule_id": "R_D6_048",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Dark matte garment",
+    "body_condition": "Apple (WHR > 0.85)",
+    "zone": "midsection",
+    "effect": "STRONGLY ENHANCED - highest-impact single variable for apple",
+    "score_value": 0.16,
+    "score_formula": "Slim x1.30 (+0.16). HIGHEST-IMPACT single variable in entire system for apple. Matte NON-NEGOTIABLE.",
+    "confidence": "HIGH",
+    "source_text": "P1 Dark for Apple: STRONGLY ENHANCED. Slim x1.30 (+0.16). HIGHEST-IMPACT single variable in entire system for apple. Matte NON-NEGOTIABLE."
+  },
+  {
+    "rule_id": "R_D6_049",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Dark garment",
+    "body_condition": "Pear (H_c - B_c >= 3.6 inches)",
+    "zone": "lower_body",
+    "effect": "Enhanced - contracts lower body",
+    "score_value": null,
+    "score_formula": "Standard. Contracts lower body. Dark monochrome preferred over color-blocked.",
+    "confidence": "HIGH",
+    "source_text": "P1 Dark for Pear: Enhanced. Standard. Contracts lower body. Dark monochrome preferred over color-blocked."
+  },
+  {
+    "rule_id": "R_D6_050",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "Apple (WHR > 0.92)",
+    "zone": "torso",
+    "effect": "REVERSAL - stripes become measurement lines on apple",
+    "score_value": -0.06,
+    "score_formula": "slim = -0.06. HIGHEST-RISK body type. NEVER H-stripes for WHR > 0.92.",
+    "confidence": "HIGH (0.70)",
+    "source_text": "P2 H-Stripes for Apple: REVERSAL. WHR >0.92: slim = -0.06. Ashida zone: stripes become measurement lines. HIGHEST-RISK body type. NEVER H-stripes for WHR > 0.92."
+  },
+  {
+    "rule_id": "R_D6_051",
+    "principle_id": "P_D6_008",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Belt at waist",
+    "body_condition": "Hourglass",
+    "zone": "waist",
+    "effect": "OPTIMAL - showcases waist",
+    "score_value": 0.08,
+    "score_formula": "+0.08 showcases waist. Belt OPTIMAL for hourglass.",
+    "confidence": "LOW",
+    "source_text": "Hourglass: Belt OPTIMAL (+0.08 showcases waist)."
+  },
+  {
+    "rule_id": "R_D6_052",
+    "principle_id": "P_D6_009",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Dark side panels + lighter center",
+    "body_condition": "Rectangle (|B_c - W_c| < 9 inches AND |H_c - W_c| < 10 inches)",
+    "zone": "torso_sides",
+    "effect": "Optimal technique for rectangle - creates waist",
+    "score_value": 0.18,
+    "score_formula": "+0.18 combined (dark side panels + shape bonus).",
+    "confidence": "LOW",
+    "source_text": "Rectangle: Dark side panels = optimal technique (+0.18 combined). Belt on structured garment (+0.10). A-line adds shape."
+  },
+  {
+    "rule_id": "R_D6_053",
+    "principle_id": "P_D6_008",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Belt on structured garment",
+    "body_condition": "Rectangle",
+    "zone": "waist",
+    "effect": "Positive for waist creation on rectangle",
+    "score_value": 0.1,
+    "score_formula": "+0.10",
+    "confidence": "LOW",
+    "source_text": "Rectangle: Belt on structured garment (+0.10)."
+  },
+  {
+    "rule_id": "R_D6_054",
+    "principle_id": "P_D6_007",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "A-line bottom garment",
+    "body_condition": "Inverted Triangle (B_c - H_c > 3.6 inches AND S_w > H_c x 0.38)",
+    "zone": "lower_body",
+    "effect": "Optimal for balance - adds hip width",
+    "score_value": 0.14,
+    "score_formula": "+0.14 with balance. A-line bottom = optimal for inverted triangle.",
+    "confidence": "LOW",
+    "source_text": "Inverted Triangle: A-line bottom = optimal (+0.14). Dark shoulder contraction. Color/pattern on lower body."
+  },
+  {
+    "rule_id": "R_D6_055",
+    "principle_id": "P_D6_001",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Dark matte monochrome",
+    "body_condition": "Plus Size (W_c > 37 inches OR WHR > 0.85 at larger scale)",
+    "zone": "full_body",
+    "effect": "Highest single-impact recommendation for plus size",
+    "score_value": 0.2,
+    "score_formula": "+0.20 swing from typical multi-break outfit. Side panels strongly positive (+0.12). Never satin/sheen dark.",
+    "confidence": "MEDIUM",
+    "source_text": "Plus Size: Dark matte monochrome = highest single-impact recommendation (+0.20 swing from typical multi-break outfit). Side panels strongly positive (+0.12). Never satin/sheen dark (highlights on curves)."
+  },
+  {
+    "rule_id": "R_D6_056",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "Petite (H < 63 inches) AND WHR < 0.85",
+    "zone": "torso",
+    "effect": "ENHANCED - stripe spatial frequency higher on smaller body",
+    "score_value": null,
+    "score_formula": "tall *= 1.30. Only if WHR < 0.85. Narrow stripes (<5% torso width) required.",
+    "confidence": "HIGH",
+    "source_text": "P2 H-Stripes for Petite: ENHANCED. Tall x1.30. Stripe spatial frequency higher on smaller body. Only if WHR < 0.85. Narrow stripes (<5% torso width) required."
+  },
+  {
+    "rule_id": "R_D6_057",
+    "principle_id": "P_D6_002",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Horizontal stripes",
+    "body_condition": "Hourglass",
+    "zone": "torso",
+    "effect": "Positive - Helmholtz slims",
+    "score_value": 0.06,
+    "score_formula": "slim = +0.06",
+    "confidence": "HIGH",
+    "source_text": "H-Stripes: OPTIMAL For Hourglass (slim +0.06)"
+  },
+  {
+    "rule_id": "R_D6_058",
+    "principle_id": "P_D6_011",
+    "layer": 3,
+    "source_domain": 6,
+    "garment_condition": "Turtleneck",
+    "body_condition": "Inverted Triangle",
+    "zone": "neckline",
+    "effect": "Acceptable - narrows shoulder frame",
+    "score_value": 0.02,
+    "score_formula": "slim = +0.02",
+    "confidence": "LOW",
+    "source_text": "Inverted Triangle: Turtleneck acceptable (narrows shoulder frame)."
+  },
+  {
+    "rule_id": "R_D7_001",
+    "principle_id": "P_D7_001",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Dark garment (low luminance)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Dark color slimming: delta_width -4% to -5%",
+    "score_value": null,
+    "score_formula": "C1: Helmholtz irradiation. d=0.61. Modifiers: sheen>0.7 reverses (EX-01), fit>0.8 reduces (EX-02), rigidity>0.7 on light reduces widening (EX-03). On plus: reduced to -2%.",
+    "confidence": "HIGH direction, LOW magnitude in garment context",
+    "source_text": "Principle C1: Dark Color Slimming (\u0394width -4% to -5%). Koutsoumpis et al. 2021 measured d=0.61."
+  },
+  {
+    "rule_id": "R_D7_002",
+    "principle_id": "P_D7_001",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Light garment on dark background (skin)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Light color widening: delta_width +4% to +6%. Amplified on plus (+5-7%).",
+    "score_value": null,
+    "score_formula": "C2: Boundary expansion. Zone-critical: light upper = GOOD for pear (adds shoulder width), BAD for inv triangle. Light lower = GOOD for inv triangle, BAD for pear.",
+    "confidence": "HIGH direction",
+    "source_text": "Principle C2: Light Color Widening (\u0394width +4% to +6%). Zone-critical."
+  },
+  {
+    "rule_id": "R_D7_003",
+    "principle_id": "P_D7_001",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Single-color (monochrome) outfit",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Monochrome elongation: delta_VR -0.03",
+    "score_value": -0.03,
+    "score_formula": "C3: Unbroken vertical. Amplified: petite (-0.04), pear (-0.04), rectangle (-0.04), plus (-0.04). Reduced: tall (-0.02). One of most universally beneficial techniques.",
+    "confidence": "MEDIUM",
+    "source_text": "Principle C3: Monochrome Elongation (\u0394VR -0.03). Amplified on petite, pear, rectangle, plus (-0.04). Reduced on tall (-0.02)."
+  },
+  {
+    "rule_id": "R_D7_004",
+    "principle_id": "P_D7_001",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Saturated red garment (saturation > 0.4)",
+    "body_condition": "Any body type",
+    "zone": "zone_dependent",
+    "effect": "Red saturation mild slimming via attention capture: delta_width -2% to -3%",
+    "score_value": null,
+    "score_formula": "C4: Low confidence. Zone-critical: red on midsection spotlights problem zone for apple. Red on hips spotlights for pear.",
+    "confidence": "LOW",
+    "source_text": "Principle C4: Red Saturation Effect (\u0394width -2% to -3%). Low confidence. Zone-critical."
+  },
+  {
+    "rule_id": "R_D7_005",
+    "principle_id": "P_D7_002",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Horizontal stripes, BMI < 22",
+    "body_condition": "Slim body (BMI < 22)",
+    "zone": "torso",
+    "effect": "Full Helmholtz slimming: -5%",
+    "score_value": null,
+    "score_formula": "BMI < 22: full slimming -5%. Gates: count >= 3 (EX-09), contrast > 1.5 (EX-14), width > 2 inch weakens (EX-10).",
+    "confidence": "HIGH",
+    "source_text": "BMI < 22: full slimming -5%. Resolution from Conflict 1."
+  },
+  {
+    "rule_id": "R_D7_006",
+    "principle_id": "P_D7_002",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Horizontal stripes, BMI 22-28",
+    "body_condition": "Average body (BMI 22-28)",
+    "zone": "torso",
+    "effect": "Linear decay of Helmholtz toward 0%",
+    "score_value": null,
+    "score_formula": "BMI 22-28: linear decay toward 0%.",
+    "confidence": "LOW",
+    "source_text": "BMI 22-28: linear decay toward 0%."
+  },
+  {
+    "rule_id": "R_D7_007",
+    "principle_id": "P_D7_002",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Horizontal stripes, BMI 28-32",
+    "body_condition": "Overweight body (BMI 28-32)",
+    "zone": "torso",
+    "effect": "Neutral - no Helmholtz effect",
+    "score_value": 0.0,
+    "score_formula": "BMI 28-32: neutral.",
+    "confidence": "LOW",
+    "source_text": "BMI 28-32: neutral."
+  },
+  {
+    "rule_id": "R_D7_008",
+    "principle_id": "P_D7_002",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Horizontal stripes, BMI > 32",
+    "body_condition": "Plus body (BMI > 32)",
+    "zone": "torso",
+    "effect": "REVERSAL: +2% widening. 3D body curvature distorts stripes, making curves MORE visible.",
+    "score_value": null,
+    "score_formula": "BMI > 32: REVERSAL to +2% widening (Imai 1982, Ashida 2013).",
+    "confidence": "LOW (one study)",
+    "source_text": "BMI > 32: REVERSAL to +2% widening."
+  },
+  {
+    "rule_id": "R_D7_009",
+    "principle_id": "P_D7_002",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Vertical stripes",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "DO NOT SLIM. Neutral in real-world, mild widening +7.1% in lab. Delta = 0%, never slimming.",
+    "score_value": 0.0,
+    "score_formula": "delta = 0% (neutral), never negative (never slimming). Thompson 2011: vertical widen by +7.1% in lab. Swami 2012: neutral real-world.",
+    "confidence": "HIGH (direction)",
+    "source_text": "Principle P2: Vertical Stripes -- DO NOT SLIM. The single most common wrong fashion recommendation."
+  },
+  {
+    "rule_id": "R_D7_010",
+    "principle_id": "P_D7_002",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Diagonal lines (30-60 degrees optimal)",
+    "body_condition": "Pear or Rectangle",
+    "zone": "zone_dependent",
+    "effect": "Visual movement redirecting eye from static body zones",
+    "score_value": null,
+    "score_formula": "Good for pear (asymmetric flow past hips), rectangle (implies waist). Near-horizontal = emphasis. Near-vertical = elongation.",
+    "confidence": "LOW (practitioner only)",
+    "source_text": "Principle P3: Diagonal Lines (30-60 degrees optimal). Good for pear, rectangle."
+  },
+  {
+    "rule_id": "R_D7_011",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "V-neck",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR -0.03 (narrows perceived shoulders). Best for apple, inv tri, petite.",
+    "score_value": -0.03,
+    "score_formula": "Base \u0394SHR = -0.03. Exception EX-15: bust>40\" + depth>6\" gaping, \u0394SHR flips to +0.02.",
+    "confidence": "MEDIUM direction, LOW magnitude",
+    "source_text": "V-neck: Base \u0394SHR -0.03. Best For: Apple, Inv Tri, Petite. Avoid: Plus+busty (>D cup + deep V). EX-15: gaping at bust>40\"+depth>6\"."
+  },
+  {
+    "rule_id": "R_D7_012",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Deep V-neck",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR -0.04. Best for apple, inv tri. Avoid on large bust/decolletage.",
+    "score_value": -0.04,
+    "score_formula": "Base \u0394SHR = -0.04. EX-16: exposure>30sq\" nullifies line effect.",
+    "confidence": "MEDIUM direction, LOW magnitude",
+    "source_text": "Deep V: Base \u0394SHR -0.04. Best For: Apple, Inv Tri. Avoid: Large bust, large decolletage."
+  },
+  {
+    "rule_id": "R_D7_013",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Boat/Bateau neck",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR +0.06 (widens perceived shoulders). TOP recommendation for pear.",
+    "score_value": 0.06,
+    "score_formula": "Base \u0394SHR = +0.06. EX-17: neck<3\" = 'no neck' compression. Avoid: Inv Tri (amplifies), Petite+short neck.",
+    "confidence": "MEDIUM direction, LOW magnitude",
+    "source_text": "Boat/Bateau: Base \u0394SHR +0.06. Best For: Pear (top rec). Avoid: Inv Tri, Petite+short neck."
+  },
+  {
+    "rule_id": "R_D7_014",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Scoop neck",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR -0.02 (mild narrowing).",
+    "score_value": -0.02,
+    "score_formula": "Base \u0394SHR = -0.02. EX-19: at >10\" width, flips to +0.02 (becomes boat effect).",
+    "confidence": "MEDIUM",
+    "source_text": "Scoop: Base \u0394SHR -0.02. General, mild narrowing. Avoid: Wide scoop >10 inch."
+  },
+  {
+    "rule_id": "R_D7_015",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Square neck",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR +0.01 (mild widening). EX-21: on SHR>1.08 amplifies to +0.03.",
+    "score_value": 0.01,
+    "score_formula": "Base \u0394SHR = +0.01. EX-21: geometric echo amplifies to +0.03 on inv tri SHR>1.08.",
+    "confidence": "LOW",
+    "source_text": "Square: Base \u0394SHR +0.01. Mild widening. Avoid: Inv Tri SHR>1.08."
+  },
+  {
+    "rule_id": "R_D7_016",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Turtleneck",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR neutral (0.00). EX-20: on bust>39\" creates monolithic upper block.",
+    "score_value": 0.0,
+    "score_formula": "Base \u0394SHR = 0.00. Avoid: Petite, Apple, Plus+busty. EX-20: bust>39\" monolithic.",
+    "confidence": "LOW",
+    "source_text": "Turtleneck: Base \u0394SHR 0.00. Neutral SHR. Avoid: Petite, Apple, Plus+busty."
+  },
+  {
+    "rule_id": "R_D7_017",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Off-shoulder",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR +0.05 (strong widening). Best for pear. Maximum harmful for inv tri.",
+    "score_value": 0.05,
+    "score_formula": "Base \u0394SHR = +0.05. EX-22: upper arm>13\" aesthetic penalty. Avoid: Inv Tri, Large bust.",
+    "confidence": "MEDIUM",
+    "source_text": "Off-shoulder: Base \u0394SHR +0.05. Best For: Pear (strong). Avoid: Inv Tri (maximum harmful)."
+  },
+  {
+    "rule_id": "R_D7_018",
+    "principle_id": "P_D7_003",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Halter",
+    "body_condition": "Any body type",
+    "zone": "neckline",
+    "effect": "SHR +0.03 (moderate widening). Avoid: inv tri, large bust (gaping risk).",
+    "score_value": 0.03,
+    "score_formula": "Base \u0394SHR = +0.03. Gaping risk similar to deep V.",
+    "confidence": "LOW",
+    "source_text": "Halter: Base \u0394SHR +0.03. Moderate widening. Avoid: Inv Tri, Large bust."
+  },
+  {
+    "rule_id": "R_D7_019",
+    "principle_id": "P_D7_004",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Puff sleeve",
+    "body_condition": "Any body type",
+    "zone": "shoulder",
+    "effect": "SHR +0.02 to +0.06 (widens). Best for pear (top rec with boat). Stiff fabric 1.5x.",
+    "score_value": null,
+    "score_formula": "Base \u0394SHR = +0.02 to +0.06. Stiff fabric multiplies effect 1.5x. Avoid: Inv Tri, Petite+busty.",
+    "confidence": "MEDIUM direction, LOW magnitude",
+    "source_text": "Puff: Base \u0394SHR +0.02 to +0.06. Best For: Pear. Stiff fabric 1.5x. Avoid: Inv Tri, Petite+busty."
+  },
+  {
+    "rule_id": "R_D7_020",
+    "principle_id": "P_D7_004",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Raglan sleeve",
+    "body_condition": "Any body type",
+    "zone": "shoulder",
+    "effect": "SHR -0.05 (narrows). TOP rec for inv tri. WRONG direction for pear.",
+    "score_value": -0.05,
+    "score_formula": "Base \u0394SHR = -0.05. Diagonal seam invisible in same color: -60% effect on plus. Avoid: Pear.",
+    "confidence": "MEDIUM",
+    "source_text": "Raglan: Base \u0394SHR -0.05. Best For: Inv Tri (top rec). Avoid: Pear (WRONG direction)."
+  },
+  {
+    "rule_id": "R_D7_021",
+    "principle_id": "P_D7_004",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Dolman sleeve",
+    "body_condition": "Any body type",
+    "zone": "shoulder",
+    "effect": "SHR -0.04. Best for inv tri, apple. Secondary WHR +0.02 penalty from underarm fabric pool.",
+    "score_value": -0.04,
+    "score_formula": "Base \u0394SHR = -0.04. WHR +0.02 penalty from underarm pooling. Avoid: Petite (underarm pooling).",
+    "confidence": "MEDIUM",
+    "source_text": "Dolman: Base \u0394SHR -0.04. Best For: Inv Tri, Apple. Secondary WHR +0.02 penalty. Avoid: Petite."
+  },
+  {
+    "rule_id": "R_D7_022",
+    "principle_id": "P_D7_004",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Cap sleeve",
+    "body_condition": "Any body type",
+    "zone": "shoulder",
+    "effect": "SHR +0.02 (mild widening). May be below JND (just noticeable difference).",
+    "score_value": 0.02,
+    "score_formula": "Base \u0394SHR = +0.02. May be below JND.",
+    "confidence": "LOW",
+    "source_text": "Cap: Base \u0394SHR +0.02. Mild widening. May be below JND."
+  },
+  {
+    "rule_id": "R_D7_023",
+    "principle_id": "P_D7_004",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Bell sleeve",
+    "body_condition": "Any body type",
+    "zone": "arm",
+    "effect": "SHR neutral. Visual interest. Draws eye to wrist/hand area. Petite scale check.",
+    "score_value": 0.0,
+    "score_formula": "Neutral SHR. Petite: scale check required.",
+    "confidence": "LOW",
+    "source_text": "Bell: Neutral SHR. Visual interest. Petite: scale check."
+  },
+  {
+    "rule_id": "R_D7_024",
+    "principle_id": "P_D7_004",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Dropped shoulder",
+    "body_condition": "Any body type",
+    "zone": "shoulder",
+    "effect": "SHR -0.03. Lowers visual shoulder line. Avoid: Petite+short torso, Pear.",
+    "score_value": -0.03,
+    "score_formula": "Base \u0394SHR = -0.03. Lowers visual shoulder line.",
+    "confidence": "LOW",
+    "source_text": "Dropped shoulder: Base \u0394SHR -0.03. Avoid: Petite+short torso, Pear."
+  },
+  {
+    "rule_id": "R_D7_025",
+    "principle_id": "P_D7_006",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Contrast belt",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "WHR -0.02. Rectangle amplified to -0.03. REVERSAL on apple WHR>0.88 to +0.02.",
+    "score_value": -0.02,
+    "score_formula": "Base \u0394WHR = -0.02. Rectangle: -0.03. EX-37: WHR>0.88 spotlights absent waist -> +0.02.",
+    "confidence": "MEDIUM",
+    "source_text": "Contrast belt: Base \u0394WHR -0.02. Best For: Rectangle (\u0394-0.03). FAILS: Apple (REVERSES +0.02), Plus WHR>0.88."
+  },
+  {
+    "rule_id": "R_D7_026",
+    "principle_id": "P_D7_006",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Wrap construction",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "WHR -0.05. General waist definition. FAILS on apple (mushroom) and plus+busty (gaping).",
+    "score_value": -0.05,
+    "score_formula": "Base \u0394WHR = -0.05. EX-38: apple WHR>0.90 + bust>38\" reduced to -0.01. EX-39: bust>42\" gaping.",
+    "confidence": "MEDIUM",
+    "source_text": "Wrap construction: Base \u0394WHR -0.05. FAILS: Apple (mushroom), Plus+busty (gaping). EX-38/39."
+  },
+  {
+    "rule_id": "R_D7_027",
+    "principle_id": "P_D7_006",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Peplum",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "WHR -0.04. Best for rectangle, inv tri. Apple at natural waist: mushroom.",
+    "score_value": -0.04,
+    "score_formula": "Base \u0394WHR = -0.04. EX-40: flare from widest zone. Empire position fixes apple. EX-25: SHR<0.85 + flare>3\" mushroom on extreme pear.",
+    "confidence": "MEDIUM",
+    "source_text": "Peplum: Base \u0394WHR -0.04. Best For: Rectangle, Inv Tri. FAILS: Apple at natural waist (mushroom). EX-25: extreme pear."
+  },
+  {
+    "rule_id": "R_D7_028",
+    "principle_id": "P_D7_006",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Princess seam",
+    "body_condition": "Any body type",
+    "zone": "torso",
+    "effect": "WHR -0.06. Top rec for rectangle and hourglass. None if well-fitted.",
+    "score_value": -0.06,
+    "score_formula": "Base \u0394WHR = -0.06. EX-41: fit>0.85 causes puckering, nullifies seam.",
+    "confidence": "MEDIUM",
+    "source_text": "Princess seam: Base \u0394WHR -0.06. Best For: Rectangle (top rec), Hourglass. None if well-fitted."
+  },
+  {
+    "rule_id": "R_D7_029",
+    "principle_id": "P_D7_006",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Empire waist",
+    "body_condition": "Any body type",
+    "zone": "above_waist",
+    "effect": "WHR -0.05. BEST technique for apple. Fails on petite+short torso and small bust<33\".",
+    "score_value": -0.05,
+    "score_formula": "Base \u0394WHR = -0.05. EX-42: small bust<33\" + empire = childlike proportion. Apple: BEST (bypasses midsection).",
+    "confidence": "MEDIUM",
+    "source_text": "Empire waist: Base \u0394WHR -0.05. Best For: Apple (BEST technique). FAILS: Petite+short torso, Small bust<33\"."
+  },
+  {
+    "rule_id": "R_D7_030",
+    "principle_id": "P_D7_007",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "High-waist +2 inch",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "VR -0.06. Critical for petite. REVERSES on tall VR>0.50, rectangle VR<0.40.",
+    "score_value": -0.06,
+    "score_formula": "Base \u0394VR = -0.06. EX-45: short torso (VR<0.40) reverses to +0.03 (HARMFUL).",
+    "confidence": "LOW",
+    "source_text": "High-waist +2\": Base \u0394VR -0.06. Best For: Petite (critical). REVERSES: Tall VR>0.50, Rectangle VR<0.40."
+  },
+  {
+    "rule_id": "R_D7_031",
+    "principle_id": "P_D7_007",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Full tuck",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "VR -0.07. Best for petite, pear. Avoid: tall VR>0.48, apple (midsection bulk).",
+    "score_value": -0.07,
+    "score_formula": "Base \u0394VR = -0.07. EX-46: stacking with high-waist on VR<0.38.",
+    "confidence": "LOW",
+    "source_text": "Full tuck: Base \u0394VR -0.07. Best For: Petite, Pear. REVERSES: Tall VR>0.48, Apple (midsection bulk)."
+  },
+  {
+    "rule_id": "R_D7_032",
+    "principle_id": "P_D7_007",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Front/half tuck",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "VR -0.04. Best all-around tuck variant. Best for apple, rectangle, plus. Rarely fails.",
+    "score_value": -0.04,
+    "score_formula": "Base \u0394VR = -0.04. Best all-around tuck variant.",
+    "confidence": "LOW",
+    "source_text": "Front/half tuck: Base \u0394VR -0.04. Best For: Apple (best tuck), Rectangle, Plus. Rarely fails."
+  },
+  {
+    "rule_id": "R_D7_033",
+    "principle_id": "P_D7_007",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Nude/matching shoe",
+    "body_condition": "Any body type",
+    "zone": "ankle",
+    "effect": "VR -0.02. High value for petite. REVERSAL: color mismatch delta>0.15 reverses to +0.01.",
+    "score_value": -0.02,
+    "score_formula": "Base \u0394VR = -0.02. EX-47: wrong nude (\u0394>0.15) = worse than colored shoe (+0.01).",
+    "confidence": "LOW",
+    "source_text": "Nude/matching shoe: Base \u0394VR -0.02. Best For: Petite (high value). Color mismatch reverses (EX-47)."
+  },
+  {
+    "rule_id": "R_D7_034",
+    "principle_id": "P_D7_007",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Ankle strap",
+    "body_condition": "Any body type",
+    "zone": "ankle",
+    "effect": "VR +0.025 (HARMFUL). Almost never beneficial. Strong avoid for petite, short legs.",
+    "score_value": 0.025,
+    "score_formula": "\u0394VR = +0.025 (harmful). EX-48: horizontal line amputates leg line.",
+    "confidence": "MEDIUM",
+    "source_text": "Ankle strap: \u0394VR +0.025. Almost never beneficial. Petite STRONG avoid. EX-48."
+  },
+  {
+    "rule_id": "R_D7_035",
+    "principle_id": "P_D7_007",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Cropped jacket",
+    "body_condition": "Any body type",
+    "zone": "torso",
+    "effect": "VR -0.03. Best for petite, apple. Fails when competing hem breaks exist.",
+    "score_value": -0.03,
+    "score_formula": "Base \u0394VR = -0.03. EX-51: two hems at different heights cancel.",
+    "confidence": "LOW",
+    "source_text": "Cropped jacket: Base \u0394VR -0.03. Best For: Petite, Apple. FAILS: Competing hem breaks (EX-51)."
+  },
+  {
+    "rule_id": "R_D7_036",
+    "principle_id": "P_D7_006",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Multiple waist definition techniques stacked",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "Diminishing returns: 1st=100%, 2nd=80%, 3rd=50%, 4th=20%",
+    "score_value": null,
+    "score_formula": "Decay: 100%, 80%, 50%, 20%. ESTIMATED, not measured (Gap #10).",
+    "confidence": "LOW (pure estimation)",
+    "source_text": "Diminishing returns: Multiple waist techniques stack with decay: 1st=100%, 2nd=80%, 3rd=50%, 4th=20%. These decay values are ESTIMATED."
+  },
+  {
+    "rule_id": "R_D7_037",
+    "principle_id": "P_D7_007",
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "High-waist + full tuck + matching shoe stacked",
+    "body_condition": "Balanced body (|VR - 0.46| < 0.02)",
+    "zone": "full_body",
+    "effect": "OVERCORRECTION: total delta_VR -0.15, pushing past optimal into comical proportions",
+    "score_value": -0.15,
+    "score_formula": "Triple stacking on balanced body: VR 0.40 becomes perceived VR 0.25 (head-on-hips). Catastrophic threshold: VR < 0.30. Warning threshold: VR < 0.35.",
+    "confidence": "LOW",
+    "source_text": "STACKING WARNING: High-waist + full tuck + matching shoe = total \u0394VR -0.15. Overcorrection detection at perceived VR < 0.30 (catastrophic) and < 0.35 (warning)."
+  },
+  {
+    "rule_id": "R_D7_038",
+    "principle_id": null,
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Any garment",
+    "body_condition": "Body type determines sub-scorer weights",
+    "zone": "full_body",
+    "effect": "Body-type-adaptive weight system for 7 sub-scorers",
+    "score_value": null,
+    "score_formula": "Petite: Color=0.10, Pattern=0.05, Neckline=0.10, Sleeve=0.08, Bottom=0.15, Waist=0.15, Vertical=0.32 (height-priority). Pear: Sleeve=0.22, Neckline=0.20, Bottom=0.18. Apple: Waist=0.34, Neckline=0.16, Vertical=0.16. Hourglass: Bottom=0.18, Waist=0.18, Color=0.15. Rectangle: Waist=0.36, Bottom=0.14, Vertical=0.14. Inv Tri: Sleeve=0.26, Neckline=0.24, Bottom=0.16. Plus: Waist=0.20, Color=0.16, Bottom+Vertical=0.16 each. Tall: Bottom=0.18, Waist=0.16, Vertical=0.16.",
+    "confidence": "LOW (estimated weights)",
+    "source_text": "Body-type-adaptive weights from Part V and Part IV body type definitions table."
+  },
+  {
+    "rule_id": "R_D7_039",
+    "principle_id": null,
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Sheer fabric (opacity < 100%)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "All silhouette-modifying effects scale linearly with fabric opacity",
+    "score_value": null,
+    "score_formula": "At 50% opacity, a -0.06 \u0394SHR from structured blazer becomes -0.03. EX-59.",
+    "confidence": "LOW",
+    "source_text": "EX-59: Sheer Opacity Scaling. All silhouette-modifying effects scale linearly with fabric opacity."
+  },
+  {
+    "rule_id": "R_D7_040",
+    "principle_id": null,
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Clingy fabric (cling > 0.7)",
+    "body_condition": "WHR > 0.85 (undefined waist)",
+    "zone": "midsection",
+    "effect": "Clingy fabric maps body contour, exposing undefined waist regardless of garment construction",
+    "score_value": null,
+    "score_formula": "EX-62: Cling > 0.7 + WHR > 0.85 = contour exposure override.",
+    "confidence": "LOW",
+    "source_text": "EX-62: Cling on Undefined Waist. Fabric cling > 0.7 + WHR > 0.85: clingy fabric maps body contour at midsection."
+  },
+  {
+    "rule_id": "R_D7_041",
+    "principle_id": null,
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Wrap dress (standard tie)",
+    "body_condition": "Apple WHR > 0.88",
+    "zone": "waist",
+    "effect": "FAILURE: tie at widest point, gathered fabric adds bulk, mushroom silhouette",
+    "score_value": null,
+    "score_formula": "Wrap dress FAILS on apple: delta_WHR reduced from -0.05 to -0.01. Use faux wrap.",
+    "confidence": "MEDIUM",
+    "source_text": "Conflict 5: Wrap Dress fails on apple WHR>0.88: tie at widest point, gathered fabric adds bulk, mushroom. Use faux wraps."
+  },
+  {
+    "rule_id": "R_D7_042",
+    "principle_id": null,
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Wrap dress (standard tie)",
+    "body_condition": "Large bust > D cup (bust > 42 inches)",
+    "zone": "neckline",
+    "effect": "FAILURE: V-neck gapes, cross-body fabric strains, 'dressing gown' effect",
+    "score_value": null,
+    "score_formula": "Use structured wraps with support for large bust.",
+    "confidence": "MEDIUM",
+    "source_text": "Conflict 5: Wrap fails on large bust >D cup: V-neck gapes, cross-body fabric strains."
+  },
+  {
+    "rule_id": "R_D7_043",
+    "principle_id": null,
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Wrap dress",
+    "body_condition": "Petite + short waist",
+    "zone": "waist",
+    "effect": "FAILURE: tie sits too low creating drop-waist effect",
+    "score_value": null,
+    "score_formula": "Drop-waist effect on petite+short waist.",
+    "confidence": "MEDIUM",
+    "source_text": "Conflict 5: Wrap fails on petite+short waist: tie sits too low creating drop-waist effect."
+  },
+  {
+    "rule_id": "R_D7_044",
+    "principle_id": null,
+    "layer": 3,
+    "source_domain": 7,
+    "garment_condition": "Any garment - composite scoring",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Fit > Structure > Color in magnitude hierarchy",
+    "score_value": null,
+    "score_formula": "Conflict 4 resolution: fit_delta > color_delta. Fabric modifiers gate color scorer. A well-fitted garment in wrong color outscores ill-fitted in right color. fit_weight >= sum(all_optical_illusion_weights).",
+    "confidence": "HIGH (direction)",
+    "source_text": "Conflict 4: Black Slimming is fabric-dependent. Effect real (~4-5%) BUT fit > structure > color in magnitude."
+  },
+  {
+    "context_rule_id": "CTX_001",
+    "context_type": "cultural",
+    "parameter": "red_color_symbolism",
+    "rule": "Red in India = purity, bridal, auspicious, fertility. Red in US = passion, danger, romance, boldness. Red at Indian wedding: +0.95 cultural score. Wedding guests avoid red to not overshadow bride: guest wearing red scores -0.30.",
+    "scoring_impact": "Indian wedding bride: +0.95 cultural. Indian wedding guest in red: -0.30. US context: neutral.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_002",
+    "context_type": "cultural",
+    "parameter": "white_color_symbolism",
+    "rule": "White in India = mourning, loss, funerals, widowhood. White in US = purity, weddings (bridal), peace. White at Indian celebration is DEEPLY inappropriate.",
+    "scoring_impact": "Indian celebration: cultural score = 0.05 (near-zero). US wedding: high cultural score.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_003",
+    "context_type": "cultural",
+    "parameter": "black_color_symbolism",
+    "rule": "Black in India = bad luck, grief, evil eye. Black in US = sophistication, elegance, power. Gaining acceptance for Indian sangeet/reception but still cautious for ceremony.",
+    "scoring_impact": "US evening: +0.90. Indian wedding ceremony: +0.20. Indian sangeet/reception: gaining acceptance.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_004",
+    "context_type": "cultural",
+    "parameter": "gold_color_symbolism",
+    "rule": "Gold in India = divine energy, prosperity, sacred. Central to Indian wedding embroidery. Red + gold = ultimate auspicious combo. Gold in US = luxury, glamour, holiday season.",
+    "scoring_impact": "Indian wedding: gold embroidery essential. Red + gold combination: maximum cultural score.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_005",
+    "context_type": "cultural",
+    "parameter": "saffron_color_symbolism",
+    "rule": "Saffron in India = purity, spiritual discipline, devotion. Worn by holy men. Represents Dharma. Temple associations. Saffron in US = autumn, warmth, Halloween.",
+    "scoring_impact": "India religious context: high cultural resonance. India casual: still spiritual association.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_006",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_US_professional",
+    "rule": "US professional: acceptable neckline depth <= 12cm from collarbone. Sleeveless acceptable in many offices.",
+    "scoring_impact": "Depth > 12cm in US professional context: negative exposure score.",
+    "region": "US",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_007",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_US_formal",
+    "rule": "US formal evening: acceptable neckline depth <= 30cm. Deep necklines, short hemlines standard. Any hemline length acceptable.",
+    "scoring_impact": "US formal: wider exposure range acceptable.",
+    "region": "US",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_008",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_India_professional",
+    "rule": "India professional: acceptable neckline depth <= 8cm. Hemline below knee. Upper arm coverage common. A well-draped cotton saree carries same authority as Western blazer.",
+    "scoring_impact": "India professional: depth > 8cm triggers negative score. Sleeveless more restricted.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_009",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_India_wedding_ceremony",
+    "rule": "India wedding ceremony: front neckline <= 10cm. Floor/ankle hemline. BACKS can be deep (<= 30cm back ok) - this is traditional.",
+    "scoring_impact": "Deep front at Indian ceremony: negative. Deep back: culturally acceptable (traditional).",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_010",
+    "context_type": "cultural",
+    "parameter": "modesty_India_wedding_reception",
+    "rule": "India wedding reception: front neckline <= 18cm. More relaxed than ceremony. Embellishment expected.",
+    "scoring_impact": "Reception more permissive than ceremony. Heavy embellishment positive.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_011",
+    "context_type": "cultural",
+    "parameter": "saree_draping_styles",
+    "rule": "Saree is physics-based draping system (5-9 yards unstitched). Nivi style = vertical pleats (elongation). Bengali style = pallu across front (upper-body volume). Gujarati style = redistributes visual weight to right shoulder. Each must be modeled separately for body perception.",
+    "scoring_impact": "Draping style fundamentally changes proportion scoring. Cannot use single saree model.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW (practitioner only)"
+  },
+  {
+    "context_rule_id": "CTX_012",
+    "context_type": "cultural",
+    "parameter": "saree_pallu_proportion",
+    "rule": "Pallu creates visual proportion division (not hemline). Pallu to waist = ~60/40 split (good). Pallu to mid-thigh = ~50/50 (BAD). Pallu to knee = ~40/60 (good for elongation).",
+    "scoring_impact": "Pallu position replaces hemline scoring for sarees. 50/50 split is worst.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_013",
+    "context_type": "cultural",
+    "parameter": "saree_border_width",
+    "rule": "Thick contrasting borders widen at hemline; thin borders create cleaner vertical lines. Border-to-width ratio > 0.15 = significant widening penalty.",
+    "scoring_impact": "Border ratio > 0.15: widening penalty applied to saree score.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_014",
+    "context_type": "cultural",
+    "parameter": "saree_starch_confound",
+    "rule": "A 120 GSM cotton saree with heavy starch behaves like 200+ GSM structured fabric. Model: effective_gsm = gsm x (1 + starch_factor). Starch: none=0, light=0.3, heavy=0.7.",
+    "scoring_impact": "Starch transforms fabric behavior. Must use effective_gsm in all fabric-dependent scoring.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_015",
+    "context_type": "cultural",
+    "parameter": "lehenga_waistline_override",
+    "rule": "Lehenga waistline sits at hip (delta = -8 to -12cm). Scores 0.30 under standard waistline rules. MUST bypass standard waistline scoring entirely; use choli_length + skirt_flare_angle instead.",
+    "scoring_impact": "Standard waistline scoring DISABLED for lehenga. Alternative: choli_length + skirt_flare.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_016",
+    "context_type": "cultural",
+    "parameter": "salwar_kameez_proportion",
+    "rule": "Kameez length relative to body creates the proportion division. Longer kameez shortens visual leg line; shorter kameez with churidar elongates it.",
+    "scoring_impact": "Kameez length is the proportion-determining variable. Replace hemline logic.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_017",
+    "context_type": "cultural",
+    "parameter": "indian_casual_kurti_jeans",
+    "rule": "Kurti with jeans is the most common outfit for young Indian women. Casual context.",
+    "scoring_impact": "Kurti-jeans is baseline casual; score relative to this norm for Indian casual occasion.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_018",
+    "context_type": "cultural",
+    "parameter": "indian_professional_saree",
+    "rule": "A well-draped cotton saree carries the same authority as a Western blazer in Indian professional context.",
+    "scoring_impact": "Cotton saree in India professional = professional score equivalent to Western structured garment.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_019",
+    "context_type": "cultural",
+    "parameter": "indian_formal_embellishment",
+    "rule": "Indian formal events (sangeet, reception): heavy embellishment expected. A minimalist garment would underscore.",
+    "scoring_impact": "Indian formal: embellishment_weight increases. Minimalist garment penalized.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_020",
+    "context_type": "cultural",
+    "parameter": "undertone_ethnicity_prohibition",
+    "rule": "NEVER use ethnicity as proxy for undertone. South Asian b* ranges 8-35 covering warm, neutral, AND cool. A Tamil woman with b*=12 (neutral) is misserved by 'Indian = warm' assumption.",
+    "scoring_impact": "Ethnicity-based undertone assumptions PROHIBITED. Must measure individual b* value.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_021",
+    "context_type": "cultural",
+    "parameter": "cultural_color_vs_undertone",
+    "rule": "Cultural override is a MULTIPLIER, not replacement. Cool-toned user in red at Indian wedding still scores lower than warm-toned. When cultural > 0.85 AND undertone < 0.60: trigger shade_recommendation_mode (tomato red vs cherry red vs brick red).",
+    "scoring_impact": "When cultural score is high but undertone match is poor: recommend specific shade within culturally appropriate color.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_022",
+    "context_type": "occasion",
+    "parameter": "professional_occasion_weights",
+    "rule": "Professional: fit_precision=0.22, fabric_structure=0.18, silhouette=0.15, color_context=0.12, exposure=0.15, trend=0.05, comfort=0.05, embellishment=0.00, cultural_fit=0.08.",
+    "scoring_impact": "Professional: fit and structure dominate. Zero embellishment weight. High exposure sensitivity.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_023",
+    "context_type": "occasion",
+    "parameter": "casual_occasion_weights",
+    "rule": "Casual: fit=0.08, structure=0.05, silhouette=0.10, color=0.05, exposure=0.03, trend=0.22, comfort=0.32, embellishment=0.08, cultural=0.07.",
+    "scoring_impact": "Casual: comfort dominates (0.32). Trend high (0.22). Fit/structure minimal.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_024",
+    "context_type": "occasion",
+    "parameter": "formal_evening_occasion_weights",
+    "rule": "Formal Evening: fit=0.18, structure=0.15, silhouette=0.20, color=0.08, exposure=0.05, trend=0.12, comfort=0.05, embellishment=0.10, cultural=0.07.",
+    "scoring_impact": "Formal: silhouette dominates (0.20). Fit important (0.18). Comfort minimal.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_025",
+    "context_type": "occasion",
+    "parameter": "date_night_occasion_weights",
+    "rule": "Date Night: fit=0.18, structure=0.10, silhouette=0.22, color=0.10, exposure=0.10, trend=0.12, comfort=0.05, embellishment=0.05, cultural=0.08.",
+    "scoring_impact": "Date: silhouette dominates (0.22). Fit high. Dressing for attraction vs self-expression distinction.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_026",
+    "context_type": "occasion",
+    "parameter": "indian_wedding_occasion_weights",
+    "rule": "Indian Wedding: fit=0.15, structure=0.15, silhouette=0.15, color=0.20, exposure=0.12, trend=0.05, comfort=0.05, embellishment=0.10, cultural=0.03.",
+    "scoring_impact": "Indian wedding: color dominates (0.20). Cultural fit assumed high. Embellishment important.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_027",
+    "context_type": "occasion",
+    "parameter": "indian_festival_occasion_weights",
+    "rule": "Indian Festival: fit=0.10, structure=0.10, silhouette=0.12, color=0.18, exposure=0.08, trend=0.10, comfort=0.15, embellishment=0.12, cultural=0.05.",
+    "scoring_impact": "Festival: color important (0.18). Comfort elevated (0.15). Embellishment high (0.12).",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_028",
+    "context_type": "occasion",
+    "parameter": "red_dress_effect_by_occasion",
+    "rule": "Red Dress Effect varies by occasion: Professional = +0.04 net (authority +0.08, risk -0.04). Date night = +0.20 (attractiveness +0.12, confidence +0.08). Indian wedding guest = -0.30 (risks overshadowing bride).",
+    "scoring_impact": "Red dress: professional +0.04, date +0.20, Indian wedding guest -0.30.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_029",
+    "context_type": "occasion",
+    "parameter": "indian_wedding_goal_weights",
+    "rule": "Indian wedding scoring goals: grandeur=0.30, cultural_fit=0.25, color=0.25, modesty=0.20. These REPLACE standard proportion-optimization goals.",
+    "scoring_impact": "Cultural context shifts the GOAL, not just the score. Different goal weights for India wedding.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_030",
+    "context_type": "occasion",
+    "parameter": "indian_casual_goal_weights",
+    "rule": "Indian casual scoring goals: proportion=0.30, comfort=0.25, color=0.25, trend=0.20.",
+    "scoring_impact": "Indian casual: proportion still important but comfort elevated vs Western casual.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_031",
+    "context_type": "climate",
+    "parameter": "india_climate_variation",
+    "rule": "India is NOT single-climate. Chennai Jan: 24C. Delhi Jan: 7C. Delhi Jun: 42C. Monsoon (Jun-Sep) changes fabric behavior drastically. Temperate zones need month-dependent mode.",
+    "scoring_impact": "Climate scoring must be region + month specific. Monsoon: fabric performance degrades.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "HIGH (factual)"
+  },
+  {
+    "context_rule_id": "CTX_032",
+    "context_type": "climate",
+    "parameter": "kanjivaram_tropical_override",
+    "rule": "Kanjivaram silk in tropical India: comfort = 0.20 but wedding cultural_override = 0.95. Final = 0.80 x cultural + 0.20 x comfort = 0.80. Cultural overrides comfort for ceremonial garments.",
+    "scoring_impact": "Ceremonial: cultural weight 0.80, comfort weight 0.20. Comfort does NOT veto cultural requirement.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_033",
+    "context_type": "climate",
+    "parameter": "layering_body_shape_change",
+    "rule": "Each 2mm fabric layer adds ~0.4cm per side. 3 layers = 2.4cm wider total. CAN change body shape classification (e.g., pear -> rectangle if winter layers add more torso width than hip width).",
+    "scoring_impact": "Winter layering can shift body type classification. Re-score after accounting for layer width.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_034",
+    "context_type": "age",
+    "parameter": "menopause_collagen_step",
+    "rule": "Women lose ~30% of skin collagen in first 5 years post-menopause (avg onset 51). Model uses step function at 50-55, not smooth curve. A 48yo and 56yo may have dramatically different fabric interactions despite 8 years apart.",
+    "scoring_impact": "Step function at 50-55: fabric interaction parameters change sharply, not gradually.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM (dermatological fact, garment inference LOW)"
+  },
+  {
+    "context_rule_id": "CTX_035",
+    "context_type": "age",
+    "parameter": "waist_expansion_rate",
+    "rule": "Body composition: waist_expansion = (age - 30) x 0.30%/year. At age 50: +6% waist circumference for same weight.",
+    "scoring_impact": "Adjusts body measurements for age. Affects WHR-dependent scoring.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_036",
+    "context_type": "age",
+    "parameter": "height_loss_rate",
+    "rule": "Height loss: (age - 40) x 0.10 cm/decade.",
+    "scoring_impact": "Adjusts height for age. Affects petite classification threshold over time.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_037",
+    "context_type": "age",
+    "parameter": "muscle_decline_rate",
+    "rule": "Muscle decline: -1.5%/year after age 50.",
+    "scoring_impact": "Affects tissue compliance and body composition parameters.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_038",
+    "context_type": "age",
+    "parameter": "age_output_prohibition",
+    "rule": "ABSOLUTE RULE: NEVER reference age in user-facing output. NEVER suggest longer sleeves based on age. Score the garment AS CHOSEN; offer fabric alternatives alongside.",
+    "scoring_impact": "Language engine constraint. Age is internal scoring variable only, never surfaced.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH (ethical rule)"
+  },
+  {
+    "context_rule_id": "CTX_039",
+    "context_type": "age",
+    "parameter": "age_tissue_override",
+    "rule": "HRT, active weightlifting, genetics create 10-15 year variation in tissue compliance. Athletic 55yo may have better tissue than sedentary 35yo. MUST NOT use age alone - use tissue compliance from body scan; age is fallback (confidence = LOW).",
+    "scoring_impact": "Tissue compliance from body scan preferred. Age-based estimation only as fallback.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW for age inference, MEDIUM for tissue scan"
+  },
+  {
+    "context_rule_id": "CTX_040",
+    "context_type": "language",
+    "parameter": "india_indirectness_level",
+    "rule": "India: indirectness_level = 0.75 (US = 0.50). Family shopping mode enabled by default (mothers/daughters share screens; avoid embarrassment). Regional templates in Hindi, Tamil, Telugu, Bengali - NOT translated from English (idioms differ).",
+    "scoring_impact": "Language output must be more indirect for India market. Family viewing context assumed.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_041",
+    "context_type": "language",
+    "parameter": "body_shape_label_ban",
+    "rule": "Body shape categories BANNED from user output: 'apple', 'pear', 'hourglass', 'rectangle', 'inverted triangle'. Replace with specific proportion descriptions: 'Your shoulders are slightly narrower than your hips' (not 'You're a pear').",
+    "scoring_impact": "Language constraint on output. Internal categories used for scoring only.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH (ethical rule)"
+  },
+  {
+    "context_rule_id": "CTX_042",
+    "context_type": "language",
+    "parameter": "banned_vocabulary",
+    "rule": "BANNED: 'flatten/flatter your figure' (use 'complement your proportions'), 'hide/disguise/camouflage' (use 'balance' or 'shift visual focus to [X]'), 'problem area' (use 'area where garment construction matters most'), 'slimming' (use 'streamlined' or 'creates a clean vertical line'), 'you're pear/apple shaped' (use 'based on your shoulder-to-hip ratio'), 'at your age' (NEVER reference age), 'you can't/shouldn't wear' (use 'this works against [your stated goal]'), any reference to 'big' body parts (describe garment's visual EFFECT, never body's SIZE).",
+    "scoring_impact": "Language engine constraint. All banned terms have required replacements.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH (ethical rule)"
+  },
+  {
+    "context_rule_id": "CTX_043",
+    "context_type": "language",
+    "parameter": "score_to_language_mapping",
+    "rule": "Score 0.85-1.00: Enthusiastic ('This [attribute] is going to create [specific positive effect] on you.'). 0.70-0.84: Positive+note ('This works well. For even more [goal], consider [alt].'). 0.50-0.69: Neutral+suggest ('This will [effect]. For [goal], [alt] would [improve].'). 0.30-0.49: Honest redirect ('This [detail] tends to [effect] because [physics]. [Alt] would [goal].'). <0.30: Clear skip+alt ('Skip this one - [physics reason]. [Alt] would [achieve the look].').",
+    "scoring_impact": "Tone and template selection based on score range.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW (designed templates)"
+  },
+  {
+    "context_rule_id": "CTX_044",
+    "context_type": "cultural",
+    "parameter": "anthropometric_baselines_india_vs_us",
+    "rule": "US: height 5'3.5\" (161cm), weight 171.8lbs (78kg), WHR ~0.83, BMI mean ~29.7, TLR ~0.95-1.00. India: height 5'3\" (160cm) urban / 5'0\" (152cm) overall, weight 55-65kg urban, WHR ~0.85+, BMI mean ~22-23 but 79% may have excess fat at lower cutoffs. Cannot use BMI as proxy for shape. North taller, South shorter; Punjab 30% obesity, Kerala 28%.",
+    "scoring_impact": "All body classification thresholds shift between US and India populations. Sub-regional profiles needed for India.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_045",
+    "context_type": "cultural",
+    "parameter": "india_proportionally_longer_torsos",
+    "rule": "Indian women have proportionally longer torsos than US women. Hemline fall points differ; midi hits different anatomy.",
+    "scoring_impact": "Hemline scoring requires TLR adjustment for Indian population. Standard Western hemline zones shift.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_046",
+    "context_type": "cultural",
+    "parameter": "india_data_sources",
+    "rule": "Critical India data: (1) INDIAsize project (NIFT): 25,000 participants, 6 cities, 3D scanning. (2) Dr. Deepti Gupta (IIT Delhi): bust and hip are critical for Indian garment fit. (3) DRDO surveys: regional breakdown North/South/West. (4) CURES study: central adiposity at lower BMIs than Western.",
+    "scoring_impact": "Pre-launch requirement: access INDIAsize data to calibrate Indian body classification thresholds.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "HIGH (factual sources)"
+  },
+  {
+    "context_rule_id": "CTX_047",
+    "context_type": "cultural",
+    "parameter": "effect_magnitude_hierarchy",
+    "rule": "Garment FIT changes perceived shape by 15-25%. Stripe direction: 4.5-10.7%. Hemline proportion: 5-10%. Luminance: 2-5%. Color alone is WEAKEST lever. Composite enforces: fit_weight (>=0.35) >= sum(all optical illusion weights).",
+    "scoring_impact": "A well-fitted garment in wrong color ALWAYS outscores an ill-fitted garment in right color.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "rule_id": "R_D8_001",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Horizontal stripes, BWR < 0.90",
+    "body_condition": "Slim body (BWR < 0.90)",
+    "zone": "torso",
+    "effect": "Full Helmholtz slimming: +0.58 (5.8% thinning)",
+    "score_value": 0.58,
+    "score_formula": "raw = +0.58",
+    "confidence": "HIGH (4 stars)",
+    "source_text": "STAGE 1: if bwr < 0.90: raw = +0.58 // slim: 5.8% thinning"
+  },
+  {
+    "rule_id": "R_D8_002",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Horizontal stripes, BWR 0.90-1.05",
+    "body_condition": "Average body (BWR 0.90-1.05)",
+    "zone": "torso",
+    "effect": "Moderate thinning: +0.35",
+    "score_value": 0.35,
+    "score_formula": "raw = +0.35",
+    "confidence": "HIGH",
+    "source_text": "elif bwr < 1.05: raw = +0.35 // average: moderate thinning"
+  },
+  {
+    "rule_id": "R_D8_003",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Horizontal stripes, BWR 1.05-1.15",
+    "body_condition": "Above average (BWR 1.05-1.15)",
+    "zone": "torso",
+    "effect": "Near-zero effect: +0.10",
+    "score_value": 0.1,
+    "score_formula": "raw = +0.10",
+    "confidence": "MEDIUM",
+    "source_text": "elif bwr < 1.15: raw = +0.10 // above avg: near-zero"
+  },
+  {
+    "rule_id": "R_D8_004",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Horizontal stripes, BWR > 1.15",
+    "body_condition": "Plus body (BWR > 1.15)",
+    "zone": "torso",
+    "effect": "ASHIDA REVERSAL: -0.15",
+    "score_value": -0.15,
+    "score_formula": "raw = -0.15 // Ashida reversal",
+    "confidence": "HIGH (direction), LOW (threshold)",
+    "source_text": "else: raw = -0.15 // Ashida reversal"
+  },
+  {
+    "rule_id": "R_D8_005",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Vertical stripes",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "ALWAYS widens: -0.45",
+    "score_value": -0.45,
+    "score_formula": "raw = -0.45 // ALWAYS widens",
+    "confidence": "HIGH",
+    "source_text": "elif direction == 'vertical': raw = -0.45 // ALWAYS widens"
+  },
+  {
+    "rule_id": "R_D8_006",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Diagonal stripes",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "No data: 0.0",
+    "score_value": 0.0,
+    "score_formula": "raw = 0.0 // no data",
+    "confidence": "NONE",
+    "source_text": "elif direction == 'diagonal': raw = 0.0 // no data"
+  },
+  {
+    "rule_id": "R_D8_007",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Horizontal stripes on petite body",
+    "body_condition": "Petite (height < 160cm)",
+    "zone": "torso",
+    "effect": "Petite amplification: x1.15",
+    "score_value": null,
+    "score_formula": "if height < 160: raw *= 1.15 // petite amplification",
+    "confidence": "HIGH",
+    "source_text": "STAGE 2 body-type: if height < 160: raw *= 1.15"
+  },
+  {
+    "rule_id": "R_D8_008",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Stripes with BWR > 1.15",
+    "body_condition": "Plus body (BWR > 1.15)",
+    "zone": "torso",
+    "effect": "Ashida REVERSAL body-type modifier: x-0.50",
+    "score_value": null,
+    "score_formula": "if bwr > 1.15: raw *= -0.50 // Ashida REVERSAL",
+    "confidence": "HIGH",
+    "source_text": "if bwr > 1.15: raw *= -0.50 // Ashida REVERSAL"
+  },
+  {
+    "rule_id": "R_D8_009",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Stripes with BWR 1.05-1.15 on torso zone",
+    "body_condition": "Above average (BWR 1.05-1.15)",
+    "zone": "torso",
+    "effect": "Torso attenuation: x0.60",
+    "score_value": null,
+    "score_formula": "elif bwr > 1.05 AND zone == 'torso': raw *= 0.60",
+    "confidence": "MEDIUM",
+    "source_text": "elif bwr > 1.05 AND zone == 'torso': raw *= 0.60"
+  },
+  {
+    "rule_id": "R_D8_010",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Thick stripes (width > 15mm)",
+    "body_condition": "Any body type",
+    "zone": "any",
+    "effect": "Thick stripe attenuation: x0.40 (>30mm: x0.15)",
+    "score_value": null,
+    "score_formula": "if stripe_width_mm > 15: raw *= 0.40",
+    "confidence": "MEDIUM",
+    "source_text": "STAGE 3 exceptions: if stripe_width_mm > 15: raw *= 0.40"
+  },
+  {
+    "rule_id": "R_D8_011",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Thin stripes (duty_cycle < 0.25)",
+    "body_condition": "Any body type",
+    "zone": "any",
+    "effect": "Thin stripe enhancement: x1.25",
+    "score_value": null,
+    "score_formula": "if duty_cycle < 0.25: raw *= 1.25",
+    "confidence": "MEDIUM",
+    "source_text": "if duty_cycle < 0.25: raw *= 1.25 // thin stripes stronger"
+  },
+  {
+    "rule_id": "R_D8_012",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Partial body stripe coverage",
+    "body_condition": "Any body type",
+    "zone": "partial",
+    "effect": "Score scales by coverage fraction",
+    "score_value": null,
+    "score_formula": "raw *= coverage_fraction",
+    "confidence": "LOW (geometric reasoning)",
+    "source_text": "raw *= coverage_fraction // partial body coverage"
+  },
+  {
+    "rule_id": "R_D8_013",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Stripes on clingy lightweight fabric (cling>0.70, GSM<100)",
+    "body_condition": "Any body type",
+    "zone": "any",
+    "effect": "Fabric cling override: x0.35 (body reveals, not reshapes)",
+    "score_value": null,
+    "score_formula": "if cling > 0.70 AND gsm < 100: raw *= 0.35",
+    "confidence": "LOW (logical reasoning)",
+    "source_text": "if cling > 0.70 AND gsm < 100: raw *= 0.35"
+  },
+  {
+    "rule_id": "R_D8_014",
+    "principle_id": "P_D8_001",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Any striped garment in real-world context",
+    "body_condition": "Any body type",
+    "zone": "any",
+    "effect": "Real-world attenuation: x0.65 (35% reduction from lab)",
+    "score_value": null,
+    "score_formula": "raw *= 0.65",
+    "confidence": "LOW (INVENTED)",
+    "source_text": "raw *= 0.65 // real-world attenuation"
+  },
+  {
+    "rule_id": "R_D8_015",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Very dark garment (luminance < 0.15)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Base slimming score: +0.30",
+    "score_value": 0.3,
+    "score_formula": "luminance < 0.15: base = +0.30",
+    "confidence": "MEDIUM",
+    "source_text": "Base: luminance < 0.15: +0.30"
+  },
+  {
+    "rule_id": "R_D8_016",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Dark garment (luminance 0.15-0.30)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Moderate slimming: +0.20",
+    "score_value": 0.2,
+    "score_formula": "luminance < 0.30: base = +0.20",
+    "confidence": "MEDIUM",
+    "source_text": "< 0.30: +0.20"
+  },
+  {
+    "rule_id": "R_D8_017",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Medium-dark garment (luminance 0.30-0.45)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Mild slimming: +0.10",
+    "score_value": 0.1,
+    "score_formula": "luminance < 0.45: base = +0.10",
+    "confidence": "MEDIUM",
+    "source_text": "< 0.45: +0.10"
+  },
+  {
+    "rule_id": "R_D8_018",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Neutral garment (luminance 0.45-0.55)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Neutral: 0.00",
+    "score_value": 0.0,
+    "score_formula": "0.45-0.55: base = 0.00",
+    "confidence": "HIGH",
+    "source_text": "0.45-0.55: 0.00"
+  },
+  {
+    "rule_id": "R_D8_019",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Light garment (luminance 0.55-0.70)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Mild widening: -0.05",
+    "score_value": -0.05,
+    "score_formula": "< 0.70: base = -0.05",
+    "confidence": "MEDIUM",
+    "source_text": "< 0.70: -0.05"
+  },
+  {
+    "rule_id": "R_D8_020",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Light garment (luminance 0.70-0.85)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Moderate widening: -0.10",
+    "score_value": -0.1,
+    "score_formula": "< 0.85: base = -0.10",
+    "confidence": "MEDIUM",
+    "source_text": "< 0.85: -0.10"
+  },
+  {
+    "rule_id": "R_D8_021",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Very light/white garment (luminance > 0.85)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Strong widening: -0.15",
+    "score_value": -0.15,
+    "score_formula": "else: base = -0.15",
+    "confidence": "MEDIUM",
+    "source_text": "else: -0.15"
+  },
+  {
+    "rule_id": "R_D8_022",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Shiny dark fabric (sheen > 0.50)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Sheen nullifies slimming: score *= (1.0 - sheen)",
+    "score_value": null,
+    "score_formula": "if sheen > 0.50: base *= (1.0 - sheen)",
+    "confidence": "LOW (1 star)",
+    "source_text": "if sheen > 0.50: base *= (1.0 - sheen) // shiny nullifies"
+  },
+  {
+    "rule_id": "R_D8_023",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Dark garment with low skin contrast (contrast < 15 L* AND lum < 0.20)",
+    "body_condition": "Dark skin tone",
+    "zone": "full_body",
+    "effect": "Low contrast penalty: score *= 0.30. Suggest navy/forest instead of black.",
+    "score_value": null,
+    "score_formula": "if skin_contrast < 15 AND lum < 0.20: base *= 0.30",
+    "confidence": "LOW (2 stars)",
+    "source_text": "if skin_contrast < 15 AND lum < 0.20: base *= 0.30"
+  },
+  {
+    "rule_id": "R_D8_024",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "All-black outfit with no texture",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Flat silhouette penalty: -0.10",
+    "score_value": -0.1,
+    "score_formula": "if all_black AND no_texture: base -= 0.10",
+    "confidence": "LOW (1 star)",
+    "source_text": "if all_black AND no_texture: base -= 0.10 // flat silhouette penalty"
+  },
+  {
+    "rule_id": "R_D8_025",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "All-black outfit",
+    "body_condition": "Petite (height < 160cm)",
+    "zone": "full_body",
+    "effect": "Shapeless mass penalty: -0.15",
+    "score_value": -0.15,
+    "score_formula": "if all_black AND petite: base -= 0.15",
+    "confidence": "LOW",
+    "source_text": "if all_black AND petite: base -= 0.15 // shapeless mass"
+  },
+  {
+    "rule_id": "R_D8_026",
+    "principle_id": "P_D8_002",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "All-black outfit",
+    "body_condition": "Hourglass",
+    "zone": "full_body",
+    "effect": "Hides waist penalty: -0.10",
+    "score_value": -0.1,
+    "score_formula": "if all_black AND hourglass: base -= 0.10",
+    "confidence": "LOW",
+    "source_text": "if all_black AND hourglass: base -= 0.10 // hides waist"
+  },
+  {
+    "rule_id": "R_D8_027",
+    "principle_id": "P_D8_003",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "V-neck on short neck (ratio <= 1.0)",
+    "body_condition": "Short neck",
+    "zone": "neckline",
+    "effect": "V-neck bonus: +0.20 (draws eye upward, elongates short neck)",
+    "score_value": 0.2,
+    "score_formula": "Short neck: V bonus +0.20",
+    "confidence": "MEDIUM",
+    "source_text": "Neck length: short: V bonus +0.20"
+  },
+  {
+    "rule_id": "R_D8_028",
+    "principle_id": "P_D8_003",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "V-neck on long neck (ratio > 1.15)",
+    "body_condition": "Long neck",
+    "zone": "neckline",
+    "effect": "V-neck REVERSAL: -0.08 ('giraffe effect', over-elongation)",
+    "score_value": -0.08,
+    "score_formula": "Long neck: V penalty -0.08. Better: crew, boat, or mock neck.",
+    "confidence": "LOW",
+    "source_text": "Long neck (ratio >1.15): REVERSAL ('giraffe effect') -0.08. Better: crew, boat, mock."
+  },
+  {
+    "rule_id": "R_D8_029",
+    "principle_id": "P_D8_003",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Boat neck on narrow shoulders (S:H < 0.90)",
+    "body_condition": "Narrow shoulders (pear-like)",
+    "zone": "neckline",
+    "effect": "REVERSAL: boat neck becomes positive +0.30 (widens shoulders where needed)",
+    "score_value": 0.3,
+    "score_formula": "Boat: -0.22 for broad shoulders -> +0.18 for narrow shoulders. Pear-type reversal to +0.30.",
+    "confidence": "MEDIUM",
+    "source_text": "Boat neck: -0.22 for broad shoulders -> +0.18 for narrow shoulders."
+  },
+  {
+    "rule_id": "R_D8_030",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Hemline at upper thigh (88-93% of inseam)",
+    "body_condition": "Any body type",
+    "zone": "legs",
+    "effect": "Flattering: +0.15 (narrowest leg point)",
+    "score_value": 0.15,
+    "score_formula": "Upper thigh: +0.15",
+    "confidence": "MEDIUM",
+    "source_text": "Upper thigh (88-93% inseam): +0.15. Narrowest point; flattering cut."
+  },
+  {
+    "rule_id": "R_D8_031",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Hemline at lower thigh (68-78% of inseam)",
+    "body_condition": "Any body type",
+    "zone": "legs",
+    "effect": "Unflattering: -0.12 (widest thigh point)",
+    "score_value": -0.12,
+    "score_formula": "Lower thigh: -0.12",
+    "confidence": "MEDIUM",
+    "source_text": "Lower thigh (68-78% inseam): -0.12. Widest point; avoid."
+  },
+  {
+    "rule_id": "R_D8_032",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Hemline at sub-knee (42-50% of inseam)",
+    "body_condition": "Any body type",
+    "zone": "legs",
+    "effect": "Flattering: +0.10 (local minimum, clean line)",
+    "score_value": 0.1,
+    "score_formula": "Sub-knee: +0.10",
+    "confidence": "MEDIUM",
+    "source_text": "Sub-knee (42-50% inseam): +0.10. Local minimum; clean line."
+  },
+  {
+    "rule_id": "R_D8_033",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Hemline at upper calf (32-42% of inseam)",
+    "body_condition": "Any body type",
+    "zone": "legs",
+    "effect": "WORST ZONE: -0.25 (max calf circumference + V-H illusion compounds)",
+    "score_value": -0.25,
+    "score_formula": "Upper calf: -0.25",
+    "confidence": "MEDIUM",
+    "source_text": "UPPER CALF (32-42% inseam): -0.25. WORST ZONE: max calf circumference + V-H illusion compounds."
+  },
+  {
+    "rule_id": "R_D8_034",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Hemline at ankle (5-12% of inseam)",
+    "body_condition": "Any body type",
+    "zone": "legs",
+    "effect": "Flattering: +0.12 (strong minimum, elegant)",
+    "score_value": 0.12,
+    "score_formula": "Ankle: +0.12",
+    "confidence": "MEDIUM",
+    "source_text": "Ankle (5-12% inseam): +0.12. Strong minimum; elegant."
+  },
+  {
+    "rule_id": "R_D8_035",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Mid-calf hemline on short user",
+    "body_condition": "Height < 155cm",
+    "zone": "legs",
+    "effect": "Height-amplified penalty: -0.25 x 1.50 = -0.375",
+    "score_value": -0.375,
+    "score_formula": "<155cm: penalty x1.50. So -0.25 x 1.50 = -0.375.",
+    "confidence": "MEDIUM",
+    "source_text": "Height amplification: <155cm: x1.50. Mid-calf on 150cm user: -0.25 x 1.50 = -0.375."
+  },
+  {
+    "rule_id": "R_D8_036",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Mid-calf hemline on medium-short user",
+    "body_condition": "Height 155-163cm",
+    "zone": "legs",
+    "effect": "Height-amplified penalty: -0.25 x 1.35",
+    "score_value": -0.3375,
+    "score_formula": ">=155cm: x1.35",
+    "confidence": "MEDIUM",
+    "source_text": ">=155cm: x1.35"
+  },
+  {
+    "rule_id": "R_D8_037",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Mid-calf hemline on average user",
+    "body_condition": "Height 163-170cm",
+    "zone": "legs",
+    "effect": "Height-amplified penalty: -0.25 x 1.15",
+    "score_value": -0.2875,
+    "score_formula": ">=163cm: x1.15",
+    "confidence": "MEDIUM",
+    "source_text": ">=163cm: x1.15"
+  },
+  {
+    "rule_id": "R_D8_038",
+    "principle_id": "P_D8_004",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Mid-calf hemline on tall user",
+    "body_condition": "Height >= 170cm",
+    "zone": "legs",
+    "effect": "Standard penalty: -0.25 x 1.0",
+    "score_value": -0.25,
+    "score_formula": ">=170cm: x1.0",
+    "confidence": "MEDIUM",
+    "source_text": ">=170cm: x1.0"
+  },
+  {
+    "rule_id": "R_D8_039",
+    "principle_id": "P_D8_005",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "High waist on short torso",
+    "body_condition": "TLR < 0.92 (short torso)",
+    "zone": "waist",
+    "effect": "Torso disappears. Empire: -0.18. Natural waist: +0.10.",
+    "score_value": -0.18,
+    "score_formula": "Short torso: empire = -0.18, natural waist = +0.10",
+    "confidence": "MEDIUM",
+    "source_text": "Short torso (TLR < 0.92): high waist makes torso disappear. Empire -0.18. Natural waist +0.10."
+  },
+  {
+    "rule_id": "R_D8_040",
+    "principle_id": "P_D8_005",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Empire waist",
+    "body_condition": "Apple body (WHR > 0.88)",
+    "zone": "waist",
+    "effect": "EXCELLENT for apple: +0.40 (bypasses midsection entirely)",
+    "score_value": 0.4,
+    "score_formula": "Apple + empire: +0.40",
+    "confidence": "MEDIUM",
+    "source_text": "Apple body: empire EXCELLENT (bypasses midsection entirely, score +0.40)."
+  },
+  {
+    "rule_id": "R_D8_041",
+    "principle_id": "P_D8_005",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Empire waist with excessive LBR shift",
+    "body_condition": "Any body type",
+    "zone": "waist",
+    "effect": "Maternity silhouette: empire overshoot with +12% LBR shift",
+    "score_value": null,
+    "score_formula": "Empire overshoot: +12% LBR shift creates maternity silhouette on non-pregnant users",
+    "confidence": "LOW",
+    "source_text": "Empire overshoot: +12% LBR shift creates maternity silhouette."
+  },
+  {
+    "rule_id": "R_D8_042",
+    "principle_id": "P_D8_005",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Rigid waistband (>0.70) on soft midsection (>0.60)",
+    "body_condition": "Soft midsection body",
+    "zone": "waist",
+    "effect": "Muffin-top risk: -0.15 penalty. Suggest stretch or paper-bag construction.",
+    "score_value": -0.15,
+    "score_formula": "if waistband_rigidity > 0.70 AND midsection_softness > 0.60: score -= 0.15",
+    "confidence": "LOW",
+    "source_text": "Muffin-top risk: rigid waistband (>0.70) + soft midsection (>0.60) = -0.15."
+  },
+  {
+    "rule_id": "R_D8_043",
+    "principle_id": "P_D8_005",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Drop-waist garment",
+    "body_condition": "Apple body",
+    "zone": "waist",
+    "effect": "Normally penalized but USEFUL for apple: drops below widest zone, +0.10",
+    "score_value": 0.1,
+    "score_formula": "Drop-waist + apple: +0.10",
+    "confidence": "LOW",
+    "source_text": "Drop-waist: normally penalized, but USEFUL for apple (drops below widest zone, +0.10)."
+  },
+  {
+    "rule_id": "R_D8_044",
+    "principle_id": "P_D8_006",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Heavy fabric (>250 GSM)",
+    "body_condition": "Rectangle body type",
+    "zone": "full_body",
+    "effect": "REVERSAL: heavy fabric POSITIVE +0.15 (adds missing dimension)",
+    "score_value": 0.15,
+    "score_formula": "Rectangle: heavy inverts to +0.15",
+    "confidence": "LOW",
+    "source_text": "Rectangle: Heavy fabric is POSITIVE (adds missing dimension). Score inverts to +0.15."
+  },
+  {
+    "rule_id": "R_D8_045",
+    "principle_id": "P_D8_006",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Heavy fabric on hip zone",
+    "body_condition": "Inverted Triangle body type",
+    "zone": "hips",
+    "effect": "REVERSAL: heavy fabric POSITIVE +0.20 (adds width for balance)",
+    "score_value": 0.2,
+    "score_formula": "Inv tri: heavy on hips inverts to +0.20",
+    "confidence": "LOW",
+    "source_text": "Inv triangle: Heavy fabric on hip zone is POSITIVE (+0.20, adds width for balance)."
+  },
+  {
+    "rule_id": "R_D8_046",
+    "principle_id": "P_D8_006",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Heavy fabric (>350 GSM)",
+    "body_condition": "Petite (height < 160cm)",
+    "zone": "full_body",
+    "effect": "Petite heavy penalty: -0.20 (4mm/side = 2.5% of petite shoulder)",
+    "score_value": -0.2,
+    "score_formula": "Petite + heavy >350 GSM: -0.20",
+    "confidence": "LOW",
+    "source_text": "Petite + heavy (>350 GSM): -0.20 penalty."
+  },
+  {
+    "rule_id": "R_D8_047",
+    "principle_id": "P_D8_006",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Heavy fabric at midsection",
+    "body_condition": "Apple body type",
+    "zone": "midsection",
+    "effect": "Apple midsection heavy penalty: -0.35",
+    "score_value": -0.35,
+    "score_formula": "Apple midsection + heavy: -0.35",
+    "confidence": "LOW",
+    "source_text": "Apple midsection + heavy: -0.35 (adds bulk to widest zone)."
+  },
+  {
+    "rule_id": "R_D8_048",
+    "principle_id": "P_D8_006",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Heavy fabric (>300 GSM)",
+    "body_condition": "Plus size body type",
+    "zone": "full_body",
+    "effect": "Plus heavy penalty: -0.35",
+    "score_value": -0.35,
+    "score_formula": "Plus + heavy >300 GSM: -0.35",
+    "confidence": "LOW",
+    "source_text": "Plus size + heavy >300 GSM: -0.35 (amplifies at larger dimensions)."
+  },
+  {
+    "rule_id": "R_D8_049",
+    "principle_id": "P_D8_006",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Light fabric (<80 GSM) on large bust",
+    "body_condition": "Large bust (diff > 16cm)",
+    "zone": "bust",
+    "effect": "Cling reveals contour: -0.20",
+    "score_value": -0.2,
+    "score_formula": "Light + large bust (diff>16cm): -0.20",
+    "confidence": "LOW",
+    "source_text": "Light + large bust (diff >16cm): -0.20 (reveals every contour)."
+  },
+  {
+    "rule_id": "R_D8_050",
+    "principle_id": "P_D8_007",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Color-blocked outfit: light top + dark bottom",
+    "body_condition": "Pear body type",
+    "zone": "full_body",
+    "effect": "Color-blocking bonus for pear: +0.15",
+    "score_value": 0.15,
+    "score_formula": "Pear light top + dark bottom: +0.15",
+    "confidence": "MEDIUM",
+    "source_text": "Color-blocking bonuses: pear (light top + dark bottom): +0.15."
+  },
+  {
+    "rule_id": "R_D8_051",
+    "principle_id": "P_D8_007",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Color-blocked: dark center + light sides",
+    "body_condition": "Rectangle body type",
+    "zone": "torso",
+    "effect": "Color-blocking bonus for rectangle: +0.12",
+    "score_value": 0.12,
+    "score_formula": "Rectangle dark center + light sides: +0.12",
+    "confidence": "MEDIUM",
+    "source_text": "Rectangle (dark center + light sides): +0.12."
+  },
+  {
+    "rule_id": "R_D8_052",
+    "principle_id": "P_D8_007",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Color-blocked: light bottom + dark top",
+    "body_condition": "Inverted Triangle body type",
+    "zone": "full_body",
+    "effect": "Color-blocking bonus for inv tri: +0.12",
+    "score_value": 0.12,
+    "score_formula": "Inv tri light bottom + dark top: +0.12",
+    "confidence": "MEDIUM",
+    "source_text": "Inv triangle (light bottom + dark top): +0.12."
+  },
+  {
+    "rule_id": "R_D8_053",
+    "principle_id": "P_D8_007",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Monochrome outfit",
+    "body_condition": "Petite body type",
+    "zone": "full_body",
+    "effect": "Maximum unbroken vertical for petite: +0.20",
+    "score_value": 0.2,
+    "score_formula": "Petite monochrome: +0.20",
+    "confidence": "MEDIUM",
+    "source_text": "Petite: monochrome +0.20 (maximum unbroken vertical)."
+  },
+  {
+    "rule_id": "R_D8_054",
+    "principle_id": "P_D8_007",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Large pattern (>5cm) on petite body",
+    "body_condition": "Petite",
+    "zone": "full_body",
+    "effect": "Pattern scale penalty: -0.15",
+    "score_value": -0.15,
+    "score_formula": ">5cm on petite: -0.15",
+    "confidence": "LOW",
+    "source_text": "Pattern scale: >5cm on petite = -0.15."
+  },
+  {
+    "rule_id": "R_D8_055",
+    "principle_id": "P_D8_007",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Small pattern (<3cm) on plus body",
+    "body_condition": "Plus size",
+    "zone": "full_body",
+    "effect": "Visual noise penalty: -0.10",
+    "score_value": -0.1,
+    "score_formula": "<3cm on plus: -0.10 (visual noise)",
+    "confidence": "LOW",
+    "source_text": "<3cm on plus = -0.10 (visual noise)."
+  },
+  {
+    "rule_id": "R_D8_056",
+    "principle_id": "P_D8_009",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Any garment",
+    "body_condition": "Age 30+ (body composition shifts)",
+    "zone": "waist",
+    "effect": "Waist expansion: (age-30) x 0.30%/year. At 50: +6% waist for same weight.",
+    "score_value": null,
+    "score_formula": "waist_expansion = (age - 30) * 0.30 percent/year",
+    "confidence": "MEDIUM (dermatological fact)",
+    "source_text": "Body composition: waist_expansion = (age - 30) x 0.30%/year. At 50: +6% waist for same weight."
+  },
+  {
+    "rule_id": "R_D8_057",
+    "principle_id": "P_D8_009",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Any garment",
+    "body_condition": "Age 40+ (height loss)",
+    "zone": "full_body",
+    "effect": "Height loss: (age-40) x 0.10 cm/decade",
+    "score_value": null,
+    "score_formula": "height_loss = (age - 40) * 0.10 cm/decade",
+    "confidence": "MEDIUM",
+    "source_text": "Height loss: (age - 40) x 0.10 cm/decade."
+  },
+  {
+    "rule_id": "R_D8_058",
+    "principle_id": "P_D8_009",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Any garment",
+    "body_condition": "Age 50+ (muscle decline and menopause)",
+    "zone": "full_body",
+    "effect": "Muscle decline: -1.5%/year after 50. Menopause step function at 50-55: ~30% collagen loss in 5 years.",
+    "score_value": null,
+    "score_formula": "muscle_decline = -1.5%/year after 50. Collagen step at 50-55.",
+    "confidence": "MEDIUM for fact, LOW for garment inference",
+    "source_text": "Muscle decline: -1.5%/year after 50. Women lose ~30% skin collagen in first 5 years post-menopause."
+  },
+  {
+    "rule_id": "R_D8_059",
+    "principle_id": "P_D8_010",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Layered outfit (multiple fabric layers)",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Each 2mm fabric layer adds ~0.4cm per side. 3 layers = 2.4cm wider total. CAN change body shape classification.",
+    "score_value": null,
+    "score_formula": "visual_width_addition = layer_count * 0.4cm_per_side * 2",
+    "confidence": "LOW",
+    "source_text": "Layering adds visual width: each 2mm fabric layer adds ~0.4cm per side. 3 layers = 2.4cm wider total."
+  },
+  {
+    "rule_id": "R_D8_060",
+    "principle_id": "P_D8_010",
+    "layer": 5,
+    "source_domain": 8,
+    "garment_condition": "Kanjivaram silk in tropical climate",
+    "body_condition": "Any body type",
+    "zone": "full_body",
+    "effect": "Comfort vs cultural override: comfort=0.20 but wedding cultural_override=0.95. Final = 0.80*cultural + 0.20*comfort = 0.80.",
+    "score_value": 0.8,
+    "score_formula": "final = 0.80 * cultural_override + 0.20 * comfort. Wedding: 0.80*0.95 + 0.20*0.20 = 0.80.",
+    "confidence": "LOW",
+    "source_text": "Kanjivaram silk: comfort = 0.20 but wedding cultural_override = 0.95. Final = 0.80."
+  }
+]

@@ -1,0 +1,169 @@
+[
+  {
+    "threshold_id": "D3_T01",
+    "name": "Cling Threshold Base Formula",
+    "formula": "base_threshold = 62 - (26 x curvature_rate)",
+    "min_value": 10,
+    "confidence": "LOW (<50%)",
+    "note": "62 and 26 are reverse-engineered from endpoints. Cling onset likely sigmoidal, not linear.",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "149-156"
+  },
+  {
+    "threshold_id": "D3_T02",
+    "name": "Apple Belly Ease Consumption",
+    "formula": "effective_front_ease = max(0, total_ease - belly_projection x 0.8)",
+    "confidence": "LOW (<50%)",
+    "note": "0.8 consumption fraction is a calibrated estimate",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "181-188"
+  },
+  {
+    "threshold_id": "D3_T03",
+    "name": "Belly Bridging Capacity",
+    "formula": "bridging_capacity = (6 - drape) x 0.8 inches",
+    "examples": {
+      "drape_2": "bridges up to 3.2\" projection",
+      "drape_4": "bridges up to 1.6\"",
+      "drape_5": "bridges up to 0.8\"",
+      "drape_6_plus": "cannot bridge"
+    },
+    "confidence": "LOW (<50%) - logical construction, not measured",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "283-297"
+  },
+  {
+    "threshold_id": "D3_T04",
+    "name": "Vertical Stripe 3D Curvature Crossover",
+    "thresholds": {
+      "projection_lt_1_5in": "standard elongation benefit (-0.06)",
+      "projection_1_5_to_2_5in": "benefit partially negated",
+      "projection_gt_2_5in": "reversed - curvature revelation dominates (+0.03+)"
+    },
+    "confidence": "HIGH direction (90%), LOW magnitude (<50%)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "310-323"
+  },
+  {
+    "threshold_id": "D3_T05",
+    "name": "Petite Pattern Scale Maximum",
+    "formula": "petite_max_safe_repeat = torso_length x 0.12",
+    "examples": {
+      "5ft0in": "max ~1.4\" repeat",
+      "5ft3in": "max ~1.6\" repeat"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "326-332"
+  },
+  {
+    "threshold_id": "D3_T06",
+    "name": "Wrap Dress Gapping Threshold",
+    "formula": "gap_threshold = (fabric_stretch_pct x 0.15) + wrap_overlap_inches",
+    "trigger": "belly_projection > gap_threshold -> wrap physically opens at belly",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "379-383"
+  },
+  {
+    "threshold_id": "D3_T07",
+    "name": "Cap Sleeve Arm Circumference",
+    "thresholds": {
+      "lt_13in": "universally flattering",
+      "13_to_15in": "caution",
+      "gt_15in": "AVOID - hits widest arm point = sausage sleeve effect"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "406-407"
+  },
+  {
+    "threshold_id": "D3_T08",
+    "name": "Pear Hemline Dead Zone",
+    "value": "3\" range centered on widest hip point, approximately 7-10 inches below natural waist",
+    "penalty": "+0.10-0.18 (draws eye to widest point)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "438-443"
+  },
+  {
+    "threshold_id": "D3_T09",
+    "name": "Ponte Climate Limit",
+    "value": "Above ~80F/27C, ponte becomes uncomfortable",
+    "alternative": "Polyester crepe (drape 5-6, ~180gsm)",
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "534-537"
+  },
+  {
+    "threshold_id": "D3_T10",
+    "name": "Body Shape Classification Thresholds",
+    "hourglass": "bust_waist_diff >= 7 AND hip_waist_diff >= 7 AND shoulder_hip_ratio 0.85-1.15",
+    "pear": "hip_waist_diff >= 7 AND hip_waist > bust_waist + 2 AND shoulder_hip_ratio < 1.05",
+    "apple": "(bust_waist < 5 AND hip_waist < 5) OR belly_projection >= 3, AND belly_projection >= 2",
+    "inverted_triangle": "shoulder_hip_ratio > 1.15 AND bust_waist > hip_waist + 2",
+    "rectangle": "bust_waist < 5 AND hip_waist < 5",
+    "source_domain": 3,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "292-324"
+  },
+  {
+    "threshold_id": "D3_T11",
+    "name": "Recommendation Composite Thresholds",
+    "strong_recommend": "composite < -0.15",
+    "recommend": "composite < -0.05",
+    "neutral": "composite < 0.10",
+    "caution": "composite < 0.25",
+    "avoid": "composite >= 0.25",
+    "source_domain": 3,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1609-1618"
+  },
+  {
+    "threshold_id": "D3_T12",
+    "name": "Dark + Shiny Cancellation Threshold",
+    "trigger": "lightness < 25 AND sheen_score > 0.15",
+    "formula": "sheen_cancellation = sheen_score x 2.0; adjusted_score = adjusted_score x max(0, 1 - sheen_cancellation)",
+    "at_sheen_0_50": "dark benefit fully cancelled (net zero)",
+    "at_sheen_0_75_plus": "dark is actively WORSE than medium-tone matte",
+    "source_domain": 3,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "700-705"
+  },
+  {
+    "threshold_id": "D3_T13",
+    "name": "Cling Status Categories",
+    "heavy_cling": "cling_score > 0.3",
+    "clinging": "cling_score > 0",
+    "borderline": "cling_score > -0.1",
+    "skimming": "cling_score > -0.3",
+    "loose": "cling_score <= -0.3",
+    "source_domain": 3,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "653-662"
+  },
+  {
+    "threshold_id": "D3_T14",
+    "name": "Transparency Risk Threshold",
+    "trigger": "gsm < 100 AND stretch_demand_pct > 30",
+    "formula": "opacity_loss = stretch_demand_pct x 0.004",
+    "warning_threshold": "opacity_loss > 0.15",
+    "source_domain": 3,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1581-1590"
+  },
+  {
+    "threshold_id": "D3_T15",
+    "name": "Plus-Size Confidence Reduction",
+    "trigger": "bust_circ > 42 OR hip_circ > 46",
+    "modifier": "base_confidence x 0.85",
+    "source_domain": 3,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1601-1603"
+  }
+]

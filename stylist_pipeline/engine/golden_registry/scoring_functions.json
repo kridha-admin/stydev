@@ -1,0 +1,620 @@
+[
+  {
+    "function_id": "SF_D3_001",
+    "function_name": "resolve_fabric_properties",
+    "principle_id": "D3_R03, D3_R04",
+    "input_params": [
+      "garment: GarmentAttributes"
+    ],
+    "output": "GarmentAttributes with _total_stretch_pct, _effective_gsm, _sheen_score, _sheen_curvature_mapping_factor",
+    "key_logic_summary": "Applies woven/knit elastane multiplier (1.6/4.0/5.5/3.5), fiber-adjusted GSM, surface sheen mapping (0.0-1.0), crushed surface correction (25% curvature mapping).",
+    "reversals_handled": [],
+    "exceptions_checked": [
+      "Crushed/distressed sheen correction: curvature_mapping_factor = 0.25"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 49,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "364-412"
+  },
+  {
+    "function_id": "SF_D3_002",
+    "function_name": "score_sheen",
+    "principle_id": "D3_P01",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "zone_data: dict"
+    ],
+    "output": "score float -0.15 to 0.75",
+    "key_logic_summary": "6-step pipeline: curvature factor from radius, crushed sheen reduction, projection depth amplifier (1.0 + projection*0.08), height proportionality (height_modifier), concavity reversal (curvature_factor *= -0.3 for concave zones), dark+shiny compound modifier.",
+    "reversals_handled": [
+      "Concave waist: sheen REDUCES volume",
+      "Dark + shiny on curved areas flags dangerous combination"
+    ],
+    "exceptions_checked": [
+      "is_concave check for hourglass waist",
+      "dark_shiny_modifier when lightness<25 and sheen>0.15 and curvature_radius<6"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 51,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "486-536"
+  },
+  {
+    "function_id": "SF_D3_003",
+    "function_name": "score_cling",
+    "principle_id": "D3_P02",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "zone_data: dict"
+    ],
+    "output": "dict with score (-1.0 to 1.0), status (loose/skimming/borderline/clinging/heavy_cling), stretch_demand_pct, threshold",
+    "key_logic_summary": "10-step pipeline: garment circumference at zone, apple belly front ease correction (projection*0.8), stretch capacity from total_stretch_pct, stretch demand calculation, base threshold (62-26*rate), modifiers (friction, weight, drape, lining, humidity, projection, height, sleeve), concave zone override, adjusted threshold clamped 5-75, cling score = (demand-threshold)/50, tissue firmness severity modifier (soft 1.3x, firm 0.8x).",
+    "reversals_handled": [
+      "Apple belly ease consumption",
+      "Hourglass waist concave gap override",
+      "Tissue firmness visual severity"
+    ],
+    "exceptions_checked": [
+      "belly zone apple correction",
+      "concave zone returns early with gap status",
+      "sleeve_type modifier at bust zone"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 127,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "543-669"
+  },
+  {
+    "function_id": "SF_D3_004",
+    "function_name": "score_color",
+    "principle_id": "D3_P03",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "zone_data: dict"
+    ],
+    "output": "dict with volume_score (-0.30 to 0.30), proportion_score (-0.25 to 0.25), sheen_override_applied (bool)",
+    "key_logic_summary": "Base score from (lightness-50)*0.006. Petite height penalty on dark benefit (height<63: penalty=(63-height)*0.03). Dark+shiny cancellation (lightness<25 and sheen>0.15: cancellation=sheen*2.0). Projection reduces dark benefit (projection>2: proj_reduction=(projection-2)*0.08). Zone-specific proportion scoring for pear (light top helps, dark bottom helps) and inverted triangle (dark top helps, light bottom helps).",
+    "reversals_handled": [
+      "Petite dark reduces height AND width",
+      "Dark+shiny cancellation",
+      "Pear zone-inverted color benefit"
+    ],
+    "exceptions_checked": [
+      "sheen_override_applied flag",
+      "projection-based dark benefit reduction"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 60,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "676-736"
+  },
+  {
+    "function_id": "SF_D3_005",
+    "function_name": "score_structure",
+    "principle_id": "D3_P04",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "zone_data: dict"
+    ],
+    "output": "dict with volume_score (-0.15 to 0.55), proportion_erosion (0 to 0.40), bridging_benefit, elongation_bonus, shape_creation, air_gap_mm",
+    "key_logic_summary": "9-step pipeline: base air gap from drape (0-31mm), tailoring override (darts + drape<=4: gap*0.35), volume from gap = (gap-6mm)*0.012, height proportionality, curvature interaction (rate>0.7 and drape<=4), apple belly bridging check (capacity=(6-drape)*0.8), proportion erosion at hourglass waist (volume*1.5), heavy-but-fluid elongation bonus (gsm>250 and drape>=7, extra for petite+ankle/floor), rectangle shape-creation bonus.",
+    "reversals_handled": [
+      "Apple belly bridging (structure helps below capacity, hurts above)",
+      "Hourglass waist proportion erosion",
+      "Petite heavy-fluid elongation"
+    ],
+    "exceptions_checked": [
+      "tailoring override with darts",
+      "belly bridging capacity",
+      "rectangle shape creation"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 69,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "743-828"
+  },
+  {
+    "function_id": "SF_D3_006",
+    "function_name": "score_texture",
+    "principle_id": "D3_P05",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics"
+    ],
+    "output": "score float 0.0 to 0.55",
+    "key_logic_summary": "Texture depth * (1+shadow_multiplier_1.3) * 0.012. Petite texture overwhelm: pattern_scale/torso_front ratio > 0.15 triggers overwhelm_penalty = (ratio-0.094)*2.5.",
+    "reversals_handled": [],
+    "exceptions_checked": [
+      "Petite texture overwhelm"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 19,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "835-854"
+  },
+  {
+    "function_id": "SF_D3_007",
+    "function_name": "score_pattern",
+    "principle_id": "D3_P05",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "zone_data: dict"
+    ],
+    "output": "dict with volume_score (-0.15 to 0.20), attention_score (0 to 0.40), proportion_score (-0.15 to 0.15)",
+    "key_logic_summary": "Vertical stripes: 3D curvature check (projection<1.5: -0.06, 1.5-3: crosses zero ~2.6, >3: +0.03+). Stripe width modifier (<0.25 pinstripe: *0.5, >1.0 wide: *1.5). Petite elongation amplification (*1.5). Horizontal stripes: base +0.07 widening with petite amplifier (*1.3 + 0.10 height reduction), tall-lean benefit (*0.5 - 0.08 height-breaking), pear upper body proportion (-0.12), rectangle shape creation (-0.10). Apple belly attention amplifier (*1.5).",
+    "reversals_handled": [
+      "Vertical stripes curvature revelation on projected bodies",
+      "Horizontal stripes help pear/rectangle/tall"
+    ],
+    "exceptions_checked": [
+      "Stripe width modifier",
+      "Apple belly attention amplifier"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 76,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "861-936"
+  },
+  {
+    "function_id": "SF_D3_008",
+    "function_name": "score_drape_conformity",
+    "principle_id": "D3_P06",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "zone_data: dict"
+    ],
+    "output": "score float -0.70 to 0.45",
+    "key_logic_summary": "Conformity from drape (9+: -0.60, 7-9: interpolated, 5-7: mild following, 3-5: +0.05-0.25, 1-3: +0.25-0.45). Drape x ease interaction (high drape+loose: barely projects; low drape+loose: strong projection). Waist definition construction bonus (-0.10 toward body-following).",
+    "reversals_handled": [],
+    "exceptions_checked": [
+      "Waist definition construction bonus at waist zone"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 42,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "943-984"
+  },
+  {
+    "function_id": "SF_D3_009",
+    "function_name": "score_silhouette",
+    "principle_id": "D3_P07",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics"
+    ],
+    "output": "dict with volume_score (-0.25 to 0.20), proportion_score (-0.25 to 0.25)",
+    "key_logic_summary": "A-line: stiff lightweight failure (drape<=3, gsm<200: +0.08 projects wider), fluid collapse (drape>=8: +0.05 body-con at hip), proper A-line (-0.08 bypasses). Pear amplification (*1.2). Empire: belly bypass (-0.18 to -0.25 for apple), waist proportion loss (-0.15 to -0.20 for hourglass). Wrap: waist definition (+0.15 to +0.18 hourglass), apple gap risk (+0.10 if projection>3 and not faux-wrap). Shift: hourglass waist erasure (-0.20). Peplum: pear hip widening (+0.15), INVT hip addition (+0.18), apple belly bridge (-0.12). Fit-and-flare: waist definition (+0.15 to +0.18 hourglass), hip bypass (-0.08).",
+    "reversals_handled": [
+      "A-line stiff lightweight failure",
+      "A-line fluid collapse to bodycon",
+      "Shift dress hourglass waist erasure",
+      "Peplum hurts pear, helps apple/INVT/rectangle"
+    ],
+    "exceptions_checked": [
+      "Apple belly A-line waist position check",
+      "Wrap faux_wrap flag check"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 95,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "991-1086"
+  },
+  {
+    "function_id": "SF_D3_010",
+    "function_name": "score_construction",
+    "principle_id": "D3_P08",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics"
+    ],
+    "output": "dict with volume_score (-0.15 to 0.20), proportion_score (-0.12 to 0.12)",
+    "key_logic_summary": "Sleeve: cap sleeve arm_circ>15 = +0.15 sausage effect, >13 = +0.08; dolman on petite(<63) = +0.12 overwhelm, on full arm(>14) = -0.10 beneficial; 3/4 sleeve = -0.05 universally flattering. Raglan on INVT = proportion +0.10. Neckline: V-neck bust elongation +0.05-0.08 (petite extra); crew on bust_projection>3 = +0.08 strain; boat on INVT = +0.12 worst, on pear = proportion +0.10 best.",
+    "reversals_handled": [
+      "Dolman overwhelms petite but helps plus-size arms",
+      "Boat neck worst for INVT, best for pear"
+    ],
+    "exceptions_checked": [
+      "Arm circumference thresholds for cap sleeve",
+      "Bust projection threshold for crew neck"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 52,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1093-1144"
+  },
+  {
+    "function_id": "SF_D3_011",
+    "function_name": "score_hemline",
+    "principle_id": "D3_P09",
+    "input_params": [
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics"
+    ],
+    "output": "dict with proportion_score (-0.12 to 0.15), warning (str or None)",
+    "key_logic_summary": "Petite sensitivity: midi = +0.12 maximum shortening + warning, above_knee = -0.08 elongating, ankle = -0.06 clean vertical. Pear mini = +0.10 hits widest thigh + warning. Plus-size mini = +0.12 width emphasis. Universal knee = min(proportion, -0.03) knee is narrow = good.",
+    "reversals_handled": [],
+    "exceptions_checked": [
+      "Petite midi maximum shortening",
+      "Pear mini widest thigh",
+      "Plus-size mini width emphasis"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 38,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1151-1188"
+  },
+  {
+    "function_id": "SF_D3_012",
+    "function_name": "calculate_photo_discount",
+    "principle_id": "D3_P10",
+    "input_params": [
+      "zone: str",
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "zone_data: dict"
+    ],
+    "output": "score float 0 to 0.55",
+    "key_logic_summary": "Reference model: bust 34, waist 25, hip 35, bust_proj 1.5, belly_proj 0.5, hip_proj 1.0, shoulder 16, arm 10, thigh 20. Zone gap map with per-inch coefficients (belly 0.06, bust 0.04+0.008, hip 0.007+0.035, thigh 0.012, arm 0.015). Diverse model reduces gap to 40%. Manipulation discount: base 0.24, tier multipliers (luxury 0.65, premium 0.75, mid 0.85, mass 0.95, fast 1.10).",
+    "reversals_handled": [],
+    "exceptions_checked": [
+      "Diverse model gap reduction",
+      "Brand tier manipulation scaling"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 49,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1195-1243"
+  },
+  {
+    "function_id": "SF_D3_013",
+    "function_name": "calculate_derived_metrics",
+    "principle_id": "N/A (Body metric derivation)",
+    "input_params": [
+      "body: BodyMeasurements"
+    ],
+    "output": "DerivedBodyMetrics with bust_waist_diff, hip_waist_diff, shoulder_hip_ratio, curvature_rates, curvature_radii, height_modifier, torso_pct, body_shape",
+    "key_logic_summary": "Hip width estimated as circ*0.35. Curvature rates from differential/vertical_distance. Belly curvature over 6\" vertical zone. Curvature radii inverse of rate (min 2-3). Height modifier = 66/actual_height. Body shape classified from differentials and ratios.",
+    "reversals_handled": [],
+    "exceptions_checked": [],
+    "source_domain": 3,
+    "lines_of_code": 38,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "252-289"
+  },
+  {
+    "function_id": "SF_D3_014",
+    "function_name": "score_garment (master function)",
+    "principle_id": "All D3 principles",
+    "input_params": [
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements"
+    ],
+    "output": "GarmentPrediction with zone_scores, overall_volume, overall_proportion, overall_composite, prediction_confidence, recommendation, warnings, recommendations, body_shape, alternative_suggestion",
+    "key_logic_summary": "10-phase pipeline: resolve fabric, derive body metrics, determine relevant zones (by category, filtered by sleeve type), per-zone scoring across all 9 principles with diminishing returns stacking, photo discount at 0.5 weight, sitting modifier, proportion scoring, attention scoring, goal alignment, zone composite (volume - abs(min(0, proportion))), cross-zone aggregation, hemline scoring, climate check, cling zone severity indicator (3+ zones), goal mismatches, wrap gapping check, transparency check, prediction confidence by body type (rectangle 85% to apple 62%, plus *0.85), final 5-tier recommendation, goal alignment override, warning aggregation, alternative suggestion generation.",
+    "reversals_handled": [
+      "All reversals from constituent functions aggregated"
+    ],
+    "exceptions_checked": [
+      "Climate ponte warning",
+      "Double-knit heat warning",
+      "3+ cling zones size-up",
+      "Wrap gapping check",
+      "Transparency on lightweight stretched zones",
+      "Goal alignment override on recommendation"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 314,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1334-1647"
+  },
+  {
+    "function_id": "SF_D3_015",
+    "function_name": "generate_alternative",
+    "principle_id": "N/A (Recommendation generation)",
+    "input_params": [
+      "garment: GarmentAttributes",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics",
+      "prediction: GarmentPrediction"
+    ],
+    "output": "str suggestion",
+    "key_logic_summary": "Finds worst zone by volume_score. Cling problem -> suggest ponte or lined. Sheen problem (>0.3) -> suggest matte crepe or cotton sateen. Hourglass waist structure problem -> suggest fitted with darts/waist definition. Apple belly problem -> suggest empire waist or A-line from high waist.",
+    "reversals_handled": [],
+    "exceptions_checked": [],
+    "source_domain": 3,
+    "lines_of_code": 35,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1661-1696"
+  },
+  {
+    "function_id": "SF_D3_016",
+    "function_name": "apply_sitting_modifier",
+    "principle_id": "Context modifier",
+    "input_params": [
+      "zone: str",
+      "base_score: float",
+      "body: BodyMeasurements",
+      "derived: DerivedBodyMetrics"
+    ],
+    "output": "adjusted score float",
+    "key_logic_summary": "Only applies for OFFICE_SEATED context. Sitting deltas: belly = belly_projection*0.04 + 0.05 (apple 4\" projection -> +0.21), thigh = 0.08, hip = 0.05, bust = 0.02, waist = 0.03, upper_arm = 0, shoulder = 0.",
+    "reversals_handled": [],
+    "exceptions_checked": [
+      "Only applies in OFFICE_SEATED context"
+    ],
+    "source_domain": 3,
+    "lines_of_code": 23,
+    "source_file": "kridha_scoring_engine.py",
+    "source_lines": "1250-1272"
+  },
+  {
+    "function_id": "SF_D4_001",
+    "function_name": "score_horizontal_stripes",
+    "principle_id": "D4_P01",
+    "input_params": [
+      "GarmentProfile (has_horizontal_stripes, has_vertical_stripes, zone, stripe_width_cm, is_dark, covers_waist)",
+      "BodyProfile (body_shape, is_plus_size, is_petite)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Three branches: no stripes (0.0), V-stripes only (base -0.05 with rectangle/INVT overrides), H-stripes (base +0.03 + body-size gate + zone-split + stripe width modifier + dark luminance bonus). Zone-split is critical: pear top +0.08 vs bottom -0.05, INVT top -0.12 vs bottom +0.10.",
+    "reversals_handled": [
+      "R8: H-stripe x INVT upper -> -0.12 (attention to shoulders overrides optical thinning)"
+    ],
+    "exceptions_checked": [
+      "Plus-size Ashida nullification (-0.08)",
+      "Fine stripes <1cm bonus (+0.03)",
+      "Wide stripes >2cm + plus penalty (-0.05)",
+      "Dark luminance bonus (+0.04)"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "168-230"
+  },
+  {
+    "function_id": "SF_D4_002",
+    "function_name": "score_dark_slimming",
+    "principle_id": "D4_P02",
+    "input_params": [
+      "GarmentProfile (color_lightness, is_dark, sheen_index, zone)",
+      "BodyProfile (is_petite, is_tall, body_shape, skin_undertone, skin_darkness)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Three color bands: light (L>0.65: expansion penalty), mid (0.25-0.65: proportional), dark (L<0.25: base +0.15). Dark path has body-type multiplier (petite x0.6, tall x1.2, INVT upper x1.4, hourglass x0.7), skin-tone interaction for face-adjacent garments (warm sallow gradient, dark skin low contrast), and sheen override (SI>0.5 inverts dark benefit, amplified x1.5 for apple/plus).",
+    "reversals_handled": [
+      "Dark + shiny inversion (sheen_penalty = -0.15 * ((SI-0.5)/0.5), amplified for apple/plus)"
+    ],
+    "exceptions_checked": [
+      "Warm undertone sallow gradient (gradual from L=0 to L=0.22)",
+      "Dark skin low contrast (x0.5 at skin_darkness>0.7)",
+      "Specular highlight override on apple/plus"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "260-327"
+  },
+  {
+    "function_id": "SF_D4_003",
+    "function_name": "score_rise_elongation",
+    "principle_id": "D4_P03",
+    "input_params": [
+      "GarmentProfile (rise_cm, waistband_width_cm, waistband_stretch_pct, expansion_rate)",
+      "BodyProfile (is_petite, is_tall, torso_score, body_shape, belly_zone)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Base gradient: +0.015 per cm above 20cm mid-rise. Petite gate with three paths: short torso (INVERTED to -0.30 if rise>26cm), long torso (x1.5), proportional (x1.3). Tall: x0.5. Apple/Plus muffin-top gate: wide elastic (>=5cm, >=8%) gives +0.10, narrow rigid (<3cm, <5%) OVERRIDES to -0.25. Hourglass high rise bonus +0.03. INVT + high rise + slim leg: x0.6.",
+    "reversals_handled": [
+      "Petite short torso rise inversion (torso_score <= -1.0 AND rise > 26cm -> -0.30)"
+    ],
+    "exceptions_checked": [
+      "Muffin-top gate (apple/plus belly_zone > 0.3)",
+      "V-neck + high rise conflict (cross-garment)"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "352-411"
+  },
+  {
+    "function_id": "SF_D4_004",
+    "function_name": "score_aline_balance",
+    "principle_id": "D4_P04",
+    "input_params": [
+      "GarmentProfile (expansion_rate, drape_coefficient, hem_position)",
+      "BodyProfile (body_shape, is_tall, is_petite, is_plus_size)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Trapezoidal ER response: 0.03-0.06 ramp, 0.06-0.12 peak (+0.25), 0.12-0.18 decline, >0.18 further decline. DRAPE GATE: DC<40% full benefit, 40-65% x0.7, >65% INVERTED to x-0.5 (shelf effect). Body-type: INVT +0.15, tall +0.10, petite+ER>0.12 -0.15, pear +0.05. Plus+stiff: shelf amplified x1.5. Pear hem: mid-thigh -0.10, knee +0.05.",
+    "reversals_handled": [
+      "Stiff fabric A-line shelf inversion (DC > 65% -> drape_mult = -0.5)",
+      "Plus-size shelf amplification (x1.5)"
+    ],
+    "exceptions_checked": [
+      "Petite frame overwhelm (ER > 0.12)",
+      "Pear hemline dead zone (mid-thigh)"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "440-515"
+  },
+  {
+    "function_id": "SF_D4_005",
+    "function_name": "score_tent_concealment",
+    "principle_id": "D4_P05",
+    "input_params": [
+      "GarmentProfile (expansion_rate, is_structured)",
+      "BodyProfile (styling_goal, body_shape, is_petite, is_plus_size, is_tall, whr)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Three zones: semi-fitted (ER 0.03-0.08: +0.15 optimal zone), gap (ER 0.08-0.12: 0.0), tent (ER >= 0.12). Dual-goal split for tent: concealment goal -> +0.25/+0.35, slimming goal -> -0.20/-0.40, balance -> weighted 70% slimming. Five body-type reversals: hourglass -0.20, petite -0.15, plus -0.10, INVT -0.10, tall +0.10, rectangle +0.05.",
+    "reversals_handled": [
+      "R1: Tent x Hourglass (-0.20 additional: destroys WHR)",
+      "R2: Tent x Petite (-0.15: fabric overwhelms frame)",
+      "R3: Tent x Plus (-0.10: max size overestimate)",
+      "R4: Tent x INVT (-0.10: lampshade)"
+    ],
+    "exceptions_checked": [
+      "Concealment paradox (dual-goal split)",
+      "Semi-fitted optimal zone",
+      "Plus+structured semi-fitted (+0.20)"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "544-609"
+  },
+  {
+    "function_id": "SF_D4_006",
+    "function_name": "score_color_break",
+    "principle_id": "D4_P06",
+    "input_params": [
+      "GarmentProfile (has_contrasting_belt, has_tonal_belt, belt_width_cm)",
+      "BodyProfile (body_shape, is_petite, is_tall, is_plus_size, whr, belly_zone)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Three paths: no belt (0.0), tonal belt (-0.03), contrasting belt (base -0.10). Hourglass REVERSAL: +0.20 (wide belt +0.25) \u2014 exits early. Petite: penalty x1.5. Apple: -0.25 (spotlights widest). Tall: x0.3. INVT: +0.08. Rectangle: +0.05. Pear: WHR-dependent (+0.05 if narrow, -0.10 if moderate). Plus: belly-zone-dependent (-0.20 if belly concern, +0.05 if not).",
+    "reversals_handled": [
+      "R7: Color break x Hourglass (standard -0.10 -> actual +0.20, wide belt +0.25)"
+    ],
+    "exceptions_checked": [
+      "Apple belt spotlighting (-0.25)",
+      "Plus belly zone gate",
+      "Pear WHR-dependent outcome"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "631-696"
+  },
+  {
+    "function_id": "SF_D4_007",
+    "function_name": "score_bodycon_mapping",
+    "principle_id": "D4_P07",
+    "input_params": [
+      "GarmentProfile (expansion_rate, gsm, is_structured, zone)",
+      "BodyProfile (body_shape, is_plus_size, is_athletic, belly_zone)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Gate: ER > 0.03 = not bodycon (0.0). Fabric construction gate: thin (GSM<200, not structured) vs structured (GSM>=250 or is_structured). Hourglass REVERSAL: thin +0.30, structured +0.35, belly concern -0.15 offset. Apple: athletic +0.20, thin -0.40, structured -0.12. Pear: thin -0.30, structured -0.09. Plus: thin -0.40, structured -0.05. INVT: zone-dependent (-0.15 full, -0.10 top, -0.05 bottom). Rectangle: 0.0.",
+    "reversals_handled": [
+      "R6: Bodycon x Hourglass (standard -0.10 -> actual +0.30/+0.35)",
+      "R5: Bodycon x Apple amplified (-0.10 -> -0.40)"
+    ],
+    "exceptions_checked": [
+      "Fabric construction gate (0.35-point spread)",
+      "Athletic apple exception (+0.20)",
+      "Hourglass belly concern offset (-0.15)",
+      "INVT zone dependency"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "723-809"
+  },
+  {
+    "function_id": "SF_D4_008",
+    "function_name": "score_matte_zone",
+    "principle_id": "D4_P08",
+    "input_params": [
+      "GarmentProfile (sheen_index, zone, cling_risk)",
+      "BodyProfile (body_shape, is_plus_size)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Four sheen bands: deeply matte (SI<0.15: +0.08), low sheen (0.15-0.35: proportional decline), neutral (0.35-0.50: 0.0), high sheen (>0.50: negative). Body-type multiplier: apple x1.5, plus x1.5, pear hip x1.3, hourglass x0.5 (moderate sheen positive), INVT upper x1.2. CLING TRAP: matte + cling>0.6 OVERRIDES to negative (plus -0.15, apple -0.12, pear -0.10).",
+    "reversals_handled": [
+      "Hourglass moderate sheen benefit (SI 0.35-0.55 -> +0.05)"
+    ],
+    "exceptions_checked": [
+      "Cling trap override (matte + clingy on plus/apple/pear)",
+      "Hourglass sheen curve enhancement"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "831-887"
+  },
+  {
+    "function_id": "SF_D4_009",
+    "function_name": "score_vneck_elongation",
+    "principle_id": "D4_P09",
+    "input_params": [
+      "GarmentProfile (neckline, rise_cm)",
+      "BodyProfile (body_shape, is_petite, is_tall, torso_score)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Non-V paths: crew (0.0), boat/off-shoulder (INVT -0.15, rectangle +0.08, pear +0.05), scoop (+0.05, INVT +0.08), turtleneck (INVT -0.05, petite short-torso +0.10). V-neck path: base +0.10. INVT +0.18 (max). Hourglass +0.12. Petite short-torso + high rise: CONFLICT -0.05. Petite short-torso + mid/low rise: +0.15. Petite normal: +0.12. Apple: +0.10. Tall: +0.05. Pear: +0.10.",
+    "reversals_handled": [
+      "V-neck + high rise on petite short-torso: conflicting attention directions (-0.05)"
+    ],
+    "exceptions_checked": [
+      "Boat neck on INVT (-0.15, widens shoulders)",
+      "Turtleneck on petite short-torso with high rise (+0.10)",
+      "Cross-garment V-neck + rise conflict"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "914-987"
+  },
+  {
+    "function_id": "SF_D4_010",
+    "function_name": "score_monochrome_column",
+    "principle_id": "D4_P10",
+    "input_params": [
+      "GarmentProfile (is_monochrome_outfit, is_dark, color_lightness, has_contrasting_belt, has_tonal_belt)",
+      "BodyProfile (is_petite, is_tall, body_shape, is_plus_size)"
+    ],
+    "output": "Tuple[float, str] \u2014 (score in [-1,+1], reasoning chain)",
+    "key_logic_summary": "Gate: not monochrome = 0.0. Base +0.08. Dark bonus +0.07. Petite: +0.15 (AMPLIFIED). Tall: +0.03. Hourglass: +0.03 (flattens waist-hip), +belt -> +0.12 (best of both). INVT: +0.05 (misses dark-top-light-bottom). Apple: +0.08, dark +0.15. Pear: +0.05, dark +0.12. Plus: +0.10, plus-dark +0.18 (most reliable combo).",
+    "reversals_handled": [],
+    "exceptions_checked": [
+      "Hourglass + monochrome + belt (best of both worlds +0.12)",
+      "INVT dark-top-light-bottom superior to monochrome (+0.15 vs +0.05)",
+      "Plus-size dark monochrome as most reliable recommendation"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "1008-1060"
+  },
+  {
+    "function_id": "SF_D4_011",
+    "function_name": "score_garment_composite",
+    "principle_id": "COMPOSITE",
+    "input_params": [
+      "GarmentProfile",
+      "BodyProfile"
+    ],
+    "output": "Tuple[float, List[PrincipleResult]] \u2014 (composite score in [-1,+1], list of 10 principle results with name, score, reasoning, weight, applicable flag)",
+    "key_logic_summary": "Calls all 10 scorers. Assigns weights: non-applicable -> 0, goal-matching -> x1.5, strong negatives (<-0.15) -> x1.2. Computes weighted average of applicable principles. SILHOUETTE DOMINANCE RULE: if tent/bodycon < -0.20 AND goal = slimming, composite forced to worst_silhouette * 0.3 (cannot go positive). Clamps to [-1, +1].",
+    "reversals_handled": [
+      "Silhouette dominance prevents color/pattern from masking wrong fit"
+    ],
+    "exceptions_checked": [
+      "Non-applicable principle detection (score ~0 + 'N/A')",
+      "Goal-based weight amplification (SLIMMING, EMPHASIS, CONCEALMENT)"
+    ],
+    "source_domain": 4,
+    "source_file": "kridha_scoring_engine_v4.py",
+    "lines_of_code": "1076-1155"
+  }
+]

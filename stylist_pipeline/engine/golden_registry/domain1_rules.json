@@ -1,0 +1,395 @@
+{
+  "domain": "perception_science",
+  "layer": 2,
+  "source_file": "domain1.md",
+  "extraction_date": "2026-02-17",
+  "total_rules": 52,
+  "rules": [
+    {
+      "rule_id": "R1_01",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Helmholtz stripe effect follows sigmoid transition centered at W:H=0.52",
+      "formula": "sigmoid = 1 / (1 + exp(-(wh_ratio - 0.52) * 6.0)); effect = -5.8 + sigmoid * (15.37 - (-5.8))",
+      "parameters": {"crossover_ratio": 0.52, "steepness": 6.0, "max_slim": -5.8, "max_widen": 15.37},
+      "score_range": [-1.0, 1.0],
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R1_02",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Duty cycle modifier for stripe effects",
+      "formula": "duty_cycle_modifier = 0.6 + 0.4 * stripe_duty_cycle",
+      "parameters": {"min_modifier": 0.6, "max_modifier": 1.0},
+      "evidence": "Thompson 2011: duty cycle 0.9 -> ~10% effect; duty cycle 0.1 -> ~4%",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R1_03",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Comparison baseline reduction: H-stripes vs plain garment reduces effect by 70%",
+      "formula": "if baseline == 'none': effect *= 0.3",
+      "evidence": "Thompson Exp 3: horizontal vs PLAIN -> effect ~0 for moderate bodies",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R1_04",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "3D viewing amplifies stripe effect by 1.84x",
+      "formula": "if viewing_3D: effect *= 1.84",
+      "evidence": "Thompson: 3D mannequin 10.7% vs 2D drawing 5.8%",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R1_05",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Oppel-Kundt filler curve is non-monotonic: peaks at 8-12 fillers then declines",
+      "formula": "Inverted-U curve with maximum at 11-13 equispaced fillers (Wackermann 2010)",
+      "parameters": {"peak_fillers": [11, 13], "refined_peak": [15, 16]},
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R1_06",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Luminance additive component: darker garment independently slims",
+      "formula": "luminance_effect = -3.5 * (1 - garment_luminance_normalized)",
+      "parameters": {"max_slim_pct": -3.5, "at_luminance": 0},
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R1_07",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Stripe width: narrow stripes amplify Helmholtz more than wide stripes",
+      "evidence": "Thompson 2011: duty cycle 0.9 (narrow lines, wide gaps) -> up to 10.1%; 0.1 -> ~4%",
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R1_08",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Bright horizontal stripes on dark garment maximize perceived widening",
+      "formula": "irradiation expansion: +5-10% per stripe edge * stripe count; Oppel-Kundt: +3-7% at 8-12 stripes; Combined: +5-12%",
+      "score_range": [0.05, 0.11],
+      "confidence": 0.60
+    },
+    {
+      "rule_id": "R2_01",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Luminance-width relationship follows saturating sigmoid curve",
+      "formula": "sigmoid = 1/(1+exp(-0.08*(L_star-35))); if sigmoid<0.5: effect = -1.5*(1-2*sigmoid); else: effect = 0.8*(2*sigmoid-1)",
+      "parameters": {"L_midpoint": 35, "L_steepness": 0.08, "max_slim_pct": -1.5, "max_widen_pct": 0.8},
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R2_02",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Background luminance multiplier: dark backgrounds amplify slimming 7x",
+      "formula": "bg_multiplier = max(0.15, (1 - bg_L/100)^1.5 * 3.0 + 0.15)",
+      "parameters": {"gamma": 1.5, "range": [0.15, 3.15]},
+      "evidence": "Koutsoumpis Exp 3: dark bg 1.33% vs light bg 0.19% (7x ratio)",
+      "confidence": 0.85
+    },
+    {
+      "rule_id": "R2_03",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Body-width proportionality correction: wider bodies get smaller % slimming",
+      "formula": "width_correction = reference_width_ratio / body_width_ratio; reference = 0.40",
+      "evidence": "Edge contraction is absolute; % decreases for wider bodies",
+      "confidence": 0.65
+    },
+    {
+      "rule_id": "R2_04",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "On white e-commerce background (L*=100), luminance slimming is near zero (0.19%, not significant, p=0.38)",
+      "score_value": -0.018,
+      "confidence": 0.85
+    },
+    {
+      "rule_id": "R2_05",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "On dark background (L*=30), luminance slimming is meaningful (1.33%, d=1.27, p<0.001)",
+      "score_value": -0.124,
+      "confidence": 0.85
+    },
+    {
+      "rule_id": "R2_06",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Red rated as slim as black despite higher L* — hue anomaly",
+      "evidence": "Sidhu 2021: red attracted slimmer body size ratings similar to black",
+      "score_note": "Captured in hue-correction term",
+      "confidence": 0.55
+    },
+    {
+      "rule_id": "R2_07",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Grey perceived wider than white despite lower L* — hue anomaly",
+      "evidence": "Sidhu 2021: grey/green rated as making body appear LARGER than white",
+      "score_note": "Proves hue/saturation/psychological associations independently modulate perceived size",
+      "confidence": 0.55
+    },
+    {
+      "rule_id": "R2_08",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Monochromatic dressing (unbroken vertical column) reduces perceived width by ~1.5-5.0%",
+      "formula": "HVI on full outfit -> 5-10% height overestimation -> 1.5-5.0% width reduction via reciprocity factor (0.3-0.5% per 1%)",
+      "score_range": [-0.014, -0.047],
+      "confidence": 0.20
+    },
+    {
+      "rule_id": "R2_09",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Color break at waist splits column, reducing height overestimation by 40-60%",
+      "formula": "Effective widening at break zone: +1-3% relative to monochromatic",
+      "score_range": [0.01, 0.03],
+      "confidence": 0.20
+    },
+    {
+      "rule_id": "R2_10",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Skin-garment contrast modifier: high contrast sharpens body boundary (+width), low blends (-width)",
+      "formula": "When deltaL > 60: +0.5-1.5% width. When deltaL < 30: boundary less salient. Net: < ±0.5%",
+      "score_range": [-0.05, 0.05],
+      "confidence": 0.20
+    },
+    {
+      "rule_id": "R2_11",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Luminance contribution to Oppel-Kundt is 20-33% of total effect",
+      "evidence": "Wackermann 2012",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R2_12",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Polarity asymmetry: bright-on-dark STRONGER expansion than dark-on-bright",
+      "evidence": "Wackermann 2012: negative polarity (bright on dark) = stronger Oppel-Kundt",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R3_01",
+      "principle": "P7_VNECKLINE_MULLER_LYER",
+      "rule": "Müller-Lyer effect peaks at ~30 degree fin angle with 15-18% elongation (wings-out)",
+      "formula": "See muller_lyer_effect() in domain1.md",
+      "parameters": {"peak_diverging": 0.15, "peak_converging": 0.10, "optimal_angle": 30},
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R3_02",
+      "principle": "P7_VNECKLINE_MULLER_LYER",
+      "rule": "Wings-OUT (diverging) produces 30-50% stronger effect than wings-IN (converging)",
+      "evidence": "Day & Dickinson 1976; Biervliet 1896; Heymans 1896",
+      "confidence": 0.85
+    },
+    {
+      "rule_id": "R3_03",
+      "principle": "P7_VNECKLINE_MULLER_LYER",
+      "rule": "At 90 degrees from body axis, Müller-Lyer effect is zero",
+      "evidence": "Standard horizontal shoulder seams, perpendicular pocket flaps are perceptually neutral",
+      "confidence": 0.90
+    },
+    {
+      "rule_id": "R3_04",
+      "principle": "P7_VNECKLINE_MULLER_LYER",
+      "rule": "Gap between design element and body edge (8-18mm) can REVERSE the illusion",
+      "evidence": "Assimilation -> contrast shift per gap-effect studies",
+      "confidence": 0.55
+    },
+    {
+      "rule_id": "R3_05",
+      "principle": "P3_PATTERN_SCALE",
+      "rule": "Pattern scale optimal zone: 5-15 repeats across body segment",
+      "formula": "< 3 repeats: BLOCK effect (-0.3); > 20 repeats: NOISE/Oppel-Kundt (-0.2); 5-15: optimal (+0.1)",
+      "confidence": 0.35
+    },
+    {
+      "rule_id": "R3_06",
+      "principle": "P3_PATTERN_SCALE",
+      "rule": "Single pattern element > 20% of body segment width triggers figure-ground segregation",
+      "formula": "width_ratio > 0.20: score -= 0.25",
+      "confidence": 0.35
+    },
+    {
+      "rule_id": "R3_07",
+      "principle": "P3_PATTERN_SCALE",
+      "rule": "Diagonal lines decompose into H and V components by angle",
+      "formula": "H_component = cos(theta); V_component = sin(theta); 45deg = equal; 30deg = more Helmholtz; 60deg = more elongation",
+      "confidence": 0.40
+    },
+    {
+      "rule_id": "R3_08",
+      "principle": "P3_PATTERN_SCALE",
+      "rule": "Downward chevron creates Müller-Lyer contraction at apex",
+      "formula": "alpha=30deg: ~10% narrowing; 45deg: ~8%; 60deg: ~5%; 90deg: 0%",
+      "confidence": 0.40
+    },
+    {
+      "rule_id": "R4_01",
+      "principle": "P5_VISUAL_ATTENTION",
+      "rule": "Attention-to-size conversion factor: 1% fixation shift = 0.3-0.5% perceived size change",
+      "formula": "size_change_pct = fixation_shift_pct * 0.4",
+      "evidence": "Derived from Cundall & Guo 2017: 15% fixation shift -> 5-8% width underestimation",
+      "confidence": 0.65
+    },
+    {
+      "rule_id": "R4_02",
+      "principle": "P5_VISUAL_ATTENTION",
+      "rule": "Focal point at concern zone produces NEGATIVE score (draws MORE attention)",
+      "formula": "if focal_zone == concern_zone: score = -0.5 * strength",
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R4_03",
+      "principle": "P5_VISUAL_ATTENTION",
+      "rule": "Loose clothing at waist-hip redirects gaze to legs, producing 1 dress size underestimation",
+      "formula": "Binary threshold: kicks in at ~4-8cm garment ease beyond body circumference",
+      "evidence": "Cundall & Guo 2017",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R4_04",
+      "principle": "P5_VISUAL_ATTENTION",
+      "rule": "Black clothing directs gaze to upper body; white clothing to waist-hip",
+      "evidence": "Sidhu 2021: black = double duty (irradiation contraction + attention redirection away from waist); white = double damage",
+      "confidence": 0.65
+    },
+    {
+      "rule_id": "R4_05",
+      "principle": "P5_VISUAL_ATTENTION",
+      "rule": "Observer awareness suppression: lab data underestimates real-world body scrutiny",
+      "evidence": "PMC7881876: gaze recording awareness shifts fixation to faces, away from body",
+      "confidence": 0.70
+    },
+    {
+      "rule_id": "R4_06",
+      "principle": "P5_VISUAL_ATTENTION",
+      "rule": "Face receives ~20% fixation regardless of clothing; remaining 80% is modulated by garment",
+      "evidence": "Consolidated from Cornelissen 2009, Cundall & Guo 2017",
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R5_01",
+      "principle": "P6_VERTICAL_LINES",
+      "rule": "HVI magnitude: vertical overestimated 5-10% vs equal horizontal in 2D; 7-13% in 3D",
+      "evidence": "Meta-analysis of 100+ years of data",
+      "confidence": 0.90
+    },
+    {
+      "rule_id": "R5_02",
+      "principle": "P6_VERTICAL_LINES",
+      "rule": "Width vs height asymmetry: height overestimation (7.1%) > width underestimation (4.5%)",
+      "evidence": "Thompson & Mikellidou 2011 Exp 1",
+      "confidence": 0.85
+    },
+    {
+      "rule_id": "R5_03",
+      "principle": "P6_VERTICAL_LINES",
+      "rule": "Frame orientation modulates HVI: horizontal frame gives 3.9% HVI; vertical frame reduces to ~1%",
+      "evidence": "PMC6802759",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R6_01",
+      "principle": "P4_PROPORTION_DIVISION",
+      "rule": "Color break at widest body point increases perceived zone width by +4-8%",
+      "formula": "Combined: attention redirection (+3.2-4.8%) + HVI column disruption (+1-3%)",
+      "score_range": [0.04, 0.07],
+      "confidence": 0.30
+    },
+    {
+      "rule_id": "R6_02",
+      "principle": "P4_PROPORTION_DIVISION",
+      "rule": "High-contrast color break at waist disrupts vertical continuity, reducing HVI by 40-60%",
+      "evidence": "Sidhu 2021: white increases waist-hip fixation by 8-12%",
+      "confidence": 0.30
+    },
+    {
+      "rule_id": "R7_01",
+      "principle": "P8_GARMENT_FIT",
+      "rule": "Garment fit multiplier on L1-L3 illusion effects",
+      "formula": "bodycon=1.0, fitted=0.85, regular=0.70, relaxed=0.50, loose=0.35, oversized=0.25",
+      "confidence": 0.60
+    },
+    {
+      "rule_id": "R7_02",
+      "principle": "P8_GARMENT_FIT",
+      "rule": "Fit as L4 additive: when aligned with L1-3, adds at 0.90x; when conflicting, 50/50 blend",
+      "formula": "if L4_aligned: total += L4_effect * 0.90; if conflicting: total = 0.5*L1_3 + 0.5*L4",
+      "confidence": 0.55
+    },
+    {
+      "rule_id": "R7_03",
+      "principle": "P8_GARMENT_FIT",
+      "rule": "Loose clothing gaze redirection has binary threshold at ~4-8cm ease",
+      "evidence": "Cundall & Guo 2017",
+      "confidence": 0.65
+    },
+    {
+      "rule_id": "R8_01",
+      "principle": "HIERARCHY",
+      "rule": "4-level hierarchical combination with cross-level attenuation",
+      "formula": "L1: luminance + stripes_partial (synergy 1.44x, ceiling 1.01% on light bg); L2: adds to L1 at 0.92x attenuation (ceiling ±15.37%); L3: adds to L1+L2 at 0.97x; L4: aligned adds at 0.90x, conflicting 50/50 blend",
+      "confidence": 0.70
+    },
+    {
+      "rule_id": "R8_02",
+      "principle": "HIERARCHY",
+      "rule": "Level 1 synergy: luminance + stripe edge component gives 1.44x boost",
+      "evidence": "Koutsoumpis Exp 2",
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R8_03",
+      "principle": "HIERARCHY",
+      "rule": "Level 1 ceiling: 1.01% on light background, scales to 3.03% on dark background",
+      "confidence": 0.75
+    },
+    {
+      "rule_id": "R8_04",
+      "principle": "HIERARCHY",
+      "rule": "Background multiplier ranges from 0.15 (white) to 6.5 (very dark)",
+      "confidence": 0.80
+    },
+    {
+      "rule_id": "R8_05",
+      "principle": "CONVERSION",
+      "rule": "Percentage to score conversion is asymmetric",
+      "formula": "if pct <= 0: score = max(-1.0, pct/10.7); if pct > 0: score = min(1.0, pct/15.37)",
+      "parameters": {"slim_anchor": -10.7, "widen_anchor": 15.37},
+      "confidence": 0.85
+    },
+    {
+      "rule_id": "R9_01",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Color contrast at body transitions: white at waist-hip = double damage",
+      "formula": "irradiation expansion + attention drawn to widest zone",
+      "evidence": "Sidhu 2021: white clothing increased waist-hip fixation by 8-12%",
+      "confidence": 0.55
+    },
+    {
+      "rule_id": "R9_02",
+      "principle": "P2_LUMINANCE_COLOR",
+      "rule": "Black at waist-hip = double duty: irradiation contraction + attention redirection away",
+      "evidence": "Sidhu 2021 + Koutsoumpis 2021",
+      "confidence": 0.65
+    },
+    {
+      "rule_id": "R10_01",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Confidence SD envelope increases in transition zone",
+      "formula": "Helmholtz zone: SD ≈ 3-4%; Transition zone: SD ≈ 5-7% (highest uncertainty); Reversal zone: SD ≈ 9.24% (Imai n=137)",
+      "confidence": 0.70
+    },
+    {
+      "rule_id": "R10_02",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Narrow stripes on wider bodies may preserve Helmholtz deeper into transition zone",
+      "evidence": "Oppel-Kundt literature: filler parameters shift the maximum",
+      "confidence": 0.45
+    },
+    {
+      "rule_id": "R10_03",
+      "principle": "P1_HELMHOLTZ_STRIPES",
+      "rule": "Cultural expectations modulate the perceptual effect (Swami 2012 ecological contradiction)",
+      "evidence": "Swami real-world: Cohen's d=0.63 widening despite Helmholtz predicting slimming",
+      "confidence": 0.55
+    }
+  ]
+}

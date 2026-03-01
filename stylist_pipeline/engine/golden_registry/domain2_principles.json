@@ -1,0 +1,109 @@
+{
+  "domain": "garment_construction",
+  "layer": 1,
+  "source_file": "domain2.md",
+  "extraction_date": "2026-02-17",
+  "total_principles": 6,
+  "scoring_system": {
+    "scale": "+1.0 (maximum widening) to -1.0 (maximum narrowing/elongation)",
+    "dimensions": ["neck_length", "shoulder_width", "arm_width", "leg_length", "waist_width", "bust_size", "height_elongation", "face_shape"],
+    "compound_formula": "final = sign * (1 - (1-|s1|)*(1-|s2|)*...)"
+  },
+  "principles": [
+    {
+      "principle_id": "D2_P1_NECKLINE",
+      "name": "Neckline Effects on Body Perception",
+      "sub_types": 15,
+      "sub_type_list": ["V-neck", "crew_neck", "boat_neck", "square_neck", "turtleneck", "mock_neck", "sweetheart", "cowl_neck", "off_shoulder", "wrap_surplice", "halter", "scoop", "keyhole", "one_shoulder", "mandarin_collar"],
+      "mechanism": "Neckline type and depth control perceived neck length, shoulder width, bust framing, and upper body volume. Each neckline creates a specific geometric interaction with the body.",
+      "key_effects": {
+        "v_neck": "Elongation via Muller-Lyer wings-out. Depth determines perceived extension. Dividing threshold by bust size.",
+        "crew_neck": "Shortens perceived neck by ~1.0 inch. Creates horizontal line across upper chest.",
+        "boat_neck": "Widens perceived shoulder width by 1.5-3.0 inches. Horizontal emphasis.",
+        "square_neck": "Angularizes face shape perception. Creates structured frame.",
+        "turtleneck": "Shortens perceived neck by ~2.0 inches. Creates monolithic column effect. REVERSAL for long necks.",
+        "sweetheart": "Bust illusion via curved neckline framing. Enhances perceived bust by 0.5-1.0 cup size.",
+        "cowl_neck": "Adds volume at upper chest. Drape creates visual mass.",
+        "off_shoulder": "Exposes shoulder-to-arm transition. Effect depends on shoulder width relative to body.",
+        "wrap_surplice": "COMPOUND mechanism: V-elongation + diagonal slimming + waist definition + bust accommodation"
+      },
+      "body_type_dependent": true,
+      "confidence_range": "0.60-0.92"
+    },
+    {
+      "principle_id": "D2_P2_SLEEVE",
+      "name": "Sleeve Effects on Arm and Shoulder Perception",
+      "sub_types": 11,
+      "sub_type_list": ["sleeveless", "cap", "short", "elbow", "three_quarter", "seven_eighth", "long", "bell", "puff_mutton", "flutter", "raglan"],
+      "mechanism": "Sleeve termination point determines perceived arm width. Arm appears as wide as where it's last visible. The TRANSLATION PROBLEM: same sleeve length creates different effects on different arm lengths.",
+      "key_effects": {
+        "cap_sleeve": "Creates 'ledge' effect at widest upper arm. Widens perceived arm by framing at maximum circumference. Score: -0.30 to -0.60.",
+        "three_quarter": "Terminates at forearm narrowest point — OPTIMAL for arm slimming. Score: +0.75 to +1.00. BUT translation problem on petite/tall arms.",
+        "puff_sleeve": "Shoulder widening by 0.5-4.0 inches depending on volume. Peak use case: pear body. Extreme reversal: inverted triangle.",
+        "flutter": "Widens at shoulder but with movement/softness that reduces harshness vs cap sleeve."
+      },
+      "key_concept": "Sleeve Frame Effect: termination at widest arm point (position 3 inches from shoulder) is worst; termination at forearm narrowest (3/4 length) is optimal.",
+      "translation_problem": "Standard '3/4 sleeve' at 17 inches from shoulder reaches WRIST on petite arms (<21 inches) and mid-forearm on tall arms (>25 inches).",
+      "body_type_dependent": true,
+      "confidence_range": "0.75-0.93"
+    },
+    {
+      "principle_id": "D2_P3_HEMLINE",
+      "name": "Hemline Effects on Leg Perception",
+      "mechanism": "Hemline position relative to anatomical landmarks determines perceived leg length. Three DANGER ZONES exist: widest thigh, kneecap, widest calf. Safe zone between knee and calf may COLLAPSE on petite bodies.",
+      "key_effects": {
+        "above_knee": "Elongation benefit: +0.20 per inch above knee (diminishing returns). Max +0.60.",
+        "knee_danger": "Bisects leg at joint. Score: -0.30 to -0.40.",
+        "below_knee_safe": "Zone between knee danger and calf danger. Score: +0.15 to +0.30 if zone exists.",
+        "calf_danger": "Frames leg at maximum lower-leg width. Score: -0.35 to -0.50.",
+        "ankle": "Frames at narrowest leg point. Score: +0.25 to +0.45.",
+        "floor": "Legs fully covered. Score: +0.05 to +0.15 (tall); -0.10 (petite without heels)."
+      },
+      "translation_problem": "A 'knee length' dress on a 5'9 model lands at mid-thigh on a 5'2 body. Garment length must be scaled by height ratio.",
+      "zone_collapse": "When knee-to-calf distance < 4.5 inches (petite), danger zones OVERLAP. No safe below-knee position exists.",
+      "body_type_dependent": true,
+      "confidence_range": "0.65-0.88"
+    },
+    {
+      "principle_id": "D2_P4_WAISTLINE",
+      "name": "Waistline and Proportion Effects",
+      "mechanism": "Waist placement shifts perceived division between upper and lower body, directly controlling torso-to-leg ratio. Golden ratio target: visual legs = 61.8% of total visual height.",
+      "key_effects": {
+        "empire": "Under bust — raises visual waist. Elongates perceived legs. BUT: tent effect risk on large bust + stiff fabric. Shape loss on hourglass.",
+        "high_waist": "Between empire and natural. Good balance of elongation and waist definition.",
+        "natural_waist": "At anatomical waist. Maintains current proportions. Belt at natural waist on apple = HARMFUL.",
+        "drop_waist": "Below natural waist. Shortens perceived legs. Severe worsening on short legs.",
+        "no_waist": "Column without division point. Neutral score."
+      },
+      "golden_ratio": 0.618,
+      "body_type_dependent": true,
+      "confidence_range": "0.60-0.80"
+    },
+    {
+      "principle_id": "D2_P5_SILHOUETTE",
+      "name": "Silhouette and Fit Effects",
+      "sub_types": ["A-line", "bodycon", "fit-and-flare", "shift", "empire", "column", "wrap", "tent", "mermaid", "peplum"],
+      "mechanism": "Silhouette controls which body zones are revealed vs. concealed, and creates engineered shapes that may differ from body shape.",
+      "key_effects": {
+        "a_line": "Skims hips without clinging. Good for pear. Creates triangle that balances wider shoulders on inverted triangle.",
+        "bodycon": "Reveals all contours. Positive on smooth contours, negative on irregular contours.",
+        "fit_and_flare": "Cinches waist + flares at hip. Flare origin point is critical — must be below true hip (at high hip) for pear.",
+        "shift": "Straight column. Minimal shaping. Good for rectangle (doesn't emphasize lack of curves). Bad for hourglass (hides curves)."
+      },
+      "body_type_dependent": true,
+      "confidence_range": "0.45-0.80"
+    },
+    {
+      "principle_id": "D2_P6_COLOR_PATTERN",
+      "name": "Color and Pattern Effects (Construction Context)",
+      "mechanism": "Dark color slimming (2-5% real, not 10-15% popular belief), horizontal stripe body-size dependency, skin-tone contrast, monochrome vs. color blocking. Shape-loss paradox: black erases waist definition on hourglass.",
+      "key_effects": {
+        "dark_color": "Near-black slims ~4% (L*<=10); dark ~3% (L*<=25); medium-dark ~2% (L*<=40); medium ~0.5%; light: mild widening.",
+        "hourglass_black_paradox": "Monochrome dark on hourglass ERASES waist definition. Net negative for strong hourglass (waist-hip diff >= 8 inches). Score: -0.30 at pure black.",
+        "stripe_ashida": "Body-size dependent: <30th percentile width H-stripes slim (+0.20); >70th percentile H-stripes widen (-0.18). Based on hip circumference proxy."
+      },
+      "body_type_dependent": true,
+      "confidence_range": "0.40-0.70"
+    }
+  ]
+}

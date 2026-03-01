@@ -1,0 +1,472 @@
+[
+  {
+    "context_rule_id": "CTX_001",
+    "context_type": "cultural",
+    "parameter": "red_color_symbolism",
+    "rule": "Red in India = purity, bridal, auspicious, fertility. Red in US = passion, danger, romance, boldness. Red at Indian wedding: +0.95 cultural score. Wedding guests avoid red to not overshadow bride: guest wearing red scores -0.30.",
+    "scoring_impact": "Indian wedding bride: +0.95 cultural. Indian wedding guest in red: -0.30. US context: neutral.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_002",
+    "context_type": "cultural",
+    "parameter": "white_color_symbolism",
+    "rule": "White in India = mourning, loss, funerals, widowhood. White in US = purity, weddings (bridal), peace. White at Indian celebration is DEEPLY inappropriate.",
+    "scoring_impact": "Indian celebration: cultural score = 0.05 (near-zero). US wedding: high cultural score.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_003",
+    "context_type": "cultural",
+    "parameter": "black_color_symbolism",
+    "rule": "Black in India = bad luck, grief, evil eye. Black in US = sophistication, elegance, power. Gaining acceptance for Indian sangeet/reception but still cautious for ceremony.",
+    "scoring_impact": "US evening: +0.90. Indian wedding ceremony: +0.20. Indian sangeet/reception: gaining acceptance.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_004",
+    "context_type": "cultural",
+    "parameter": "gold_color_symbolism",
+    "rule": "Gold in India = divine energy, prosperity, sacred. Central to Indian wedding embroidery. Red + gold = ultimate auspicious combo. Gold in US = luxury, glamour, holiday season.",
+    "scoring_impact": "Indian wedding: gold embroidery essential. Red + gold combination: maximum cultural score.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_005",
+    "context_type": "cultural",
+    "parameter": "saffron_color_symbolism",
+    "rule": "Saffron in India = purity, spiritual discipline, devotion. Worn by holy men. Represents Dharma. Temple associations. Saffron in US = autumn, warmth, Halloween.",
+    "scoring_impact": "India religious context: high cultural resonance. India casual: still spiritual association.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_006",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_US_professional",
+    "rule": "US professional: acceptable neckline depth <= 12cm from collarbone. Sleeveless acceptable in many offices.",
+    "scoring_impact": "Depth > 12cm in US professional context: negative exposure score.",
+    "region": "US",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_007",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_US_formal",
+    "rule": "US formal evening: acceptable neckline depth <= 30cm. Deep necklines, short hemlines standard. Any hemline length acceptable.",
+    "scoring_impact": "US formal: wider exposure range acceptable.",
+    "region": "US",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_008",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_India_professional",
+    "rule": "India professional: acceptable neckline depth <= 8cm. Hemline below knee. Upper arm coverage common. A well-draped cotton saree carries same authority as Western blazer.",
+    "scoring_impact": "India professional: depth > 8cm triggers negative score. Sleeveless more restricted.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_009",
+    "context_type": "cultural",
+    "parameter": "modesty_neckline_India_wedding_ceremony",
+    "rule": "India wedding ceremony: front neckline <= 10cm. Floor/ankle hemline. BACKS can be deep (<= 30cm back ok) - this is traditional.",
+    "scoring_impact": "Deep front at Indian ceremony: negative. Deep back: culturally acceptable (traditional).",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_010",
+    "context_type": "cultural",
+    "parameter": "modesty_India_wedding_reception",
+    "rule": "India wedding reception: front neckline <= 18cm. More relaxed than ceremony. Embellishment expected.",
+    "scoring_impact": "Reception more permissive than ceremony. Heavy embellishment positive.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_011",
+    "context_type": "cultural",
+    "parameter": "saree_draping_styles",
+    "rule": "Saree is physics-based draping system (5-9 yards unstitched). Nivi style = vertical pleats (elongation). Bengali style = pallu across front (upper-body volume). Gujarati style = redistributes visual weight to right shoulder. Each must be modeled separately for body perception.",
+    "scoring_impact": "Draping style fundamentally changes proportion scoring. Cannot use single saree model.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW (practitioner only)"
+  },
+  {
+    "context_rule_id": "CTX_012",
+    "context_type": "cultural",
+    "parameter": "saree_pallu_proportion",
+    "rule": "Pallu creates visual proportion division (not hemline). Pallu to waist = ~60/40 split (good). Pallu to mid-thigh = ~50/50 (BAD). Pallu to knee = ~40/60 (good for elongation).",
+    "scoring_impact": "Pallu position replaces hemline scoring for sarees. 50/50 split is worst.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_013",
+    "context_type": "cultural",
+    "parameter": "saree_border_width",
+    "rule": "Thick contrasting borders widen at hemline; thin borders create cleaner vertical lines. Border-to-width ratio > 0.15 = significant widening penalty.",
+    "scoring_impact": "Border ratio > 0.15: widening penalty applied to saree score.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_014",
+    "context_type": "cultural",
+    "parameter": "saree_starch_confound",
+    "rule": "A 120 GSM cotton saree with heavy starch behaves like 200+ GSM structured fabric. Model: effective_gsm = gsm x (1 + starch_factor). Starch: none=0, light=0.3, heavy=0.7.",
+    "scoring_impact": "Starch transforms fabric behavior. Must use effective_gsm in all fabric-dependent scoring.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_015",
+    "context_type": "cultural",
+    "parameter": "lehenga_waistline_override",
+    "rule": "Lehenga waistline sits at hip (delta = -8 to -12cm). Scores 0.30 under standard waistline rules. MUST bypass standard waistline scoring entirely; use choli_length + skirt_flare_angle instead.",
+    "scoring_impact": "Standard waistline scoring DISABLED for lehenga. Alternative: choli_length + skirt_flare.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_016",
+    "context_type": "cultural",
+    "parameter": "salwar_kameez_proportion",
+    "rule": "Kameez length relative to body creates the proportion division. Longer kameez shortens visual leg line; shorter kameez with churidar elongates it.",
+    "scoring_impact": "Kameez length is the proportion-determining variable. Replace hemline logic.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_017",
+    "context_type": "cultural",
+    "parameter": "indian_casual_kurti_jeans",
+    "rule": "Kurti with jeans is the most common outfit for young Indian women. Casual context.",
+    "scoring_impact": "Kurti-jeans is baseline casual; score relative to this norm for Indian casual occasion.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_018",
+    "context_type": "cultural",
+    "parameter": "indian_professional_saree",
+    "rule": "A well-draped cotton saree carries the same authority as a Western blazer in Indian professional context.",
+    "scoring_impact": "Cotton saree in India professional = professional score equivalent to Western structured garment.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_019",
+    "context_type": "cultural",
+    "parameter": "indian_formal_embellishment",
+    "rule": "Indian formal events (sangeet, reception): heavy embellishment expected. A minimalist garment would underscore.",
+    "scoring_impact": "Indian formal: embellishment_weight increases. Minimalist garment penalized.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_020",
+    "context_type": "cultural",
+    "parameter": "undertone_ethnicity_prohibition",
+    "rule": "NEVER use ethnicity as proxy for undertone. South Asian b* ranges 8-35 covering warm, neutral, AND cool. A Tamil woman with b*=12 (neutral) is misserved by 'Indian = warm' assumption.",
+    "scoring_impact": "Ethnicity-based undertone assumptions PROHIBITED. Must measure individual b* value.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH"
+  },
+  {
+    "context_rule_id": "CTX_021",
+    "context_type": "cultural",
+    "parameter": "cultural_color_vs_undertone",
+    "rule": "Cultural override is a MULTIPLIER, not replacement. Cool-toned user in red at Indian wedding still scores lower than warm-toned. When cultural > 0.85 AND undertone < 0.60: trigger shade_recommendation_mode (tomato red vs cherry red vs brick red).",
+    "scoring_impact": "When cultural score is high but undertone match is poor: recommend specific shade within culturally appropriate color.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_022",
+    "context_type": "occasion",
+    "parameter": "professional_occasion_weights",
+    "rule": "Professional: fit_precision=0.22, fabric_structure=0.18, silhouette=0.15, color_context=0.12, exposure=0.15, trend=0.05, comfort=0.05, embellishment=0.00, cultural_fit=0.08.",
+    "scoring_impact": "Professional: fit and structure dominate. Zero embellishment weight. High exposure sensitivity.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_023",
+    "context_type": "occasion",
+    "parameter": "casual_occasion_weights",
+    "rule": "Casual: fit=0.08, structure=0.05, silhouette=0.10, color=0.05, exposure=0.03, trend=0.22, comfort=0.32, embellishment=0.08, cultural=0.07.",
+    "scoring_impact": "Casual: comfort dominates (0.32). Trend high (0.22). Fit/structure minimal.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_024",
+    "context_type": "occasion",
+    "parameter": "formal_evening_occasion_weights",
+    "rule": "Formal Evening: fit=0.18, structure=0.15, silhouette=0.20, color=0.08, exposure=0.05, trend=0.12, comfort=0.05, embellishment=0.10, cultural=0.07.",
+    "scoring_impact": "Formal: silhouette dominates (0.20). Fit important (0.18). Comfort minimal.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_025",
+    "context_type": "occasion",
+    "parameter": "date_night_occasion_weights",
+    "rule": "Date Night: fit=0.18, structure=0.10, silhouette=0.22, color=0.10, exposure=0.10, trend=0.12, comfort=0.05, embellishment=0.05, cultural=0.08.",
+    "scoring_impact": "Date: silhouette dominates (0.22). Fit high. Dressing for attraction vs self-expression distinction.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_026",
+    "context_type": "occasion",
+    "parameter": "indian_wedding_occasion_weights",
+    "rule": "Indian Wedding: fit=0.15, structure=0.15, silhouette=0.15, color=0.20, exposure=0.12, trend=0.05, comfort=0.05, embellishment=0.10, cultural=0.03.",
+    "scoring_impact": "Indian wedding: color dominates (0.20). Cultural fit assumed high. Embellishment important.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_027",
+    "context_type": "occasion",
+    "parameter": "indian_festival_occasion_weights",
+    "rule": "Indian Festival: fit=0.10, structure=0.10, silhouette=0.12, color=0.18, exposure=0.08, trend=0.10, comfort=0.15, embellishment=0.12, cultural=0.05.",
+    "scoring_impact": "Festival: color important (0.18). Comfort elevated (0.15). Embellishment high (0.12).",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "VERY LOW (entirely invented)"
+  },
+  {
+    "context_rule_id": "CTX_028",
+    "context_type": "occasion",
+    "parameter": "red_dress_effect_by_occasion",
+    "rule": "Red Dress Effect varies by occasion: Professional = +0.04 net (authority +0.08, risk -0.04). Date night = +0.20 (attractiveness +0.12, confidence +0.08). Indian wedding guest = -0.30 (risks overshadowing bride).",
+    "scoring_impact": "Red dress: professional +0.04, date +0.20, Indian wedding guest -0.30.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_029",
+    "context_type": "occasion",
+    "parameter": "indian_wedding_goal_weights",
+    "rule": "Indian wedding scoring goals: grandeur=0.30, cultural_fit=0.25, color=0.25, modesty=0.20. These REPLACE standard proportion-optimization goals.",
+    "scoring_impact": "Cultural context shifts the GOAL, not just the score. Different goal weights for India wedding.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_030",
+    "context_type": "occasion",
+    "parameter": "indian_casual_goal_weights",
+    "rule": "Indian casual scoring goals: proportion=0.30, comfort=0.25, color=0.25, trend=0.20.",
+    "scoring_impact": "Indian casual: proportion still important but comfort elevated vs Western casual.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_031",
+    "context_type": "climate",
+    "parameter": "india_climate_variation",
+    "rule": "India is NOT single-climate. Chennai Jan: 24C. Delhi Jan: 7C. Delhi Jun: 42C. Monsoon (Jun-Sep) changes fabric behavior drastically. Temperate zones need month-dependent mode.",
+    "scoring_impact": "Climate scoring must be region + month specific. Monsoon: fabric performance degrades.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "HIGH (factual)"
+  },
+  {
+    "context_rule_id": "CTX_032",
+    "context_type": "climate",
+    "parameter": "kanjivaram_tropical_override",
+    "rule": "Kanjivaram silk in tropical India: comfort = 0.20 but wedding cultural_override = 0.95. Final = 0.80 x cultural + 0.20 x comfort = 0.80. Cultural overrides comfort for ceremonial garments.",
+    "scoring_impact": "Ceremonial: cultural weight 0.80, comfort weight 0.20. Comfort does NOT veto cultural requirement.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_033",
+    "context_type": "climate",
+    "parameter": "layering_body_shape_change",
+    "rule": "Each 2mm fabric layer adds ~0.4cm per side. 3 layers = 2.4cm wider total. CAN change body shape classification (e.g., pear -> rectangle if winter layers add more torso width than hip width).",
+    "scoring_impact": "Winter layering can shift body type classification. Re-score after accounting for layer width.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW"
+  },
+  {
+    "context_rule_id": "CTX_034",
+    "context_type": "age",
+    "parameter": "menopause_collagen_step",
+    "rule": "Women lose ~30% of skin collagen in first 5 years post-menopause (avg onset 51). Model uses step function at 50-55, not smooth curve. A 48yo and 56yo may have dramatically different fabric interactions despite 8 years apart.",
+    "scoring_impact": "Step function at 50-55: fabric interaction parameters change sharply, not gradually.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM (dermatological fact, garment inference LOW)"
+  },
+  {
+    "context_rule_id": "CTX_035",
+    "context_type": "age",
+    "parameter": "waist_expansion_rate",
+    "rule": "Body composition: waist_expansion = (age - 30) x 0.30%/year. At age 50: +6% waist circumference for same weight.",
+    "scoring_impact": "Adjusts body measurements for age. Affects WHR-dependent scoring.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_036",
+    "context_type": "age",
+    "parameter": "height_loss_rate",
+    "rule": "Height loss: (age - 40) x 0.10 cm/decade.",
+    "scoring_impact": "Adjusts height for age. Affects petite classification threshold over time.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_037",
+    "context_type": "age",
+    "parameter": "muscle_decline_rate",
+    "rule": "Muscle decline: -1.5%/year after age 50.",
+    "scoring_impact": "Affects tissue compliance and body composition parameters.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_038",
+    "context_type": "age",
+    "parameter": "age_output_prohibition",
+    "rule": "ABSOLUTE RULE: NEVER reference age in user-facing output. NEVER suggest longer sleeves based on age. Score the garment AS CHOSEN; offer fabric alternatives alongside.",
+    "scoring_impact": "Language engine constraint. Age is internal scoring variable only, never surfaced.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH (ethical rule)"
+  },
+  {
+    "context_rule_id": "CTX_039",
+    "context_type": "age",
+    "parameter": "age_tissue_override",
+    "rule": "HRT, active weightlifting, genetics create 10-15 year variation in tissue compliance. Athletic 55yo may have better tissue than sedentary 35yo. MUST NOT use age alone - use tissue compliance from body scan; age is fallback (confidence = LOW).",
+    "scoring_impact": "Tissue compliance from body scan preferred. Age-based estimation only as fallback.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW for age inference, MEDIUM for tissue scan"
+  },
+  {
+    "context_rule_id": "CTX_040",
+    "context_type": "language",
+    "parameter": "india_indirectness_level",
+    "rule": "India: indirectness_level = 0.75 (US = 0.50). Family shopping mode enabled by default (mothers/daughters share screens; avoid embarrassment). Regional templates in Hindi, Tamil, Telugu, Bengali - NOT translated from English (idioms differ).",
+    "scoring_impact": "Language output must be more indirect for India market. Family viewing context assumed.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_041",
+    "context_type": "language",
+    "parameter": "body_shape_label_ban",
+    "rule": "Body shape categories BANNED from user output: 'apple', 'pear', 'hourglass', 'rectangle', 'inverted triangle'. Replace with specific proportion descriptions: 'Your shoulders are slightly narrower than your hips' (not 'You're a pear').",
+    "scoring_impact": "Language constraint on output. Internal categories used for scoring only.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH (ethical rule)"
+  },
+  {
+    "context_rule_id": "CTX_042",
+    "context_type": "language",
+    "parameter": "banned_vocabulary",
+    "rule": "BANNED: 'flatten/flatter your figure' (use 'complement your proportions'), 'hide/disguise/camouflage' (use 'balance' or 'shift visual focus to [X]'), 'problem area' (use 'area where garment construction matters most'), 'slimming' (use 'streamlined' or 'creates a clean vertical line'), 'you're pear/apple shaped' (use 'based on your shoulder-to-hip ratio'), 'at your age' (NEVER reference age), 'you can't/shouldn't wear' (use 'this works against [your stated goal]'), any reference to 'big' body parts (describe garment's visual EFFECT, never body's SIZE).",
+    "scoring_impact": "Language engine constraint. All banned terms have required replacements.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "HIGH (ethical rule)"
+  },
+  {
+    "context_rule_id": "CTX_043",
+    "context_type": "language",
+    "parameter": "score_to_language_mapping",
+    "rule": "Score 0.85-1.00: Enthusiastic ('This [attribute] is going to create [specific positive effect] on you.'). 0.70-0.84: Positive+note ('This works well. For even more [goal], consider [alt].'). 0.50-0.69: Neutral+suggest ('This will [effect]. For [goal], [alt] would [improve].'). 0.30-0.49: Honest redirect ('This [detail] tends to [effect] because [physics]. [Alt] would [goal].'). <0.30: Clear skip+alt ('Skip this one - [physics reason]. [Alt] would [achieve the look].').",
+    "scoring_impact": "Tone and template selection based on score range.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "LOW (designed templates)"
+  },
+  {
+    "context_rule_id": "CTX_044",
+    "context_type": "cultural",
+    "parameter": "anthropometric_baselines_india_vs_us",
+    "rule": "US: height 5'3.5\" (161cm), weight 171.8lbs (78kg), WHR ~0.83, BMI mean ~29.7, TLR ~0.95-1.00. India: height 5'3\" (160cm) urban / 5'0\" (152cm) overall, weight 55-65kg urban, WHR ~0.85+, BMI mean ~22-23 but 79% may have excess fat at lower cutoffs. Cannot use BMI as proxy for shape. North taller, South shorter; Punjab 30% obesity, Kerala 28%.",
+    "scoring_impact": "All body classification thresholds shift between US and India populations. Sub-regional profiles needed for India.",
+    "region": "India vs US",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_045",
+    "context_type": "cultural",
+    "parameter": "india_proportionally_longer_torsos",
+    "rule": "Indian women have proportionally longer torsos than US women. Hemline fall points differ; midi hits different anatomy.",
+    "scoring_impact": "Hemline scoring requires TLR adjustment for Indian population. Standard Western hemline zones shift.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  },
+  {
+    "context_rule_id": "CTX_046",
+    "context_type": "cultural",
+    "parameter": "india_data_sources",
+    "rule": "Critical India data: (1) INDIAsize project (NIFT): 25,000 participants, 6 cities, 3D scanning. (2) Dr. Deepti Gupta (IIT Delhi): bust and hip are critical for Indian garment fit. (3) DRDO surveys: regional breakdown North/South/West. (4) CURES study: central adiposity at lower BMIs than Western.",
+    "scoring_impact": "Pre-launch requirement: access INDIAsize data to calibrate Indian body classification thresholds.",
+    "region": "India",
+    "source_domain": 8,
+    "confidence": "HIGH (factual sources)"
+  },
+  {
+    "context_rule_id": "CTX_047",
+    "context_type": "cultural",
+    "parameter": "effect_magnitude_hierarchy",
+    "rule": "Garment FIT changes perceived shape by 15-25%. Stripe direction: 4.5-10.7%. Hemline proportion: 5-10%. Luminance: 2-5%. Color alone is WEAKEST lever. Composite enforces: fit_weight (>=0.35) >= sum(all optical illusion weights).",
+    "scoring_impact": "A well-fitted garment in wrong color ALWAYS outscores an ill-fitted garment in right color.",
+    "region": "global",
+    "source_domain": 8,
+    "confidence": "MEDIUM"
+  }
+]

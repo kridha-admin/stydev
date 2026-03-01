@@ -1,0 +1,193 @@
+[
+  {
+    "rule_id": "D3_R01",
+    "rule": "Impact Hierarchy: Fit/Ease 30%, Construction 25%, Fabric behavior 20%, Surface finish 15%, Color 10%. Color is OVERWEIGHTED 5x in popular advice.",
+    "implication": "A well-fitting matte ponte dress in medium blue looks dramatically better than a poorly fitting black satin dress, despite the blue adding 2% perceived width and the black removing 5%.",
+    "confidence": "MODERATE",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "37-62"
+  },
+  {
+    "rule_id": "D3_R02",
+    "rule": "All effects scored on -1.0 to +1.0 scale. -1.0 = Maximum volume reduction (compression + dark + matte + structure bridging). 0.00 = Cotton poplin baseline. +1.0 = Maximum volume amplification (cling + shiny + light + projected).",
+    "stacking_formula": "total = sign x (1 - (1-|a|)(1-|b|)(1-|c|)...). Same-direction effects stack with DIMINISHING RETURNS, not linearly. Prevents unrealistic compounding and naturally caps near +/-1.0.",
+    "example": "shiny (+0.25) + light color (+0.20) + curved zone (+0.15) = +(1 - 0.75 x 0.80 x 0.85) = +0.49",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "64-78"
+  },
+  {
+    "rule_id": "D3_R03",
+    "rule": "Woven vs Knit Elastane Multiplier: Same elastane percentage = completely different stretch behavior. Getting this wrong produces 200-400% errors in stretch prediction.",
+    "multipliers": {
+      "woven": "x 1.6 (3% elastane gives 4.8% total stretch)",
+      "standard_knit": "x 4.0 (3% elastane gives 12% total stretch)",
+      "rib_knit": "x 5.5 (3% elastane gives 16.5% total stretch)",
+      "double_knit_ponte": "x 3.5 (3% elastane gives 10.5% total stretch)"
+    },
+    "confidence": "HIGH (85%+)",
+    "priority": "#1 priority correction from the failure catalog",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "485-503"
+  },
+  {
+    "rule_id": "D3_R04",
+    "rule": "Effective GSM (Fiber-Adjusted): Same GSM, different fiber = different perceived weight/stiffness.",
+    "fiber_multipliers": {
+      "cotton": "x 1.15 (feels 15% heavier/stiffer than poly equivalent)",
+      "polyester": "x 1.00 (baseline)",
+      "silk": "x 0.85 (feels 15% lighter/more fluid)",
+      "wool": "x 1.10 (slightly stiffer than poly)",
+      "rayon": "x 0.90 (more fluid than poly)",
+      "linen": "x 1.25 (significantly stiffer than poly)"
+    },
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "504-515"
+  },
+  {
+    "rule_id": "D3_R05",
+    "rule": "The Ponte Advantage: Rayon/nylon/elastane double knit (~300gsm, drape 5) consistently scores as the optimal fabric for bodies with curves.",
+    "reasons": [
+      "Drape 5 = sweet spot between cling (drape 7+) and projection (drape 3-)",
+      "Double knit = smooth surface without body-documenting conformity",
+      "Recovery rate ~92% = maintains shape across wear cycles",
+      "Thickness = built-in smoothing layer (like permanent lining)"
+    ],
+    "ponte_vs_structured_woven_on_plus_size": {
+      "structured_woven_drape_3": "volume +0.22-0.38, smoothness 0.30",
+      "ponte_drape_5": "volume -0.05 to +0.08, smoothness 0.85",
+      "advantage": "0.30-0.46 on volume, massive on smoothness"
+    },
+    "ponte_limitation": "Ponte traps heat. In hot/humid climates (above ~80F/27C), ponte becomes uncomfortable. Alternative: polyester crepe (drape 5-6, ~180gsm).",
+    "confidence": "MODERATE",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "517-537"
+  },
+  {
+    "rule_id": "D3_R06",
+    "rule": "Apple belly effective front ease: max(0, total_ease - belly_projection x 0.8). Apple belly ALWAYS clings in fluid garments regardless of total ease.",
+    "example": "At 4\" total ease with 4\" belly projection: effective front ease = 0.8\". At 3\" total ease with 4\" projection: effective front ease = 0\".",
+    "confidence_on_0_8_fraction": "LOW (<50%) - calibrated estimate",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "173-188"
+  },
+  {
+    "rule_id": "D3_R07",
+    "rule": "Hourglass Sizing Paradox: Size for bust/hip -> waist has 8-14\" EXCESS ease -> boxy silhouette. Size for waist -> bust/hip cling at 45-65% demand -> strain everywhere. No single size fits in non-stretch garments.",
+    "solutions": ["Stretch fabrics (ponte/jersey)", "Tailored construction with darts", "Separate top/bottom sizing"],
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "192-199"
+  },
+  {
+    "rule_id": "D3_R08",
+    "rule": "Plus Size Compound Cling Effect: Higher circumferences + steeper curvature rates = lower thresholds at ALL zones. Upper arm becomes significant cling zone (14-20\" circ).",
+    "severity_indicator": {
+      "0_zones": "fits well",
+      "1_zone": "minor concern",
+      "2_zones": "moderate concern",
+      "3_plus_zones": "strong size-up recommendation"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "201-211"
+  },
+  {
+    "rule_id": "D3_R09",
+    "rule": "Hourglass Waist - Structure is WORSE than Cling: Structure at hourglass waist fills the concavity, ERASING the waist definition. Proportion_erosion +0.15-0.25. Moderate cling preserves waist definition better than structure.",
+    "confidence": "HIGH (85%+)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "271-281"
+  },
+  {
+    "rule_id": "D3_R10",
+    "rule": "Petite in Heavy Fluid Long Garments REVERSAL: 'Avoid heavy fabrics if petite' REVERSES for heavy-but-fluid (drape 7+, gsm 200+) in full-length garments. Heavy fluid in maxi creates unbroken vertical fall lines that ELONGATE.",
+    "elongation_bonus": "-0.05 to -0.12 (outweighs overwhelm penalty)",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "298-304"
+  },
+  {
+    "rule_id": "D3_R11",
+    "rule": "When surface sheen > 0.15 on a dark garment at a curved zone, the highlight contrast cancels the dark-color benefit. At sheen 0.50: dark benefit fully cancelled (net zero). At sheen 0.75+: dark is actively WORSE than medium-tone matte.",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "246-253"
+  },
+  {
+    "rule_id": "D3_R12",
+    "rule": "Petite Color Paradox: Dark reduces BOTH width AND height. OPTIMAL: Monochrome in medium tones (lightness 30-60%), creating longest unbroken vertical line. Elongation benefit of monochrome (-0.05 to -0.10 proportion score) is MORE valuable than +/-0.15 width change from dark vs light.",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "225-234"
+  },
+  {
+    "rule_id": "D3_R13",
+    "rule": "Pear Zone Color Strategy: Light top adds +0.10-0.20 width at narrow shoulders (beneficial). Dark bottom removes -0.15-0.30 at wide hips (beneficial). Combined effect: 2x more effective than all-dark.",
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "236-244"
+  },
+  {
+    "rule_id": "D3_R14",
+    "rule": "12 Independent Body Dimensions: Standard body types capture only 1 of 12 independent dimensions. Two 'pear' bodies with identical bust-waist-hip ratios but different heights, belly projections, and tissue firmness will have completely different experiences.",
+    "dimensions": [
+      "1. Height: Pattern overwhelm, hemline zones, proportional dominance of curves",
+      "2. Bust circumference: Bust cling demand, button gap risk",
+      "3. Waist circumference: Sizing anchor for most garments",
+      "4. Hip circumference: Hip cling demand, A-line behavior",
+      "5. Shoulder width: Silhouette frame, sleeve fit",
+      "6. Bust-waist differential: Bust curvature rate, dart need",
+      "7. Hip-waist differential: Hip curvature rate, sizing paradox",
+      "8. Torso length: Curvature rate modulator (short torso = steeper rates at same differentials)",
+      "9. Bust projection (anterior): Sheen amplification, photo gap, cling",
+      "10. Belly projection: #1 photo gap contributor, cling threshold, bridging calculation, wrap gap risk",
+      "11. Hip projection (lateral): Stripe reversal, A-line behavior",
+      "12. Tissue firmness: Compression artifacts, cling visual severity"
+    ],
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "558-630"
+  },
+  {
+    "rule_id": "D3_R15",
+    "rule": "Scoring Engine Pipeline: Input -> Phase 1 (Fabric Resolution) -> Phase 2 (Body Metric Derivation) -> Phase 3 (Zone Selection) -> Phase 4 (Per-Zone Scoring across 10 principles with diminishing returns) -> Phase 5 (Context Modifiers: sitting, climate) -> Phase 6 (Composite + Recommendation).",
+    "scoring_weights": {
+      "P1_sheen": "15%",
+      "P2_cling": "30%",
+      "P3_color": "8%",
+      "P4_structure_weight": "20%",
+      "P5_texture": "5%",
+      "P6_pattern_stripe": "5%",
+      "P7_drape_conformity": "10%",
+      "P8_silhouette_shape": "4%",
+      "P9_construction": "3%",
+      "P10_photo_discount": "separate channel"
+    },
+    "context_sitting_deltas": {
+      "belly": "+2-4 inches",
+      "thigh": "+1-2 inches",
+      "hip": "+0.5-1.5 inches"
+    },
+    "recommendation_tiers": "strong_recommend / recommend / neutral / caution / avoid",
+    "confidence_by_body_type": {
+      "rectangle": "85%",
+      "tall": "85%",
+      "inverted_triangle": "75%",
+      "pear": "72%",
+      "hourglass": "68%",
+      "apple": "62%",
+      "plus_size": "53% (lowest)"
+    },
+    "source_domain": 3,
+    "source_file": "kridha_master_reference.md",
+    "source_lines": "683-757"
+  }
+]

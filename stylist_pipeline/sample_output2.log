@@ -1,0 +1,548 @@
+~/kridha/git/stydev/stylist_pipeline-main dev                                                            Py base
+❯ node run_pipeline.mjs
+=== KRIDHA STYLING PIPELINE ===
+
+--- STEP 1: USER MEASUREMENTS ---
+
+{
+  "chest_circumference": 112.7,
+  "waist_circumference": 102.76,
+  "hip_circumference": 107.5,
+  "shoulder_breadth": 42.3164,
+  "neck_circumference": 44.97,
+  "thigh_left_circumference": 67.01,
+  "ankle_left_circumference": 28.64,
+  "arm_right_length": 75.9968,
+  "inside_leg_height": 77.66,
+  "height": 172.72,
+  "waist_hip_ratio": 0.96,
+  "bust_hip_ratio": 1.05,
+  "shoulder_hip_ratio": 1.24,
+  "torso_leg_ratio": 0.93,
+  "body_shape": "apple",
+  "height_category": "tall",
+  "size_category": "plus_size",
+  "compound_types": [
+    "apple",
+    "tall",
+    "plus_size"
+  ],
+  "knee_from_floor": 14.37,
+  "mid_calf_from_floor": 9.63,
+  "widest_calf_from_floor": 10.78,
+  "ankle_from_floor": 3.5,
+  "mid_thigh_from_floor": 22.01,
+  "elbow_from_shoulder": 17.05,
+  "widest_upper_arm_from_shoulder": 9.87,
+  "natural_waist_from_shoulder": 28.43,
+  "natural_waist_from_floor": 39.57
+}
+
+--- STEP 2+3: EXTRACTING TEXT & IMAGE ATTRIBUTES (PARALLEL) ---
+
+Text Attributes (raw):
+{
+  "overall_confidence": "high",
+  "product": {
+    "title": "H&M Puff-Sleeved Dress",
+    "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+    "brand": "H&M",
+    "price": "$29.99"
+  },
+  "fabric": {
+    "composition_raw": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
+    "primary_material": "Rayon",
+    "primary_percentage": 70,
+    "secondary_material": "Linen",
+    "secondary_percentage": 30,
+    "stretch_fiber": "none",
+    "stretch_percentage": 0,
+    "weight_description": "medium",
+    "confidence": "high"
+  },
+  "garment": {
+    "length_description": "mini",
+    "type": "dress",
+    "length_inches": 20,
+    "confidence": "high"
+  },
+  "model_info": {
+    "height_inches": 69,
+    "height_original": "175cm/5'9\"",
+    "size_worn": "S",
+    "bust_inches": null,
+    "waist_inches": null,
+    "hips_inches": null,
+    "confidence": "high"
+  }
+}
+
+Text Attributes (flattened):
+{
+  "model_height_inches": 69,
+  "model_height_original": "175cm/5'9\"",
+  "model_size_worn": "S",
+  "model_bust": null,
+  "model_waist": null,
+  "model_hips": null,
+  "model_confidence": "high",
+  "fabric_primary": "Rayon",
+  "fabric_primary_percentage": 70,
+  "fabric_secondary": "Linen",
+  "fabric_secondary_percentage": 30,
+  "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
+  "stretch_fiber": "none",
+  "stretch_percentage": 0,
+  "fabric_weight": "medium",
+  "fabric_confidence": "high",
+  "garment_type": "dress",
+  "garment_length_inches": 20,
+  "hemline_description": "mini",
+  "garment_confidence": "high",
+  "title": "H&M Puff-Sleeved Dress",
+  "brand": "H&M",
+  "price": "$29.99",
+  "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+  "overall_confidence": "high"
+}
+
+Image Attributes (raw):
+{
+  "image_quality": {
+    "image_usable": true,
+    "image_pose": "front",
+    "garment_fully_visible": true,
+    "occlusion_issues": "none",
+    "confidence": "high"
+  },
+  "height_measurements": {
+    "model_height_cm": 175,
+    "hemline_height_cm": 90,
+    "waistline_height_cm": 60,
+    "confidence": "medium"
+  },
+  "garment_type": "dress",
+  "neckline": {
+    "type": "sweetheart",
+    "depth": "shallow",
+    "width": "medium",
+    "confidence": "high"
+  },
+  "hemline": {
+    "position": "above_knee",
+    "confidence": "high"
+  },
+  "sleeve": {
+    "type": "short",
+    "width": "relaxed",
+    "confidence": "high"
+  },
+  "silhouette": {
+    "type": "a_line",
+    "confidence": "high"
+  },
+  "waist": {
+    "position": "natural",
+    "definition": "undefined",
+    "confidence": "medium"
+  },
+  "fit": {
+    "category": "relaxed",
+    "confidence": "high"
+  },
+  "color": {
+    "primary": "cream",
+    "value": "light",
+    "temperature": "neutral",
+    "saturation": "muted",
+    "confidence": "high"
+  },
+  "pattern": {
+    "type": "floral_small",
+    "scale": "small",
+    "contrast": "medium",
+    "direction": "mixed",
+    "confidence": "high"
+  },
+  "fabric": {
+    "apparent_weight": "light",
+    "sheen": "subtle_sheen",
+    "opacity": "opaque",
+    "drape": "fluid",
+    "texture": "smooth",
+    "confidence": "high"
+  },
+  "fabric_behavior": {
+    "body_interaction": "skimming",
+    "stretch_visible": false,
+    "pulling_at_seams": false,
+    "gapping": false,
+    "bunching": false,
+    "confidence": "high"
+  },
+  "construction": {
+    "has_darts": false,
+    "has_seaming": true,
+    "has_ruching": true,
+    "has_draping": false,
+    "has_pleats": false,
+    "has_gathering": false,
+    "confidence": "high"
+  },
+  "model_estimate": {
+    "apparent_height_category": "average",
+    "apparent_size_category": "m",
+    "confidence": "medium"
+  },
+  "overall_confidence": "high"
+}
+
+Image Attributes (flattened):
+{
+  "model_height_cm": 175,
+  "hemline_height_cm": 90,
+  "waistline_height_cm": 60,
+  "garment_type": "dress",
+  "neckline_type": "sweetheart",
+  "neckline_depth": "shallow",
+  "neckline_width": "medium",
+  "hemline_position": "above_knee",
+  "sleeve_type": "short",
+  "sleeve_width": "relaxed",
+  "silhouette_type": "a_line",
+  "waistline": "natural",
+  "waist_definition": "undefined",
+  "fit_category": "relaxed",
+  "color_primary": "cream",
+  "color_value": "light",
+  "color_temperature": "neutral",
+  "color_saturation": "muted",
+  "pattern_type": "floral_small",
+  "pattern_scale": "small",
+  "pattern_contrast": "medium",
+  "pattern_direction": "mixed",
+  "fabric_weight": "light",
+  "fabric_sheen": "subtle_sheen",
+  "fabric_opacity": "opaque",
+  "fabric_drape": "fluid",
+  "fabric_texture": "smooth",
+  "fabric_body_interaction": "skimming",
+  "fabric_stretch_visible": false,
+  "fabric_pulling_at_seams": false,
+  "fabric_gapping": false,
+  "fabric_bunching": false,
+  "has_darts": false,
+  "has_seaming": true,
+  "has_ruching": true,
+  "has_draping": false,
+  "has_pleats": false,
+  "has_gathering": false,
+  "image_usable": true,
+  "image_pose": "front",
+  "model_apparent_height_category": "average",
+  "model_apparent_size_category": "m",
+  "overall_confidence": "high"
+}
+
+--- STEP 4: MERGED ATTRIBUTES ---
+
+{
+  "neckline_type": "sweetheart",
+  "neckline_depth": "shallow",
+  "neckline_width": "medium",
+  "sleeve_type": "short",
+  "sleeve_width": "relaxed",
+  "silhouette_type": "a_line",
+  "waistline": "natural",
+  "waist_definition": "undefined",
+  "fit_category": "relaxed",
+  "color_primary": "cream",
+  "color_value": "light",
+  "color_temperature": "neutral",
+  "color_saturation": "muted",
+  "pattern_type": "floral_small",
+  "pattern_scale": "small",
+  "pattern_contrast": "medium",
+  "pattern_direction": "mixed",
+  "fabric_sheen": "subtle_sheen",
+  "fabric_opacity": "opaque",
+  "fabric_drape": "fluid",
+  "fabric_texture": "smooth",
+  "has_darts": false,
+  "has_seaming": true,
+  "has_ruching": true,
+  "has_draping": false,
+  "has_pleats": false,
+  "has_gathering": false,
+  "fabric_primary": "Rayon",
+  "fabric_secondary": "Linen",
+  "fabric_composition": "Shell:Rayon 70%, Linen 30%\nLining:Polyester 100%\nAdditional material information: The total weight of this product contains at least: 67% Livaeco™ Viscose",
+  "stretch_percentage": 0,
+  "model_height_inches": 69,
+  "model_size_worn": "S",
+  "model_bust": null,
+  "model_waist": null,
+  "model_hips": null,
+  "hemline_position": "mini",
+  "garment_length_inches": 20,
+  "fabric_weight": "medium",
+  "garment_type": "dress",
+  "title": "H&M Puff-Sleeved Dress",
+  "brand": "H&M",
+  "price": "$29.99",
+  "care_instructions": "Use a laundry bag\nOnly non-chlorine bleach when needed\nLine dry\nMedium iron\nMachine wash cold",
+  "image_confidence": "high",
+  "text_confidence": "high"
+}
+
+--- STEP 5: SCORING VIA PYTHON ENGINE ---
+
+Scoring Result:
+{
+  "overall_score": 7.3,
+  "composite_raw": 0.1184,
+  "confidence": 0.7,
+  "principle_scores": [
+    {
+      "name": "H-Stripe Thinning",
+      "score": 0,
+      "reasoning": "No stripes — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7
+    },
+    {
+      "name": "Dark/Black Slimming",
+      "score": -0.00642857142857143,
+      "reasoning": "Light color (L=0.80): slight expansion",
+      "weight": 0.08,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Rise Elongation",
+      "score": 0,
+      "reasoning": "No rise data — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7
+    },
+    {
+      "name": "A-Line Balance",
+      "score": -0.04725,
+      "reasoning": "ER=0.10: base A-line = +0.25 | DC=70% (stiff): shelf effect INVERSION | Plus + stiff A-line: shelf amplified",
+      "weight": 0.1,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Tent Concealment",
+      "score": 0,
+      "reasoning": "ER=0.10: not tent — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7
+    },
+    {
+      "name": "Color Break",
+      "score": 0,
+      "reasoning": "No belt/break — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7
+    },
+    {
+      "name": "Bodycon Mapping",
+      "score": 0,
+      "reasoning": "ER=0.10: not bodycon — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7
+    },
+    {
+      "name": "Matte Zone",
+      "score": 0.06,
+      "reasoning": "Low sheen (SI=0.25): +0.040",
+      "weight": 0.06,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "V-Neck Elongation",
+      "score": 0.05,
+      "reasoning": "Scoop: mild elongation (+0.05)",
+      "weight": 0.1,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Monochrome Column",
+      "score": 0,
+      "reasoning": "Not monochrome — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7
+    },
+    {
+      "name": "Hemline",
+      "score": 0.39999999999999997,
+      "reasoning": "Hem 48.4\" from floor -> above_knee",
+      "weight": 0.18,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Sleeve",
+      "score": 0.22999999999999998,
+      "reasoning": "Sleeve endpoint 6.0\", delta=-0.24\", severity=1.3 | Raw score +1.1 -> normalized +0.23",
+      "weight": 0.15,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Waist Placement",
+      "score": 0,
+      "reasoning": "Waist=natural: visual leg ratio 0.582 (golden=0.618), improvement=+0.000",
+      "weight": 0.15,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Color Value",
+      "score": -0.009375,
+      "reasoning": "Color L=80: slim_pct=-0.005, score=-0.031",
+      "weight": 0.08,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Fabric Zone",
+      "score": 0.013999999999999999,
+      "reasoning": "Fabric zone: stretch=0.0%, GSM=144, sheen=0.25",
+      "weight": 0.1,
+      "applicable": true,
+      "confidence": 0.7
+    },
+    {
+      "name": "Neckline Compound",
+      "score": 0.1845,
+      "reasoning": "Bust: depth=1.2\", threshold=7.0\", ratio=0.17, score=+0.30 | Compound: bust=+0.30*0.4 + torso=+0.07*0.3 + balance=+0.15*0.3 = +0.18",
+      "weight": 0.12,
+      "applicable": true,
+      "confidence": 0.7
+    }
+  ],
+  "goal_verdicts": [],
+  "zone_scores": {
+    "ankle": {
+      "zone": "ankle",
+      "score": 0.4,
+      "flags": []
+    },
+    "bust": {
+      "zone": "bust",
+      "score": 0.117,
+      "flags": []
+    },
+    "calf": {
+      "zone": "calf",
+      "score": 0.4,
+      "flags": []
+    },
+    "hip": {
+      "zone": "hip",
+      "score": 0.009,
+      "flags": []
+    },
+    "knee": {
+      "zone": "knee",
+      "score": 0.4,
+      "flags": []
+    },
+    "shoulder": {
+      "zone": "shoulder",
+      "score": 0.14,
+      "flags": []
+    },
+    "torso": {
+      "zone": "torso",
+      "score": 0.015,
+      "flags": []
+    },
+    "upper_arm": {
+      "zone": "upper_arm",
+      "score": 0.23,
+      "flags": []
+    },
+    "waist": {
+      "zone": "waist",
+      "score": 0,
+      "flags": []
+    }
+  },
+  "exceptions": [
+    {
+      "exception_id": "GATE_ALINE_SHELF",
+      "rule_overridden": "aline_balance",
+      "reason": "A-line + stiff fabric (DC=70%): fabric won't drape, creates shelf effect at hips",
+      "confidence": 0.82
+    },
+    {
+      "exception_id": "GATE_STRUCTURED",
+      "rule_overridden": "negative_penalties",
+      "reason": "Structured garment (boning/lining): negative penalties reduced ~70% — construction provides body sculpting",
+      "confidence": 0.85
+    }
+  ],
+  "fixes": [],
+  "body_adjusted": {
+    "hem_from_floor": 48.39393939393939,
+    "hem_zone": "above_knee",
+    "hemline_danger_zones": [
+      [
+        19.369999999999997,
+        21.369999999999997
+      ],
+      [
+        13.37,
+        15.87
+      ],
+      [
+        6.766351706036744,
+        14.793648293963255
+      ]
+    ],
+    "hemline_safe_zone": null,
+    "fabric_rise_adjustment": 1,
+    "sleeve_endpoint_position": 6,
+    "perceived_arm_width": 3.9162270981535947,
+    "arm_width_delta": -0.2359548367188209,
+    "arm_prominence_severity": 1.3,
+    "visual_waist_height": 39.57,
+    "visual_leg_ratio": 0.5819117647058824,
+    "proportion_improvement": 0,
+    "total_stretch_pct": 0,
+    "effective_gsm": 144,
+    "sheen_score": 0.25,
+    "photo_reality_discount": 0
+  },
+  "reasoning_chain": [
+    "L1 Fabric: stretch=0.0%, GSM=144, sheen=0.25, gates=2",
+    "Classification: dress",
+    "L2 Element: 10/16 active",
+    "L3 Calibration: goal weights + negative amplification applied",
+    "L4 Goals: 0 pass, 0 fail",
+    "L5 BodyAdj: hem=48.4\", sleeve_delta=-0.24\", leg_ratio=0.582",
+    "L6 Context: none",
+    "L7 Composite: raw=+0.118, overall=7.3/10, confidence=0.70"
+  ],
+  "layer_modifications": null,
+  "styling_notes": []
+}
+
+--- TOKEN USAGE SUMMARY ---
+
+Text Extraction: { inputTokens: 2192, outputTokens: 296 }
+Image Extraction: { inputTokens: 3553, outputTokens: 614 }
+
+=== PIPELINE COMPLETE ===
