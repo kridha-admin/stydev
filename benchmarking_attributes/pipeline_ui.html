@@ -27,12 +27,43 @@
             color: #000000;
             font-weight: 600;
         }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin-bottom: 0;
+        }
+        .header-run-btn {
+            position: absolute;
+            right: 0;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 0;
+        }
+        .header-run-btn:hover {
+            background: #333333;
+        }
+        .header-run-btn:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+        }
         .container {
             display: flex;
             gap: 20px;
             max-width: 1600px;
             margin: 0 auto;
-            min-height: calc(100vh - 100px);
+            height: calc(100vh - 100px);
         }
         .panel {
             flex: 1;
@@ -42,6 +73,7 @@
             border: 1px solid #E5E7EB;
             border-radius: 10px;
             padding: 20px;
+            overflow-y: auto;
         }
         .panel h2 {
             margin-bottom: 15px;
@@ -604,7 +636,10 @@
     </style>
 </head>
 <body>
-    <h1>Stylist Pipeline Runner</h1>
+    <div class="header">
+        <h1>Stylist Pipeline Runner</h1>
+        <button id="headerRunBtn" class="header-run-btn" onclick="runPipeline()">Run Pipeline</button>
+    </div>
     <div class="container">
         <div class="panel">
             <h2>Input</h2>
@@ -866,14 +901,17 @@ Machine wash cold</textarea>
         let isAddingNewUser = false;
 
         // Load products and users on page load
-        document.addEventListener('DOMContentLoaded', async () => {
-            await loadProducts();
-            await loadUsers();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup event listeners immediately (sync) so clicks work right away
             setupProductDropdown();
             setupUserDropdown();
             setupStylingGoals();
             setupImagePreview();
             updateImagePreview(); // Show preview if there's an initial URL
+
+            // Load data in background (async) - dropdowns will populate when ready
+            loadProducts().then(() => renderDropdown(''));
+            loadUsers().then(() => renderUserDropdown(''));
         });
 
         function setupImagePreview() {
@@ -1385,7 +1423,7 @@ Machine wash cold</textarea>
             // Principle Scores (shown right after headline)
             if (scoring.principle_scores && scoring.principle_scores.length > 0) {
                 html += `
-                    <details class="collapsible">
+                    <details class="collapsible" open>
                         <summary>Principle Scores</summary>
                         <div class="collapsible-content">
                             ${scoring.principle_scores.map((principle, i) => {
@@ -1612,6 +1650,7 @@ Machine wash cold</textarea>
             const resultDisplay = document.getElementById('resultDisplay');
             const status = document.getElementById('status');
             const runBtn = document.getElementById('runBtn');
+            const headerRunBtn = document.getElementById('headerRunBtn');
 
             if (!productText.trim() && !productImageUrl.trim()) {
                 status.textContent = 'Please enter product text or image URL';
@@ -1623,6 +1662,8 @@ Machine wash cold</textarea>
             // Show loading state
             runBtn.disabled = true;
             runBtn.textContent = 'Running...';
+            headerRunBtn.disabled = true;
+            headerRunBtn.textContent = 'Running...';
             status.textContent = 'Running pipeline...';
             status.className = 'status loading';
             status.style.display = 'block';
@@ -1670,6 +1711,8 @@ Machine wash cold</textarea>
             } finally {
                 runBtn.disabled = false;
                 runBtn.textContent = 'Run Pipeline';
+                headerRunBtn.disabled = false;
+                headerRunBtn.textContent = 'Run Pipeline';
             }
         }
     </script>
