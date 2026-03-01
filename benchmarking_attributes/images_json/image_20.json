@@ -1,0 +1,25 @@
+{
+  "image_id": "image_20",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "white",
+    "color_value": "very_light",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "loose",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "high",
+    "leg_shape": "wide_leg",
+    "leg_opening_width": "very_wide",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "White wide-leg paperbag waist pants with self-tie belt bow. High-rise with elasticized/ruched paperbag waistband. Pleated front with very wide flowing legs. Lightweight fabric with subtle sheen. Side pockets."
+}

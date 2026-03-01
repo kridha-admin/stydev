@@ -1,0 +1,25 @@
+{
+  "image_id": "image_11",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "navy",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "mini",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "tight",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "bodycon",
+    "sleeve_type": "short",
+    "neckline_type": "square_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Navy ribbed bodycon mini dress with square neckline and short sleeves. Very tight fit hugging the body. Mini hemline. Stretchy ribbed knit fabric."
+}

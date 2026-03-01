@@ -1,0 +1,25 @@
+{
+  "image_id": "image_48",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "white",
+    "color_value": "very_light",
+    "pattern_type": "floral_small",
+    "hemline_position": "midi",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "very_light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "flutter",
+    "neckline_type": "square_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "White/ivory multi-color small floral print midi dress with square neckline and flutter/ruffle cap sleeves. Fitted bodice with defined waist and flared A-line skirt with ruffle hem. Mid-calf length. Lightweight chiffon-like fabric."
+}

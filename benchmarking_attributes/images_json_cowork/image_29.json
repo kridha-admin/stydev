@@ -1,0 +1,25 @@
+{
+  "image_id": "image_29",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "at_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "puff",
+    "neckline_type": "v_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Black fit-and-flare dress with V-neckline featuring a mandarin/stand collar detail. Short puff sleeves with banded cuffs. Defined natural waist with full flared A-line skirt. Knee-length hemline. Structured medium-weight fabric."
+}

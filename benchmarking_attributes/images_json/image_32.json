@@ -1,0 +1,25 @@
+{
+  "image_id": "image_32",
+  "ground_truth": {
+    "garment_type": "blouse",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "peplum",
+    "sleeve_type": "bishop",
+    "neckline_type": "square_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Black peplum blouse with square neckline and long bishop/balloon sleeves with elasticized cuffs. Ruched/gathered bodice with defined waist and flared peplum hem. Lightweight fabric with subtle sheen."
+}

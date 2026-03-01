@@ -1,0 +1,25 @@
+{
+  "image_id": "image_50",
+  "ground_truth": {
+    "garment_type": "blouse",
+    "color_primary": "white",
+    "color_value": "very_light",
+    "pattern_type": "floral_large",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "semi_defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "shift",
+    "sleeve_type": "puff",
+    "neckline_type": "v_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "White lace/eyelet blouse with large floral daisy pattern. Split V-neckline with solid white placket. Short puff sleeves with elasticized cuffs. Semi-sheer fabric showing skin/lining beneath. Tucked into black tailored pants."
+}

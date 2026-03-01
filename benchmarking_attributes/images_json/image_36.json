@@ -1,0 +1,25 @@
+{
+  "image_id": "image_36",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "mini",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "semi_defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "a_line",
+    "sleeve_type": "spaghetti_strap",
+    "neckline_type": "v_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Black ribbed knit mini dress with spaghetti straps and V-neckline. Button-front closure down the center. Slight A-line flare from bust. Mini hemline. Lightweight ribbed knit fabric."
+}

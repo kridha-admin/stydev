@@ -1,0 +1,25 @@
+{
+  "image_id": "image_46",
+  "ground_truth": {
+    "garment_type": "sweater",
+    "color_primary": "forest green",
+    "color_value": "dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "loose",
+    "fabric_drape": "fluid",
+    "waist_definition": "semi_defined",
+    "waist_position": "drop",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "cocoon",
+    "sleeve_type": "dolman",
+    "neckline_type": "boat_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Forest green ribbed knit sweater with boat neckline and wide dolman/batwing sleeves. Cocoon silhouette that's loose through the body and tapers at the hip with a ribbed banded hem. Horizontal rib knit texture."
+}

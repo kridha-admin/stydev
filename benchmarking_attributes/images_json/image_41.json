@@ -1,0 +1,25 @@
+{
+  "image_id": "image_41",
+  "ground_truth": {
+    "garment_type": "blouse",
+    "color_primary": "white",
+    "color_value": "very_light",
+    "pattern_type": "colorblock",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "semi_defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "shift",
+    "sleeve_type": "bishop",
+    "neckline_type": "collared",
+    "neckline_depth": "shallow"
+  },
+  "notes": "White blouse with contrasting black bow/pussy-bow tie at the neck and black cuffs. Long bishop/balloon sleeves with gathered wrists. Tucked into black leather skirt. Lightweight silky fabric with subtle sheen."
+}

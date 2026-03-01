@@ -1,0 +1,25 @@
+{
+  "image_id": "image_09",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "tight",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "bodycon",
+    "sleeve_type": "short",
+    "neckline_type": "scoop_neck",
+    "neckline_depth": "deep"
+  },
+  "notes": "Black fitted scoop neck top with short cap-like sleeves. Deep scoop neckline with ribbed trim at neck edge. Very tight/bodycon fit. Tucked into denim skirt with belt."
+}

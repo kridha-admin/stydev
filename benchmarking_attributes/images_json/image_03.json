@@ -1,0 +1,25 @@
+{
+  "image_id": "image_03",
+  "ground_truth": {
+    "garment_type": "sweater",
+    "color_primary": "burgundy",
+    "color_value": "dark",
+    "pattern_type": "horizontal_stripes",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "relaxed",
+    "fabric_drape": "fluid",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "shift",
+    "sleeve_type": "full_length",
+    "neckline_type": "scoop_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Burgundy knit sweater with horizontal textured stripe pattern (openwork/pointelle detail). Relaxed fit with wide scoop neckline. Full-length sleeves with ribbed cuffs."
+}

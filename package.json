@@ -1,0 +1,27 @@
+{
+  "name": "stydev",
+  "version": "1.0.0",
+  "description": "Kridha styling development - garment attribute extraction, benchmarking, and body-garment scoring",
+  "type": "module",
+  "scripts": {
+    "start": "node stylist_pipeline/run_pipeline.mjs",
+    "pipeline": "node stylist_pipeline/run_pipeline.mjs",
+    "pipeline-ui": "node benchmarking_attributes/pipeline_server.mjs",
+    "extract-text": "node stylist_pipeline/product_text_extraction.mjs",
+    "extract-image": "node stylist_pipeline/product_image_extraction.mjs",
+    "test-mongo": "node stylist_pipeline/mongodb_helper.mjs",
+    "benchmark": "node benchmarking_attributes/run_benchmark.mjs",
+    "accuracy": "node benchmarking_attributes/accuracy_report.mjs",
+    "compare": "node benchmarking_attributes/compare_results.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.750.0",
+    "@google/genai": "^1.43.0",
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.9.0",
+    "sharp": "^0.34.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

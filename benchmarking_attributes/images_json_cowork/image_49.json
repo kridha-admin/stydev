@@ -1,0 +1,25 @@
+{
+  "image_id": "image_49",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "shift",
+    "sleeve_type": "puff",
+    "neckline_type": "crew_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Black crew neck top with dramatic eyelet/broderie anglaise puff sleeves. Body is plain jersey knit, sleeves are textured eyelet fabric with volume. Semi-fitted through the body. Worn tucked into distressed jeans."
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "image_43",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "plum",
+    "color_value": "dark",
+    "pattern_type": "solid",
+    "hemline_position": "at_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "wrap",
+    "sleeve_type": "cap",
+    "neckline_type": "wrap_surplice",
+    "neckline_depth": "deep"
+  },
+  "notes": "Plum/burgundy true wrap dress with deep V surplice neckline and cap sleeves. Self-tie belt at the waist with draped front panel. Knee-length hemline. Fluid jersey-like fabric with subtle sheen. Professional/elegant style."
+}

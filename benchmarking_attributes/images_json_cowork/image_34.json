@@ -1,0 +1,25 @@
+{
+  "image_id": "image_34",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "charcoal",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "at_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "sheath",
+    "sleeve_type": "sleeveless",
+    "neckline_type": "boat_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Charcoal/dark grey sleeveless sheath dress with boat neckline. Fitted through the body with darted waist. Knee-length hemline. Professional/office style. Suede-like or matte structured fabric."
+}

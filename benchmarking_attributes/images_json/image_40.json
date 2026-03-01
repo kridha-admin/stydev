@@ -1,0 +1,25 @@
+{
+  "image_id": "image_40",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "pink",
+    "color_value": "medium_light",
+    "pattern_type": "abstract",
+    "hemline_position": "mini",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "semi_defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "shift",
+    "sleeve_type": "bell",
+    "neckline_type": "boat_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Pink and orange watercolor/abstract floral print mini dress with boat neckline and long bell sleeves. Shift-like silhouette with slight A-line shape. Mini hemline. Lightweight mesh/chiffon-like fabric with subtle sheen."
+}

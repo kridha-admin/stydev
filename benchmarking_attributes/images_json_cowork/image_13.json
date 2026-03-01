@@ -1,0 +1,25 @@
+{
+  "image_id": "image_13",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "white",
+    "color_value": "very_light",
+    "pattern_type": "solid",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "empire",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "flutter",
+    "neckline_type": "sweetheart",
+    "neckline_depth": "medium"
+  },
+  "notes": "White fit-and-flare dress with sweetheart neckline and flutter sleeves. Twist/ruched detail at center bust. Empire waist with double-layered flared skirt. Above-knee hemline. Lightweight flowy fabric."
+}

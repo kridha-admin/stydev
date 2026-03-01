@@ -1,0 +1,25 @@
+{
+  "image_id": "image_19",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "floral_large",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "loose",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "high",
+    "leg_shape": "palazzo",
+    "leg_opening_width": "very_wide",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "Black palazzo pants with large white floral print. High-rise with elasticized/smocked waistband and drawstring tie. Very wide flowing legs. Lightweight summery fabric with side pockets."
+}

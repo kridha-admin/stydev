@@ -1,0 +1,25 @@
+{
+  "image_id": "image_07",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "tight",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "bodycon",
+    "sleeve_type": "off_shoulder",
+    "neckline_type": "off_shoulder",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Black off-shoulder bodycon top with short off-shoulder sleeves. Very fitted/tight silhouette. Tucked into light wash jeans. Smooth stretchy fabric."
+}

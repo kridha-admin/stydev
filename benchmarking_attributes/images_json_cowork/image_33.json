@@ -1,0 +1,25 @@
+{
+  "image_id": "image_33",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "sheath",
+    "sleeve_type": "sleeveless",
+    "neckline_type": "v_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Black sleeveless sheath dress with V-neckline. Fitted silhouette with side ruching/draping detail at the hip. Above-knee hemline. Professional/office-appropriate. Medium-weight structured fabric with subtle sheen."
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "image_16",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "navy",
+    "color_value": "dark",
+    "pattern_type": "solid",
+    "hemline_position": "maxi",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "relaxed",
+    "fabric_drape": "fluid",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "column",
+    "sleeve_type": "sleeveless",
+    "neckline_type": "v_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Navy sleeveless maxi dress with V-neckline. Relaxed column silhouette that skims the body without being fitted. Ankle-length hemline. Soft jersey fabric with fluid drape."
+}

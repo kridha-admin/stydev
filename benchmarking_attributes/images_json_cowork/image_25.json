@@ -1,0 +1,25 @@
+{
+  "image_id": "image_25",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "sleeveless",
+    "neckline_type": "v_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Black sleeveless V-neck dress with decorative gold buttons down the front. Elasticized/drawstring waist with gathered flared skirt. Above-knee hemline. Side pockets. Lightweight casual fabric."
+}

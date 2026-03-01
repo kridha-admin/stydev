@@ -1,0 +1,25 @@
+{
+  "image_id": "image_14",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "mint green",
+    "color_value": "light",
+    "pattern_type": "floral_small",
+    "hemline_position": "below_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "sleeveless",
+    "neckline_type": "square_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Mint green floral print fit-and-flare dress with wide straps and square neckline. Ruched/gathered bust with defined natural waist. Full flared A-line skirt falling below the knee. Vintage-inspired silhouette."
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "image_04",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "cream",
+    "color_value": "light",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "sheath",
+    "sleeve_type": "full_length",
+    "neckline_type": "scoop_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Cream ribbed knit fitted top with scoop neckline and full-length sleeves. Body-hugging fit with visible vertical rib texture. Tucked into black pants with belt."
+}

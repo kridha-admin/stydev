@@ -1,0 +1,25 @@
+{
+  "image_id": "image_01",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "tight",
+    "fabric_drape": "structured",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "sheath",
+    "sleeve_type": "full_length",
+    "neckline_type": "boat_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Black ribbed fitted top with boat neckline and full-length sleeves. Tucked into jeans so hemline not visible."
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "image_08",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "oversized",
+    "fabric_drape": "fluid",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "tent",
+    "sleeve_type": "short",
+    "neckline_type": "one_shoulder",
+    "neckline_depth": "medium"
+  },
+  "notes": "Black oversized one-shoulder/asymmetric slouchy t-shirt. Short sleeves with wide cut. Loose tent-like silhouette that falls well past the waist. Worn with black bike shorts."
+}

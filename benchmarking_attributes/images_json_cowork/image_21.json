@@ -1,0 +1,25 @@
+{
+  "image_id": "image_21",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "dark blue",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "mid",
+    "leg_shape": "skinny",
+    "leg_opening_width": "narrow",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "Dark wash skinny jeans with mid-rise. Single button closure, five-pocket styling. Fitted through hip, thigh and leg with narrow ankle opening. Clean dark indigo wash with minimal distressing."
+}

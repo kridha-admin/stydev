@@ -1,0 +1,394 @@
+{
+  "overall_score": 5.8,
+  "composite_raw": 0.066,
+  "confidence": 0.7,
+  "principle_scores": [
+    {
+      "name": "H-Stripe Thinning",
+      "score": 0,
+      "reasoning": "No stripes — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7,
+      "prompt_input_reasoning": []
+    },
+    {
+      "name": "Dark/Black Slimming",
+      "score": -0.010714285714285716,
+      "reasoning": "color_lightness: 0.9 >>  | Light color (L=0.90): slight expansion penalty = -0.04",
+      "weight": 0.23399999999999999,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Dark/Black Slimming: how this garment's color creates visual slimming or expansion effects for your body",
+        "Con: This garment has a light color which can visually expand the areas it covers, making them appear slightly larger, -0.04"
+      ]
+    },
+    {
+      "name": "A-Line Balance",
+      "score": 0,
+      "reasoning": "ER < 0.03: not A-line — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating A-Line Balance: how this garment's A-line silhouette creates balance and flatters your figure",
+        "This garment doesn't have enough flare to be considered an A-line silhouette — not applicable"
+      ]
+    },
+    {
+      "name": "Tent Concealment",
+      "score": 0,
+      "reasoning": "ER=0.02: not tent — N/A",
+      "weight": 0,
+      "applicable": false,
+      "confidence": 0.7,
+      "prompt_input_reasoning": []
+    },
+    {
+      "name": "Bodycon Mapping",
+      "score": -0.036,
+      "reasoning": "expansion_rate: 0.02 >>  | gsm_estimated: 110; is_structured: true >>  | isThin: false; isStructured: true >>  | body_shape: apple; is_athletic: false; belly_zone: 0.7 >>  | Apple + structured bodycon: -0.12",
+      "weight": 0.23399999999999999,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Bodycon Mapping: how this body-hugging garment works with your body shape and whether the fabric provides support",
+        "Con: For your apple body shape with this structured fitted garment, while the fabric provides some support, the tight fit still draws attention to your midsection, -0.12"
+      ]
+    },
+    {
+      "name": "Matte Zone",
+      "score": 0.12,
+      "reasoning": "sheen_index: 0.1 >>  | Deeply matte (SI=0.10): +0.08 | body_shape: apple; is_plus_size: true; zone: full_body >>  | btMult: 1.5 >>  | cling_risk: 0.37777777777777777 >> ",
+      "weight": 0.25704899999999997,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Matte Zone: how this garment's fabric sheen (matte vs shiny) affects perceived body volume",
+        "Pro: This garment has a deeply matte fabric that absorbs light rather than reflecting it, creating a slimming effect, +0.08",
+        "Pro: For your apple body shape with this garment, the matte fabric's slimming effect is especially beneficial for your midsection, (x1.5)"
+      ]
+    },
+    {
+      "name": "V-Neck Elongation",
+      "score": 0.05,
+      "reasoning": "neck: scoop >>  | Scoop: mild elongation (+0.05)",
+      "weight": 0.195,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Analyzing how this garment's neckline affects your vertical proportions",
+        "Pro: This garment's scoop neckline creates mild vertical elongation by drawing the eye downward from the face, +0.05"
+      ]
+    },
+    {
+      "name": "Hemline",
+      "score": 0.39999999999999997,
+      "reasoning": "Hem 30.1\" from floor -> above_knee | inchesAbove=11.6, h_knee=18.564, height=68 | Base elongation: min(11.6 * 0.20, 0.60) = 0.60 | c_thigh_max=26.381889763779526 | Thigh penalty (>24): -0.20 | Final: elongation=0.60 + thighPenalty=-0.20 + appleBonus=0.00 = 0.40",
+      "weight": 0.30185999999999996,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Hemline: how this garment's hemline placement flatters your leg line and proportions",
+        "Con: This garment's hemline falls at a wider part of your thighs, which may not be the most flattering placement, -0.20"
+      ]
+    },
+    {
+      "name": "Sleeve",
+      "score": -0.18,
+      "reasoning": "Sleeve endpoint 4.0\", delta=+2.21\", severity=0.8 | Raw score -3.0 -> normalized -0.60",
+      "weight": 0.2475,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Sleeve: how this garment's sleeve length flatters your arms",
+        "Con: This garment's sleeves end at an unflattering point on your arm, exposing an area that could benefit from more coverage"
+      ]
+    },
+    {
+      "name": "Waist Placement",
+      "score": 0,
+      "reasoning": "Waist=natural: visual leg ratio 0.603 (golden=0.618), improvement=+0.000",
+      "weight": 0.253125,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Waist Placement: how this garment's waistline placement affects your proportions"
+      ]
+    },
+    {
+      "name": "Color Value",
+      "score": -0.01875,
+      "reasoning": "Color L=90: slim_pct=-0.010, score=-0.063",
+      "weight": 0.08,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Color Value: how this garment's color lightness affects slimming and visual expansion",
+        "Con: This garment has a light color which can visually expand the areas it covers (-1%)"
+      ]
+    },
+    {
+      "name": "Fabric Zone",
+      "score": 0.06875,
+      "reasoning": "Fabric zone: stretch=0.0%, GSM=99, sheen=0.10, gsm_conf=high(×1)",
+      "weight": 0.12,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Assessing how this garment's fabric properties (cling, structure, drape) work with your body type",
+        "Pro: This garment has a fabric that skims rather than clings, creating a flattering silhouette, +0.10",
+        "Pro: This garment has a structured fabric that provides support and creates a polished silhouette, +0.15",
+        "Con: This garment has a stiff fabric that holds its own shape rather than following your body's contours, -0.10"
+      ]
+    },
+    {
+      "name": "Neckline Compound",
+      "score": 0.1845,
+      "reasoning": "Bust: depth=3.1\", threshold=7.0\", ratio=0.45, score=+0.30 | Compound: bust=+0.30*0.4 + torso=+0.07*0.3 + balance=+0.15*0.3 = +0.18",
+      "weight": 0.12,
+      "applicable": true,
+      "confidence": 0.7,
+      "prompt_input_reasoning": [
+        "Evaluating Neckline Compound: how this garment's V-neckline depth flatters your bust and creates torso slimming",
+        "Pro: This garment has a conservative V-neck depth that flatters without being too revealing, +0.30",
+        "Pro: For your apple body shape with this garment, the V-neckline's torso-slimming effect is especially beneficial for minimizing your midsection, (x1.30)"
+      ]
+    }
+  ],
+  "goal_verdicts": [
+    {
+      "goal": "look_taller",
+      "verdict": "pass",
+      "score": 0.157,
+      "supporting_principles": [
+        "+V-Neck Elongation (+0.05)",
+        "+Hemline (+0.40)"
+      ],
+      "reasoning": "Weighted score: +0.157 (pass)"
+    },
+    {
+      "goal": "slimming",
+      "verdict": "caution",
+      "score": 0.033,
+      "supporting_principles": [
+        "+Dark/Black Slimming (-0.01)",
+        "+Matte Zone (+0.12)",
+        "+Color Value (-0.02)",
+        "-Bodycon Mapping avoided (-0.04)"
+      ],
+      "reasoning": "Weighted score: +0.033 (caution)"
+    },
+    {
+      "goal": "highlight_waist",
+      "verdict": "caution",
+      "score": -0.016,
+      "supporting_principles": [
+        "+Bodycon Mapping (-0.04)"
+      ],
+      "reasoning": "Weighted score: -0.016 (caution)"
+    },
+    {
+      "goal": "hide_midsection",
+      "verdict": "caution",
+      "score": 0.051,
+      "supporting_principles": [
+        "+Dark/Black Slimming (-0.01)",
+        "+Matte Zone (+0.12)",
+        "+Fabric Zone (+0.07)",
+        "-Bodycon Mapping avoided (-0.04)"
+      ],
+      "reasoning": "Weighted score: +0.051 (caution)"
+    },
+    {
+      "goal": "slim_hips",
+      "verdict": "pass",
+      "score": 0.126,
+      "supporting_principles": [
+        "+Dark/Black Slimming (-0.01)",
+        "+Matte Zone (+0.12)",
+        "+Hemline (+0.40)",
+        "-Bodycon Mapping avoided (-0.04)"
+      ],
+      "reasoning": "Weighted score: +0.126 (pass)"
+    },
+    {
+      "goal": "balance",
+      "verdict": "pass",
+      "score": 0.2,
+      "supporting_principles": [
+        "+Hemline (+0.40)"
+      ],
+      "reasoning": "Weighted score: +0.200 (pass)"
+    },
+    {
+      "goal": "minimize_arms",
+      "verdict": "caution",
+      "score": -0.047,
+      "supporting_principles": [
+        "+Sleeve (-0.18)",
+        "+Matte Zone (+0.12)"
+      ],
+      "reasoning": "Weighted score: -0.047 (caution)"
+    },
+    {
+      "goal": "emphasis",
+      "verdict": "caution",
+      "score": 0.004,
+      "supporting_principles": [
+        "+Bodycon Mapping (-0.04)",
+        "+V-Neck Elongation (+0.05)"
+      ],
+      "reasoning": "Weighted score: +0.004 (caution)"
+    },
+    {
+      "goal": "concealment",
+      "verdict": "caution",
+      "score": 0.055,
+      "supporting_principles": [
+        "+Matte Zone (+0.12)",
+        "+Dark/Black Slimming (-0.01)",
+        "-Bodycon Mapping avoided (-0.04)"
+      ],
+      "reasoning": "Weighted score: +0.055 (caution)"
+    },
+    {
+      "goal": "look_proportional",
+      "verdict": "pass",
+      "score": 0.186,
+      "supporting_principles": [
+        "+Hemline (+0.40)"
+      ],
+      "reasoning": "Weighted score: +0.186 (pass)"
+    }
+  ],
+  "zone_scores": {
+    "ankle": {
+      "zone": "ankle",
+      "score": 0.4,
+      "flags": []
+    },
+    "bust": {
+      "zone": "bust",
+      "score": 0.117,
+      "flags": []
+    },
+    "calf": {
+      "zone": "calf",
+      "score": 0.4,
+      "flags": []
+    },
+    "hip": {
+      "zone": "hip",
+      "score": 0.051,
+      "flags": []
+    },
+    "knee": {
+      "zone": "knee",
+      "score": 0.4,
+      "flags": []
+    },
+    "shoulder": {
+      "zone": "shoulder",
+      "score": -0.065,
+      "flags": []
+    },
+    "thigh": {
+      "zone": "thigh",
+      "score": -0.036,
+      "flags": []
+    },
+    "torso": {
+      "zone": "torso",
+      "score": 0.025,
+      "flags": []
+    },
+    "upper_arm": {
+      "zone": "upper_arm",
+      "score": -0.18,
+      "flags": []
+    },
+    "waist": {
+      "zone": "waist",
+      "score": 0,
+      "flags": []
+    }
+  },
+  "exceptions": [
+    {
+      "exception_id": "GATE_STRUCTURED",
+      "rule_overridden": "negative_penalties",
+      "reason": "Structured garment (boning/lining): negative penalties reduced ~70% - construction provides body sculpting",
+      "confidence": 0.85
+    },
+    {
+      "exception_id": "GATE_FLUID_APPLE_BELLY",
+      "rule_overridden": "tent_concealment",
+      "reason": "Fluid/drapey fabric (DC=70%) on belly concern zone (0.70): fabric clings to belly contour instead of skimming",
+      "confidence": 0.72
+    }
+  ],
+  "fixes": [
+    {
+      "what_to_change": "Choose 3/4 sleeve for optimal arm slimming",
+      "expected_improvement": 0.25,
+      "priority": 2
+    }
+  ],
+  "body_adjusted": {
+    "hem_from_floor": 30.148484848484852,
+    "hem_zone": "above_knee",
+    "hemline_danger_zones": [
+      [
+        23.564,
+        25.564
+      ],
+      [
+        17.564,
+        20.064
+      ],
+      [
+        12.56283327627525,
+        16.26916672372475
+      ]
+    ],
+    "hemline_safe_zone": [
+      16.26916672372475,
+      17.564
+    ],
+    "fabric_rise_adjustment": 1.3,
+    "sleeve_endpoint_position": 4,
+    "perceived_arm_width": 4.747630358987881,
+    "arm_width_delta": 2.2091665718193028,
+    "arm_prominence_severity": 0.75,
+    "visual_waist_height": 53,
+    "visual_leg_ratio": 0.6029411764705882,
+    "proportion_improvement": 0,
+    "total_stretch_pct": 0,
+    "effective_gsm": 99,
+    "sheen_score": 0.1,
+    "photo_reality_discount": 0
+  },
+  "reasoning_chain": [
+    "L1 Fabric: stretch=0.0%, GSM=99, sheen=0.10, gates=2: GATE_STRUCTURED(Structured garment (boning/lining): negative penalties reduced ~70% - construction provides body sculpting) | GATE_FLUID_APPLE_BELLY(Fluid/drapey fabric (DC=70%) on belly concern zone (0.70): fabric clings to belly contour instead of skimming)",
+    "Classification: dress",
+    "L3 Calibration: goal weights + negative amplification applied",
+    "L4 Goals: 4 pass, 0 fail",
+    "L4 Goals: look_taller : pass : (Weighted score: +0.157 (pass)) +V-Neck Elongation (0.00 + 0.05 * 1.20 = 0.06) | +Hemline (0.06 + 0.40 * 1.30 = 0.58) |  final score 0.16 = weighted sum 0.58 / total weight 3.70 | \n\n L2 Element: +V-Neck Elongation {0.05} :  (neck: scoop >>  | Scoop: mild elongation (+0.05)) | \n\n L2 Element: +Hemline {0.40} :  (Hem 30.1\" from floor -> above_knee | inchesAbove=11.6, h_knee=18.564, height=68 | Base elongation: min(11.6 * 0.20, 0.60) = 0.60 | c_thigh_max=26.381889763779526 | Thigh penalty (>24): -0.20 | Final: elongation=0.60 + thighPenalty=-0.20 + appleBonus=0.00 = 0.40)",
+    "L4 Goals: slimming : caution : (Weighted score: +0.033 (caution)) +Dark/Black Slimming (0.00 + -0.01 * 1.50 = -0.02) | +Matte Zone (-0.02 + 0.12 * 1.30 = 0.14) | +Color Value (0.14 + -0.02 * 1.00 = 0.12) | -Bodycon Mapping avoided (0.12 - -0.04 * 1.00 = 0.16) |  final score 0.03 = weighted sum 0.16 / total weight 4.80 | \n\n L2 Element: +Dark/Black Slimming {-0.01} :  (color_lightness: 0.9 >>  | Light color (L=0.90): slight expansion penalty = -0.04) | \n\n L2 Element: +Matte Zone {0.12} :  (sheen_index: 0.1 >>  | Deeply matte (SI=0.10): +0.08 | body_shape: apple; is_plus_size: true; zone: full_body >>  | btMult: 1.5 >>  | cling_risk: 0.37777777777777777 >> ) | \n\n L2 Element: +Color Value {-0.02} :  (Color L=90: slim_pct=-0.010, score=-0.063) | \n\n L2 Element: -Bodycon Mapping {-0.04} :  (expansion_rate: 0.02 >>  | gsm_estimated: 110; is_structured: true >>  | isThin: false; isStructured: true >>  | body_shape: apple; is_athletic: false; belly_zone: 0.7 >>  | Apple + structured bodycon: -0.12)",
+    "L4 Goals: highlight_waist : caution : (Weighted score: -0.016 (caution)) +Bodycon Mapping (0.00 + -0.04 * 1.20 = -0.04) |  final score -0.02 = weighted sum -0.04 / total weight 2.70 | \n\n L2 Element: +Bodycon Mapping {-0.04} :  (expansion_rate: 0.02 >>  | gsm_estimated: 110; is_structured: true >>  | isThin: false; isStructured: true >>  | body_shape: apple; is_athletic: false; belly_zone: 0.7 >>  | Apple + structured bodycon: -0.12)",
+    "L4 Goals: hide_midsection : caution : (Weighted score: +0.051 (caution)) +Dark/Black Slimming (0.00 + -0.01 * 1.30 = -0.01) | +Matte Zone (-0.01 + 0.12 * 1.20 = 0.13) | +Fabric Zone (0.13 + 0.07 * 1.00 = 0.20) | -Bodycon Mapping avoided (0.20 - -0.04 * 1.50 = 0.25) |  final score 0.05 = weighted sum 0.25 / total weight 5.00 | \n\n L2 Element: +Dark/Black Slimming {-0.01} :  (color_lightness: 0.9 >>  | Light color (L=0.90): slight expansion penalty = -0.04) | \n\n L2 Element: +Matte Zone {0.12} :  (sheen_index: 0.1 >>  | Deeply matte (SI=0.10): +0.08 | body_shape: apple; is_plus_size: true; zone: full_body >>  | btMult: 1.5 >>  | cling_risk: 0.37777777777777777 >> ) | \n\n L2 Element: +Fabric Zone {0.07} :  (Fabric zone: stretch=0.0%, GSM=99, sheen=0.10, gsm_conf=high(×1)) | \n\n L2 Element: -Bodycon Mapping {-0.04} :  (expansion_rate: 0.02 >>  | gsm_estimated: 110; is_structured: true >>  | isThin: false; isStructured: true >>  | body_shape: apple; is_athletic: false; belly_zone: 0.7 >>  | Apple + structured bodycon: -0.12)",
+    "L4 Goals: slim_hips : pass : (Weighted score: +0.126 (pass)) +Dark/Black Slimming (0.00 + -0.01 * 1.50 = -0.02) | +Matte Zone (-0.02 + 0.12 * 1.20 = 0.13) | +Hemline (0.13 + 0.40 * 1.20 = 0.61) | -Bodycon Mapping avoided (0.61 - -0.04 * 1.30 = 0.65) |  final score 0.13 = weighted sum 0.65 / total weight 5.20 | \n\n L2 Element: +Dark/Black Slimming {-0.01} :  (color_lightness: 0.9 >>  | Light color (L=0.90): slight expansion penalty = -0.04) | \n\n L2 Element: +Matte Zone {0.12} :  (sheen_index: 0.1 >>  | Deeply matte (SI=0.10): +0.08 | body_shape: apple; is_plus_size: true; zone: full_body >>  | btMult: 1.5 >>  | cling_risk: 0.37777777777777777 >> ) | \n\n L2 Element: +Hemline {0.40} :  (Hem 30.1\" from floor -> above_knee | inchesAbove=11.6, h_knee=18.564, height=68 | Base elongation: min(11.6 * 0.20, 0.60) = 0.60 | c_thigh_max=26.381889763779526 | Thigh penalty (>24): -0.20 | Final: elongation=0.60 + thighPenalty=-0.20 + appleBonus=0.00 = 0.40) | \n\n L2 Element: -Bodycon Mapping {-0.04} :  (expansion_rate: 0.02 >>  | gsm_estimated: 110; is_structured: true >>  | isThin: false; isStructured: true >>  | body_shape: apple; is_athletic: false; belly_zone: 0.7 >>  | Apple + structured bodycon: -0.12)",
+    "L4 Goals: balance : pass : (Weighted score: +0.200 (pass)) +Hemline (0.00 + 0.40 * 1.00 = 0.40) |  final score 0.20 = weighted sum 0.40 / total weight 2.00 | \n\n L2 Element: +Hemline {0.40} :  (Hem 30.1\" from floor -> above_knee | inchesAbove=11.6, h_knee=18.564, height=68 | Base elongation: min(11.6 * 0.20, 0.60) = 0.60 | c_thigh_max=26.381889763779526 | Thigh penalty (>24): -0.20 | Final: elongation=0.60 + thighPenalty=-0.20 + appleBonus=0.00 = 0.40)",
+    "L4 Goals: minimize_arms : caution : (Weighted score: -0.047 (caution)) +Sleeve (0.00 + -0.18 * 1.50 = -0.27) | +Matte Zone (-0.27 + 0.12 * 1.20 = -0.13) |  final score -0.05 = weighted sum -0.13 / total weight 2.70 | \n\n L2 Element: +Sleeve {-0.18} :  (Sleeve endpoint 4.0\", delta=+2.21\", severity=0.8 | Raw score -3.0 -> normalized -0.60) | \n\n L2 Element: +Matte Zone {0.12} :  (sheen_index: 0.1 >>  | Deeply matte (SI=0.10): +0.08 | body_shape: apple; is_plus_size: true; zone: full_body >>  | btMult: 1.5 >>  | cling_risk: 0.37777777777777777 >> )",
+    "L4 Goals: emphasis : caution : (Weighted score: +0.004 (caution)) +Bodycon Mapping (0.00 + -0.04 * 1.50 = -0.05) | +V-Neck Elongation (-0.05 + 0.05 * 1.30 = 0.01) |  final score 0.00 = weighted sum 0.01 / total weight 2.80 | \n\n L2 Element: +Bodycon Mapping {-0.04} :  (expansion_rate: 0.02 >>  | gsm_estimated: 110; is_structured: true >>  | isThin: false; isStructured: true >>  | body_shape: apple; is_athletic: false; belly_zone: 0.7 >>  | Apple + structured bodycon: -0.12) | \n\n L2 Element: +V-Neck Elongation {0.05} :  (neck: scoop >>  | Scoop: mild elongation (+0.05))",
+    "L4 Goals: concealment : caution : (Weighted score: +0.055 (caution)) +Matte Zone (0.00 + 0.12 * 1.30 = 0.16) | +Dark/Black Slimming (0.16 + -0.01 * 1.00 = 0.15) | -Bodycon Mapping avoided (0.15 - -0.04 * 1.00 = 0.18) |  final score 0.05 = weighted sum 0.18 / total weight 3.30 | \n\n L2 Element: +Matte Zone {0.12} :  (sheen_index: 0.1 >>  | Deeply matte (SI=0.10): +0.08 | body_shape: apple; is_plus_size: true; zone: full_body >>  | btMult: 1.5 >>  | cling_risk: 0.37777777777777777 >> ) | \n\n L2 Element: +Dark/Black Slimming {-0.01} :  (color_lightness: 0.9 >>  | Light color (L=0.90): slight expansion penalty = -0.04) | \n\n L2 Element: -Bodycon Mapping {-0.04} :  (expansion_rate: 0.02 >>  | gsm_estimated: 110; is_structured: true >>  | isThin: false; isStructured: true >>  | body_shape: apple; is_athletic: false; belly_zone: 0.7 >>  | Apple + structured bodycon: -0.12)",
+    "L4 Goals: look_proportional : pass : (Weighted score: +0.186 (pass)) +Hemline (0.00 + 0.40 * 1.30 = 0.52) |  final score 0.19 = weighted sum 0.52 / total weight 2.80 | \n\n L2 Element: +Hemline {0.40} :  (Hem 30.1\" from floor -> above_knee | inchesAbove=11.6, h_knee=18.564, height=68 | Base elongation: min(11.6 * 0.20, 0.60) = 0.60 | c_thigh_max=26.381889763779526 | Thigh penalty (>24): -0.20 | Final: elongation=0.60 + thighPenalty=-0.20 + appleBonus=0.00 = 0.40)",
+    "L5 BodyAdj: hem=30.1\", sleeve_delta=+2.21\", leg_ratio=0.603",
+    "L6 Context: none",
+    "L7 Composite: raw=+0.066, overall=5.8/10, confidence=0.70"
+  ],
+  "layer_modifications": null,
+  "styling_notes": []
+}

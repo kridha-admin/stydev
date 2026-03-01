@@ -1,0 +1,25 @@
+{
+  "image_id": "image_35",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "cream",
+    "color_value": "very_light",
+    "pattern_type": "abstract",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "relaxed",
+    "fabric_drape": "structured",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "shift",
+    "sleeve_type": "sleeveless",
+    "neckline_type": "crew_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Cream/off-white sleeveless shift dress with crew neckline. Two large black abstract spiral/rose embroidered motifs on the lower half. Above-knee hemline. Relaxed A-line shift silhouette with no waist definition. Clean, minimalist design."
+}

@@ -1,0 +1,26 @@
+{
+  "chest_circumference": 112.7,
+  "waist_circumference": 102.76,
+  "hip_circumference": 107.5,
+  "shoulder_breadth": 42.3164,
+  "neck_circumference": 44.97,
+  "thigh_left_circumference": 67.01,
+  "ankle_left_circumference": 28.64,
+  "arm_right_length": 75.9968,
+  "inside_leg_height": 77.66,
+  "height": 172.72,
+  "styling_goals": [
+    "look_taller",
+    "look_slimmer",
+    "highlight_waist",
+    "hide_midsection",
+    "minimize_hips",
+    "balance_shoulders",
+    "hide_upper_arms",
+    "elongate_legs",
+    "create_curves",
+    "streamline_silhouette",
+    "minimize_bust",
+    "show_legs"
+  ]
+}

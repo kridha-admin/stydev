@@ -1,0 +1,25 @@
+{
+  "image_id": "image_15",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "at_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "wrap",
+    "sleeve_type": "short",
+    "neckline_type": "wrap_surplice",
+    "neckline_depth": "deep"
+  },
+  "notes": "Black wrap/surplice dress with short sleeves and deep V wrap neckline. Wide waistband with gathered full skirt. Knee-length hemline. Side pockets visible. Soft jersey-like fabric."
+}

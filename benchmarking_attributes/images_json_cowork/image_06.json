@@ -1,0 +1,25 @@
+{
+  "image_id": "image_06",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "light blue",
+    "color_value": "light",
+    "pattern_type": "solid",
+    "hemline_position": "maxi",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "loose",
+    "fabric_drape": "fluid",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "tiered",
+    "sleeve_type": "halter",
+    "neckline_type": "halter",
+    "neckline_depth": "medium"
+  },
+  "notes": "Light blue tiered maxi dress with halter neckline and spaghetti strap tie. Gathered/ruched bodice with V-shape. Three tiers with loose, flowy silhouette. Side pockets visible."
+}

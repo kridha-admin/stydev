@@ -1,0 +1,25 @@
+{
+  "image_id": "image_22",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "medium blue",
+    "color_value": "medium",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "tight",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "high",
+    "leg_shape": "skinny",
+    "leg_opening_width": "narrow",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "Medium blue wash high-rise skinny jeans. Very tight/fitted through hip and leg. Single button closure, five-pocket styling. Narrow ankle opening. Stretch denim with slight fading at thighs."
+}

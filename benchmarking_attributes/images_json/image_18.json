@@ -1,0 +1,25 @@
+{
+  "image_id": "image_18",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "dark blue",
+    "color_value": "dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "mid",
+    "leg_shape": "straight",
+    "leg_opening_width": "medium",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "Dark wash straight-leg jeans with mid-rise. Single button closure with classic five-pocket styling. Fitted through the hip with straight leg from thigh to ankle. Subtle whiskering at front."
+}

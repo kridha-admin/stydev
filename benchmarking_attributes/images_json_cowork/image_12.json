@@ -1,0 +1,25 @@
+{
+  "image_id": "image_12",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "mini",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "full_length",
+    "neckline_type": "square_neck",
+    "neckline_depth": "medium"
+  },
+  "notes": "Black fit-and-flare mini dress with square neckline and long sleeves. Ruched bodice at waist with double-layered flared skirt. Fitted on top, flaring at the hip."
+}

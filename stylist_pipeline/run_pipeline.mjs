@@ -602,7 +602,7 @@ let product_profile1 = {
 
     product_text: `
 
-        Title:
+        Title :
         H&M Puff-Sleeved Dress
         $29.99
 
@@ -954,16 +954,124 @@ function writeOutputFiles(result, userMeasurements, productProfile, outputFolder
 // MAIN
 // ============================================================================
 
+// ============================================================================
+// CACHE UTILITIES
+// ============================================================================
+
+const CACHE_DIR = join(import.meta.dirname, 'cache_json');
+const CACHE_FILE = join(CACHE_DIR, 'merged_attrs_cache.json');
+
+function getCacheKey(productText, productImageUrl) {
+    // Create a simple hash-like key from product_text and product_image_url
+    const combined = `${productText || ''}::${productImageUrl || ''}`;
+    // Simple hash function
+    let hash = 0;
+    for (let i = 0; i < combined.length; i++) {
+        const char = combined.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return `cache_${Math.abs(hash)}`;
+}
+
+function loadCache() {
+    try {
+        if (existsSync(CACHE_FILE)) {
+            const data = readFileSync(CACHE_FILE, 'utf-8');
+            return JSON.parse(data);
+        }
+    } catch (err) {
+        console.error('[CACHE] Error loading cache:', err.message);
+    }
+    return {};
+}
+
+function saveCache(cache) {
+    try {
+        if (!existsSync(CACHE_DIR)) {
+            mkdirSync(CACHE_DIR, { recursive: true });
+        }
+        writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2));
+        console.log('[CACHE] Cache saved to:', CACHE_FILE);
+    } catch (err) {
+        console.error('[CACHE] Error saving cache:', err.message);
+    }
+}
+
+function getCachedMergedAttrs(productText, productImageUrl) {
+    const cache = loadCache();
+    const key = getCacheKey(productText, productImageUrl);
+    if (cache[key]) {
+        console.log('[CACHE] Cache HIT for key:', key);
+        return cache[key].mergedAttrs;
+    }
+    console.log('[CACHE] Cache MISS for key:', key);
+    return null;
+}
+
+function saveMergedAttrsToCache(productText, productImageUrl, mergedAttrs) {
+    const cache = loadCache();
+    const key = getCacheKey(productText, productImageUrl);
+    cache[key] = {
+        product_text: productText,
+        product_image_url: productImageUrl,
+        mergedAttrs: mergedAttrs,
+        cached_at: new Date().toISOString()
+    };
+    saveCache(cache);
+    console.log('[CACHE] Saved mergedAttrs for key:', key);
+}
+
+// ============================================================================
+// RUN PIPELINE WITH CACHE
+// ============================================================================
+
+/**
+ * Wrapper function that checks cache before running pipeline.
+ * If cache exists, uses cached mergedAttrs (extract_details=false).
+ * If no cache, runs full extraction and saves result to cache.
+ *
+ * @param {Object} userMeasurements - User body measurements
+ * @param {Object} productProfile - Product profile with product_text and product_image_url
+ * @returns {Object} Pipeline result
+ */
+export async function runPipelineWithCache(userMeasurements, productProfile) {
+    const productText = productProfile.product_text || '';
+    const productImageUrl = productProfile.product_image_url || '';
+
+    // Check cache first
+    const cachedAttrs = getCachedMergedAttrs(productText, productImageUrl);
+
+    let extract_details = true;
+
+    if (cachedAttrs) {
+        // Use cached mergedAttrs
+        console.log('\n=== USING CACHED MERGED ATTRIBUTES ===\n');
+        productProfile.merged_attrs = cachedAttrs;
+        extract_details = false; // No need to extract, we have cached data
+    }
+
+    // Run the pipeline
+    const result = await runPipeline(userMeasurements, productProfile, extract_details);
+
+    // Save to cache if we extracted new attributes (not from cache)
+    if (!cachedAttrs && result && result.mergedAttrs) {
+        saveMergedAttrsToCache(productText, productImageUrl, result.mergedAttrs);
+    }
+
+    return result;
+}
+
 // Only run if this file is executed directly (not imported)
 if (import.meta.url === `file://${process.argv[1]}`) {
     // Parse command line argument for output folder
     const args = process.argv.slice(2);
     const outputFolder = args[0] || 'output';
 
-    // Run the pipeline
-    let extract_details = false;
+    // Run the pipeline with cache
     let product_profile_input = product_profile1;
-    runPipeline(user_body_measurements1, product_profile_input, extract_details).then((result) => {
+
+    runPipelineWithCache(user_body_measurements1, product_profile_input).then((result) => {
         // print keys in result
         console.log("Keys in result: ", Object.keys(result));
         if (result) {
@@ -971,7 +1079,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
             writeOutputFiles(result, user_body_measurements1, product_profile_input, outputFolder);
             console.log("\n=== PIPELINE COMPLETE ===\n");
         }
+        process.exit(0);
     }).catch((err) => {
         console.error("Pipeline error:", err);
+        process.exit(1);
     });
 }

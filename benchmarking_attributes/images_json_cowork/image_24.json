@@ -1,0 +1,25 @@
+{
+  "image_id": "image_24",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "teal",
+    "color_value": "medium_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "loose",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "high",
+    "leg_shape": "wide_leg",
+    "leg_opening_width": "wide",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "Teal/navy wide-leg linen-look pants with elasticized waistband and drawstring. High-rise with large patch pockets on front. Wide leg opening. Lightweight breathable fabric, casual/resort style."
+}

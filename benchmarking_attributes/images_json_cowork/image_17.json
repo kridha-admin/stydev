@@ -1,0 +1,25 @@
+{
+  "image_id": "image_17",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "light blue",
+    "color_value": "medium_light",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "mid",
+    "leg_shape": "bootcut",
+    "leg_opening_width": "medium",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "Light wash bootcut jeans with double-button waistband. Mid-rise with fitted through hip and thigh, flaring slightly from the knee. Medium leg opening. Classic denim with whiskering and fading."
+}

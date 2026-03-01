@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylist Pipeline Runner</title>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000000;
+            font-weight: 600;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: calc(100vh - 100px);
+        }
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .panel h2 {
+            margin-bottom: 15px;
+            color: #000000;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #6B7280;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background: #F9FAFB;
+            color: #000000;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            resize: vertical;
+        }
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #000000;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        #productText {
+            flex: 1;
+            min-height: 200px;
+        }
+        #resultJson {
+            min-height: 200px;
+            margin-top: 16px;
+        }
+        button {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: #333333;
+        }
+        button:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            border: 1px solid #E5E7EB;
+        }
+        .status.loading {
+            background: #F9FAFB;
+            color: #6B7280;
+        }
+        .status.success {
+            background: #F9FAFB;
+            color: #000000;
+        }
+        .status.error {
+            background: #F9FAFB;
+            color: #000000;
+            border-color: #000000;
+        }
+
+        /* Style V2 Result Display */
+        .result-display {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 13px;
+            color: #111827;
+        }
+        .score-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #F9FAFB;
+            border-radius: 10px;
+            border: 1px solid #E5E7EB;
+        }
+        .score-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1;
+        }
+        .verdict-chip {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #000000;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .confidence-text {
+            font-size: 11px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+        .headline {
+            font-size: 15px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .pinch-text {
+            font-size: 13px;
+            color: #374151;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .section-title {
+            font-weight: 600;
+            font-size: 12px;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .goal-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .goal-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 500;
+            background: #F9FAFB;
+            color: #000000;
+            border: 1px solid #E5E7EB;
+        }
+        .goal-chip.helping {
+            background: #ffffff;
+            border-color: #000000;
+        }
+        .goal-chip.fighting {
+            background: #000000;
+            color: #ffffff;
+        }
+        .goal-chip.mixed {
+            background: #E5E7EB;
+        }
+        .goal-analysis {
+            margin-bottom: 16px;
+        }
+        .goal-item {
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            border-radius: 8px;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+        .goal-item.pass {
+            border-left: 3px solid #000000;
+        }
+        .goal-item.fail {
+            background: #000000;
+            color: #ffffff;
+        }
+        .goal-item.fail .goal-reasoning {
+            color: #9CA3AF;
+        }
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .goal-name {
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .goal-score {
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .goal-reasoning {
+            font-size: 10px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        .collapsible {
+            margin-top: 8px;
+        }
+        .collapsible summary {
+            font-size: 11px;
+            color: #9CA3AF;
+            cursor: pointer;
+            user-select: none;
+            padding: 4px 0;
+        }
+        .collapsible summary:hover {
+            color: #000000;
+        }
+        .collapsible-content {
+            background: #F9FAFB;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+            max-height: 300px;
+            overflow: auto;
+            border: 1px solid #E5E7EB;
+        }
+        .collapsible pre {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 10px;
+            line-height: 1.4;
+            color: #374151;
+            margin: 0;
+        }
+        .loading-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 16px;
+        }
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 3px solid #E5E7EB;
+            border-top: 3px solid #000000;
+            animation: spin 1s linear infinite;
+        }
+        .not-supported {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6B7280;
+        }
+        .user-line {
+            font-size: 11px;
+            color: #9CA3AF;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stylist Pipeline Runner</h1>
+    <div class="container">
+        <div class="panel">
+            <h2>Input</h2>
+            <div class="input-group">
+                <label for="productText">Product Text</label>
+                <textarea id="productText" placeholder="Paste product description here...">Title:
+H&M Puff-Sleeved Dress
+$29.99
+
+Color:
+Cream/floral
+
+Product features
+The model is 175cm/5'9" and wears a size S
+Slim fit
+
+Description & fit
+Short dress in airy, woven fabric with smocking at back. Sweetheart neckline, slim fit over bust, and a gathered seam below bust. Narrow elastic over shoulders, short puff sleeves, and narrow elastic at cuffs. Gently flared skirt with a gathered seam above hem.
+
+Art. No.: 1275471004
+
+Concept:            DIVIDED
+Description:        Cream/blue/green, Floral
+Model size:         The model is 175cm/5'9" and wears a size S
+Length:             Short
+Sleeve Length:      Short sleeve
+Fit:                Slim fit
+Style:              Babydoll , Flared, Smocked, Romantic Dress
+Neckline:           Sweetheart Neckline
+Sleeve type:        Puff Sleeve
+Imported:           Yes
+Quantity:           Single
+
+Materials
+
+Composition
+Shell:Rayon 70%, Linen 30%
+Lining:Polyester 100%
+
+Additional material information
+The total weight of this product contains at least:
+67% Livaeco™ Viscose
+
+We exclude the weight of minor components such as, but not exclusively: threads, buttons, zippers, embellishments and prints.
+The total weight of the product is calculated by adding the weight of all layers and main components together. Based on that, we calculate how much of that weight is made out by each material. For sets and multipacks, all pieces are counted together as one product in calculations.
+
+Materials in this product explained
+
+Rayon
+Viscose is a regenerated cellulose fibre commonly made from wood, but the raw material could also consist of other cellulosic materials.
+
+Livaeco™ Viscose
+Livaeco™ is a branded viscose fiber. Its wood pulp raw material is sourced from certified forests according to standards regulating deforestation, wages and work environment, the protection of plant and animal species and community rights.
+
+Polyester
+Polyester is a synthetic fibre made from crude oil (a fossil resource).
+
+Linen
+Linen is a natural bast fibre derived from flax plants.
+
+Care guide
+Bring your clean, previously loved clothing or textiles to one of our stores — they can be from any brand.
+Read about how you can make your clothes last longer
+Care instructions
+Use a laundry bag
+Only non-chlorine bleach when needed
+Line dry
+Medium iron
+Machine wash cold</textarea>
+            </div>
+            <div class="input-group">
+                <label for="productImageUrl">Product Image URL</label>
+                <input type="text" id="productImageUrl" value="https://image.hm.com/assets/hm/3f/9d/3f9d33623815e9442d3af8801b1bdcc619a18f8c.jpg?imwidth=1536">
+            </div>
+            <button id="runBtn" onclick="runPipeline()">Run Pipeline</button>
+            <div id="status" class="status" style="display: none;"></div>
+        </div>
+        <div class="panel">
+            <h2>Result</h2>
+            <div id="resultDisplay" class="result-display"></div>
+            <label style="margin-top: 16px;">Raw JSON</label>
+            <textarea id="resultJson" readonly placeholder="Pipeline result will appear here..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        function renderResult(data) {
+            const container = document.getElementById('resultDisplay');
+
+            if (!data) {
+                container.innerHTML = '';
+                return;
+            }
+
+            // Check if product is not supported
+            if (data.is_product_supported === false || data.is_product_supported === "false") {
+                container.innerHTML = `
+                    <div class="not-supported">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <p style="margin-top: 12px;">This product isn't yet supported in the stylist.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const comm = data.communication || {};
+            const scoring = data.scoring_result || {};
+
+            const verdictLabels = {
+                this_is_it: 'This Is It!',
+                smart_pick: 'Smart Pick',
+                not_this_one: 'Not This One',
+            };
+
+            let html = '';
+
+            // Score + Verdict Badge
+            html += `
+                <div class="score-badge">
+                    <div class="score-number">
+                        ${scoring.overall_score != null ? Number(scoring.overall_score).toFixed(1) : '—'}
+                    </div>
+                    <div>
+                        <div class="verdict-chip">
+                            ${verdictLabels[comm.verdict] || comm.verdict || '—'}
+                        </div>
+                        <div class="confidence-text">
+                            Confidence: ${scoring.confidence != null ? (Number(scoring.confidence) * 100).toFixed(0) + '%' : '—'}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Headline
+            if (comm.headline) {
+                html += `<div class="headline">${comm.headline}</div>`;
+            }
+
+            // Pinch
+            if (comm.pinch && comm.pinch.length > 0) {
+                const pinchHtml = comm.pinch.map(seg => {
+                    const text = typeof seg === 'object' ? seg.text : seg;
+                    const isBold = typeof seg === 'object' && seg.style === 'bold';
+                    return `<span style="font-weight: ${isBold ? '600' : '400'}">${text}</span>`;
+                }).join('');
+                html += `<div class="pinch-text">${pinchHtml}</div>`;
+            }
+
+            // User line
+            if (comm.user_line) {
+                html += `<div class="user-line">${comm.user_line}</div>`;
+            }
+
+            // Goal Chips
+            if (comm.goal_chips && comm.goal_chips.length > 0) {
+                html += `<div class="section-title">Goals</div>`;
+                html += `<div class="goal-chips">`;
+                comm.goal_chips.forEach(chip => {
+                    const verdictClass = chip.verdict === 'helping' ? 'helping' :
+                                        chip.verdict === 'fighting' ? 'fighting' : 'mixed';
+                    html += `
+                        <div class="goal-chip ${verdictClass}">
+                            <span>${chip.icon || ''}</span>
+                            <span>${chip.goal}</span>
+                            <span style="font-size: 10px; opacity: 0.7;">(${chip.verdict})</span>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            // Goal Verdicts - detailed breakdown
+            if (scoring.goal_verdicts && scoring.goal_verdicts.length > 0) {
+                html += `<div class="goal-analysis">`;
+                html += `<div class="section-title">Goal Analysis</div>`;
+                scoring.goal_verdicts.forEach(gv => {
+                    const goalLabel = typeof gv.goal === 'object' ? (gv.goal.value || gv.goal) : gv.goal;
+                    const verdictClass = gv.verdict === 'pass' ? 'pass' : gv.verdict === 'fail' ? 'fail' : '';
+                    html += `
+                        <div class="goal-item ${verdictClass}">
+                            <div class="goal-header">
+                                <span class="goal-name">${String(goalLabel).replace(/_/g, ' ')}</span>
+                                <span class="goal-score">
+                                    ${gv.verdict?.toUpperCase()} (${gv.score != null ? (gv.score >= 0 ? '+' : '') + Number(gv.score).toFixed(3) : '—'})
+                                </span>
+                            </div>
+                            ${gv.reasoning ? `<div class="goal-reasoning">${gv.reasoning}</div>` : ''}
+                            ${gv.supporting_principles && gv.supporting_principles.length > 0 ?
+                                `<div class="goal-reasoning">Principles: ${gv.supporting_principles.join(', ')}</div>` : ''}
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            // Search pills
+            if (comm.search_pills && comm.search_pills.length > 0) {
+                html += `<div class="section-title">Try Instead</div>`;
+                html += `<div class="goal-chips">`;
+                comm.search_pills.forEach(pill => {
+                    html += `<div class="goal-chip">${pill}</div>`;
+                });
+                html += `</div>`;
+            }
+
+            // Photo note / Confidence note
+            if (comm.photo_note || comm.confidence_note) {
+                html += `<div class="user-line">`;
+                if (comm.photo_note) html += `<div>${comm.photo_note}</div>`;
+                if (comm.confidence_note) html += `<div>${comm.confidence_note}</div>`;
+                html += `</div>`;
+            }
+
+            // Collapsible sections
+
+            // Full Stylist Take (from explanationResult)
+            if (data.explanationResult && data.explanationResult.success && data.explanationResult.result) {
+                const expResult = data.explanationResult.result;
+                let stylistTakeContent = '';
+
+                // Explanation paragraphs
+                if (expResult.explanation) {
+                    const explanationHtml = Array.isArray(expResult.explanation)
+                        ? expResult.explanation.map((p, i) => `<p style="margin-bottom: ${i < expResult.explanation.length - 1 ? '12px' : '0'}">${p}</p>`).join('')
+                        : `<p>${expResult.explanation}</p>`;
+                    stylistTakeContent += `<div style="font-size: 13px; color: #374151; line-height: 1.7; margin-bottom: 12px;">${explanationHtml}</div>`;
+                }
+
+                // Key Benefits
+                if (expResult.key_benefits && expResult.key_benefits.length > 0) {
+                    stylistTakeContent += `
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-size: 11px; font-weight: 600; color: #065F46; margin-bottom: 6px;">Key Benefits</div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                ${expResult.key_benefits.map(b => `
+                                    <span style="padding: 4px 10px; border-radius: 16px; font-size: 11px; background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;">${b}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Considerations
+                if (expResult.considerations && expResult.considerations.length > 0) {
+                    stylistTakeContent += `
+                        <div>
+                            <div style="font-size: 11px; font-weight: 600; color: #92400E; margin-bottom: 6px;">Considerations</div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                ${expResult.considerations.map(c => `
+                                    <span style="padding: 4px 10px; border-radius: 16px; font-size: 11px; background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A;">${c}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += `
+                    <details class="collapsible">
+                        <summary>Full Stylist Take</summary>
+                        <div class="collapsible-content">
+                            ${stylistTakeContent}
+                        </div>
+                    </details>
+                `;
+            }
+
+            // Text Attributes
+            if (data.textAttrs && Object.keys(data.textAttrs).length > 0) {
+                html += `
+                    <details class="collapsible">
+                        <summary>Text Attributes</summary>
+                        <div class="collapsible-content">
+                            <pre>${JSON.stringify(data.textAttrs, null, 2)}</pre>
+                        </div>
+                    </details>
+                `;
+            }
+
+            // Image Attributes
+            if (data.imageAttrs && Object.keys(data.imageAttrs).length > 0) {
+                html += `
+                    <details class="collapsible">
+                        <summary>Image Attributes</summary>
+                        <div class="collapsible-content">
+                            <pre>${JSON.stringify(data.imageAttrs, null, 2)}</pre>
+                        </div>
+                    </details>
+                `;
+            }
+
+            // Merged Attributes
+            if (data.mergedAttrs && Object.keys(data.mergedAttrs).length > 0) {
+                html += `
+                    <details class="collapsible">
+                        <summary>Merged Attributes</summary>
+                        <div class="collapsible-content">
+                            <pre>${JSON.stringify(data.mergedAttrs, null, 2)}</pre>
+                        </div>
+                    </details>
+                `;
+            }
+
+            // Reasoning Chain
+            if (scoring.reasoning_chain && scoring.reasoning_chain.length > 0) {
+                html += `
+                    <details class="collapsible">
+                        <summary>Reasoning Chain</summary>
+                        <div class="collapsible-content">
+                            ${scoring.reasoning_chain.map((item, i) => `
+                                <div style="padding: 4px 0; border-bottom: ${i < scoring.reasoning_chain.length - 1 ? '1px solid #E5E7EB' : 'none'};">
+                                    ${item}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </details>
+                `;
+            }
+
+            // Input Prompt
+            if (data.explanationResult && data.explanationResult.result && data.explanationResult.result.input_prompt) {
+                html += `
+                    <details class="collapsible">
+                        <summary>Input Prompt</summary>
+                        <div class="collapsible-content">
+                            <pre>${data.explanationResult.result.input_prompt}</pre>
+                        </div>
+                    </details>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        async function runPipeline() {
+            const productText = document.getElementById('productText').value;
+            const productImageUrl = document.getElementById('productImageUrl').value;
+            const resultJson = document.getElementById('resultJson');
+            const resultDisplay = document.getElementById('resultDisplay');
+            const status = document.getElementById('status');
+            const runBtn = document.getElementById('runBtn');
+
+            if (!productText.trim() && !productImageUrl.trim()) {
+                status.textContent = 'Please enter product text or image URL';
+                status.className = 'status error';
+                status.style.display = 'block';
+                return;
+            }
+
+            // Show loading state
+            runBtn.disabled = true;
+            runBtn.textContent = 'Running...';
+            status.textContent = 'Running pipeline...';
+            status.className = 'status loading';
+            status.style.display = 'block';
+            resultJson.value = '';
+            resultDisplay.innerHTML = `
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <span style="color: #6B7280;">Running pipeline...</span>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/run-pipeline', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        product_text: productText,
+                        product_image_url: productImageUrl
+                    })
+                });
+
+                const result = await response.json();
+                resultJson.value = JSON.stringify(result, null, 2);
+
+                if (response.ok) {
+                    renderResult(result);
+                    status.textContent = 'Pipeline completed successfully!';
+                    status.className = 'status success';
+                } else {
+                    resultDisplay.innerHTML = `<div class="not-supported"><p>Error: ${result.error || 'Unknown error'}</p></div>`;
+                    status.textContent = 'Pipeline error: ' + (result.error || 'Unknown error');
+                    status.className = 'status error';
+                }
+            } catch (err) {
+                status.textContent = 'Network error: ' + err.message;
+                status.className = 'status error';
+                resultJson.value = JSON.stringify({ error: err.message }, null, 2);
+                resultDisplay.innerHTML = `<div class="not-supported"><p>Network error: ${err.message}</p></div>`;
+            } finally {
+                runBtn.disabled = false;
+                runBtn.textContent = 'Run Pipeline';
+            }
+        }
+    </script>
+</body>
+</html>

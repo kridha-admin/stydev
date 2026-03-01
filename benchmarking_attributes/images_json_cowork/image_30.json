@@ -1,0 +1,25 @@
+{
+  "image_id": "image_30",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "navy",
+    "color_value": "dark",
+    "pattern_type": "floral_large",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "wrap",
+    "sleeve_type": "short",
+    "neckline_type": "wrap_surplice",
+    "neckline_depth": "deep"
+  },
+  "notes": "Navy and white large floral print wrap dress with short sleeves and deep V surplice neckline. Semi-fitted through bodice with A-line skirt. Above-knee hemline. Lightweight summery fabric."
+}

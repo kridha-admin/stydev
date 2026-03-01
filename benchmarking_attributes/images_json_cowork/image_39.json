@@ -1,0 +1,25 @@
+{
+  "image_id": "image_39",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "beige",
+    "color_value": "light",
+    "pattern_type": "solid",
+    "hemline_position": "mini",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "bodycon",
+    "sleeve_type": "full_length",
+    "neckline_type": "crew_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Beige/cream ribbed knit bodycon mini dress with crew neckline and long flared/bell sleeves. Front tie/knot detail at the waist creating wrap effect. Mini hemline. Stretchy ribbed fabric."
+}

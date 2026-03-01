@@ -1,0 +1,25 @@
+{
+  "image_id": "image_26",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "olive",
+    "color_value": "medium_dark",
+    "pattern_type": "solid",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "structured",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "flutter",
+    "neckline_type": "sweetheart",
+    "neckline_depth": "medium"
+  },
+  "notes": "Olive green fit-and-flare dress with sweetheart neckline and flutter/ruffle sleeves. Cross-over detail at waist with double-layered ruffled flared skirt. Above-knee hemline. Structured medium-weight fabric."
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "image_45",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "oatmeal",
+    "color_value": "light",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "relaxed",
+    "fabric_drape": "fluid",
+    "waist_definition": "semi_defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "cocoon",
+    "sleeve_type": "cap",
+    "neckline_type": "mock_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Oatmeal/heather beige knit crop top with mock neckline and extended cap/dolman sleeves. Relaxed cocoon shape through the body with fitted ribbed waistband creating a cropped hem. Lightweight soft knit fabric."
+}

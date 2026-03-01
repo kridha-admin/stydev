@@ -1,0 +1,25 @@
+{
+  "image_id": "image_38",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "yellow",
+    "color_value": "medium_light",
+    "pattern_type": "floral_small",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "wrap",
+    "sleeve_type": "flutter",
+    "neckline_type": "wrap_surplice",
+    "neckline_depth": "deep"
+  },
+  "notes": "Yellow small ditsy floral wrap dress with deep V surplice neckline and short flutter sleeves. Defined waist with asymmetric ruffled hem. Above-knee hemline. Lightweight summer fabric."
+}

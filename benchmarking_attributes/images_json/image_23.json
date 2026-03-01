@@ -1,0 +1,25 @@
+{
+  "image_id": "image_23",
+  "ground_truth": {
+    "garment_type": "pants",
+    "color_primary": "beige",
+    "color_value": "light",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "medium",
+    "fabric_sheen": "matte",
+    "fit_category": "loose",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": "high",
+    "leg_shape": "palazzo",
+    "leg_opening_width": "very_wide",
+    "silhouette_type": null,
+    "sleeve_type": null,
+    "neckline_type": null,
+    "neckline_depth": null
+  },
+  "notes": "Beige/khaki palazzo pants with high-rise wide waistband. Very wide flowing legs from hip to hem. Pull-on style with no visible closures. Smooth jersey-like fabric with fluid drape."
+}

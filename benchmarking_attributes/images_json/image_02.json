@@ -1,0 +1,25 @@
+{
+  "image_id": "image_02",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "subtle_sheen",
+    "fit_category": "fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "undefined",
+    "waist_position": "undefined",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "sheath",
+    "sleeve_type": "sleeveless",
+    "neckline_type": "boat_neck",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Black sleeveless top with boat neckline and slight asymmetric draping at the shoulder. Fitted silhouette with ruching at the hem. Worn with jeans, hemline partially visible at crop length."
+}

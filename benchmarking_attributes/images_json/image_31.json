@@ -1,0 +1,25 @@
+{
+  "image_id": "image_31",
+  "ground_truth": {
+    "garment_type": "top",
+    "color_primary": "burgundy",
+    "color_value": "dark",
+    "pattern_type": "solid",
+    "hemline_position": null,
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "semi_defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "peplum",
+    "sleeve_type": "halter",
+    "neckline_type": "halter",
+    "neckline_depth": "medium"
+  },
+  "notes": "Burgundy/wine halter top with tie neck and sweetheart-shaped bust. Smocked/textured fabric with horizontal ruffle tiers. Front keyhole tie detail. Peplum-like flare at the bottom. Lightweight crinkled/gauze fabric."
+}

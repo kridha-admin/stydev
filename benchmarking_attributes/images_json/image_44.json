@@ -1,0 +1,25 @@
+{
+  "image_id": "image_44",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "black",
+    "color_value": "very_dark",
+    "pattern_type": "solid",
+    "hemline_position": "mini",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "heavy",
+    "fabric_sheen": "matte",
+    "fit_category": "fitted",
+    "fabric_drape": "stiff",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "cap",
+    "neckline_type": "plunging",
+    "neckline_depth": "plunging"
+  },
+  "notes": "Black structured blazer-style mini dress with plunging V-neckline and cap sleeves with padded shoulders. Fitted bodice with faux flap pockets at the hip. Flared mini skirt. Heavy structured fabric with stiff construction. Tailored/architectural design."
+}

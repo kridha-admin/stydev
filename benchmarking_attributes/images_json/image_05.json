@@ -1,0 +1,25 @@
+{
+  "image_id": "image_05",
+  "ground_truth": {
+    "garment_type": "dress",
+    "color_primary": "red",
+    "color_value": "medium",
+    "pattern_type": "polka_dot",
+    "hemline_position": "above_knee",
+    "is_adult_clothing": true,
+    "fabric_apparent_weight": "light",
+    "fabric_sheen": "matte",
+    "fit_category": "semi_fitted",
+    "fabric_drape": "fluid",
+    "waist_definition": "defined",
+    "waist_position": "natural",
+    "rise": null,
+    "leg_shape": null,
+    "leg_opening_width": null,
+    "silhouette_type": "fit_and_flare",
+    "sleeve_type": "halter",
+    "neckline_type": "halter",
+    "neckline_depth": "shallow"
+  },
+  "notes": "Red polka dot halter dress with gathered neckline. Fit-and-flare silhouette with defined waist and flared skirt. Above-knee hemline. Lightweight summer fabric."
+}
