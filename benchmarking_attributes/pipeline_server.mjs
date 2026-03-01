@@ -10,6 +10,7 @@ const __dirname = dirname(__filename);
 // Products JSON file path (same folder as cache.json)
 const PRODUCTS_DIR = join(__dirname, '..', 'stylist_pipeline', 'cache_json');
 const PRODUCTS_FILE = join(PRODUCTS_DIR, 'products.json');
+const USERS_FILE = join(PRODUCTS_DIR, 'users.json');
 
 function loadProducts() {
     try {
@@ -32,6 +33,31 @@ function saveProducts(products) {
         return true;
     } catch (err) {
         console.error('[PRODUCTS] Error saving products:', err.message);
+        return false;
+    }
+}
+
+function loadUsers() {
+    try {
+        if (existsSync(USERS_FILE)) {
+            return JSON.parse(readFileSync(USERS_FILE, 'utf-8'));
+        }
+    } catch (err) {
+        console.error('[USERS] Error loading users:', err.message);
+    }
+    return [];
+}
+
+function saveUsers(users) {
+    try {
+        if (!existsSync(PRODUCTS_DIR)) {
+            mkdirSync(PRODUCTS_DIR, { recursive: true });
+        }
+        writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+        console.log('[USERS] Saved users to:', USERS_FILE);
+        return true;
+    } catch (err) {
+        console.error('[USERS] Error saving users:', err.message);
         return false;
     }
 }
@@ -77,11 +103,12 @@ const server = createServer(async (req, res) => {
         req.on('data', chunk => { body += chunk; });
         req.on('end', async () => {
             try {
-                const { product_text, product_image_url } = JSON.parse(body);
+                const { product_text, product_image_url, user_measurements } = JSON.parse(body);
 
                 console.log('\n=== PIPELINE REQUEST ===');
                 console.log('Product Image URL:', product_image_url);
                 console.log('Product Text Length:', product_text?.length || 0);
+                console.log('User Measurements:', user_measurements ? 'provided' : 'using defaults');
 
                 const productProfile = {
                     product_text: product_text || '',
@@ -89,9 +116,12 @@ const server = createServer(async (req, res) => {
                     merged_attrs: {}
                 };
 
+                // Use provided user measurements or fall back to defaults
+                const userMeasurements = user_measurements || DEFAULT_USER_MEASUREMENTS;
+
                 // Run the pipeline with cache (handles extraction and caching automatically)
                 const result = await runPipelineWithCache(
-                    DEFAULT_USER_MEASUREMENTS,
+                    userMeasurements,
                     productProfile
                 );
 
@@ -206,6 +236,114 @@ const server = createServer(async (req, res) => {
                 }
             } catch (err) {
                 console.error('Delete product error:', err);
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: err.message }));
+            }
+        });
+        return;
+    }
+
+    // API endpoint to get users
+    if (req.method === 'GET' && urlPath === '/users') {
+        try {
+            const users = loadUsers();
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(users));
+        } catch (err) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: err.message }));
+        }
+        return;
+    }
+
+    // API endpoint to add/update a user
+    if (req.method === 'POST' && urlPath === '/add-user') {
+        let body = '';
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', async () => {
+            try {
+                const userData = JSON.parse(body);
+                const { name } = userData;
+
+                if (!name || !name.trim()) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'User name is required' }));
+                    return;
+                }
+
+                const users = loadUsers();
+
+                // Check if user with same name exists
+                const existingIndex = users.findIndex(u => u.name.toLowerCase() === name.trim().toLowerCase());
+
+                const newUser = {
+                    ...userData,
+                    name: name.trim(),
+                    updated_at: new Date().toISOString()
+                };
+
+                if (existingIndex >= 0) {
+                    // Update existing user
+                    users[existingIndex] = newUser;
+                    console.log('[USERS] Updated user:', name);
+                } else {
+                    // Add new user
+                    newUser.created_at = new Date().toISOString();
+                    users.push(newUser);
+                    console.log('[USERS] Added user:', name);
+                }
+
+                if (saveUsers(users)) {
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: true, user: newUser, total: users.length }));
+                } else {
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Failed to save user' }));
+                }
+            } catch (err) {
+                console.error('Add user error:', err);
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: err.message }));
+            }
+        });
+        return;
+    }
+
+    // API endpoint to delete a user
+    if (req.method === 'DELETE' && urlPath === '/delete-user') {
+        let body = '';
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', async () => {
+            try {
+                const { name } = JSON.parse(body);
+
+                if (!name) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'User name is required' }));
+                    return;
+                }
+
+                const users = loadUsers();
+                const index = users.findIndex(u => u.name.toLowerCase() === name.toLowerCase());
+
+                if (index === -1) {
+                    res.writeHead(404, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'User not found' }));
+                    return;
+                }
+
+                users.splice(index, 1);
+                console.log('[USERS] Deleted user:', name);
+
+                if (saveUsers(users)) {
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: true, deleted: name, total: users.length }));
+                } else {
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Failed to save after delete' }));
+                }
+            } catch (err) {
+                console.error('Delete user error:', err);
                 res.writeHead(500, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ error: err.message }));
             }

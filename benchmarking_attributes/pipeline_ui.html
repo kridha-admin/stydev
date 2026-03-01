@@ -482,6 +482,129 @@
             object-fit: contain;
             background: #F9FAFB;
         }
+
+        /* User Selector Styles */
+        .user-selector {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .user-dropdown-wrapper {
+            flex: 1;
+            position: relative;
+        }
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #ffffff;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+            display: none;
+        }
+        .user-dropdown.open {
+            display: block;
+        }
+
+        /* User Measurement Form */
+        .user-form-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #E5E7EB;
+        }
+        .user-form-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+        .measurement-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .measurement-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .measurement-item label {
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+        .measurement-item input {
+            padding: 8px;
+            font-size: 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            background: #F9FAFB;
+        }
+        .measurement-item input:focus {
+            outline: none;
+            border-color: #000000;
+        }
+
+        /* Styling Goals Checkboxes */
+        .styling-goals-section {
+            margin-top: 15px;
+        }
+        .styling-goals-section h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .goal-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #374151;
+            cursor: pointer;
+        }
+        .goal-checkbox input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+            accent-color: #000000;
+        }
+        .goal-checkbox.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .goal-checkbox.disabled input {
+            cursor: not-allowed;
+        }
+        .goals-hint {
+            font-size: 10px;
+            color: #9CA3AF;
+            margin-top: 6px;
+        }
+
+        /* Add User Section */
+        .add-user-section {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+        }
+        .add-user-section.visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -592,6 +715,134 @@ Machine wash cold</textarea>
                 <label>Image Preview</label>
                 <img id="imagePreview" class="image-preview" alt="Product preview">
             </div>
+
+            <!-- User Form Section -->
+            <div class="user-form-section">
+                <h3>User Measurements</h3>
+
+                <!-- User Selector -->
+                <div class="user-selector">
+                    <label>Select User</label>
+                    <div class="product-selector-row">
+                        <div class="user-dropdown-wrapper">
+                            <input type="text" id="userSearchInput" class="product-search-input" placeholder="Search or select a user..." autocomplete="off">
+                            <div id="userDropdown" class="user-dropdown"></div>
+                        </div>
+                    </div>
+
+                    <!-- Add User Section -->
+                    <div id="addUserSection" class="add-user-section">
+                        <div class="add-product-row">
+                            <div class="product-name-input-wrapper">
+                                <label for="userNameInput">User Name</label>
+                                <input type="text" id="userNameInput" placeholder="Enter user name...">
+                            </div>
+                            <button id="saveUserBtn" class="btn-small" onclick="saveUser()">Save User</button>
+                            <button id="cancelAddUserBtn" class="btn-small btn-secondary" onclick="cancelAddUser()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Measurements Grid -->
+                <div class="measurement-grid">
+                    <div class="measurement-item">
+                        <label>Chest (cm)</label>
+                        <input type="number" id="chest_circumference" step="0.1" value="112.7">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Waist (cm)</label>
+                        <input type="number" id="waist_circumference" step="0.1" value="102.76">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Hip (cm)</label>
+                        <input type="number" id="hip_circumference" step="0.1" value="107.5">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Shoulder (cm)</label>
+                        <input type="number" id="shoulder_breadth" step="0.1" value="42.32">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Neck (cm)</label>
+                        <input type="number" id="neck_circumference" step="0.1" value="44.97">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Thigh (cm)</label>
+                        <input type="number" id="thigh_left_circumference" step="0.1" value="67.01">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Ankle (cm)</label>
+                        <input type="number" id="ankle_left_circumference" step="0.1" value="28.64">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Arm Length (cm)</label>
+                        <input type="number" id="arm_right_length" step="0.1" value="76.0">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Inseam (cm)</label>
+                        <input type="number" id="inside_leg_height" step="0.1" value="77.66">
+                    </div>
+                    <div class="measurement-item">
+                        <label>Height (cm)</label>
+                        <input type="number" id="height" step="0.1" value="172.72">
+                    </div>
+                </div>
+
+                <!-- Styling Goals -->
+                <div class="styling-goals-section">
+                    <h4>Styling Goals (select up to 3)</h4>
+                    <div class="goals-grid">
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="look_taller" checked>
+                            Look Taller
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="look_slimmer" checked>
+                            Look Slimmer
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="highlight_waist">
+                            Highlight Waist
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="hide_midsection">
+                            Hide Midsection
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="minimize_hips">
+                            Minimize Hips
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="balance_shoulders">
+                            Balance Shoulders
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="hide_upper_arms">
+                            Hide Upper Arms
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="elongate_legs">
+                            Elongate Legs
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="create_curves">
+                            Create Curves
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="streamline_silhouette">
+                            Streamline Silhouette
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="minimize_bust">
+                            Minimize Bust
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" name="styling_goal" value="show_legs">
+                            Show Legs
+                        </label>
+                    </div>
+                    <div class="goals-hint">Select up to 3 styling goals</div>
+                </div>
+            </div>
         </div>
         <div class="panel">
             <h2>Result</h2>
@@ -607,10 +858,18 @@ Machine wash cold</textarea>
         let selectedProductIndex = -1;
         let isAddingNew = false;
 
-        // Load products on page load
+        // User Selector State
+        let users = [];
+        let selectedUserIndex = -1;
+        let isAddingNewUser = false;
+
+        // Load products and users on page load
         document.addEventListener('DOMContentLoaded', async () => {
             await loadProducts();
+            await loadUsers();
             setupProductDropdown();
+            setupUserDropdown();
+            setupStylingGoals();
             setupImagePreview();
             updateImagePreview(); // Show preview if there's an initial URL
         });
@@ -650,6 +909,244 @@ Machine wash cold</textarea>
             } catch (err) {
                 console.error('Error loading products:', err);
             }
+        }
+
+        async function loadUsers() {
+            try {
+                const response = await fetch('/users');
+                if (response.ok) {
+                    users = await response.json();
+                    console.log('Loaded users:', users.length);
+                }
+            } catch (err) {
+                console.error('Error loading users:', err);
+            }
+        }
+
+        function setupUserDropdown() {
+            const searchInput = document.getElementById('userSearchInput');
+            const dropdown = document.getElementById('userDropdown');
+
+            searchInput.addEventListener('focus', () => {
+                renderUserDropdown('');
+                dropdown.classList.add('open');
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                renderUserDropdown(e.target.value);
+                dropdown.classList.add('open');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.user-dropdown-wrapper')) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        }
+
+        function renderUserDropdown(searchTerm) {
+            const dropdown = document.getElementById('userDropdown');
+            const lowerSearch = searchTerm.toLowerCase();
+
+            let html = '';
+            html += `<div class="product-option add-new" onclick="selectAddNewUser()">+ Add New User</div>`;
+
+            const filtered = users.filter(u =>
+                u.name.toLowerCase().includes(lowerSearch)
+            );
+
+            filtered.forEach((user, idx) => {
+                const originalIdx = users.indexOf(user);
+                const selectedClass = originalIdx === selectedUserIndex ? 'selected' : '';
+                html += `
+                    <div class="product-option ${selectedClass}">
+                        <span class="product-option-name" onclick="selectUser(${originalIdx})">${user.name}</span>
+                        <button class="product-delete-btn" onclick="event.stopPropagation(); deleteUser('${user.name.replace(/'/g, "\\'")}', ${originalIdx})" title="Delete user">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+            });
+
+            if (filtered.length === 0 && users.length > 0) {
+                html += `<div class="product-option" style="color: #9CA3AF; cursor: default;">No users found</div>`;
+            }
+
+            dropdown.innerHTML = html;
+        }
+
+        function selectUser(index) {
+            const user = users[index];
+            if (!user) return;
+
+            selectedUserIndex = index;
+            isAddingNewUser = false;
+
+            document.getElementById('userSearchInput').value = user.name;
+            document.getElementById('userDropdown').classList.remove('open');
+            document.getElementById('addUserSection').classList.remove('visible');
+
+            // Fill measurement fields
+            document.getElementById('chest_circumference').value = user.chest_circumference || '';
+            document.getElementById('waist_circumference').value = user.waist_circumference || '';
+            document.getElementById('hip_circumference').value = user.hip_circumference || '';
+            document.getElementById('shoulder_breadth').value = user.shoulder_breadth || '';
+            document.getElementById('neck_circumference').value = user.neck_circumference || '';
+            document.getElementById('thigh_left_circumference').value = user.thigh_left_circumference || '';
+            document.getElementById('ankle_left_circumference').value = user.ankle_left_circumference || '';
+            document.getElementById('arm_right_length').value = user.arm_right_length || '';
+            document.getElementById('inside_leg_height').value = user.inside_leg_height || '';
+            document.getElementById('height').value = user.height || '';
+
+            // Fill styling goals
+            const checkboxes = document.querySelectorAll('input[name="styling_goal"]');
+            checkboxes.forEach(cb => {
+                cb.checked = user.styling_goals && user.styling_goals.includes(cb.value);
+            });
+            updateGoalsCheckboxState();
+        }
+
+        function selectAddNewUser() {
+            isAddingNewUser = true;
+            selectedUserIndex = -1;
+
+            document.getElementById('userSearchInput').value = '';
+            document.getElementById('userNameInput').value = '';
+            document.getElementById('userDropdown').classList.remove('open');
+            document.getElementById('addUserSection').classList.add('visible');
+        }
+
+        function cancelAddUser() {
+            isAddingNewUser = false;
+            document.getElementById('addUserSection').classList.remove('visible');
+        }
+
+        async function saveUser() {
+            const name = document.getElementById('userNameInput').value.trim();
+
+            if (!name) {
+                alert('Please enter a user name');
+                return;
+            }
+
+            const userData = {
+                name,
+                chest_circumference: parseFloat(document.getElementById('chest_circumference').value) || null,
+                waist_circumference: parseFloat(document.getElementById('waist_circumference').value) || null,
+                hip_circumference: parseFloat(document.getElementById('hip_circumference').value) || null,
+                shoulder_breadth: parseFloat(document.getElementById('shoulder_breadth').value) || null,
+                neck_circumference: parseFloat(document.getElementById('neck_circumference').value) || null,
+                thigh_left_circumference: parseFloat(document.getElementById('thigh_left_circumference').value) || null,
+                ankle_left_circumference: parseFloat(document.getElementById('ankle_left_circumference').value) || null,
+                arm_right_length: parseFloat(document.getElementById('arm_right_length').value) || null,
+                inside_leg_height: parseFloat(document.getElementById('inside_leg_height').value) || null,
+                height: parseFloat(document.getElementById('height').value) || null,
+                styling_goals: getSelectedStylingGoals()
+            };
+
+            try {
+                const response = await fetch('/add-user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    await loadUsers();
+                    const newIndex = users.findIndex(u => u.name.toLowerCase() === name.toLowerCase());
+                    if (newIndex >= 0) {
+                        selectUser(newIndex);
+                    }
+                    document.getElementById('addUserSection').classList.remove('visible');
+                    alert('User saved successfully!');
+                } else {
+                    alert('Error saving user: ' + (result.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Error saving user: ' + err.message);
+            }
+        }
+
+        async function deleteUser(name, index) {
+            if (!confirm(`Are you sure you want to delete "${name}"?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/delete-user', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    if (selectedUserIndex === index) {
+                        selectedUserIndex = -1;
+                        document.getElementById('userSearchInput').value = '';
+                    } else if (selectedUserIndex > index) {
+                        selectedUserIndex--;
+                    }
+
+                    await loadUsers();
+                    renderUserDropdown(document.getElementById('userSearchInput').value);
+                } else {
+                    alert('Error deleting user: ' + (result.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Error deleting user: ' + err.message);
+            }
+        }
+
+        function setupStylingGoals() {
+            const checkboxes = document.querySelectorAll('input[name="styling_goal"]');
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', updateGoalsCheckboxState);
+            });
+            updateGoalsCheckboxState();
+        }
+
+        function updateGoalsCheckboxState() {
+            const checkboxes = document.querySelectorAll('input[name="styling_goal"]');
+            const checkedCount = document.querySelectorAll('input[name="styling_goal"]:checked').length;
+
+            checkboxes.forEach(cb => {
+                const label = cb.closest('.goal-checkbox');
+                if (!cb.checked && checkedCount >= 3) {
+                    label.classList.add('disabled');
+                    cb.disabled = true;
+                } else {
+                    label.classList.remove('disabled');
+                    cb.disabled = false;
+                }
+            });
+        }
+
+        function getSelectedStylingGoals() {
+            const checked = document.querySelectorAll('input[name="styling_goal"]:checked');
+            return Array.from(checked).map(cb => cb.value);
+        }
+
+        function getUserMeasurements() {
+            return {
+                chest_circumference: parseFloat(document.getElementById('chest_circumference').value) || null,
+                waist_circumference: parseFloat(document.getElementById('waist_circumference').value) || null,
+                hip_circumference: parseFloat(document.getElementById('hip_circumference').value) || null,
+                shoulder_breadth: parseFloat(document.getElementById('shoulder_breadth').value) || null,
+                neck_circumference: parseFloat(document.getElementById('neck_circumference').value) || null,
+                thigh_left_circumference: parseFloat(document.getElementById('thigh_left_circumference').value) || null,
+                ankle_left_circumference: parseFloat(document.getElementById('ankle_left_circumference').value) || null,
+                arm_right_length: parseFloat(document.getElementById('arm_right_length').value) || null,
+                inside_leg_height: parseFloat(document.getElementById('inside_leg_height').value) || null,
+                height: parseFloat(document.getElementById('height').value) || null,
+                styling_goals: getSelectedStylingGoals()
+            };
         }
 
         function setupProductDropdown() {
@@ -1143,7 +1640,8 @@ Machine wash cold</textarea>
                     },
                     body: JSON.stringify({
                         product_text: productText,
-                        product_image_url: productImageUrl
+                        product_image_url: productImageUrl,
+                        user_measurements: getUserMeasurements()
                     })
                 });
 
