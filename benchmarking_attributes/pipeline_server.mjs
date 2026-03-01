@@ -103,12 +103,16 @@ const server = createServer(async (req, res) => {
         req.on('data', chunk => { body += chunk; });
         req.on('end', async () => {
             try {
-                const { product_text, product_image_url, user_measurements } = JSON.parse(body);
+                const { product_text, product_image_url, user_measurements, use_cache } = JSON.parse(body);
+
+                // Default use_cache to true if not provided
+                const shouldUseCache = use_cache !== false;
 
                 console.log('\n=== PIPELINE REQUEST ===');
                 console.log('Product Image URL:', product_image_url);
                 console.log('Product Text Length:', product_text?.length || 0);
                 console.log('User Measurements:', user_measurements ? 'provided' : 'using defaults');
+                console.log('Use Cache:', shouldUseCache);
 
                 const productProfile = {
                     product_text: product_text || '',
@@ -122,7 +126,8 @@ const server = createServer(async (req, res) => {
                 // Run the pipeline with cache (handles extraction and caching automatically)
                 const result = await runPipelineWithCache(
                     userMeasurements,
-                    productProfile
+                    productProfile,
+                    shouldUseCache
                 );
 
                 res.writeHead(200, { 'Content-Type': 'application/json' });

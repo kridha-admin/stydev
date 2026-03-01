@@ -1033,29 +1033,35 @@ function saveMergedAttrsToCache(productText, productImageUrl, mergedAttrs) {
  *
  * @param {Object} userMeasurements - User body measurements
  * @param {Object} productProfile - Product profile with product_text and product_image_url
+ * @param {boolean} use_cache - Whether to use cache (default true). If false, always extract fresh.
  * @returns {Object} Pipeline result
  */
-export async function runPipelineWithCache(userMeasurements, productProfile) {
+export async function runPipelineWithCache(userMeasurements, productProfile, use_cache = true) {
     const productText = productProfile.product_text || '';
     const productImageUrl = productProfile.product_image_url || '';
 
-    // Check cache first
-    const cachedAttrs = getCachedMergedAttrs(productText, productImageUrl);
-
+    let cachedAttrs = null;
     let extract_details = true;
 
-    if (cachedAttrs) {
-        // Use cached mergedAttrs
-        console.log('\n=== USING CACHED MERGED ATTRIBUTES ===\n');
-        productProfile.merged_attrs = cachedAttrs;
-        extract_details = false; // No need to extract, we have cached data
+    // Check cache only if use_cache is true
+    if (use_cache) {
+        cachedAttrs = getCachedMergedAttrs(productText, productImageUrl);
+
+        if (cachedAttrs) {
+            // Use cached mergedAttrs
+            console.log('\n=== USING CACHED MERGED ATTRIBUTES ===\n');
+            productProfile.merged_attrs = cachedAttrs;
+            extract_details = false; // No need to extract, we have cached data
+        }
+    } else {
+        console.log('\n=== CACHE DISABLED - EXTRACTING FRESH ATTRIBUTES ===\n');
     }
 
     // Run the pipeline
     const result = await runPipeline(userMeasurements, productProfile, extract_details);
 
-    // Save to cache if we extracted new attributes (not from cache)
-    if (!cachedAttrs && result && result.mergedAttrs) {
+    // Save to cache if we extracted new attributes (always save/overwrite when extracting)
+    if (extract_details && result && result.mergedAttrs) {
         saveMergedAttrsToCache(productText, productImageUrl, result.mergedAttrs);
     }
 

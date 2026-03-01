@@ -223,14 +223,10 @@
             border: 1px solid #E5E7EB;
         }
         .goal-item.pass {
-            border-left: 3px solid #000000;
+            border-left: 3px solid #22C55E;
         }
         .goal-item.fail {
-            background: #000000;
-            color: #ffffff;
-        }
-        .goal-item.fail .goal-reasoning {
-            color: #9CA3AF;
+            border-left: 3px solid #EF4444;
         }
         .goal-header {
             display: flex;
@@ -706,6 +702,12 @@ Machine wash cold</textarea>
             <div class="input-group">
                 <label for="productImageUrl">Product Image URL</label>
                 <input type="text" id="productImageUrl" value="https://image.hm.com/assets/hm/3f/9d/3f9d33623815e9442d3af8801b1bdcc619a18f8c.jpg?imwidth=1536">
+            </div>
+            <div class="input-group" style="margin-bottom: 10px;">
+                <label class="goal-checkbox" style="display: inline-flex; font-size: 13px; text-transform: none;">
+                    <input type="checkbox" id="useCacheCheckbox" checked>
+                    Use cached attributes (if available)
+                </label>
             </div>
             <button id="runBtn" onclick="runPipeline()">Run Pipeline</button>
             <div id="status" class="status" style="display: none;"></div>
@@ -1633,6 +1635,8 @@ Machine wash cold</textarea>
             `;
 
             try {
+                const useCache = document.getElementById('useCacheCheckbox').checked;
+
                 const response = await fetch('/run-pipeline', {
                     method: 'POST',
                     headers: {
@@ -1641,7 +1645,8 @@ Machine wash cold</textarea>
                     body: JSON.stringify({
                         product_text: productText,
                         product_image_url: productImageUrl,
-                        user_measurements: getUserMeasurements()
+                        user_measurements: getUserMeasurements(),
+                        use_cache: useCache
                     })
                 });
 
