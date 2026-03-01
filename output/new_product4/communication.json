@@ -18,12 +18,12 @@
     {
       "goal": "Highlight waist",
       "icon": "◇",
-      "verdict": "mixed"
+      "verdict": "fighting"
     },
     {
       "goal": "Minimize middle",
       "icon": "○",
-      "verdict": "mixed"
+      "verdict": "helping"
     },
     {
       "goal": "Streamline hips",
@@ -48,7 +48,7 @@
     {
       "goal": "Smooth silhouette",
       "icon": "○",
-      "verdict": "mixed"
+      "verdict": "helping"
     },
     {
       "goal": "Proportional",
@@ -67,8 +67,8 @@
     "Worth the alteration?",
     "Find similar but shorter?"
   ],
-  "full_take_prompt_context": "verdict=smart_pick score=5.8 | body=apple garment=dress | +Hemline(+0.40): Hem 30.1\" from floor -> above_knee | inchesAbove=11.6, h_knee=18.564, height=68 | Base elongation: min(11.6 * 0.20, 0.60) = 0.60 | c_thigh_max=26.381889763779526 | Thigh penalty (>24): -0.20 | Final: elongation=0.60 + thighPenalty=-0.20 + appleBonus=0.00 = 0.40 | +Matte Zone(+0.12): sheen_index: 0.1 >>  | Deeply matte (SI=0.10): +0.08 | body_shape: apple; is_plus_size: true; zone: full_body >>  | btMult: 1.5 >>  | cling_risk: 0.37777777777777777 >>  | +Neckline Compound(+0.18): Bust: depth=3.1\", threshold=7.0\", ratio=0.45, score=+0.30 | Compound: bust=+0.30*0.4 + torso=+0.07*0.3 + balance=+0.15*0.3 = +0.18 | -Sleeve(-0.18): Sleeve endpoint 4.0\", delta=+2.21\", severity=0.8 | Raw score -3.0 -> normalized -0.60 | fixes=[Choose 3/4 sleeve for optimal arm slimming]",
-  "overall_score": 5.8,
+  "full_take_prompt_context": "verdict=smart_pick score=6.6 | body=apple garment=dress | +Hemline(+0.40): Hem 30.1\" from floor -> above_knee | inchesAbove=11.6, h_knee=18.564, height=68 | Base elongation: min(11.6 * 0.20, 0.60) = 0.60 | c_thigh_max=26.381889763779526 | Thigh penalty (>24): -0.20 | Final: elongation=0.60 + thighPenalty=-0.20 + appleBonus=0.00 = 0.40 | +Tent Concealment(+0.20): expansion_rate: 0.05 >>  | body_shape: apple; is_plus_size: true; is_structured: true >>  | ER=0.05: semi-fitted optimal | Plus + structured semi-fitted: smooth containment | +Neckline Compound(+0.26): Bust: depth=5.5\", threshold=7.0\", ratio=0.79, score=+0.50 | Compound: bust=+0.50*0.4 + torso=+0.07*0.3 + balance=+0.15*0.3 = +0.26 | -Sleeve(-0.18): Sleeve endpoint 4.0\", delta=+2.21\", severity=0.8 | Raw score -3.0 -> normalized -0.60 | fixes=[Choose 3/4 sleeve for optimal arm slimming]",
+  "overall_score": 6.6,
   "guardrail_result": {
     "passed": true,
     "violations": [],

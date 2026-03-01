@@ -7,6 +7,7 @@
     "start": "node stylist_pipeline/run_pipeline.mjs",
     "pipeline": "node stylist_pipeline/run_pipeline.mjs",
     "pipeline-ui": "node benchmarking_attributes/pipeline_server.mjs",
+    "pipeline-ui:dev": "nodemon --watch . --ext mjs,js,html,json --ignore cache_json/ --ignore node_modules/ benchmarking_attributes/pipeline_server.mjs",
     "extract-text": "node stylist_pipeline/product_text_extraction.mjs",
     "extract-image": "node stylist_pipeline/product_image_extraction.mjs",
     "test-mongo": "node stylist_pipeline/mongodb_helper.mjs",
@@ -20,6 +21,9 @@
     "dotenv": "^16.4.5",
     "mongoose": "^8.9.0",
     "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -308,6 +308,180 @@
             margin-bottom: 16px;
             font-style: italic;
         }
+
+        /* Product Selector Styles */
+        .product-selector {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .product-selector-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .product-dropdown-wrapper {
+            flex: 1;
+            position: relative;
+        }
+        .product-search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background: #F9FAFB;
+            color: #000000;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+        }
+        .product-search-input:focus {
+            outline: none;
+            border-color: #000000;
+        }
+        .product-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #ffffff;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+            display: none;
+        }
+        .product-dropdown.open {
+            display: block;
+        }
+        .product-option {
+            padding: 10px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .product-option:last-child {
+            border-bottom: none;
+        }
+        .product-option:hover {
+            background: #F9FAFB;
+        }
+        .product-option-name {
+            flex: 1;
+        }
+        .product-option-thumb {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            object-fit: contain;
+            margin-right: 10px;
+            background: #F3F4F6;
+            flex-shrink: 0;
+        }
+        .product-option-thumb-placeholder {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            margin-right: 10px;
+            background: #F3F4F6;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            font-size: 10px;
+        }
+        .product-delete-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.5;
+            transition: all 0.15s;
+            margin: 0;
+        }
+        .product-delete-btn:hover {
+            opacity: 1;
+            background: #FEE2E2;
+        }
+        .product-delete-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: #DC2626;
+        }
+        .product-option.add-new {
+            font-weight: 600;
+            color: #000000;
+            background: #F3F4F6;
+        }
+        .product-option.add-new:hover {
+            background: #E5E7EB;
+        }
+        .product-option.selected {
+            background: #000000;
+            color: #ffffff;
+        }
+        .add-product-section {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+        }
+        .add-product-section.visible {
+            display: block;
+        }
+        .add-product-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .product-name-input-wrapper {
+            flex: 1;
+        }
+        .btn-secondary {
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+        .btn-secondary:hover {
+            background: #F9FAFB;
+        }
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 13px;
+            margin-top: 0;
+        }
+
+        /* Image Preview Styles */
+        .image-preview-container {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #E5E7EB;
+        }
+        .image-preview-container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .image-preview {
+            max-width: 200px;
+            max-height: 250px;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            object-fit: contain;
+            background: #F9FAFB;
+        }
     </style>
 </head>
 <body>
@@ -315,6 +489,30 @@
     <div class="container">
         <div class="panel">
             <h2>Input</h2>
+
+            <!-- Product Selector -->
+            <div class="product-selector">
+                <label>Select Product</label>
+                <div class="product-selector-row">
+                    <div class="product-dropdown-wrapper">
+                        <input type="text" id="productSearchInput" class="product-search-input" placeholder="Search or select a product..." autocomplete="off">
+                        <div id="productDropdown" class="product-dropdown"></div>
+                    </div>
+                </div>
+
+                <!-- Add Product Section (shown when "Add Product" is selected) -->
+                <div id="addProductSection" class="add-product-section">
+                    <div class="add-product-row">
+                        <div class="product-name-input-wrapper">
+                            <label for="productNameInput">Product Name</label>
+                            <input type="text" id="productNameInput" placeholder="Enter product name...">
+                        </div>
+                        <button id="saveProductBtn" class="btn-small" onclick="saveProduct()">Save Product</button>
+                        <button id="cancelAddBtn" class="btn-small btn-secondary" onclick="cancelAddProduct()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="input-group">
                 <label for="productText">Product Text</label>
                 <textarea id="productText" placeholder="Paste product description here...">Title:
@@ -388,6 +586,12 @@ Machine wash cold</textarea>
             </div>
             <button id="runBtn" onclick="runPipeline()">Run Pipeline</button>
             <div id="status" class="status" style="display: none;"></div>
+
+            <!-- Image Preview -->
+            <div id="imagePreviewContainer" class="image-preview-container" style="display: none;">
+                <label>Image Preview</label>
+                <img id="imagePreview" class="image-preview" alt="Product preview">
+            </div>
         </div>
         <div class="panel">
             <h2>Result</h2>
@@ -398,6 +602,231 @@ Machine wash cold</textarea>
     </div>
 
     <script>
+        // Product Selector State
+        let products = [];
+        let selectedProductIndex = -1;
+        let isAddingNew = false;
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadProducts();
+            setupProductDropdown();
+            setupImagePreview();
+            updateImagePreview(); // Show preview if there's an initial URL
+        });
+
+        function setupImagePreview() {
+            const imageUrlInput = document.getElementById('productImageUrl');
+            imageUrlInput.addEventListener('input', () => updateImagePreview());
+            imageUrlInput.addEventListener('change', () => updateImagePreview());
+        }
+
+        function updateImagePreview() {
+            const url = document.getElementById('productImageUrl').value.trim();
+            const container = document.getElementById('imagePreviewContainer');
+            const img = document.getElementById('imagePreview');
+
+            if (!url) {
+                container.style.display = 'none';
+                return;
+            }
+
+            img.onload = () => {
+                container.style.display = 'block';
+            };
+            img.onerror = () => {
+                container.style.display = 'none';
+            };
+            img.src = url;
+        }
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('/products');
+                if (response.ok) {
+                    products = await response.json();
+                    console.log('Loaded products:', products.length);
+                }
+            } catch (err) {
+                console.error('Error loading products:', err);
+            }
+        }
+
+        function setupProductDropdown() {
+            const searchInput = document.getElementById('productSearchInput');
+            const dropdown = document.getElementById('productDropdown');
+
+            // Show dropdown on focus
+            searchInput.addEventListener('focus', () => {
+                renderDropdown('');
+                dropdown.classList.add('open');
+            });
+
+            // Filter on input
+            searchInput.addEventListener('input', (e) => {
+                renderDropdown(e.target.value);
+                dropdown.classList.add('open');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.product-dropdown-wrapper')) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        }
+
+        function renderDropdown(searchTerm) {
+            const dropdown = document.getElementById('productDropdown');
+            const lowerSearch = searchTerm.toLowerCase();
+
+            let html = '';
+
+            // Add "Add New Product" option at top
+            html += `<div class="product-option add-new" onclick="selectAddNew()">+ Add New Product</div>`;
+
+            // Filter and render products
+            const filtered = products.filter(p =>
+                p.name.toLowerCase().includes(lowerSearch)
+            );
+
+            filtered.forEach((product, idx) => {
+                const originalIdx = products.indexOf(product);
+                const selectedClass = originalIdx === selectedProductIndex ? 'selected' : '';
+                const thumbHtml = product.product_image_url
+                    ? `<img class="product-option-thumb" src="${product.product_image_url}" alt="" onerror="this.style.display='none'">`
+                    : `<div class="product-option-thumb-placeholder">—</div>`;
+                html += `
+                    <div class="product-option ${selectedClass}">
+                        ${thumbHtml}
+                        <span class="product-option-name" onclick="selectProduct(${originalIdx})">${product.name}</span>
+                        <button class="product-delete-btn" onclick="event.stopPropagation(); deleteProduct('${product.name.replace(/'/g, "\\'")}', ${originalIdx})" title="Delete product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+            });
+
+            if (filtered.length === 0 && products.length > 0) {
+                html += `<div class="product-option" style="color: #9CA3AF; cursor: default;">No products found</div>`;
+            }
+
+            dropdown.innerHTML = html;
+        }
+
+        function selectProduct(index) {
+            const product = products[index];
+            if (!product) return;
+
+            selectedProductIndex = index;
+            isAddingNew = false;
+
+            // Update UI
+            document.getElementById('productSearchInput').value = product.name;
+            document.getElementById('productText').value = product.product_text || '';
+            document.getElementById('productImageUrl').value = product.product_image_url || '';
+            document.getElementById('productDropdown').classList.remove('open');
+            document.getElementById('addProductSection').classList.remove('visible');
+            updateImagePreview();
+        }
+
+        function selectAddNew() {
+            isAddingNew = true;
+            selectedProductIndex = -1;
+
+            // Keep product text and image URL, only clear search input and product name
+            document.getElementById('productSearchInput').value = '';
+            document.getElementById('productNameInput').value = '';
+            document.getElementById('productDropdown').classList.remove('open');
+            document.getElementById('addProductSection').classList.add('visible');
+        }
+
+        function cancelAddProduct() {
+            isAddingNew = false;
+            document.getElementById('addProductSection').classList.remove('visible');
+        }
+
+        async function deleteProduct(name, index) {
+            if (!confirm(`Are you sure you want to delete "${name}"?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/delete-product', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // If we deleted the currently selected product, clear the selection
+                    if (selectedProductIndex === index) {
+                        selectedProductIndex = -1;
+                        document.getElementById('productSearchInput').value = '';
+                        document.getElementById('productText').value = '';
+                        document.getElementById('productImageUrl').value = '';
+                        updateImagePreview();
+                    } else if (selectedProductIndex > index) {
+                        // Adjust index if we deleted a product before the selected one
+                        selectedProductIndex--;
+                    }
+
+                    // Reload products and re-render dropdown
+                    await loadProducts();
+                    renderDropdown(document.getElementById('productSearchInput').value);
+                } else {
+                    alert('Error deleting product: ' + (result.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Error deleting product: ' + err.message);
+            }
+        }
+
+        async function saveProduct() {
+            const name = document.getElementById('productNameInput').value.trim();
+            const productText = document.getElementById('productText').value;
+            const productImageUrl = document.getElementById('productImageUrl').value;
+
+            if (!name) {
+                alert('Please enter a product name');
+                return;
+            }
+
+            try {
+                const response = await fetch('/add-product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        product_text: productText,
+                        product_image_url: productImageUrl
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // Reload products and select the new one
+                    await loadProducts();
+                    const newIndex = products.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
+                    if (newIndex >= 0) {
+                        selectProduct(newIndex);
+                    }
+                    document.getElementById('addProductSection').classList.remove('visible');
+                    alert('Product saved successfully!');
+                } else {
+                    alert('Error saving product: ' + (result.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Error saving product: ' + err.message);
+            }
+        }
+
         function renderResult(data) {
             const container = document.getElementById('resultDisplay');
 
@@ -452,6 +881,34 @@ Machine wash cold</textarea>
             // Headline
             if (comm.headline) {
                 html += `<div class="headline">${comm.headline}</div>`;
+            }
+
+            // Principle Scores (shown right after headline)
+            if (scoring.principle_scores && scoring.principle_scores.length > 0) {
+                html += `
+                    <details class="collapsible">
+                        <summary>Principle Scores</summary>
+                        <div class="collapsible-content">
+                            ${scoring.principle_scores.map((principle, i) => {
+                                const reasonings = principle.prompt_input_reasoning || [];
+                                if (reasonings.length === 0) return ''; // Skip principles with no reasoning
+                                return `
+                                    <div style="padding: 8px 0; border-bottom: ${i < scoring.principle_scores.length - 1 ? '1px solid #E5E7EB' : 'none'};">
+                                        <div style="font-weight: 600; font-size: 12px; color: #374151; margin-bottom: 4px;">
+                                            ${principle.name}
+                                            ${principle.score != null ? `<span style="font-weight: 400; color: #6B7280;"> (${principle.score >= 0 ? '+' : ''}${Number(principle.score).toFixed(3)})</span>` : ''}
+                                        </div>
+                                        ${reasonings.map(r => `
+                                            <div style="font-size: 12px; color: #4B5563; padding: 2px 0 2px 12px; border-left: 2px solid ${r.startsWith('Con:') ? '#FDE68A' : r.startsWith('Pro:') ? '#A7F3D0' : '#E5E7EB'};">
+                                                ${r}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </details>
+                `;
             }
 
             // Pinch
